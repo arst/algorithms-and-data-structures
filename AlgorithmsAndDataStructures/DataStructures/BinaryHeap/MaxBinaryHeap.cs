@@ -1,10 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 {
-    class MaxBinaryHeap
+    public class MaxBinaryHeap<T> : BinaryHeap<T> where T: IComparable<T>
     {
+
+        public MaxBinaryHeap(int maxCapacity = 8)
+            : base(maxCapacity)
+        {
+
+        }
+
+        protected override bool ShouldSwap(int current, int target)
+        {
+            return heap[current].CompareTo(heap[target]) > 0;
+        }
+
+        protected override bool ShouldNotSwap(int current, int target)
+        {
+            return heap[current].CompareTo(heap[target]) < 0;
+        }
+
+        protected override int GetSwapChildIndex(int rightChildIndex, int leftChildIndex)
+        {
+            return heap[leftChildIndex].CompareTo(heap[rightChildIndex]) < 0 ? rightChildIndex : leftChildIndex;
+        }
     }
 }
