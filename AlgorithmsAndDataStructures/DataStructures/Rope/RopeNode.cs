@@ -1,13 +1,15 @@
 ﻿namespace AlgorithmsAndDataStructures.DataStructures.Roap
 {
-    public class RoapNode
+    public class RopeNode
     {
+        public bool IsLeaf { get; set; }
+
         public int Weight { get; set; }
 
         public string Text { get; set; }
 
-        public RoapNode Left { get; set; }
+        public RopeNode Left { get; set; }
 
-        public RoapNode Right { get; set; }
+        public RopeNode Right { get; set; }
     }
 }

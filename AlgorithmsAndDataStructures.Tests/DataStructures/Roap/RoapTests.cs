@@ -52,7 +52,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Roap
         [Fact]
         public void CanSplitRopeIntoTwoRopes()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.Roap.Roap();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.Roap.Roap("Hello ");
+            sut.Concat("my ");
+            sut.Concat("name ");
+            sut.Concat("is ");
+            sut.Concat("Simon.");
+            Assert.Equal("Hello my name is Simon.", sut.Traverse());
+            var splittedRope = sut.Split(10);
+            Assert.Equal("Hello my n", new AlgorithmsAndDataStructures.DataStructures.Roap.Roap(splittedRope).Traverse());
         }
 
         [Fact]
