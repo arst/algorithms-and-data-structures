@@ -6,6 +6,20 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 {
     public class RedBlackTreeNode
     {
+        private static RedBlackTreeNode CreateLeafNode()
+        {
+            var result = new RedBlackTreeNode();
+            result.IsLeafNode = true;
+
+            return result;
+        }
+
+        public RedBlackTreeNode()
+        {
+            Left = CreateLeafNode();
+            Right = CreateLeafNode();
+        }
+
         public bool IsRed { get; set; }
 
         public bool IsLeft => Parent != null && Parent.Left == this;
@@ -19,5 +33,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         public RedBlackTreeNode Right { get; set; }
 
         public int Value { get; set; }
+
+        public bool IsLeafNode { get; set; }
     }
 }
