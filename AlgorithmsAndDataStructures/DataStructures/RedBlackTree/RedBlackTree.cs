@@ -259,7 +259,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                 }
 
                 // Two children. Convert to one children case.
-                var minNode = FindNodeWithMinValue(node.Right);
+                var minNode = FindInOrderSuccessor(node.Right);
 
                 node.Value = minNode.Value;
 
@@ -269,7 +269,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             return node;
         }
 
-        private RedBlackTreeNode FindNodeWithMinValue(RedBlackTreeNode right)
+        private RedBlackTreeNode FindInOrderSuccessor(RedBlackTreeNode right)
         {
             var current = right;
 
@@ -391,21 +391,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         private void FixCase3(RedBlackTreeNode node)
         {
             var parent = node.Parent;
-
-            if (node.IsLeft)
-            {
-                if (parent.Right != null)
-                {
-                    parent.Right.IsRed = true;
-                }
-            }
-            else
-            {
-                if (parent.Left != null)
-                {
-                    parent.Left.IsRed = true;
-                }
-            }
+            var sibling = node.IsLeft ? parent.Right : parent.Left;
+            sibling.IsRed = true;
         }
 
         private void FixCase4(RedBlackTreeNode node)
