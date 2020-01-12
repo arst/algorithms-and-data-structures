@@ -359,34 +359,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         private bool IsCase6(RedBlackTreeNode node)
         {
-            var isSiblingRightChildRed = false;
+            var parent = node.Parent;
+            var sibling = node.IsLeft ? parent.Right : parent.Left;
+            var isSiblingRightChildRed = !sibling.Right.IsLeafNode && sibling.Right.IsRed;
 
-            bool isSiblingBlack;
-
-            if (node.IsLeft)
-            {
-                var rightSibling = node.Parent.Right;
-
-                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
-
-                if (rightSibling != null)
-                {
-                    isSiblingRightChildRed = rightSibling.Right != null && rightSibling.Right.IsRed;
-                }
-
-                return isSiblingBlack && isSiblingRightChildRed;
-            }
-
-            var leftSibling = node.Parent.Left;
-
-            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
-
-            if (leftSibling != null)
-            {
-                isSiblingRightChildRed = leftSibling.Right != null && leftSibling.Right.IsRed;
-            }
-
-            return isSiblingBlack && isSiblingRightChildRed;
+            return sibling.IsBlack && isSiblingRightChildRed;
         }
         #endregion
 
