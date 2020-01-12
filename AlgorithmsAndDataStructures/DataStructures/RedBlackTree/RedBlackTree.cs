@@ -331,35 +331,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         private bool IsCase3(RedBlackTreeNode node)
         {
-            var isSiblingChildrenBlack = false;
+            var parent = node.Parent;
+            var sibling = node.IsLeft ? parent.Right : parent.Left;
+            var isSiblingChildrenBlack = (sibling.Left.IsLeafNode|| sibling.Left.IsBlack) && (sibling.Right.IsLeafNode || sibling.Right.IsBlack);
 
-            bool isSiblingBlack;
-            if (node.IsLeft)
-            {
-                var rightSibling = node.Parent.Right;
-
-                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
-
-                if (rightSibling != null)
-                {
-                    isSiblingChildrenBlack = (rightSibling.Left == null || !rightSibling.Left.IsRed) &&
-                                             (rightSibling.Right == null || !rightSibling.Right.IsRed);
-                }
-
-                return !node.Parent.IsRed && isSiblingBlack && isSiblingChildrenBlack;
-            }
-
-            var leftSibling = node.Parent.Left;
-
-            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
-
-            if (leftSibling != null)
-            {
-                isSiblingChildrenBlack = (leftSibling.Left == null || !leftSibling.Left.IsRed) &&
-                                         (leftSibling.Right == null || !leftSibling.Right.IsRed);
-            }
-
-            return !node.Parent.IsRed && isSiblingBlack && isSiblingChildrenBlack;
+            return !node.Parent.IsRed && sibling.IsBlack && isSiblingChildrenBlack;
         }
 
         private bool IsCase4(RedBlackTreeNode node)
