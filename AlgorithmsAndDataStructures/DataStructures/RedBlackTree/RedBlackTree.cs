@@ -23,6 +23,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         }
         #endregion
 
+        #region Insert
         public void Insert(int value)
         {
             var newNode = new RedBlackTreeNode()
@@ -169,7 +170,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                 node.Right.IsRed = true;
             }
         }
+        #endregion
 
+        #region Delete
         public void Delete(int value)
         {
             root = DeleteInternal(root, value, out RedBlackTreeNode doubleBlackNode);
@@ -180,7 +183,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             }
         }
 
-        public RedBlackTreeNode DeleteInternal(RedBlackTreeNode node, int value, out RedBlackTreeNode doubleBlackNode)
+        private RedBlackTreeNode DeleteInternal(RedBlackTreeNode node, int value, out RedBlackTreeNode doubleBlackNode)
         {
             if (node == null)
             {
@@ -271,6 +274,19 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             return node;
         }
 
+        private RedBlackTreeNode FindNodeWithMinValue(RedBlackTreeNode right)
+        {
+            var current = right;
+
+            while (!current.Left.IsLeafNode)
+            {
+                current = current.Left;
+            }
+
+            return current;
+        }
+
+
         private void FixDelete(RedBlackTreeNode node)
         {
             if (node == root)
@@ -305,25 +321,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             }
         }
 
-        private void FixCase2(RedBlackTreeNode node)
-        {
-            var parent = node.Parent;
-            var originalParentColor = node.Parent.IsRed;
-            var sibling = node.IsLeft ? node.Parent.Right : node.Parent.Left;
-            var originalSiblingColor = sibling.IsRed;
+        #endregion
 
-            if (node.IsLeft)
-            {
-                RotateLeft(node.Parent);
-            }
-            else
-            {
-                RotateRight(node.Parent);
-            }
-
-            parent.IsRed = originalSiblingColor;
-            sibling.IsRed = originalParentColor;
-        }
+        #region Check Delete Cases
 
         private bool IsCase2(RedBlackTreeNode node)
         {
@@ -358,84 +358,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             return !parent.IsRed && isSiblingRed && isSiblingChildrenBlack;
         }
 
-        private void FixCase5(RedBlackTreeNode node)
-        {
-            var parent = node.Parent;
-            if (node.IsLeft)
-            {
-                RotateRight(parent.Right);
-                if (parent.Right.Left != null)
-                {
-                    parent.Right.Left.IsRed = false;
-                }
-                parent.Right.IsRed = true;
-            }
-            else
-            {
-                RotateLeft(parent.Left);
-                if (parent.Right.Right != null)
-                {
-                    parent.Right.Right.IsRed = false;
-                }
-                parent.Left.IsRed = true;
-            }
-
-            FixCase6(node);
-        }
-
-        private bool IsCase5(RedBlackTreeNode node)
-        {
-            var isSiblingChildrenRedBlack = false;
-
-            bool isSiblingBlack;
-            if (node.IsLeft)
-            {
-                var rightSibling = node.Parent.Right;
-
-                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
-
-                if (rightSibling != null)
-                {
-                    isSiblingChildrenRedBlack = (rightSibling.Left != null && rightSibling.Left.IsRed) &&
-                                             (rightSibling.Right == null || !rightSibling.Right.IsRed);
-                }
-
-                return node.Parent.IsRed && isSiblingBlack && isSiblingChildrenRedBlack;
-            }
-
-            var leftSibling = node.Parent.Left;
-
-            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
-
-            if (leftSibling != null)
-            {
-                isSiblingChildrenRedBlack = (leftSibling.Left != null && leftSibling.Left.IsRed) &&
-                                         (leftSibling.Right == null || !leftSibling.Right.IsRed);
-            }
-
-            return isSiblingBlack && isSiblingChildrenRedBlack;
-        }
-
-        private void FixCase3(RedBlackTreeNode node)
-        {
-            var parent = node.Parent;
-
-            if (node.IsLeft)
-            {
-                if (parent.Right != null)
-                {
-                    parent.Right.IsRed = true;
-                }
-            }
-            else
-            {
-                if (parent.Left != null)
-                {
-                    parent.Left.IsRed = true;
-                }
-            }
-        }
-
         private bool IsCase3(RedBlackTreeNode node)
         {
             var isSiblingChildrenBlack = false;
@@ -467,76 +389,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             }
 
             return !node.Parent.IsRed && isSiblingBlack && isSiblingChildrenBlack;
-        }
-
-        private void FixCase6(RedBlackTreeNode node)
-        {
-            if (node.IsLeft)
-            {
-                var originalColor = node.Parent.IsRed;
-                var rightSibling = node.Parent.Right;
-                RotateLeft(node.Parent);
-                rightSibling.IsRed = originalColor;
-                rightSibling.Right.IsRed = false;
-                rightSibling.Left.IsRed = false;
-            }
-            else
-            {
-                var originalColor = node.Parent.IsRed;
-                var leftSibling = node.Parent.Left;
-                RotateRight(node.Parent);
-                leftSibling.IsRed = false;
-                leftSibling.Right.IsRed = false;
-                leftSibling.Left.IsRed = false;
-
-            }
-        }
-
-        private bool IsCase6(RedBlackTreeNode node)
-        {
-            var isSiblingRightChildRed = false;
-
-            bool isSiblingBlack;
-
-            if (node.IsLeft)
-            {
-                var rightSibling = node.Parent.Right;
-
-                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
-
-                if (rightSibling != null)
-                {
-                    isSiblingRightChildRed = rightSibling.Right != null && rightSibling.Right.IsRed;
-                }
-
-                return isSiblingBlack && isSiblingRightChildRed;
-            }
-
-            var leftSibling = node.Parent.Left;
-
-            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
-
-            if (leftSibling != null)
-            {
-                isSiblingRightChildRed = leftSibling.Right != null && leftSibling.Right.IsRed;
-            }
-
-            return isSiblingBlack && isSiblingRightChildRed;
-        }
-
-        private void FixCase4(RedBlackTreeNode node)
-        {
-            node.Parent.IsRed = false;
-
-            if (node.IsLeft)
-            {
-                node.Parent.Right.IsRed = true;
-            }
-            else
-            {
-                node.Parent.Left.IsRed = true;
-            }
-
         }
 
         private bool IsCase4(RedBlackTreeNode node)
@@ -573,17 +425,176 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         }
 
-        private RedBlackTreeNode FindNodeWithMinValue(RedBlackTreeNode right)
+        private bool IsCase5(RedBlackTreeNode node)
         {
-            var current = right;
+            var isSiblingChildrenRedBlack = false;
 
-            while (!current.Left.IsLeafNode)
+            bool isSiblingBlack;
+            if (node.IsLeft)
             {
-                current = current.Left;
+                var rightSibling = node.Parent.Right;
+
+                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
+
+                if (rightSibling != null)
+                {
+                    isSiblingChildrenRedBlack = (rightSibling.Left != null && rightSibling.Left.IsRed) &&
+                                                (rightSibling.Right == null || !rightSibling.Right.IsRed);
+                }
+
+                return node.Parent.IsRed && isSiblingBlack && isSiblingChildrenRedBlack;
             }
 
-            return current;
+            var leftSibling = node.Parent.Left;
+
+            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
+
+            if (leftSibling != null)
+            {
+                isSiblingChildrenRedBlack = (leftSibling.Left != null && leftSibling.Left.IsRed) &&
+                                            (leftSibling.Right == null || !leftSibling.Right.IsRed);
+            }
+
+            return isSiblingBlack && isSiblingChildrenRedBlack;
         }
+
+        private bool IsCase6(RedBlackTreeNode node)
+        {
+            var isSiblingRightChildRed = false;
+
+            bool isSiblingBlack;
+
+            if (node.IsLeft)
+            {
+                var rightSibling = node.Parent.Right;
+
+                isSiblingBlack = rightSibling == null || !rightSibling.IsRed;
+
+                if (rightSibling != null)
+                {
+                    isSiblingRightChildRed = rightSibling.Right != null && rightSibling.Right.IsRed;
+                }
+
+                return isSiblingBlack && isSiblingRightChildRed;
+            }
+
+            var leftSibling = node.Parent.Left;
+
+            isSiblingBlack = leftSibling == null || !leftSibling.IsRed;
+
+            if (leftSibling != null)
+            {
+                isSiblingRightChildRed = leftSibling.Right != null && leftSibling.Right.IsRed;
+            }
+
+            return isSiblingBlack && isSiblingRightChildRed;
+        }
+        #endregion
+
+        #region Fix Delete Cases
+        private void FixCase2(RedBlackTreeNode node)
+        {
+            var parent = node.Parent;
+            var originalParentColor = node.Parent.IsRed;
+            var sibling = node.IsLeft ? node.Parent.Right : node.Parent.Left;
+            var originalSiblingColor = sibling.IsRed;
+
+            if (node.IsLeft)
+            {
+                RotateLeft(node.Parent);
+            }
+            else
+            {
+                RotateRight(node.Parent);
+            }
+
+            parent.IsRed = originalSiblingColor;
+            sibling.IsRed = originalParentColor;
+        }
+
+        private void FixCase3(RedBlackTreeNode node)
+        {
+            var parent = node.Parent;
+
+            if (node.IsLeft)
+            {
+                if (parent.Right != null)
+                {
+                    parent.Right.IsRed = true;
+                }
+            }
+            else
+            {
+                if (parent.Left != null)
+                {
+                    parent.Left.IsRed = true;
+                }
+            }
+        }
+
+        private void FixCase4(RedBlackTreeNode node)
+        {
+            node.Parent.IsRed = false;
+
+            if (node.IsLeft)
+            {
+                node.Parent.Right.IsRed = true;
+            }
+            else
+            {
+                node.Parent.Left.IsRed = true;
+            }
+
+        }
+
+        private void FixCase5(RedBlackTreeNode node)
+        {
+            var parent = node.Parent;
+            if (node.IsLeft)
+            {
+                RotateRight(parent.Right);
+                if (parent.Right.Left != null)
+                {
+                    parent.Right.Left.IsRed = false;
+                }
+                parent.Right.IsRed = true;
+            }
+            else
+            {
+                RotateLeft(parent.Left);
+                if (parent.Right.Right != null)
+                {
+                    parent.Right.Right.IsRed = false;
+                }
+                parent.Left.IsRed = true;
+            }
+
+            FixCase6(node);
+        }
+
+        private void FixCase6(RedBlackTreeNode node)
+        {
+            if (node.IsLeft)
+            {
+                var originalColor = node.Parent.IsRed;
+                var rightSibling = node.Parent.Right;
+                RotateLeft(node.Parent);
+                rightSibling.IsRed = originalColor;
+                rightSibling.Right.IsRed = false;
+                rightSibling.Left.IsRed = false;
+            }
+            else
+            {
+                var originalColor = node.Parent.IsRed;
+                var leftSibling = node.Parent.Left;
+                RotateRight(node.Parent);
+                leftSibling.IsRed = false;
+                leftSibling.Right.IsRed = false;
+                leftSibling.Left.IsRed = false;
+
+            }
+        }
+        #endregion
 
         #region Rotations
         private void RotateRightLeft(RedBlackTreeNode node)
@@ -755,19 +766,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         }
         #endregion
 
-        private int HeightInternal(RedBlackTreeNode node)
-        {
-            if (node == null || node.IsLeafNode)
-            {
-                return 0;
-            }
-
-            var leftHeight = HeightInternal(node.Left) + 1;
-            var rightHeight = HeightInternal(node.Right) + 1;
-
-            return Math.Max(leftHeight, rightHeight);
-        }
-
         #region Tree Validation
         public void CheckTreeValidity()
         {
@@ -814,6 +812,19 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             }
 
             return node.IsRed ? leftHeight : leftHeight + 1;
+        }
+
+        private int HeightInternal(RedBlackTreeNode node)
+        {
+            if (node == null || node.IsLeafNode)
+            {
+                return 0;
+            }
+
+            var leftHeight = HeightInternal(node.Left) + 1;
+            var rightHeight = HeightInternal(node.Right) + 1;
+
+            return Math.Max(leftHeight, rightHeight);
         }
         #endregion
     }
