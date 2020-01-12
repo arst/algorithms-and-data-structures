@@ -126,12 +126,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                 return false;
             }
 
-            if (node.Parent.IsLeft)
-            {
-                return !grandparent.Right.IsRed;
-            }
-
-            return !grandparent.Left.IsRed;
+            return node.Parent.IsLeft ? grandparent.Right.IsBlack : grandparent.Left.IsBlack;
         }
 
         private void Rotate(RedBlackTreeNode node)
@@ -328,34 +323,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         private bool IsCase2(RedBlackTreeNode node)
         {
             var parent = node.Parent;
+            var sibling = node.IsLeft ? parent.Right : parent.Left;
+            var isSiblingChildrenBlack = (sibling.Left.IsLeafNode || sibling.Left.IsBlack) && (sibling.Right.IsLeafNode || sibling.Right.IsBlack);
 
-            var isSiblingRed = false;
-            var isSiblingChildrenBlack = false;
-
-            if (node.IsLeft)
-            {
-                var rightSibling = parent.Right;
-
-                if (rightSibling != null)
-                {
-                    isSiblingRed = rightSibling.IsRed;
-                    isSiblingChildrenBlack = (rightSibling.Left == null || !rightSibling.Left.IsRed) &&
-                                             (rightSibling.Right == null || !rightSibling.Right.IsRed);
-                }
-            }
-            else
-            {
-                var leftSibling = parent.Left;
-
-                if (leftSibling != null)
-                {
-                    isSiblingRed = leftSibling.IsRed;
-                    isSiblingChildrenBlack = (leftSibling.Left == null || !leftSibling.Left.IsRed) &&
-                                             (leftSibling.Right == null || !leftSibling.Right.IsRed);
-                }
-            }
-
-            return !parent.IsRed && isSiblingRed && isSiblingChildrenBlack;
+            return parent.IsBlack && sibling.IsRed && isSiblingChildrenBlack;
         }
 
         private bool IsCase3(RedBlackTreeNode node)

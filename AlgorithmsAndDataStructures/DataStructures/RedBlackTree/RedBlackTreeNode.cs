@@ -15,6 +15,8 @@
 
         public bool IsRed { get; set; }
 
+        public bool IsBlack => !IsRed;
+
         public bool IsLeft => Parent != null && Parent.Left == this;
 
         public bool IsRight => Parent != null && Parent.Right == this;
