@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
+﻿namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 {
     public class RedBlackTreeNode
     {
-        private static RedBlackTreeNode CreateLeafNode()
-        {
-            var result = new RedBlackTreeNode();
-            result.IsLeafNode = true;
+        private RedBlackTreeNode right;
+        private RedBlackTreeNode left;
 
-            return result;
-        }
-
-        public RedBlackTreeNode()
-        {
-            Left = CreateLeafNode();
-            Right = CreateLeafNode();
-        }
+        private static RedBlackTreeNode GetLeafNode(RedBlackTreeNode parent) =>
+            new RedBlackTreeNode
+            {
+                Parent = parent,
+                IsRed = false,
+                IsLeafNode = true,
+            };
 
         public bool IsRed { get; set; }
 
@@ -28,9 +21,17 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         public RedBlackTreeNode Parent { get; set; }
 
-        public RedBlackTreeNode Left { get; set; }
+        public RedBlackTreeNode Left
+        {
+            get => left ?? GetLeafNode(this);
+            set => left = value;
+        }
 
-        public RedBlackTreeNode Right { get; set; }
+        public RedBlackTreeNode Right
+        {
+            get => right ?? GetLeafNode(this);
+            set => right = value;
+        }
 
         public int Value { get; set; }
 
