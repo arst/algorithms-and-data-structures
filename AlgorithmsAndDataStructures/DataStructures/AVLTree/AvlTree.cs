@@ -6,6 +6,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
     {
         private AvlTreeNode root;
 
+        public bool IsBalanced => IsRootBalanced();
+
         public void Insert(int value)
         {
             var toInsert = new AvlTreeNode()
@@ -41,7 +43,61 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
 
             var balanceFactor = GetBalancedFactor(rootNode);
 
+            if (Math.Abs(balanceFactor) > 1)
+            {
+                if (balanceFactor > 1)
+                {
+                    if (rootNode.Left.Value > toInsert.Value)
+                    {
+                        return RotateRight(rootNode);
+                    }
+                    else
+                    {
+                        rootNode.Left = RotateLeft(rootNode.Left);
+                        return RotateRight(rootNode);
+                    }
+
+                }
+                else if (balanceFactor < -1)
+                {
+
+                    if (rootNode.Left.Value < toInsert.Value)
+                    {
+                        return RotateLeft(rootNode);
+                    }
+                    else
+                    {
+                        root.Right = RotateRight(rootNode.Right);
+                        return RotateLeft(rootNode);
+                    }
+                }
+            }
+
             return rootNode;
+        }
+
+        private AvlTreeNode RotateRight(AvlTreeNode rootNode)
+        {
+            var leftChild = rootNode.Left;
+            leftChild.Right = rootNode;
+            rootNode.Left = leftChild.Right;
+
+            leftChild.Height = 1 + Math.Max(Height(leftChild.Left), Height(leftChild.Right));
+            rootNode.Height = 1 + Math.Max(Height(rootNode.Left), Height(rootNode.Right));
+
+            return leftChild;
+        }
+
+        private AvlTreeNode RotateLeft(AvlTreeNode rootNode)
+        {
+            var rightChild = rootNode.Right;
+            rightChild.Left = rootNode;
+            rootNode.Right = rightChild.Left;
+
+            rightChild.Height = 1 + Math.Max(Height(rightChild.Left), Height(rightChild.Right));
+            rootNode.Height = 1 + Math.Max(Height(rootNode.Left), Height(rootNode.Right));
+
+            return rightChild;
         }
 
         private int GetBalancedFactor(AvlTreeNode node)
@@ -60,6 +116,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             }
 
             return node.Height;
+        }
+
+        private bool IsRootBalanced()
+        {
+            return Math.Abs(GetBalancedFactor(root)) <= 1;
         }
     }
 }
