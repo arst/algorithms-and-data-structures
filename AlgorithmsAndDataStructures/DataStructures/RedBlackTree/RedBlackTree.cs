@@ -462,106 +462,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         #region Rotations
         private void RotateRightLeft(RedBlackTreeNode node)
         {
-
-            /*
-             RotateRight(node.Left);
+             RotateRight(node.Right);
              RotateLeft(node);
-             */
-            var parent = node.Parent;
-
-            var rightChild = node.Right;
-
-            var leftGrandChild = node.Right.Left;
-
-            var rightGrandChildLeft = leftGrandChild.Left;
-            var rightGrandChildRight = leftGrandChild.Right;
-
-            leftGrandChild.Left = node;
-            node.Parent = leftGrandChild;
-            leftGrandChild.Right = rightChild;
-            rightChild.Parent = leftGrandChild;
-            rightChild.Left = rightGrandChildRight;
-
-            if (rightChild.Left != null)
-            {
-                rightChild.Left.Parent = rightChild;
-            }
-
-            node.Right = rightGrandChildLeft;
-
-            if (node.Right != null)
-            {
-                node.Right.Parent = node;
-            }
-
-            if (parent == null)
-            {
-                root = leftGrandChild;
-                root.Parent = null;
-                return;
-            }
-
-            leftGrandChild.Parent = parent;
-
-            if (node.IsRight)
-            {
-                parent.Right = leftGrandChild;
-            }
-            else
-            {
-                parent.Left = leftGrandChild;
-            }
         }
 
         private void RotateLeftRight(RedBlackTreeNode node)
         {
-            /*
              RotateLeft(node.Left);
              RotateRight(node);
-             */
-
-            var parent = node.Parent;
-
-            var leftChild = node.Left;
-
-            var rightGrandChild = node.Left.Right;
-
-            var rightGrandChildLeft = rightGrandChild.Left;
-            var rightGrandChildRight = rightGrandChild.Right;
-
-            rightGrandChild.Left = leftChild;
-            leftChild.Parent = rightGrandChild;
-            rightGrandChild.Right = node;
-            node.Parent = rightGrandChild;
-            leftChild.Right = rightGrandChildLeft;
-            if (leftChild.Right != null)
-            {
-                leftChild.Right.Parent = leftChild;
-            }
-            node.Left = rightGrandChildRight;
-
-            if (node.Left != null)
-            {
-                node.Left.Parent = node;
-            }
-
-            if (parent == null)
-            {
-                root = rightGrandChild;
-                root.Parent = null;
-                return;
-            }
-
-            rightGrandChild.Parent = parent;
-
-            if (node.IsRight)
-            {
-                parent.Right = rightGrandChild;
-            }
-            else
-            {
-                parent.Left = rightGrandChild;
-            }
         }
 
         private void RotateRight(RedBlackTreeNode node)
