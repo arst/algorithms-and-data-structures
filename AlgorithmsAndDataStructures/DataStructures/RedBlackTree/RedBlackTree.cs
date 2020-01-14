@@ -65,7 +65,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                     return;
                 }
 
-                InsertInternal(root.Left, toInsert);
+                InsertInternal(rootNode.Left, toInsert);
             }
         }
 
