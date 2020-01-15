@@ -25,87 +25,182 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
                 return toInsert;
             }
 
-            if (rootNode.Value == toInsert.Value)
+
+            if (toInsert.Value < rootNode.Value)
+            {
+                rootNode.Left = InsertInternal(rootNode.Left, toInsert);
+            }
+            else if (toInsert.Value > rootNode.Value)
+            {
+                rootNode.Right = InsertInternal(rootNode.Right, toInsert);
+            }
+            else
             {
                 return rootNode;
             }
 
-            if (toInsert.Value > rootNode.Value)
-            {
-                 rootNode.Right = InsertInternal(rootNode.Right, toInsert);
-            }
-            else
-            {
-                rootNode.Left = InsertInternal(rootNode.Left, toInsert);
-            }
-
-            rootNode.Height = 1 + Math.Max(Height(rootNode.Left), Height(rootNode.Right));
+            rootNode.Height = CalculateNodeHeight(rootNode);
 
             var balanceFactor = GetBalancedFactor(rootNode);
 
+            if (balanceFactor > 1 && toInsert.Value < rootNode.Left.Value)
+            {
+                return RotateRight(rootNode);
+            }
+            if (balanceFactor > 1 && toInsert.Value > rootNode.Left.Value)
+            {
+                rootNode.Left = RotateLeft(rootNode.Left);
+                return RotateRight(rootNode);
+            }
+            if (balanceFactor < -1 && toInsert.Value > rootNode.Right.Value)
+            {
+                return RotateLeft(rootNode);
+            }
+            if (balanceFactor < -1 && toInsert.Value < rootNode.Right.Value)
+            {
+                rootNode.Right = RotateRight(rootNode.Right);
+                return RotateLeft(rootNode);
+            }
+
+            return rootNode;
+        }
+
+        public void Delete(int value)
+        {
+            root = DeleteInternal(root, value);
+        }
+
+        private AvlTreeNode DeleteInternal(AvlTreeNode root, int value)
+        {
+            if (root == null)
+            {
+                return null; 
+            }
+
+            if (root.Value < value)
+            {
+                root.Right = DeleteInternal(root.Right, value);
+            }
+            else if (root.Value > value)
+            {
+                root.Left = DeleteInternal(root.Left, value);
+            }
+            else
+            {
+                var isChildlessNode = root.Left == null && root.Right == null;
+
+                if (isChildlessNode)
+                {
+                    return null;
+                }
+
+                var hasOneChild = root.Left == null || root.Right == null;
+
+                if (hasOneChild)
+                {
+                    return root.Left ?? root.Right;
+                }
+
+                var inOrderSuccessor = GetInOrderSuccessor(root.Right);
+
+                root.Value = inOrderSuccessor.Value;
+
+                root.Right = DeleteInternal(root.Right, inOrderSuccessor.Value);
+            }
+
+            root.Height = CalculateNodeHeight(root);
+
+            var balanceFactor = GetBalancedFactor(root);
+
             if (Math.Abs(balanceFactor) > 1)
             {
+                var highestChild = balanceFactor > 1 ? root.Left : root.Right;
+                var leftGrandChildHeight = highestChild.Left?.Height ?? 0;
+                var rightGrandChildHeight = highestChild.Right?.Height ?? 0;
+                var highestGrandChild = leftGrandChildHeight > rightGrandChildHeight ? highestChild.Left : highestChild.Right;
+
                 if (balanceFactor > 1)
                 {
-                    if (rootNode.Left.Value > toInsert.Value)
+                    if (highestChild.Left == highestGrandChild)
                     {
-                        return RotateRight(rootNode);
+                        return RotateRight(root);
                     }
                     else
                     {
-                        rootNode.Left = RotateLeft(rootNode.Left);
-                        return RotateRight(rootNode);
+                        root.Left = RotateLeft(root.Left);
+                        return RotateRight(root);
                     }
 
                 }
                 else if (balanceFactor < -1)
                 {
 
-                    if (rootNode.Left.Value < toInsert.Value)
+                    if (highestChild.Right == highestGrandChild)
                     {
-                        return RotateLeft(rootNode);
+                        return RotateLeft(root);
                     }
                     else
                     {
-                        root.Right = RotateRight(rootNode.Right);
-                        return RotateLeft(rootNode);
+                        root.Right = RotateRight(root.Right);
+                        return RotateLeft(root);
                     }
                 }
             }
 
-            return rootNode;
+            return root;
         }
 
-        private AvlTreeNode RotateRight(AvlTreeNode rootNode)
+        private AvlTreeNode GetInOrderSuccessor(AvlTreeNode node)
         {
-            var leftChild = rootNode.Left;
-            leftChild.Right = rootNode;
-            rootNode.Left = leftChild.Right;
+            if (node.Left == null)
+            {
+                return node;
+            }
 
-            leftChild.Height = 1 + Math.Max(Height(leftChild.Left), Height(leftChild.Right));
-            rootNode.Height = 1 + Math.Max(Height(rootNode.Left), Height(rootNode.Right));
-
-            return leftChild;
+            return GetInOrderSuccessor(node.Left);
         }
 
-        private AvlTreeNode RotateLeft(AvlTreeNode rootNode)
+        private AvlTreeNode RotateRight(AvlTreeNode y)
         {
-            var rightChild = rootNode.Right;
-            rightChild.Left = rootNode;
-            rootNode.Right = rightChild.Left;
+            var x = y.Left;
+            var T2 = x.Right;
 
-            rightChild.Height = 1 + Math.Max(Height(rightChild.Left), Height(rightChild.Right));
-            rootNode.Height = 1 + Math.Max(Height(rootNode.Left), Height(rootNode.Right));
+            x.Right = y;
+            y.Left = T2;
 
-            return rightChild;
+            y.Height = CalculateNodeHeight(y);
+            x.Height = CalculateNodeHeight(x);
+
+            return x;
+        }
+
+        private int CalculateNodeHeight(AvlTreeNode node)
+        {
+            return 1 + Math.Max(Height(node.Left), Height(node.Right));
+        }
+
+        private AvlTreeNode RotateLeft(AvlTreeNode x)
+        {
+            var y = x.Right;
+            var T2 = y.Left;
+
+            y.Left = x;
+            x.Right = T2;
+            
+            x.Height = CalculateNodeHeight(x);
+            y.Height = CalculateNodeHeight(y);
+
+            return y;
         }
 
         private int GetBalancedFactor(AvlTreeNode node)
         {
-            var leftHeight = node.Left?.Height ?? 0;
-            var righrHeight = node.Right?.Height ?? 0;
+            if (node == null)
+            {
+                return 0;
+            }
 
-            return leftHeight - righrHeight;
+            return Height(node.Left) - Height(node.Right);
         }
 
         private int Height(AvlTreeNode node)
