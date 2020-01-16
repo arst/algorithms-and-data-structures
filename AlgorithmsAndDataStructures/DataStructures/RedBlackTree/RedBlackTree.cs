@@ -45,7 +45,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         private void InsertInternal(RedBlackTreeNode rootNode, RedBlackTreeNode toInsert)
         {
-            if (toInsert.Value >= rootNode.Value)
+            if (toInsert.Value > rootNode.Value)
             {
                 if (rootNode.Right.IsLeafNode)
                 {
@@ -56,7 +56,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
                 InsertInternal(rootNode.Right, toInsert);
             }
-            else
+            else if(toInsert.Value < rootNode.Value)
             {
                 if (rootNode.Left.IsLeafNode)
                 {
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         private void CheckInsert(RedBlackTreeNode node)
         {
-            if (node == root || node == null)
+            if (node == root || node == null || node.Parent == null)
             {
                 return;
             }
@@ -91,7 +91,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             {
                 node.Parent.Parent.Left.IsRed = false;
                 node.Parent.Parent.Right.IsRed = false;
-                node.Parent.Parent.IsRed = true;
+                if (node.Parent.Parent != root)
+                {
+                    node.Parent.Parent.IsRed = true;
+                }
+                return;
             }
 
             if(IsUncleBlack(node))
@@ -180,10 +184,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
         private RedBlackTreeNode DeleteInternal(RedBlackTreeNode node, int value, out RedBlackTreeNode doubleBlackNode)
         {
-            if (node == null)
+            if (node.IsLeafNode)
             {
                 doubleBlackNode = null;
-                return null;
+                return node;
             }
 
             if (node.Value > value)
@@ -208,14 +212,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                     doubleBlackNode = node.Left;
                     doubleBlackNode.Parent = node.Parent;
 
-                    if (node.IsLeft)
-                    {
-                        doubleBlackNode.Parent.Left = doubleBlackNode;
-                    }
-                    else
-                    {
-                        doubleBlackNode.Parent.Right = doubleBlackNode;
-                    }
                     return doubleBlackNode;
                 }
 
@@ -226,36 +222,28 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
                     if (node.IsRed)
                     {
-                        doubleBlackNode = nonNullChild;
-                        doubleBlackNode.Parent = node.Parent;
-                        if (node.IsLeft)
-                        {
-                            doubleBlackNode.Parent.Left = doubleBlackNode;
-                        }
-                        else
-                        {
-                            doubleBlackNode.Parent.Right = doubleBlackNode;
-                        }
-                        return doubleBlackNode;
+                        nonNullChild.Parent = node.Parent;
+                        doubleBlackNode = null;
+
+                        return nonNullChild;
                     }
 
                     if (nonNullChild.IsRed)
                     {
                         nonNullChild.IsRed = false;
-                    }
+                        doubleBlackNode = null;
+                        nonNullChild.Parent = node.Parent;
 
-                    doubleBlackNode = nonNullChild;
-                    doubleBlackNode.Parent = node.Parent;
-                    if (node.IsLeft)
-                    {
-                        doubleBlackNode.Parent.Left = doubleBlackNode;
+                        return nonNullChild;
                     }
                     else
                     {
-                        doubleBlackNode.Parent.Right = doubleBlackNode;
-                    }
 
-                    return doubleBlackNode;
+                        doubleBlackNode = nonNullChild;
+                        doubleBlackNode.Parent = node.Parent;
+
+                        return doubleBlackNode;
+                    }
                 }
 
                 // Two children. Convert to one children case.
@@ -263,7 +251,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
                 node.Value = minNode.Value;
 
-                DeleteInternal(node.Right, minNode.Value, out doubleBlackNode);
+                node.Right = DeleteInternal(node.Right, minNode.Value, out doubleBlackNode);
             }
 
             return node;
@@ -335,7 +323,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             var sibling = node.IsLeft ? parent.Right : parent.Left;
             var isSiblingChildrenBlack = (sibling.Left.IsLeafNode|| sibling.Left.IsBlack) && (sibling.Right.IsLeafNode || sibling.Right.IsBlack);
 
-            return !node.Parent.IsRed && sibling.IsBlack && isSiblingChildrenBlack;
+            return node.Parent.IsBlack && sibling.IsBlack && isSiblingChildrenBlack;
         }
 
         private bool IsCase4(RedBlackTreeNode node)
@@ -352,7 +340,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         {
             var parent = node.Parent;
             var sibling = node.IsLeft ? parent.Right : parent.Left;
-            var isSiblingChildrenRedBlack = (!sibling.Left.IsLeafNode && sibling.Left.IsRed) && (sibling.Right.IsLeafNode || sibling.Right.IsBlack);
+            var isSiblingChildrenRedBlack = node.IsLeft 
+                ? sibling.Left.IsRed && (sibling.Right.IsLeafNode || sibling.Right.IsBlack)
+                : (sibling.Left.IsLeafNode || sibling.Left.IsBlack) && sibling.Right.IsRed;
 
             return sibling.IsBlack && isSiblingChildrenRedBlack;
         }
@@ -361,7 +351,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         {
             var parent = node.Parent;
             var sibling = node.IsLeft ? parent.Right : parent.Left;
-            var isSiblingRightChildRed = !sibling.Right.IsLeafNode && sibling.Right.IsRed;
+            var isSiblingRightChildRed = node.IsLeft
+                ? sibling.Right.IsRed
+                : sibling.Left.IsRed;
 
             return sibling.IsBlack && isSiblingRightChildRed;
         }
@@ -425,9 +417,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
             else
             {
                 RotateLeft(parent.Left);
-                if (parent.Right.Right != null)
+                if (parent.Left.Right != null)
                 {
-                    parent.Right.Right.IsRed = false;
+                    parent.Left.Right.IsRed = false;
                 }
                 parent.Left.IsRed = true;
             }
@@ -451,7 +443,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
                 var originalColor = node.Parent.IsRed;
                 var leftSibling = node.Parent.Left;
                 RotateRight(node.Parent);
-                leftSibling.IsRed = false;
+                leftSibling.IsRed = originalColor;
                 leftSibling.Right.IsRed = false;
                 leftSibling.Left.IsRed = false;
 
@@ -475,6 +467,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         private void RotateRight(RedBlackTreeNode node)
         {
             var parent = node.Parent;
+            var originalNodePosition = node.IsRight;
 
             var leftChild = node.Left;
 
@@ -495,7 +488,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
 
             leftChild.Parent = parent;
 
-            if (node.IsRight)
+            if (originalNodePosition)
             {
                 parent.Right = leftChild;
             }
