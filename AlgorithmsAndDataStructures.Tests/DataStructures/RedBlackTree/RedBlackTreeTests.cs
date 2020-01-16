@@ -1,8 +1,5 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.RedBlackTree;
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Security;
 using Xunit;
@@ -257,15 +254,13 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         }
 
         [Fact]
-        [SecurityCritical]
-        [HandleProcessCorruptedStateExceptions]
         public void TreeIsRebalanacedAfterDelete()
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
                 var random = new Random();
-                var seed = new int[1000];
+                var seed = new int[10000];
 
                 for (int j = 0; j < seed.Length; j++)
                 {
@@ -280,49 +275,6 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
                     sut.CheckTreeValidity();
                 }
             }
-        }
-
-        [Fact]
-        public void TreeIsRebalanacedAfterDelete1()
-        {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
-            var random = new Random();
-            var seed = new int[10] { 65, 21, 27, 90, 86, 78, 55, 35, 28, 47 };
-            
-            for (int j = 0; j < seed.Length; j++)
-            {
-                //seed[j] = random.Next(100);
-                sut.Insert(seed[j]);
-                sut.CheckTreeValidity();
-            }
-
-            for (int j = 0; j < seed.Length; j++)
-            {
-                sut.Delete(seed[j]);
-                sut.CheckTreeValidity();
-            }
-            /*
-            sut.Insert(70);
-            sut.Insert(27);
-            sut.Insert(72);
-            sut.Insert(38);
-            sut.Insert(39);
-            sut.Insert(3);
-            sut.Insert(19);
-            sut.Insert(75);
-            sut.Insert(58);
-            sut.Insert(11);
-
-            sut.CheckTreeValidity();
-
-            sut.Delete(70);
-
-            sut.CheckTreeValidity();
-
-            sut.Delete(27);
-
-            sut.CheckTreeValidity();
-            */
         }
     }
 }
