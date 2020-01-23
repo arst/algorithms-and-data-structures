@@ -256,7 +256,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsRebalanacedAfterDelete()
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
                 var random = new Random();
