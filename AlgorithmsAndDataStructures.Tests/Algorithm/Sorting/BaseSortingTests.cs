@@ -40,16 +40,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         {
             var sut = GetSystemUnderTest();
             var r = new Random();
-            var target = new int[10000000];
-            
-            for (int i = 0; i < target.Length; i++)
+            var target = new int[10000];
+            var test = new int[target.Length];
+
+            for (int i = 0; i < 1000; i++)
             {
-                target[i] = r.Next();
+                for (int j = 0; j < target.Length; j++)
+                {
+                    target[j] = r.Next();
+                }
+                Array.Copy(target, 0, test, 0, target.Length);
+                sut.Sort(target);
+
+                AssertIsSorted(target);
             }
-
-            sut.Sort(target);
-
-            AssertIsSorted(target);
         }
 
         public void AssertIsSorted(int[] input)
