@@ -2,6 +2,6 @@
 {
     public interface ISortingAlgorithm
     {
-        void Sort(int[] input);
+        void Sort(int[] target);
     }
 }

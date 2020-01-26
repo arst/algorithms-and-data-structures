@@ -6,6 +6,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
 {
     public abstract class BaseSortingTests
     {
+        protected virtual int MaxValue { get; } = Int32.MaxValue;
 
         [Fact]
         public void EmptyArrayIsSorted()
@@ -47,7 +48,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
             {
                 for (int j = 0; j < target.Length; j++)
                 {
-                    target[j] = r.Next();
+                    target[j] = r.Next(maxValue: MaxValue);
                 }
                 Array.Copy(target, 0, test, 0, target.Length);
                 sut.Sort(target);
