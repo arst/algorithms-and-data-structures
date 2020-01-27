@@ -2,6 +2,18 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 {
+    /* Characteristics:
+        * Complexity: O(w*n), where w is the number of bits required to store each key.
+        * Stable: YES
+        * In-place: NO
+        * Advantages:
+        * 1. Fast when the keys are short i.e. when the range of the array elements is less.
+        * 2. Used in suffix array constuction algorithms like Manber's algorithm and DC3 algorithm.
+        * Disadvantages:
+        * 1. Since Radix Sort depends on digits or letters, Radix Sort is much less flexible than other sorts. Hence , for every different type of data it needs to be rewritten.
+        * 2. The constant for Radix sort is greater compared to other sorting algorithms.
+        * 3. It takes more space compared to Quicksort which is inplace sorting.
+    */
     public class RadixSort : ISortingAlgorithm
     {
         public void Sort(int[] target)
