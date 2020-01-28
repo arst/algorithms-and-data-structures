@@ -1,5 +1,6 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Search;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
@@ -24,7 +25,64 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
         public void BaseSearching()
         {
             var sut = GetSystemUnderTest();
-            Assert.Equal(3, sut.Search(new int[] { 6, 5, 3, 1, 8, 7, 2, 4 }, 1));
+            var testData = new int[] { 6, 5, 3, 1, 8, 7, 2, 4 };
+            Array.Sort(testData);
+            Assert.Equal(2, sut.Search(testData, 3));
+        }
+
+        [Fact]
+        public void PropertyBased()
+        {
+            var sut = GetSystemUnderTest();
+            var r = new Random();
+            var testData = new int[100000];
+            var toSearchNegative = new int[1000];
+            var toSearchPositive = new Tuple<int, int>[1000];
+
+            var testDataCounter = 0;
+            while (testDataCounter < testData.Length)
+            {
+                var randomValue = r.Next();
+                if (!testData.Contains(randomValue))
+                {
+                    testData[testDataCounter] = randomValue;
+                    testDataCounter++;
+                }
+            }
+
+            for (int i = 0; i < testData.Length; i++)
+            {
+                testData[i] = r.Next();
+            }
+            Array.Sort(testData);
+            var toSearchCounter = 0;
+
+            while (toSearchCounter < 100)
+            {
+                var randomValue = r.Next();
+
+                if (!testData.Contains(randomValue))
+                {
+                    toSearchNegative[toSearchCounter] = randomValue;
+                    toSearchCounter++;
+                }
+            }
+
+            for (int i = 0; i < toSearchPositive.Length; i++)
+            {
+                toSearchPositive[i] = new Tuple<int, int>(i * 10, testData[i * 10]);
+            }
+
+            foreach (var item in toSearchNegative)
+            {
+                Assert.Equal(-1, sut.Search(testData, item));
+            }
+
+            foreach (var item in toSearchPositive)
+            {
+                Assert.Equal(item.Item1, sut.Search(testData, item.Item2));
+            }
+
         }
 
         public abstract ISearchAlgorithm<int> GetSystemUnderTest();
