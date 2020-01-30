@@ -35,14 +35,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
         {
             var sut = GetSystemUnderTest();
             var r = new Random();
-            var testData = new int[1000];
+            var testData = new int[10000];
             var toSearchNegative = new int[100];
             var toSearchPositive = new Tuple<int, int>[100];
 
             var testDataCounter = 0;
             while (testDataCounter < testData.Length)
             {
-                var randomValue = r.Next(10000);
+                var randomValue = r.Next(1000000);
                 if (!testData.Contains(randomValue))
                 {
                     testData[testDataCounter] = randomValue;
