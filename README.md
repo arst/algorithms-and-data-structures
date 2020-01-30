@@ -1,6 +1,6 @@
 # Algorithms and data structures
 
-Different Algorithms and Data Structures that I've implemented for fun and not for profit, so the aren't production ready and shouldn't be used as production code at any circumstances :)
+Different Algorithms and Data Structures that I've implemented for fun and not for profit, so they aren't production ready and shouldn't be used as production code at any circumstances :)
 
 # Data Structures:
 
