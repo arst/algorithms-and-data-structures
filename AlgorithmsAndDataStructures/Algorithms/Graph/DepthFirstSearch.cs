@@ -30,5 +30,45 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                 TraverseInternal(adjacentNode, graph, result, visited);   
             }
         }
+
+        public List<int> TraverseNonRecursive(GraphNode<int>[] graph)
+        {
+            var result = new HashSet<int>();
+            var visited = new HashSet<int>();
+            var stack = new Stack<int>();
+            stack.Push(0);
+            result.Add(graph[0].Value);
+
+            while (true)
+            {
+                if (!stack.Any())
+                {
+                    break;
+                }
+
+                var currentVertice = stack.Peek();
+                var adjacentNodes = graph[currentVertice].AdjacentNodes;
+
+                if (!adjacentNodes.Except(visited).Any())
+                {
+                    stack.Pop();
+                }
+                else
+                {
+                    for (int i = 0; i < adjacentNodes.Count; i++)
+                    {
+                        if (!visited.Contains(adjacentNodes[i]))
+                        {
+                            visited.Add(adjacentNodes[i]);
+                            stack.Push(i);
+                            result.Add(graph[adjacentNodes[i]].Value);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result.ToList();
+        }
     }
 }
