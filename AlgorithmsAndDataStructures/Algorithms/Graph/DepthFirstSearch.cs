@@ -60,7 +60,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                         if (!visited.Contains(adjacentNodes[i]))
                         {
                             visited.Add(adjacentNodes[i]);
-                            stack.Push(i);
+                            stack.Push(adjacentNodes[i]);
                             result.Add(graph[adjacentNodes[i]].Value);
                             break;
                         }
