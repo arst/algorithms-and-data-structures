@@ -17,8 +17,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     { 
                     }
                 };
+            var (minDistance, path) = sut.MinDistance(graph, 0, 0);
 
-            Assert.Equal(0, sut.MinDistance(graph, 0, 0));
+            Assert.Equal(0, minDistance);
+            Assert.Equal(0, path[0]);
         }
 
         [Fact]
@@ -44,8 +46,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     {
                     }
                 };
+            var (minDistance, path) = sut.MinDistance(graph, 0, 1);
 
-            Assert.Equal(1, sut.MinDistance(graph, 0, 1));
+            Assert.Equal(1, minDistance);
+            Assert.Equal(0, path[1]);
         }
 
         [Fact]
@@ -83,7 +87,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     }
                 };
 
-            Assert.Equal(3, sut.MinDistance(graph, 0, 2));
+            var (minDistance, path) = sut.MinDistance(graph, 0, 2);
+            Assert.Equal(3, minDistance);
+            Assert.Equal(0, path[1]);
+            Assert.Equal(1, path[2]);
         }
 
         [Fact]
@@ -125,8 +132,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     {
                     }
                 };
+            var (minDistance, path) = sut.MinDistance(graph, 0, 2);
 
-            Assert.Equal(3, sut.MinDistance(graph, 0, 2));
+            Assert.Equal(3, minDistance);
+            Assert.Equal(1, path[2]);
         }
 
         [Fact]
@@ -176,8 +185,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 };
+            var (minDistance, path) = sut.MinDistance(graph, 0, 2);
 
-            Assert.Equal(3, sut.MinDistance(graph, 0, 2));
+            Assert.Equal(3, minDistance);
+            Assert.Equal(0, path[1]);
+            Assert.Equal(1, path[2]);
         }
     }
 }

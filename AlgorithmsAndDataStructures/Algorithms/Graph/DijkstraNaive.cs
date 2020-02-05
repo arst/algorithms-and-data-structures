@@ -4,10 +4,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
     public class DijkstraNaive
     {
-        public int MinDistance(WeightedGraphNode[] graph, int from, int to)
+        public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)
         {
             var visited = new bool[graph.Length];
             var distance = new int[graph.Length];
+            var path = new int[graph.Length];
 
             for (int i = 0; i < distance.Length; i++)
             {
@@ -26,6 +27,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                     if (distance[current] + edge.Weight < distance[edge.To])
                     {
                         distance[edge.To] = distance[current] + edge.Weight;
+                        path[edge.To] = current;
                     }
                 }
 
@@ -33,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                 current = GetMinNodeIndex(distance, visited);
             }
 
-            return distance[to];
+            return (distance[to], path);
         }
 
         private int GetMinNodeIndex(int[] distance, bool[] visited)

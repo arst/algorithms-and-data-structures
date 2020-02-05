@@ -4,11 +4,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
     public class DijkstraHeapified
     {
-        public int MinDistance(WeightedGraphNode[] graph, int from, int to)
+        public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)
         {
             var heap = new HeapNode[graph.Length];
             var heapEnd = heap.Length;
             var mapping = new int[graph.Length];
+            var path = new int[graph.Length];
             PopulateHeap(graph, from, heap, mapping);
 
             while (heapEnd > 0 && heap[0].Weight < int.MaxValue)
@@ -27,6 +28,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                     if (destinationNodeCurentWeight > destinationNodeProposedWeight)
                     {
                         heap[heapIndexForDestinationNode].Weight = destinationNodeProposedWeight;
+                        path[edge.To] = current.IndexInOriginalGraph;
 
                         if (heapIndexForDestinationNode < heapEnd)
                         {
@@ -44,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                 Sink(heap, 0, mapping, heapEnd);
             }
 
-            return heap[mapping[to]].Weight;
+            return (heap[mapping[to]].Weight, path);
         }
 
         private static void PopulateHeap(WeightedGraphNode[] graph, int from, HeapNode[] heap, int[] mapping)
