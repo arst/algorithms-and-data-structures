@@ -5,6 +5,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
     public class CycleDetection
     {
+        // Time Complexity O(V+E)
         public bool IsCyclic(GraphNode<int>[] graph)
         {
             var hasCycles = false;
