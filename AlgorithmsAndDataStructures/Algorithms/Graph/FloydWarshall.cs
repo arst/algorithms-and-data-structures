@@ -1,5 +1,11 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
+    /*
+    Negative weighted edges allowed: YES
+    Complexity: o(n^3)
+    NOTE: Since it is o(n^3) it is mostly usefull only for small graphs(up to 100 vertices)
+    Application: Most famous - Transitive closure is a graph.
+   */
     public class FloydWarshall
     {
         public (int[][] disatnces, int[][] path) MinDistances(WeightedGraphNode[] graph)

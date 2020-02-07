@@ -2,6 +2,11 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
+    /*
+    Negative weighted edges allowed: NO
+    Complexity: o(n^2)
+    Application: Most famous - digital services to find shortest path on the maps.
+   */
     public class DijkstraNaive
     {
         public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)

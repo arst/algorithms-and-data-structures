@@ -1,5 +1,11 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
+    /*
+    Negative weighted edges allowed: YES
+    Complexity: worst(V*E)(which can lead to quadratic complexity for dense graphs), best - (E) (An example of a graph that would only need one round of relaxation is a graph where each vertex only connects to the next one in a linear fashion)
+    Application: Most famous - distance-vector routing protocol. This protocol decides how to route packets of data on a network. 
+    The distance equation (to decide weights in the network) is the number of routers a certain path must go through to reach its destination.
+    */
     public class BellmanFord
     {
         public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)
