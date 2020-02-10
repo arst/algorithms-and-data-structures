@@ -19,7 +19,8 @@
                 distance[i] = i == from ? 0 : int.MaxValue;
             }
 
-            while (isNotFinalized)
+            // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
+            for (int j = 0; j < graph.Length - 1 && isNotFinalized; j++)
             {
                 for (int i = 0; i < graph.Length; i++)
                 {
@@ -35,9 +36,15 @@
                             isNotFinalized = true;
                         }
                     }
+
+                    // If we haven't recalculated any distances, then it means that we have our distances finalized.
+                    if (!isNotFinalized)
+                    {
+                        break;
+                    }
                 }
             }
-
+            
             return (distance[to], path);
         }
     }
