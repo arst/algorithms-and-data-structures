@@ -8,17 +8,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
         // Time Complexity O(V+E)
         public bool IsCyclic(GraphNode<int>[] graph)
         {
-            var hasCycles = false;
-
             // We need to iterate over all vertices for diconnected graphs.
             for (int i = 0; i < graph.Length; i++)
             {
                 var visited = new bool[graph.Length];
                 visited[i] = true;
-                hasCycles = IsCyclic(graph, i, visited);
+
+                if (IsCyclic(graph, i, visited))
+                {
+                    return true;
+                }
             }
 
-            return hasCycles;
+            return false;
         }
 
         private bool IsCyclic(GraphNode<int>[] graph, int node, bool[] visited)
