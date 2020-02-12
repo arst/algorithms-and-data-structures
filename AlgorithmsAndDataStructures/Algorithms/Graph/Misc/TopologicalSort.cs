@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TopologicalSort
     {
         public List<int> GetTopologicalOrder(GraphNode<int>[] graph)
         {
-            if ((new CycleDetection()).IsCyclic(graph))
+            if (new CycleDetection().IsCyclic(graph))
             {
                 throw new ArgumentException("This algorythm only operates on acyclic graphs.");
             }
@@ -24,8 +24,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
                     Sort(graph, i, order, visited);
                 }
             }
-           
-            
+
+
             return order.ToList();
         }
 

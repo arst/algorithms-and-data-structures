@@ -1,4 +1,4 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph.Common
 {
     public class WeightedGraphNodeEdge
     {

@@ -1,4 +1,5 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Graph;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph

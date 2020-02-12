@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph;
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Misc;
 using AlgorithmsAndDataStructures.DataStructures.Graph;
 using Xunit;
 

@@ -1,4 +1,6 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+
+namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {
     public class HeapNode
     {

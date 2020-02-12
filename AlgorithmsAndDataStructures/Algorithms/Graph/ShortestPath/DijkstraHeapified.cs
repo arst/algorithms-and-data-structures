@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using System;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph
 {

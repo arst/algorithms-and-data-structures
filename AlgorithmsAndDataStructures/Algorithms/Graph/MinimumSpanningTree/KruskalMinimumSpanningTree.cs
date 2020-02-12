@@ -1,12 +1,14 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Graph;
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Misc;
+using AlgorithmsAndDataStructures.DataStructures.Graph;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
 {
     public class KruskalMinimumSpanningTree
     {
-        public int GetMinimumSpanningTreeWeight(WeightedGraphNode[] graph) 
+        public int GetMinimumSpanningTreeWeight(WeightedGraphNode[] graph)
         {
             var minimumSpanningTreeWeight = 0;
             var minimumSpanningTree = new List<WeightedGraphNodeEdge>();
@@ -47,7 +49,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
         private bool IsCyclic(GraphNode<int>[] spanningTree)
         {
-            return (new CycleDetection()).IsCyclic(spanningTree);
+            return new CycleDetection().IsCyclic(spanningTree);
         }
     }
 }

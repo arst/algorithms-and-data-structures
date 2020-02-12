@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
 {
     public class PrimsAlgorithm
     {

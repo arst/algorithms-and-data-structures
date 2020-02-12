@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.Common
 {
     public class WeightedGraphNode
     {

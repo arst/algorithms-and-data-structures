@@ -1,7 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.Graph;
 using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class CycleDetection
     {
