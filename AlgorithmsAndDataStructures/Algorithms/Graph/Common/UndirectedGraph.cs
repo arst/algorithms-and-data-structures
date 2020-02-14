@@ -15,7 +15,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Common
                 adj[i] = new List<int>();
         }
 
-        void Connect(int nodeA, int nodeB)
+        public void Connect(int nodeA, int nodeB)
         {
             adj[nodeA].Add(nodeB);
             adj[nodeB].Add(nodeA); 

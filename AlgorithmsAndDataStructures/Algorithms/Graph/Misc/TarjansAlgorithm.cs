@@ -12,6 +12,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         public int[] GetArticulationPoints(UndirectedGraph graph)
         {
             var vertices = graph.Vertices();
+
+            if (vertices.Length == 0)
+            {
+                return Array.Empty<int>();
+            }
+
             var visited = new bool[vertices.Length];
             var articulationPoints = new bool[vertices.Length];
             var parents = new int[vertices.Length];
@@ -37,8 +43,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
             var children = 0;
-            dicoveryTime[currentVertice] = time++;
-            lowestSubTreeDiscoveryTime[currentVertice] = time++;
+            int currentDiscoveryTime = time++;
+            dicoveryTime[currentVertice] = currentDiscoveryTime;
+            lowestSubTreeDiscoveryTime[currentVertice] = currentDiscoveryTime;
 
             foreach (var adjacentVertice in vertices[currentVertice])
             {
@@ -62,12 +69,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                     {
                         articulationPoints[currentVertice] = true;
                     }
-                    if (parents[currentVertice] != nullParent && lowestSubTreeDiscoveryTime[currentVertice] >= dicoveryTime[adjacentVertice])
+                    if (parents[currentVertice] != nullParent && lowestSubTreeDiscoveryTime[adjacentVertice] >= dicoveryTime[currentVertice])
                     {
                         articulationPoints[currentVertice] = true;
                     }
                 }
-                else
+                else if(adjacentVertice != parents[currentVertice])
                 {
                     lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], dicoveryTime[adjacentVertice]);
                 }
