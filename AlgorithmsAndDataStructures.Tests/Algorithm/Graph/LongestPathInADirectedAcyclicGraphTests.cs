@@ -154,7 +154,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                 arg => Assert.Equal(7, arg),
                 arg => Assert.Equal(14, arg),
                 arg => Assert.Equal(13, arg),
-                arg => Assert.Equal(15, arg)));
+                arg => Assert.Equal(15, arg));
         }
     }
 }
