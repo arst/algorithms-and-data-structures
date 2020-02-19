@@ -4,13 +4,20 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TransitiveClosureFloydWarshall
     {
-        public int[][] GetReachabilityMatrix(WeightedGraphNode[] graph)
+        public bool[][] GetReachabilityMatrix(WeightedGraphNode[] graph)
         {
             var reachabilityMatrix = new bool[graph.Length][];
 
             for (int i = 0; i < reachabilityMatrix.Length; i++)
             {
                 reachabilityMatrix[i] = new bool[graph.Length];
+                reachabilityMatrix[i][i] = true;
+
+                for (int j = 0; j < graph[i].Edges.Count; j++)
+                {
+                    var edge = graph[i].Edges[j];
+                    reachabilityMatrix[i][edge.To] = true;
+                }
             }
 
             
@@ -20,10 +27,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 {
                     for (int k = 0; k < graph.Length; k++)
                     {
-
+                        bool isReachableThroughCurrentlyInspectedVertice = reachabilityMatrix[i][k] && reachabilityMatrix[k][j];
+                        if (isReachableThroughCurrentlyInspectedVertice)
+                        {
+                            reachabilityMatrix[i][j] = isReachableThroughCurrentlyInspectedVertice;
+                        }
                     }
                 }
             }
+
+            return reachabilityMatrix;
         }
     }
 }
