@@ -37,6 +37,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
                     {
                         return true;
                     }
+                    else
+                    {
+                        visited[positionX, positionY] = false;
+                    }
                 }
             }
 
