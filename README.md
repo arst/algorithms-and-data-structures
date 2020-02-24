@@ -63,5 +63,34 @@ Different Algorithms and Data Structures that I've implemented for fun and not f
     - Interpolation Search
     - Jump Search
     - Fibonacci Search
-
+- Graphs
+    - Backtracking
+        - Path of more than K length
+        - Hamilton's path
+        - m-coloring Problem
+    - Search
+        - BFS
+        - DFS
+    - Shortest path
+        - Bellman - Ford
+        - Dijkstra (naive)
+        - Dijkstra (with min. heap)
+        - Floyd - Warshall
+    - Longest path
+        - Longest path in directed acyclic graph (with Topological Sort)
+    - Minimum Spanning Tree
+        - Kruskal's algorithm
+        - Prim's algorithm
+    - Misc
+        - Cycle detection
+        - Biconnected graph
+        - Bridges in graphs
+        - Eulerian path
+        - Fleury's algorithms for Eulerian path
+        - Kosaraju's algorithm for strongly connected components
+        - Negative cycle detection(Bellman - Ford based)
+        - Tarjan's algorithm for articulation points
+        - Tarjan's algorithm for biconnected components
+        - Topological sort
+        - Transitive closure(Floyd - Warshall based)
 
