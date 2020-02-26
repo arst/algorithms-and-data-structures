@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
@@ -24,27 +24,26 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-
-            var hasPath = false;
+            bool hasPath;
 
             do
             {
-                hasPath = BFS(residualGraph, 0, flowNetwork.Length - 1);
                 var path = GetPath(residualGraph, 0, flowNetwork.Length - 1);
-                if (path is null)
+                hasPath = path != null;
+                if (hasPath)
                 {
-                    break;
+                    var delta = GetDelta(residualGraph, path, flowNetwork.Length - 1);
+                    EnrichFlows(flows, delta, path, isBackEdge);
+                    RebuildResidualGraph(flowNetwork, flows, residualGraph, isBackEdge);
                 }
-                var delta = GetDelta(residualGraph, path, flowNetwork.Length - 1);
-                EnrichFlows(flows, delta, path, isBackEdge);
-                RebuildResidualGraph(flowNetwork, flows, residualGraph, isBackEdge);
+               
             } while (hasPath);
 
             var maxFlow = 0;
 
             for (int i = 0; i < flowNetwork.Length; i++)
             {
-                maxFlow += flowNetwork[0][i];
+                maxFlow += flows[0][i];
             }
 
             return maxFlow;
@@ -56,12 +55,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 for (int j = 0; j < flowNetwork.Length; j++)
                 {
-                    int residualCapacity = flowNetwork[i][j] - flows[i][j];
-                    if (residualCapacity > 0)
-                    {
-                        residualGraph[i][j] = residualCapacity;
+                    var residualCapacity = flowNetwork[i][j] - flows[i][j];
+                    residualGraph[i][j] = residualCapacity;
 
-                    }
                     if (flows[i][j] > 0)
                     {
                         isBackEdge[j][i] = true;
@@ -96,7 +92,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         private int GetDelta(int[][] residualGraph,int[] path, int targetVertice)
         {
-            var delta = Int32.MaxValue;
+            var delta = int.MaxValue;
             var currentVertice = targetVertice;
             var parent = path[currentVertice];
 
@@ -116,6 +112,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var queue = new Queue<int>();
             var visited = new bool[residualGraph.Length];
             path[currentVertice] = -1;
+            visited[currentVertice] = true;
             queue.Enqueue(currentVertice);
 
             while (queue.Count > 0)
@@ -140,36 +137,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             }
 
             return null;
-
-        }
-
-        private bool BFS(int[][] residualGraph, int currentVertice, int targetVertice)
-        {
-            var queue = new Queue<int>();
-            queue.Enqueue(currentVertice);
-            var visited = new bool[residualGraph.Length];
-
-            while (queue.Count > 0)
-            {
-                var current = queue.Dequeue();
-
-                for (int i = 0; i < residualGraph[current].Length; i++)
-                {
-                    int adjacentVerticeCapacity = residualGraph[current][i];
-
-                    if (adjacentVerticeCapacity > 0 && !visited[i])
-                    {
-
-                        visited[i] = true;
-                        if (i == targetVertice)
-                            return true;
-
-                        queue.Enqueue(i);
-                    }  
-                }
-            }
-
-            return false;
         }
     }
 }
