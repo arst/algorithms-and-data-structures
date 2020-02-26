@@ -9,14 +9,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         public int MaxFlow(int[][] flowNetwork)
         {
             var residualGraph = new int[flowNetwork.GetLength(0)][];
-            var flows = new int[flowNetwork.GetLength(0)][];
-            var isBackEdge = new bool[flowNetwork.GetLength(0)][];
-
+            var flow = 0;
             for (int i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[flowNetwork[i].Length];
-                isBackEdge[i] = new bool[flowNetwork[i].Length];
-                flows[i] = new int[flowNetwork[i].Length];
 
                 for (int j = 0; j < residualGraph[i].Length; j++)
                 {
@@ -25,69 +21,41 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             }
 
             bool hasPath;
+            var sink = flowNetwork.Length - 1;
+            var source = 0;
 
             do
             {
-                var path = GetPath(residualGraph, 0, flowNetwork.Length - 1);
+                // Do simple BFS and record the path from source to sink if such path exists.
+                var path = GetPath(residualGraph, source, sink);
                 hasPath = path != null;
+                
                 if (hasPath)
                 {
-                    var delta = GetDelta(residualGraph, path, flowNetwork.Length - 1);
-                    EnrichFlows(flows, delta, path, isBackEdge);
-                    RebuildResidualGraph(flowNetwork, flows, residualGraph, isBackEdge);
-                }
-               
-            } while (hasPath);
+                    // Get minimum available capacity in the augmenting path.
+                    var delta = GetDelta(residualGraph, path, sink);
+                    // Augment max flow with value of delta since we were able to find augmenting path. 
+                    flow += delta;
 
-            var maxFlow = 0;
+                    // Follow the path until we rich the source.
+                    var currentVertice = sink;
+                    var parent = path[currentVertice];
 
-            for (int i = 0; i < flowNetwork.Length; i++)
-            {
-                maxFlow += flows[0][i];
-            }
-
-            return maxFlow;
-        }
-
-        private void RebuildResidualGraph(int[][] flowNetwork, int[][] flows, int[][] residualGraph, bool[][] isBackEdge)
-        {
-            for (int i = 0; i < flowNetwork.Length; i++)
-            {
-                for (int j = 0; j < flowNetwork.Length; j++)
-                {
-                    var residualCapacity = flowNetwork[i][j] - flows[i][j];
-                    residualGraph[i][j] = residualCapacity;
-
-                    if (flows[i][j] > 0)
+                    while (parent >= 0)
                     {
-                        isBackEdge[j][i] = true;
-                        residualGraph[j][i] = flows[i][j];
+                        // Reduce capacity of the nodes along the path with delta.
+                        residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
+                        // Create back-node to allow flow undo.
+                        residualGraph[currentVertice][parent] = residualGraph[parent][currentVertice] + delta;
+
+                        currentVertice = parent;
+                        parent = path[currentVertice];
                     }
                 }
-            }
-        }
 
-        private void EnrichFlows(int[][] flows, int delta, int[] path, bool[][] isBackEdge)
-        {
-            var currentVertice = flows.Length - 1;
-            var parent = path[currentVertice];
+            } while (hasPath);
 
-            while (parent >= 0)
-            {
-                var isBack = isBackEdge[parent][currentVertice];
-
-                if (isBack)
-                {
-                    flows[parent][currentVertice] = flows[parent][currentVertice] - delta;
-                }
-                else
-                {
-                    flows[parent][currentVertice] = flows[parent][currentVertice] + delta;
-                }
-
-                currentVertice = parent;
-                parent = path[currentVertice];
-            }
+            return flow;
         }
 
         private int GetDelta(int[][] residualGraph,int[] path, int targetVertice)
