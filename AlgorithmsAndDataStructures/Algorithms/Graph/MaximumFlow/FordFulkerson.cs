@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                         // Reduce capacity of the nodes along the path with delta.
                         residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
                         // Create back-node to allow flow undo.
-                        residualGraph[currentVertice][parent] = residualGraph[parent][currentVertice] + delta;
+                        residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + delta;
 
                         currentVertice = parent;
                         parent = path[currentVertice];
