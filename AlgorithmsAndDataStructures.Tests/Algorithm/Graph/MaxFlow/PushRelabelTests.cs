@@ -29,5 +29,26 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 
             Assert.Equal(23, sut.GetMaxFlow(graph));
         }
+
+        [Fact]
+        public void BaselineWithHugeCapacity()
+        {
+            var sut = new PushRelabel();
+            var graph = new int[4][];
+
+            for (int i = 0; i < graph.Length; i++)
+            {
+                graph[i] = new int[graph.Length];
+            }
+
+            graph[0][1] = 1;
+            graph[0][2] = 100;
+            graph[1][3] = 100;
+            graph[1][2] = 100;
+            graph[2][1] = 1;
+            graph[2][3] = 1;
+
+            Assert.Equal(3, sut.GetMaxFlow(graph));
+        }
     }
 }

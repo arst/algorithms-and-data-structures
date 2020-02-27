@@ -23,7 +23,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-            return 0;
+            var flow = 0;
+
+            for (int i = 0; i < residualGraph.Length; i++)
+            {
+                flow += residualGraph[i][0];
+            }
+
+            return flow;
         }
 
         private bool HasAccess(int[] excess)
@@ -84,8 +91,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 {
                     var delta = Math.Min(excess[currentVertice], residualGraph[currentVertice][i]);
 
-                    residualGraph[currentVertice][i] = residualGraph[currentVertice][i] + delta;
-                    residualGraph[i][currentVertice] = residualGraph[i][currentVertice] - delta;
+                    residualGraph[currentVertice][i] = residualGraph[currentVertice][i] - delta;
+                    residualGraph[i][currentVertice] = residualGraph[i][currentVertice] + delta;
 
                     excess[currentVertice] = excess[currentVertice] - delta;
                     excess[i] = excess[i] + delta;
