@@ -15,7 +15,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             while (HasAccess(excess))
             {
-                var currentVertice = GetMosyHighVedrticeWithAnExcess(excess, heights);
+                var currentVertice = GetMostHighVedrticeWithAnExcess(excess, heights);
 
                 if (!Push(residualGraph, currentVertice, excess, heights))
                 {
@@ -39,14 +39,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return false;
         }
 
-        private int GetMosyHighVedrticeWithAnExcess(int[] excess, int[] height)
+        private int GetMostHighVedrticeWithAnExcess(int[] excess, int[] height)
         {
             var maxHight = int.MinValue;
             var maxHeightIndex = -1;
 
             for (int i = 1; i < excess.Length - 1; i++)
             {
-                if (excess[i] > 0 && height[maxHeightIndex]  > maxHight)
+                if (excess[i] > 0 && (maxHeightIndex == -1 || height[maxHeightIndex]  > maxHight))
                 {
                     maxHeightIndex = i;
                     maxHight = height[maxHeightIndex];
