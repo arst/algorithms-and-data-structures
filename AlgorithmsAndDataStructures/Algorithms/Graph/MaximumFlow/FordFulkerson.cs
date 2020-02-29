@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
+    // Ford Fulkerson is actually an approach and not the whle algorithm, it doesn't specify the exact way to traverse a residual graph.
+    // Since this implementation uses BFS, it's technically Edmonds-Karp algorithm with complexity of O(V*E^2)
     public class FordFulkerson
     {
         // Actually, flow netwrok here is just a directed graph, though, it may as well be undirected.
@@ -74,6 +76,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return delta;
         }
 
+        // Since BFS is used, we getshortest path here.
         private int[] GetPath(int[][] residualGraph, int currentVertice, int targetVertice)
         {
             var path = new int[residualGraph.Length];
