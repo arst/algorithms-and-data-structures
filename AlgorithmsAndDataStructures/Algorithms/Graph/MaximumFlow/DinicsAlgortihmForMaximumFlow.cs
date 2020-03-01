@@ -29,64 +29,24 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 do
                 {
                     var visited = new bool[residualGraph.Length];
-                    var path = new int[residualGraph.Length];
-                    Reset(path);
 
-                    // Do simple DFS and record the path from source to sink if such path exists.
-                    GetDfsPath(residualGraph, source, sink, path, visited, verticesLevels, startAt);
-
-                    hasPath = path[sink] >= 0;
-
+                    var delta = GetAugmetingPath(residualGraph, source, sink, visited, verticesLevels, startAt, Int32.MaxValue);
+                    hasPath = delta > 0;
+                    
                     if (hasPath)
-                    {
-                        // Get minimum available capacity in the augmenting path.
-                        var delta = GetDelta(residualGraph, path, sink);
-                        // Augment max flow with value of delta since we were able to find augmenting path. 
                         flow += delta;
-
-                        // Follow the path until we rich the source.
-                        var currentVertice = sink;
-                        var parent = path[currentVertice];
-
-                        while (parent >= 0)
-                        {
-                            // Reduce capacity of the nodes along the path with delta.
-                            residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
-                            // Create back-node to allow flow undo.
-                            residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + delta;
-
-                            currentVertice = parent;
-                            parent = path[currentVertice];
-                        }
-                    }
-
+                    
                 } while (hasPath);
             }
 
             return flow;
         }
 
-        private int GetDelta(int[][] residualGraph, int[] path, int targetVertice)
-        {
-            var delta = int.MaxValue;
-            var currentVertice = targetVertice;
-            var parent = path[currentVertice];
-
-            while (parent >= 0)
-            {
-                delta = Math.Min(residualGraph[parent][currentVertice], delta);
-                currentVertice = parent;
-                parent = path[currentVertice];
-            }
-
-            return delta;
-        }
-
-        private int[] GetDfsPath(int[][] residualGraph, int current, int target, int[] path, bool[] visited, int[] verticesLevels, int[] startAt)
+        private int GetAugmetingPath(int[][] residualGraph, int current, int target, bool[] visited, int[] verticesLevels, int[] startAt, int flow)
         {
             if (current == target)
             {
-                return path;
+                return flow;
             }
 
             for (int i = startAt[current]; i < residualGraph[current].Length; i++)
@@ -98,21 +58,24 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 // We only go towards the target node, not backwards.
                 if (!visited[i] && verticesLevels[current] < verticesLevels[i])
                 {
-                    path[i] = current;
                     visited[i] = true;
 
-                    GetDfsPath(residualGraph, i, target, path, visited, verticesLevels, startAt);
-                    // We eliminate dead-end paths, since we can't achieve target nodes taking them.
+                    var delta = GetAugmetingPath(residualGraph, i, target, visited, verticesLevels, startAt, Math.Min(flow, residualGraph[current][i]));
+                    // We eliminate dead-end paths, since we can't achieve target nodes through them.
                     startAt[current] = i;
 
-                    if (path[target] > -1)
+                    if (delta > 0)
                     {
-                        return path;
+                        // Reduce capacity of the nodes along the path with delta.
+                        residualGraph[current][i] = residualGraph[current][i] - delta;
+                        // Create back-node to allow flow undo.
+                        residualGraph[i][current] = residualGraph[i][current] + delta;
+                        return delta;
                     }
                 }
             }
 
-            return path;
+            return 0;
         }
 
         private bool LeveledBfs(int currentVertice, int targetVertice, int[][] residualGraph, int[] verticesLevels, int[][] flowNetwork)
