@@ -24,6 +24,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             while (LeveledBfs(source, sink, residualGraph, verticesLevels, flowNetwork))
             {
                 bool hasPath;
+                var startAt = new int[residualGraph.Length];
 
                 do
                 {
@@ -32,7 +33,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                     Reset(path);
 
                     // Do simple DFS and record the path from source to sink if such path exists.
-                    GetDfsPath(residualGraph, source, sink, path, visited, verticesLevels);
+                    GetDfsPath(residualGraph, source, sink, path, visited, verticesLevels, startAt);
 
                     hasPath = path[sink] >= 0;
 
@@ -81,27 +82,29 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return delta;
         }
 
-        private int[] GetDfsPath(int[][] residualGraph, int current, int target, int[] path, bool[] visited, int[] verticesLevels)
+        private int[] GetDfsPath(int[][] residualGraph, int current, int target, int[] path, bool[] visited, int[] verticesLevels, int[] startAt)
         {
             if (current == target)
             {
                 return path;
             }
 
-            for (int i = 0; i < residualGraph[current].Length; i++)
+            for (int i = startAt[current]; i < residualGraph[current].Length; i++)
             {
                 if (residualGraph[current][i] < 1)
                 {
                     continue;
                 }
-
+                // We only go towards the target node, not backwards.
                 if (!visited[i] && verticesLevels[current] < verticesLevels[i])
                 {
                     path[i] = current;
                     visited[i] = true;
 
-                    GetDfsPath(residualGraph, i, target, path, visited, verticesLevels);
-                   
+                    GetDfsPath(residualGraph, i, target, path, visited, verticesLevels, startAt);
+                    // We eliminate dead-end paths, since we can't achieve target nodes taking them.
+                    startAt[current] = i;
+
                     if (path[target] > -1)
                     {
                         return path;
@@ -130,6 +133,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                         continue;
                     }
 
+                    // This checks that vertices is not visited and tha this is a forward edge.
                     if (verticesLevels[i] < 0 &&  flowNetwork[current][i] - residualGraph[current][i] >= 0)
                     {
                         verticesLevels[i] = verticesLevels[current] + 1;
