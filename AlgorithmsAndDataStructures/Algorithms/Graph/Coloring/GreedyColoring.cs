@@ -1,7 +1,8 @@
-﻿using System.Linq;
+using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Coloring
 {
+    // This algorithm can't guarantee the best coloring, but it can guarantee that we can color graph with at most d + 1 colors, where d is the max degree of vertice in the graph
     public class GreedyColoring
     {
         public int Color(int[][] graph)
@@ -21,43 +22,34 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Coloring
         private void Color(int[][] graph, int[] colors)
         {
             colors[0] = 0;
+            var adjacentColors = new bool[graph.Length];
 
-            for (int i = 1; i < graph.Length; i++)
+            for (int currentVertice = 1; currentVertice < graph.Length; currentVertice++)
             {
-                var minAdjacentColor = int.MaxValue;
-                var maxAdjacentColor = int.MinValue;
-
-                for (int j = 0; j < graph.Length; j++)
+                for (int adjacentVertice = 0; adjacentVertice < graph.Length; adjacentVertice++)
                 {
-                    if (graph[i][j] < 1 || colors[j] == -1)
+                    if (graph[currentVertice][adjacentVertice] < 1 || colors[adjacentVertice] == -1)
                     {
                         continue;
                     }
 
-                    if (colors[j] > maxAdjacentColor)
-                    {
-                        maxAdjacentColor = colors[j];
-                    }
-
-                    if (colors[j] < minAdjacentColor)
-                    {
-                        minAdjacentColor = colors[j];
-                    }
+                    if (colors[adjacentVertice] != -1)
+                        adjacentColors[adjacentVertice] = true;
                 }
 
-                // No colored adjacent veetices, color with lowest available color
-                if (minAdjacentColor == int.MaxValue)
+                int color;
+
+                for (color = 0; color < adjacentColors.Length; color++)
                 {
-                    colors[i] = 0;
+                    if (!adjacentColors[color])
+                    {
+                        break;
+                    }
                 }
-                else if (minAdjacentColor > 0)
-                {
-                    colors[i] = minAdjacentColor - 1;
-                }
-                else
-                {
-                    colors[i] = maxAdjacentColor + 1;
-                }
+
+                colors[currentVertice] = color;
+
+                adjacentColors = new bool[graph.Length];
             }
         }
     }
