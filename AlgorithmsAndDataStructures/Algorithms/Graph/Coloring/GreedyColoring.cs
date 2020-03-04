@@ -33,8 +33,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Coloring
                         continue;
                     }
 
-                    if (colors[adjacentVertice] != -1)
-                        adjacentColors[adjacentVertice] = true;
+                    adjacentColors[colors[adjacentVertice]] = true;
                 }
 
                 int color;
