@@ -14,7 +14,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             var spanningTree = new HashSet<int>();
             var minimumSpanningTreeWeight = 0;
 
-            spanningTree.Add(startingCity);
+            spanningTree.Add(startingCity); 
 
             //collect all edges for Prim's algorithm
             for (int i = 0; i < graph.Length; i++)
