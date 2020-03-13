@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
             for (int prefixLength = 4; input.Length * 2 > prefixLength; prefixLength = prefixLength * 2)
             {
                 var rank = 0;
-                var previousSuffixRank = 0;
+                var previousSuffixRank = tuples[0].Rank;
                 tuples[0].Rank = 0;
 
                 for (int j = 1; j < input.Length; j++)
