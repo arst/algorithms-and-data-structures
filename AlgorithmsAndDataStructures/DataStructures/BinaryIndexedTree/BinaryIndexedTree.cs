@@ -27,6 +27,7 @@
 
         public int GetSum(int index)
         {
+            // Since range in Fenwick tree doesn't include last element
             var currentIndex = index + 1;
 
             var result = 0;
@@ -34,10 +35,16 @@
             while (currentIndex > 0)
             {
                 result += binaryIndexedTree[currentIndex];
+                //TRICK: parent of any node can be obtain by removing the last set bit from the binary representation of that node.
                 currentIndex = currentIndex - (currentIndex & -currentIndex);
             }
 
             return result;
+        }
+
+        public int GetSum(int start, int end)
+        {
+            return GetSum(end) - GetSum(start - 1);
         }
 
         public void SetValue(int index, int value)

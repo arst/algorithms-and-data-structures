@@ -24,6 +24,17 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryIndexedTreeTest
         }
 
         [Fact]
+        public void CanQueryRangeValue()
+        {
+            var sut = BinaryIndexedTree.FromArray(new int[] { 1, 2, 3, 4, 5 });
+            Assert.Equal(3, sut.GetSum(0, 1));
+            Assert.Equal(6, sut.GetSum(0, 2));
+            Assert.Equal(10, sut.GetSum(0, 3));
+            Assert.Equal(15, sut.GetSum(0,4));
+            Assert.Equal(12, sut.GetSum(2, 4));
+        }
+
+        [Fact]
         public void RangeSumeIsCorrect()
         {
             var sut = new BinaryIndexedTree(100);
