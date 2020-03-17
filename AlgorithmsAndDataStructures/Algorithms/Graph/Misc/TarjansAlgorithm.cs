@@ -43,7 +43,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
             var children = 0;
-            int currentDiscoveryTime = time++;
+            int currentDiscoveryTime = time + 1;
             dicoveryTime[currentVertice] = currentDiscoveryTime;
             lowestSubTreeDiscoveryTime[currentVertice] = currentDiscoveryTime;
 
@@ -61,7 +61,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                         parents,
                         dicoveryTime,
                         lowestSubTreeDiscoveryTime,
-                        time);
+                        currentDiscoveryTime);
 
                     lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], lowestSubTreeDiscoveryTime[adjacentVertice]);
 
