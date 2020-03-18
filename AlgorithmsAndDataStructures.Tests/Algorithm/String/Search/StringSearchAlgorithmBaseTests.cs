@@ -61,6 +61,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
             Assert.Equal(2, sut.Search("startartart", "art"));
         }
 
+        [Fact]
+        public void Baseline()
+        {
+            var sut = GetSystemUnderTest();
+
+            Assert.Equal(1, sut.Search("ABC ABCDAB ABCDABCDABD", "AABAACAABAA"));
+        }
+
         protected abstract IStringPatternSearchAlgorithm GetSystemUnderTest();
     }
 }

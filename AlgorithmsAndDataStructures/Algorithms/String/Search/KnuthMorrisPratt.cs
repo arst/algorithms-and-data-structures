@@ -41,17 +41,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
         private int[] ComputeAuxArray(string pattern)
         {
             var result = new int[pattern.Length];
-            var i = 1;
+            var currentCharacter = 1;
             var suffixLength = 0;
             result[suffixLength] = 0;
 
-            while (i < result.Length)
+            while (currentCharacter < result.Length)
             {
-                if (pattern[i] == pattern[suffixLength])
+                if (pattern[currentCharacter] == pattern[suffixLength])
                 {
                     suffixLength++;
-                    result[i] = suffixLength;
-                    i++;
+                    result[currentCharacter] = suffixLength;
+                    currentCharacter++;
                 }
                 else
                 {
@@ -61,8 +61,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                     }
                     else
                     {
-                        result[i] = suffixLength;
-                        i++;
+                        result[currentCharacter] = 0;
+                        currentCharacter++;
                     }
                 }
             }
