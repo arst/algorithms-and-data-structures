@@ -12,22 +12,26 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 
             while (inputIndex < input.Length)
             {
+                // It's a match, proceed to the next pair
                 if (pattern[patternIndex] == input[inputIndex])
                 {
-                    inputIndex++;
                     patternIndex++;
+                    inputIndex++;
                 }
-
+                // All pattern characters matched, return the result
                 if (patternIndex == pattern.Length)
                 {
                     return inputIndex - patternIndex;
                 }
+                // No match and some characters in input left undiscovered
                 else if (inputIndex < input.Length && pattern[patternIndex] != input[inputIndex])
                 {
+                    //Pattern at non-starting position, try to match some prefix
                     if (patternIndex != 0)
                     {
                         patternIndex = aux[patternIndex - 1];
                     }
+                    // Pattern[0] mismatched with current character, there is nothing to do, just proceed to the next character
                     else
                     {
                         inputIndex++;
@@ -41,26 +45,30 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
         private int[] ComputeAuxArray(string pattern)
         {
             var result = new int[pattern.Length];
+
+            var prefixLength = 0;
+            result[prefixLength] = 0;
             var currentCharacter = 1;
-            var suffixLength = 0;
-            result[suffixLength] = 0;
 
             while (currentCharacter < result.Length)
             {
-                if (pattern[currentCharacter] == pattern[suffixLength])
+                // If prefix at currentposition equal to currently inspected suffix character then procesd with growing prefix
+                if (pattern[prefixLength] == pattern[currentCharacter])
                 {
-                    suffixLength++;
-                    result[currentCharacter] = suffixLength;
+                    prefixLength++;
+                    result[currentCharacter] = prefixLength;
                     currentCharacter++;
                 }
                 else
                 {
-                    if (suffixLength != 0)
+                    // Prefix and suffix character aren't matche, try smaller prefix
+                    if (prefixLength != 0)
                     {
-                        suffixLength = result[suffixLength - 1];
+                        prefixLength = result[prefixLength - 1];
                     }
                     else
                     {
+                        //No prefixes left to imnspect, give up and proceed to the next character
                         result[currentCharacter] = 0;
                         currentCharacter++;
                     }

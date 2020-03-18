@@ -66,7 +66,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
         {
             var sut = GetSystemUnderTest();
 
-            Assert.Equal(1, sut.Search("ABC ABCDAB ABCDABCDABD", "AABAACAABAA"));
+            Assert.Equal(11, sut.Search("ABC ABCDAB ABCDABCDABD", "ABCDABCD"));
         }
 
         protected abstract IStringPatternSearchAlgorithm GetSystemUnderTest();
