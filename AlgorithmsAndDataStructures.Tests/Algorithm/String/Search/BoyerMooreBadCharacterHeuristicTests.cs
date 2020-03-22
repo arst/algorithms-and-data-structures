@@ -2,11 +2,11 @@
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
 {
-    public class BoyerMooreTests : StringSearchAlgorithmBaseTests
+    public class BoyerMooreBadCharacterHeuristicTests : StringSearchAlgorithmBaseTests
     {
         protected override IStringPatternSearchAlgorithm GetSystemUnderTest()
         {
-            return new BoyerMoore();
+            return new BoyerMooreBadCharacterHeuristic();
         }
     }
 }

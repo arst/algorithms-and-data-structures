@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 {
-    public class BoyerMoore : IStringPatternSearchAlgorithm
+    public class BoyerMooreBadCharacterHeuristic : IStringPatternSearchAlgorithm
     {
         public int Search(string input, string pattern)
         {
