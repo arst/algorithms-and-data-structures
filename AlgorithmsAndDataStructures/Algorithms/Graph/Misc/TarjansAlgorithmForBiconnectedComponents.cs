@@ -25,9 +25,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var dfs = new Stack<int>(vertices.Length);
             var biconnectedComponents = new List<List<int>>();
 
-            parents[0] = nullParent;
+            for (int i = 0; i < vertices.Length; i++)
+            {
+                if (!visited[i])
+                {
+                    parents[i] = nullParent;
+                    DFSArticulationTraversal(vertices, 0, visited, parents, dicoveryTime, lowestSubTreeDiscoveryTime, dfs, biconnectedComponents, 0);
+                }
 
-            DFSArticulationTraversal(vertices, 0, visited, parents, dicoveryTime, lowestSubTreeDiscoveryTime, dfs, biconnectedComponents, 0);
+
+            }
 
             if (dfs.Any())
             {
