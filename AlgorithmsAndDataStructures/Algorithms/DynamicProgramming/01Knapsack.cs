@@ -4,6 +4,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 {
     public class _01Knapsack
     {
+        // NOTE: Since it's a 0/1 you can get each item only once.
         public int GetMaxGain(int[] weights, int[] values, int knapsackSize)
         {
             var dp = new int[weights.Length][];
