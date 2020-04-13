@@ -58,6 +58,8 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
             await Task.WhenAny(writerTask, taskDelay).ConfigureAwait(false);
             cancelationTokenSource.Cancel();
 
+            Assert.True(queue1.Intersect(queue2).Count() == 0);
+
             Assert.True(queue1.Distinct().Count() == queue1.Count);
 
             while (queue1.Count > 0)
