@@ -8,6 +8,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         private Semaphore maleCounterSemaphor;
         private Semaphore femaleTurnSemaphore;
         private Semaphore maleTurnSemaphore;
+        private Semaphore startvationPreventionSemaphore;
         private Semaphore femaleCounterSemaphor;
         private Semaphore occupiedSemaphor;
         private int maleCount;
@@ -20,6 +21,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             this.occupiedSemaphor = new Semaphore(0, 1);
             this.femaleTurnSemaphore = new Semaphore(0, 1);
             this.maleTurnSemaphore = new Semaphore(0, 1);
+            this.startvationPreventionSemaphore = new Semaphore(0, 1);
         }
 
         public void Enter(int gender)
@@ -36,6 +38,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
         private void EnterFemale()
         {
+            startvationPreventionSemaphore.WaitOne();
             femaleTurnSemaphore.WaitOne();
             femaleCount += 1;
 
@@ -45,6 +48,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
 
             femaleTurnSemaphore.Release();
+            startvationPreventionSemaphore.Release();
+
             femaleCounterSemaphor.WaitOne();
 
             Console.WriteLine("In a bathroom F.");
@@ -64,6 +69,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
         private void EnterMale()
         {
+            startvationPreventionSemaphore.WaitOne();
             maleTurnSemaphore.WaitOne();
 
             maleCount += 1;
@@ -74,6 +80,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
 
             maleTurnSemaphore.Release();
+            startvationPreventionSemaphore.Release();
             maleCounterSemaphor.WaitOne();
 
             Console.WriteLine("In a bath room M.");
