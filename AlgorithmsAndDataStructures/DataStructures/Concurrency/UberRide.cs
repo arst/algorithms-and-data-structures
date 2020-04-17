@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
+namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class UberRide
     {
