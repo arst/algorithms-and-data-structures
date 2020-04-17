@@ -7,22 +7,24 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class SimpleLeakyBucket
     {
-        private int outputRate;
-        private int maxBucketSize;
+        private readonly int outputRate;
+        private readonly int leakInterval;
+        private readonly int maxBucketSize;
         private int bucketSize;
-        private Queue<int> queue;
+        private readonly Queue<int> queue;
         private int locked;
         private Timer leaker;
 
-        public SimpleLeakyBucket(int maxBucketSize, int outputRate, TimeSpan leakInterval)
+        public SimpleLeakyBucket(int maxBucketSize, int outputRate, int leakInterval)
         {
             this.outputRate = outputRate;
+            this.leakInterval = leakInterval;
             this.maxBucketSize = maxBucketSize;
-            this.bucketSize = this.maxBucketSize;
+            this.bucketSize = 0;
             locked = 0;
             queue = new Queue<int>();
             this.leaker = new Timer(Leak, null, Timeout.Infinite, Timeout.Infinite);
-            leaker.Change(15, Timeout.Infinite);
+            leaker.Change(leakInterval, Timeout.Infinite);
         }
 
         public bool TryEnqueue(int value)
@@ -60,7 +62,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                     var remainingRate = outputRate;
                     try
                     {
-                        while (queue.Any() && queue.Peek() < outputRate)
+                        while (queue.Any() && queue.Peek() <= outputRate)
                         {
                             var output = queue.Dequeue();
                             
@@ -69,7 +71,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                         }
 
                         leaker = new Timer(Leak, null, Timeout.Infinite, Timeout.Infinite);
-                        leaker.Change(15, Timeout.Infinite);
+                        leaker.Change(leakInterval, Timeout.Infinite);
                         return;
                     }
                     finally

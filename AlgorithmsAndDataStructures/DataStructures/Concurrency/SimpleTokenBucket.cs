@@ -5,20 +5,22 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class SimpleTokenBucket
     {
-        private int tokenBucketSize;
+        private readonly int tokenBucketSize;
         private volatile int currentTokens;
-        private int refillRate;
+        private readonly int refillRate;
+        private readonly int refillInterval;
         private Timer refiller;
         private int locked;
 
-        public SimpleTokenBucket(int tokenBucketSize, int refillRate)
+        public SimpleTokenBucket(int tokenBucketSize, int refillRate, int refillInterval)
         {
             this.tokenBucketSize = tokenBucketSize;
-            this.currentTokens = 0;
+            this.currentTokens = tokenBucketSize;
             this.refillRate = refillRate;
+            this.refillInterval = refillInterval;
             locked = 0;
             refiller = new Timer(Refill, null, Timeout.Infinite, Timeout.Infinite);
-            refiller.Change(15, Timeout.Infinite);
+            refiller.Change(refillInterval, Timeout.Infinite);
         }
 
         public bool TrySend(int value)
@@ -54,9 +56,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                 {
                     try
                     {
-                        currentTokens = Math.Max(currentTokens + refillRate, tokenBucketSize);
+                        currentTokens = Math.Min(currentTokens + refillRate, tokenBucketSize);
                         refiller = new Timer(Refill, null, Timeout.Infinite, Timeout.Infinite);
-                        refiller.Change(15, Timeout.Infinite);
+                        refiller.Change(refillInterval, Timeout.Infinite);
                         return;
                     }
                     finally
