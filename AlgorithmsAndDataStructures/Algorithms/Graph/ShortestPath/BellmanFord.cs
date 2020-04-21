@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
