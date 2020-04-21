@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
@@ -14,35 +14,23 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
         {
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
-            var isNotFinalized = true;
 
             for (int i = 0; i < graph.Length; i++)
             {
                 distance[i] = i == from ? 0 : int.MaxValue;
             }
 
-            // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
-            for (int j = 0; j < graph.Length - 1 && isNotFinalized; j++)
+            // Algorithm performs only V cycles here to avoid being caught in negative cycle.
+            for (int j = 0; j < graph.Length; j++)
             {
-                for (int i = 0; i < graph.Length; i++)
+                var vertex = graph[j];
+
+                foreach (var edge in vertex.Edges)
                 {
-                    var vertex = graph[i];
-                    isNotFinalized = false;
-
-                    foreach (var edge in vertex.Edges)
+                    if (distance[edge.To] > distance[j] + edge.Weight)
                     {
-                        if (distance[edge.To] > distance[i] + edge.Weight)
-                        {
-                            path[edge.To] = i;
-                            distance[edge.To] = distance[i] + edge.Weight;
-                            isNotFinalized = true;
-                        }
-                    }
-
-                    // If we haven't recalculated any distances, then it means that we have our distances finalized.
-                    if (!isNotFinalized)
-                    {
-                        break;
+                        path[edge.To] = j;
+                        distance[edge.To] = distance[j] + edge.Weight;
                     }
                 }
             }
