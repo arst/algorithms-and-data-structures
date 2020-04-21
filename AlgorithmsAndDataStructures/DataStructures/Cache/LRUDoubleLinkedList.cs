@@ -1,4 +1,6 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.Cache
+﻿using System;
+
+namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
     public class LRUDoubleLinkedList
     {
@@ -24,6 +26,38 @@
             return result;
         }
 
+        public void InsertToHead(LRUCacheEntry entry)
+        {
+            if (head == null)
+            {
+                head = entry;
+                tail = head;
+            }
+            else
+            {
+                entry.Next = head;
+                head.Previous = entry;
+                head = entry;
+            }
+        }
+
+        public LRUCacheEntry InsertToTail(LRUCacheEntry cacheEntry)
+        {
+            if (head == null)
+            {
+                head = cacheEntry;
+                tail = head;
+            }
+            else
+            {
+                tail.Next = cacheEntry;
+                cacheEntry.Previous = tail;
+                tail = cacheEntry;
+            }
+
+            return cacheEntry;
+        }
+
         public LRUCacheEntry RemoveTail()
         {
             var tmp = tail;
@@ -43,7 +77,10 @@
 
         public void MoveToHead(LRUCacheEntry entry)
         {
-            entry.Previous.Next = entry.Next;
+            if (entry.Previous != null)
+            {
+                entry.Previous.Next = entry.Next;
+            }
             if (entry.Next != null)
             {
                 entry.Next.Previous = entry.Previous;
@@ -56,6 +93,31 @@
             entry.Next = head;
             head.Previous = entry;
             head = entry;
+        }
+
+        public bool IsEmpty()
+        {
+            return head == null;
+        }
+
+        internal void Remove(LRUCacheEntry cacheEntry)
+        {
+            if (cacheEntry.Previous != null)
+            {
+                cacheEntry.Previous.Next = cacheEntry.Next;
+            }
+            if (cacheEntry.Next != null)
+            {
+                cacheEntry.Next.Previous = cacheEntry.Previous;
+            }
+
+            if (cacheEntry == head)
+            {
+                head = null;
+            }
+
+            cacheEntry.Next = null;
+            cacheEntry.Previous = null;
         }
     }
 }
