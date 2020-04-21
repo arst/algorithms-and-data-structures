@@ -3,19 +3,19 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
 {
-    public class LFUTests
+    public class LFUMeanHeapBasedTests
     {
         [Fact]
         public void CanInsertEntry()
         {
-            var sut = new LFU(1);
+            var sut = new LFUMeanHeapBased(1);
             sut.Add(1, "Test");
         }
 
         [Fact]
         public void CanGetEntry()
         {
-            var sut = new LFU(1);
+            var sut = new LFUMeanHeapBased(1);
             sut.Add(1, "Test");
 
             Assert.Equal("Test", sut.Get(1));
@@ -24,7 +24,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void CanUpdateEntry()
         {
-            var sut = new LFU(1);
+            var sut = new LFUMeanHeapBased(1);
             sut.Add(1, "Test");
             sut.Add(1, "Test1");
 
@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void LeastFrequentlyUsedEntryRemoved()
         {
-            var sut = new LRU(2);
+            var sut = new LFUMeanHeapBased(2);
             sut.Add(1, "Test");
             sut.Add(2, "Test1");
             sut.Get(2);
@@ -49,7 +49,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         public void PropertyBased()
         {
             var testcaseSize = 10;
-            var sut = new LFU(testcaseSize);
+            var sut = new LFUMeanHeapBased(testcaseSize);
 
             for (int i = 0; i < testcaseSize - 1; i++)
             {
@@ -67,7 +67,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
 
                 sut.Add(i, i.ToString());
 
-                Assert.Null(sut.Get(i - testcaseSize - 1));
+                Assert.Null(sut.Get(i - 1));
             }
         }
     }
