@@ -1,32 +1,13 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.DataStructures.Cache
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
-    public class LRUDoubleLinkedList
+    public class CacheDoubleLinkedList
     {
-        private LRUCacheEntry head;
-        private LRUCacheEntry tail;
+        private CacheEntry head;
+        private CacheEntry tail;
 
-        public LRUCacheEntry InsertToHead(int key, string value)
-        {
-            var result = new LRUCacheEntry(key, value);
+        public bool IsEmpty => head == null;
 
-            if (head == null)
-            {
-                head = result;
-                tail = head;
-            }
-            else
-            {
-                result.Next = head;
-                head.Previous = result;
-                head = result;
-            }
-
-            return result;
-        }
-
-        public void InsertToHead(LRUCacheEntry entry)
+        public void InsertToHead(CacheEntry entry)
         {
             if (head == null)
             {
@@ -41,26 +22,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
             }
         }
 
-        public LRUCacheEntry InsertToTail(LRUCacheEntry cacheEntry)
-        {
-            if (head == null)
-            {
-                head = cacheEntry;
-                tail = head;
-            }
-            else
-            {
-                tail.Next = cacheEntry;
-                cacheEntry.Previous = tail;
-                tail = cacheEntry;
-            }
-
-            return cacheEntry;
-        }
-
-        public LRUCacheEntry RemoveTail()
+        public CacheEntry RemoveTail()
         {
             var tmp = tail;
+
             if (tail.Previous != null)
             {
                 tail.Previous.Next = null;
@@ -75,12 +40,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
             return tmp;
         }
 
-        public void MoveToHead(LRUCacheEntry entry)
+        public void MoveToHead(CacheEntry entry)
         {
             if (entry.Previous != null)
             {
                 entry.Previous.Next = entry.Next;
             }
+
             if (entry.Next != null)
             {
                 entry.Next.Previous = entry.Previous;
@@ -89,23 +55,21 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
             {
                 tail = entry.Previous;
             }
+
             entry.Previous = null;
             entry.Next = head;
             head.Previous = entry;
             head = entry;
         }
 
-        public bool IsEmpty()
-        {
-            return head == null;
-        }
 
-        internal void Remove(LRUCacheEntry cacheEntry)
+        public void Remove(CacheEntry cacheEntry)
         {
             if (cacheEntry.Previous != null)
             {
                 cacheEntry.Previous.Next = cacheEntry.Next;
             }
+
             if (cacheEntry.Next != null)
             {
                 cacheEntry.Next.Previous = cacheEntry.Previous;

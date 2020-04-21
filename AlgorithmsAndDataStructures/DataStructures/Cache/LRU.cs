@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
     public class LRU
     {
-        private Dictionary<int, LRUCacheEntry> values;
+        private Dictionary<int, CacheEntry> values;
         private readonly int capacity;
         private int entriesCount;
-        private LRUDoubleLinkedList list;
+        private CacheDoubleLinkedList list;
 
         public LRU(int capacity)
         {
-            values = new Dictionary<int, LRUCacheEntry>();
+            values = new Dictionary<int, CacheEntry>();
             this.capacity = capacity;
             entriesCount = 0;
-            list = new LRUDoubleLinkedList();
+            list = new CacheDoubleLinkedList();
         }
 
         public void Add(int key, string value)
@@ -32,7 +31,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
                 entriesCount--;
             }
 
-            values.Add(key, list.InsertToHead(key, value));
+            var newEntry = new CacheEntry(key, value);
+            list.InsertToHead(newEntry);
+            values.Add(key, newEntry);
 
             entriesCount++;
         }
@@ -45,6 +46,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
             }
 
             var entry = values[key];
+
             if (entriesCount > 1)
             {
                 list.MoveToHead(entry);
