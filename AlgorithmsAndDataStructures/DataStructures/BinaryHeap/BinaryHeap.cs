@@ -79,52 +79,30 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
             return result;
         }
 
-        private void Sink(int v)
+        private void Sink(int index)
         {
-            var current = v;
+            int rightChildIndex = index * 2 + 1;
+            int leftChildIndex = index * 2;
+            int swapChildIndex = leftChildIndex;
 
-            int rightChildIndex = current * 2 + 1;
-            int leftChildIndex = current * 2;
-
-            while (rightChildIndex < nextElementPointer)
+            if (leftChildIndex >= nextElementPointer)
             {
-                var swapChildIndex = GetSwapChildIndex(rightChildIndex, leftChildIndex);
-
-                if (!ShouldSwap(current, swapChildIndex))
-                {
-                    var tmp = heap[current];
-
-                    if (heap[leftChildIndex].Equals(heap[swapChildIndex]))
-                    {
-                        heap[current] = heap[leftChildIndex];
-                        heap[leftChildIndex] = tmp;
-                        current = leftChildIndex;
-                    }
-                    else if (heap[rightChildIndex].Equals(heap[swapChildIndex]))
-                    {
-                        heap[current] = heap[rightChildIndex];
-                        heap[rightChildIndex] = tmp;
-
-                        current = rightChildIndex;
-                    }
-                }
-                else
-                {
-                    return;
-                }
-
-                rightChildIndex = current * 2 + 1;
-                leftChildIndex = current * 2;
+                return;
             }
 
-            if (leftChildIndex < nextElementPointer)
+            if (rightChildIndex < nextElementPointer)
             {
-                if (!ShouldSwap(current, leftChildIndex))
-                {
-                    var tmp = heap[current];
-                    heap[current] = heap[leftChildIndex];
-                    heap[leftChildIndex] = tmp;
-                }
+                swapChildIndex = GetSwapChildIndex(rightChildIndex, leftChildIndex);
+            }
+
+            if (!ShouldSwap(index, swapChildIndex))
+            {
+                var tmp = heap[index];
+
+                heap[index] = heap[swapChildIndex];
+                heap[swapChildIndex] = tmp;
+
+                Sink(swapChildIndex);
             }
         }
     }
