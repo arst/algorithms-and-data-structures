@@ -8,33 +8,18 @@ namespace AlgorithmsAndDataStructures.DataStructures.StateMachine
     // Important note: It's state who is reposnsible for poping itself from the stack and push next state onto the stack
     public class StackFiniteStateMachine
     {
-        private readonly Stack<Action> stack;
+        private readonly Stack<Action> stack = new Stack<Action>();
 
-        public StackFiniteStateMachine()
-        {
-            stack = new Stack<Action>();
-        }
+        public void Turn() => GetCurrentState()?.Invoke();
+        
+        public void PushState(Action state) => stack.Push(state);
 
-        public void Turn()
-        {
-            GetCurrentState()?.Invoke();
-        }
+        private Action GetCurrentState() => stack.Count > 0 ? stack.Peek() : null;
 
         public Action PopState()
         {
             var state = stack.Count > 0 ? stack.Pop() : null;
-
             return state;
-        }
-
-        public void PushState(Action state)
-        {
-            stack.Push(state);
-        }
-
-        private Action GetCurrentState()
-        {
-            return stack.Count > 0 ? stack.Peek() : null;
         }
     }
 }
