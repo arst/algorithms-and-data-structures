@@ -1,6 +1,6 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
 {
-    public class NaiveApproach
+    public class NaiveApproach : IMediaOfTwoArraysAlgorithm
     {
         public float GetMedian(int[] left, int[] right)
         {
