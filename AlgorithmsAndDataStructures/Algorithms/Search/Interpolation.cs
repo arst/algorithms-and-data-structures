@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.Algorithms.Search
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
-    public class Interpolation: ISearchAlgorithm<int>
+    public class Interpolation : ISearchAlgorithm<int>
     {
         public int Search(int[] target, int value)
         {
@@ -18,7 +16,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
 
             var start = 0;
             var end = target.Length - 1;
-            while(end >= start && target[start] <= value && target[end] >= value)
+
+            while (end >= start && target[start] <= value && target[end] >= value)
             {
                 if (start == end)
                 {
@@ -30,9 +29,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
                     return -1;
                 }
 
-                var position = start + 
-                    (((end - start) / (target[end] - target[start])) 
-                    * (value - target[start])); 
+                var position = GetPosition(target, value, start, end);
 
                 if (target[position] == value)
                 {
@@ -49,6 +46,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
             }
 
             return -1;
+        }
+
+        private static int GetPosition(int[] target, int targetValue, int start, int end)
+        {
+            int xSlope = target[end] - target[start];
+            int ySlope = end - start;
+            int difference = targetValue - target[start];
+
+            return start + (ySlope / xSlope * difference);
         }
     }
 }
