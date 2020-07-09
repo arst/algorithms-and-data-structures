@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
     {
         public override ISearchAlgorithm<int> GetSystemUnderTest()
         {
-            return new BinaryRecursive();
+            return new BinaryRecursive<int>();
         }
     }
 }

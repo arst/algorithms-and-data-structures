@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmsAndDataStructures", "AlgorithmsAndDataStructures\AlgorithmsAndDataStructures.csproj", "{888BCA81-A70E-4695-81E9-003ADD0CDDB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmsAndDataStructures", "AlgorithmsAndDataStructures\AlgorithmsAndDataStructures.csproj", "{888BCA81-A70E-4695-81E9-003ADD0CDDB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmsAndDataStructures.Tests", "AlgorithmsAndDataStructures.Tests\AlgorithmsAndDataStructures.Tests.csproj", "{0062B208-4EDE-4B64-B328-73D233702EEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmsAndDataStructures.Tests", "AlgorithmsAndDataStructures.Tests\AlgorithmsAndDataStructures.Tests.csproj", "{0062B208-4EDE-4B64-B328-73D233702EEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmsAndDataStructures.Benchmarks", "AlgorithmsAndDataStructures.Benchmarks\AlgorithmsAndDataStructures.Benchmarks.csproj", "{89B96A9C-349E-4EAE-8A5D-203652F27542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{0062B208-4EDE-4B64-B328-73D233702EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0062B208-4EDE-4B64-B328-73D233702EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0062B208-4EDE-4B64-B328-73D233702EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89B96A9C-349E-4EAE-8A5D-203652F27542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B96A9C-349E-4EAE-8A5D-203652F27542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B96A9C-349E-4EAE-8A5D-203652F27542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B96A9C-349E-4EAE-8A5D-203652F27542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
