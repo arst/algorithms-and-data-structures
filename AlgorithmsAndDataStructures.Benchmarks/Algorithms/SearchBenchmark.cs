@@ -5,6 +5,8 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms
 {
     [HtmlExporter]
     [RPlotExporter]
+    [CsvMeasurementsExporter]
+    [MarkdownExporterAttribute.GitHub]
     public class SearchBenchmark
     {
         #region data
