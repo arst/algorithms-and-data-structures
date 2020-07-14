@@ -1,4 +1,6 @@
 using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
@@ -14,40 +16,55 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
         {
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
-            var isNotFinalized = true;
+            var isRelaxed = true;
+            var edges = CollectEdges(graph);
 
-            for (int i = 0; i < graph.Length; i++)
-            {
-                distance[i] = i == from ? 0 : int.MaxValue;
-            }
+            InitializeDisatances(graph, from, distance);
 
             // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
-            for (int j = 0; j < graph.Length - 1 && isNotFinalized; j++)
+            for (int i = 0; i < graph.Length - 1 && isRelaxed; i++)
             {
-                for (int i = 0; i < graph.Length; i++)
+                foreach (var edge in edges)
                 {
-                    var vertex = graph[i];
-                    isNotFinalized = false;
-
-                    foreach (var edge in vertex.Edges)
-                    {
-                        if (distance[edge.To] > distance[i] + edge.Weight)
-                        {
-                            path[edge.To] = i;
-                            distance[edge.To] = distance[i] + edge.Weight;
-                            isNotFinalized = true;
-                        }
-                    }
-
-                    // If we haven't recalculated any distances, then it means that we have our distances finalized.
-                    if (!isNotFinalized)
-                    {
-                        break;
-                    }
+                    isRelaxed = RelaxEdge(edge, distance, path);
+                }
+                // If we haven't recalculated any distances, then it means that we have our distances finalized.
+                if (!isRelaxed)
+                {
+                    break;
                 }
             }
-            
+
             return (distance[to], path);
+        }
+
+        private static bool RelaxEdge(WeightedGraphNodeEdge edge, int[] distance, int[] path)
+        {
+            var relaxed = false;
+
+            if (distance[edge.To] > distance[edge.From] + edge.Weight)
+            {
+                path[edge.To] = edge.From;
+                distance[edge.To] = distance[edge.From] + edge.Weight;
+                relaxed = true;
+            }
+
+            return relaxed;
+        }
+
+        private static List<WeightedGraphNodeEdge> CollectEdges(WeightedGraphNode[] graph)
+        {
+            return graph.SelectMany(arg => arg.Edges).ToList();
+        }
+
+        private static void InitializeDisatances(WeightedGraphNode[] graph, int from, int[] distance)
+        {
+            for (int i = 0; i < graph.Length; i++)
+            {
+                distance[i] = int.MaxValue;
+            }
+
+            distance[from] = 0;
         }
     }
 }
