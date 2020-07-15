@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
         public BinaryHeap(int maxCapacity = 8)
         {
-            heap = new T[maxCapacity];
+            heap = new T[maxCapacity + 1];
         }
 
         protected abstract bool ShouldSwap(int current, int target);
