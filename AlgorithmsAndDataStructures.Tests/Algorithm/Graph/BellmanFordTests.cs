@@ -41,7 +41,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 1,
-                                To = 1
+                                To = 1,
+                                From = 0
                             }
                         }
                     },
@@ -71,7 +72,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 1,
-                                To = 1
+                                To = 1,
+                                From = 0
                             }
                         }
                     },
@@ -82,7 +84,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 2,
-                                To = 2
+                                To = 2,
+                                From = 1
                             }
                         }
                     },
@@ -112,12 +115,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 1,
-                                To = 1
+                                To = 1,
+                                From = 0
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 5,
-                                To = 2
+                                To = 2,
+                                From = 0
                             }
                         }
                     },
@@ -128,7 +133,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 2,
-                                To = 2
+                                To = 2,
+                                From = 1
                             }
                         }
                     },
@@ -158,12 +164,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 1,
-                                To = 1
+                                To = 1,
+                                From = 0
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 5,
-                                To = 2
+                                To = 2,
+                                From = 0
                             }
                         }
                     },
@@ -174,7 +182,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 2,
-                                To = 2
+                                To = 2,
+                                From = 1
                             }
                         }
                     },
@@ -185,7 +194,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 Weight = 2,
-                                To = 0
+                                To = 0,
+                                From = 2
                             }
                         }
                     }
@@ -213,17 +223,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 To = 1,
-                                Weight = 14
+                                Weight = 14,
+                                From = 0
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 To = 2,
-                                Weight = 9
+                                Weight = 9,
+                                From = 0
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 To = 3,
-                                Weight = 7
+                                Weight = 7,
+                                From = 0
                             }
                         }
                     },
@@ -234,12 +247,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             new WeightedGraphNodeEdge()
                             {
                                 To = 4,
-                                Weight = 9
+                                Weight = 9,
+                                From = 1
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 To = 2,
-                                Weight = 2
+                                Weight = 2,
+                                From = 1
                             }
                         }
                     },
@@ -250,17 +265,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                            new WeightedGraphNodeEdge()
                             {
                                 To = 3,
-                                Weight = 10
+                                Weight = 10,
+                                From = 2
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 To = 5,
-                                Weight = 11
+                                Weight = 11,
+                                From = 2
                             },
                             new WeightedGraphNodeEdge()
                             {
                                 To = 1,
-                                Weight = 2
+                                Weight = 2,
+                                From = 2
                             },
                         }
                     },
@@ -271,7 +289,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                            new WeightedGraphNodeEdge()
                             {
                                 To = 5,
-                                Weight = 15
+                                Weight = 15,
+                                From = 3
                             }
                         }
                     },
@@ -282,7 +301,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                            new WeightedGraphNodeEdge()
                             {
                                 To = 5,
-                                Weight = 6
+                                Weight = 6,
+                                From = 4
                             }
                         }
                     },

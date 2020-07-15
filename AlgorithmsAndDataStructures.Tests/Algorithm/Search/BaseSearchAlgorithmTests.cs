@@ -31,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
         }
 
         [Fact]
-        public void PropertyBased()
+        public void Fuzzy()
         {
             var sut = GetSystemUnderTest();
             var r = new Random();

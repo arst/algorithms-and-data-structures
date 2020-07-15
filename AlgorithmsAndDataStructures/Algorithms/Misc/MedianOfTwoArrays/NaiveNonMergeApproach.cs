@@ -1,6 +1,6 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
 {
-    public class NaiveNonMergeApproach
+    public class NaiveNonMergeApproach : IMediaOfTwoArraysAlgorithm
     {
         public float GetMedian(int[] left, int[] right)
         {
@@ -12,17 +12,36 @@
 
             var result = new int[left.Length + right.Length];
 
-            while (leftPointer < left.Length && rightPointer < right.Length)
+            while (leftPointer < left.Length || rightPointer < right.Length)
             {
-                if (left[leftPointer] < right[rightPointer])
+                var t = leftPointer < left.Length && rightPointer < right.Length;
+
+
+                if (t)
                 {
-                    result[resultPointer] = left[leftPointer];
-                    leftPointer++;
+                    if (left[leftPointer] < right[rightPointer])
+                    {
+                        result[resultPointer] = left[leftPointer];
+                        leftPointer++;
+                    }
+                    else
+                    {
+                        result[resultPointer] = right[rightPointer];
+                        rightPointer++;
+                    }
                 }
                 else
                 {
-                    result[resultPointer] = right[rightPointer];
-                    rightPointer++;
+                    if (leftPointer < left.Length)
+                    {
+                        result[resultPointer] = left[leftPointer];
+                        leftPointer++;
+                    }
+                    else
+                    {
+                        result[resultPointer] = right[rightPointer];
+                        rightPointer++;
+                    }
                 }
 
                 if (leftPointer + rightPointer == (result.Length / 2))

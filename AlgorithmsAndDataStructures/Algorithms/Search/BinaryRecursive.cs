@@ -2,14 +2,14 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
-    public class BinaryRecursive : ISearchAlgorithm<int>
+    public class BinaryRecursive<T> : ISearchAlgorithm<T> where T : IComparable<T>
     {
-        public int Search(int[] target, int value)
+        public int Search(T[] target, T value)
         {
             return SearchInternal(target, 0, target.Length, value);
         }
 
-        private int SearchInternal(int[] target, int start, int end, int value)
+        private static int SearchInternal(T[] target, int start, int end, T value)
         {
             if (start >= end)
             {
@@ -18,12 +18,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
 
             var mid = start + (end - start) / 2;
 
-            if (target[mid] == value)
+            if (value.CompareTo(target[mid]) == 0)
             {
                 return mid;
             }
 
-            if (target[mid] > value)
+            if (value.CompareTo(target[mid]) < 0)
             {
                 return SearchInternal(target, start, mid, value);
             }

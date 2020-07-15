@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
         }
         // It's not the best idea to generate it on the fly,
         // it's better to either pregenerate them or generate them alongside the main loop
-        private int FibonacciNumber(int number)
+        private static int FibonacciNumber(int number)
         {
             if (number < 1)
             {
