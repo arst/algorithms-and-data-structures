@@ -8,6 +8,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         protected T[] heap;
         private int nextElementPointer = 1;
 
+        public int Size => nextElementPointer - 1;
+
         public T[] GetHeap()
         {
             return heap.Skip(1).ToArray().Clone() as T[];
