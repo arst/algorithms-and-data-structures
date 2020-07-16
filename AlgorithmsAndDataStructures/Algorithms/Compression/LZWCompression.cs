@@ -36,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
                 }
             }
 
-            if (string.IsNullOrEmpty(temp))
+            if (!string.IsNullOrEmpty(temp))
             {
                 compressed.Add(codeByNGramMap[temp]);
             }
@@ -48,6 +48,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
         {
             var nGramByCodeMap = new Dictionary<int, string>();
 
+            // Fill up array with 1-n grams
             for (int i = 0; i < 256; i++)
                 nGramByCodeMap.Add(i, ((char)i).ToString());
 

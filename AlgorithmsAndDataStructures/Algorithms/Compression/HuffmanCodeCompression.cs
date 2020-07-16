@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Compression
 {
-    public class HuffmanCode
+    public class HuffmanCodeCompression
     {
         public (BitArray Compressed, HuffmanCodeNode HuffmanEncodingTree) Compress(string target)
         {

@@ -1,7 +1,5 @@
-﻿using AlgorithmsAndDataStructures.Benchmarks.Algorithms;
+﻿using AlgorithmsAndDataStructures.Benchmarks.Algorithms.Compression;
 using BenchmarkDotNet.Running;
-using System;
-using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Benchmarks
 {
@@ -9,7 +7,7 @@ namespace AlgorithmsAndDataStructures.Benchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<SearchBenchmark>();
+            var _ = BenchmarkRunner.Run<CompressionBenchmark>();
         }
     }
 }
