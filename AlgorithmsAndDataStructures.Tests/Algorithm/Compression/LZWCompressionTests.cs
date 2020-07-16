@@ -59,11 +59,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Compression
         public void Fuzzy()
         {
             var sut = new LZWCompression();
-            var inputBulder = new StringBuilder();
+            const int inputLength = 10000;
+            var inputBulder = new StringBuilder(inputLength);
             var random = new Random();
-            var inputLength = 10000;
-            var minSymbol = (byte)'0';
-            var maxSymbol = (byte)'~';
+            const byte minSymbol = (byte)'0';
+            const byte maxSymbol = (byte)'~';
 
             for (int i = 0; i < inputLength; i++)
             {
