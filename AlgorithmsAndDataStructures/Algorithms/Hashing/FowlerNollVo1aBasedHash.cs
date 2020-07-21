@@ -13,7 +13,7 @@
             foreach (var symbol in input)
             {
                 z = z ^ symbol;
-                z = z * p & 0xFFFFFFFF;
+                z = (z * p) & 0xFFFFFFF;
             }
 
             return (int)z;
