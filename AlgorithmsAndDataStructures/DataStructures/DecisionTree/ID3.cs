@@ -136,7 +136,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             {
                 float p = (float)score.Value / examples.Length;
 
-                entropy -= (p * Math.Log10(p));
+                entropy -= (p * Math.Log(p, 2));
             }
 
             return entropy;
