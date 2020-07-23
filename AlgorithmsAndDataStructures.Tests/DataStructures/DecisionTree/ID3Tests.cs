@@ -61,7 +61,16 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DecisionTree
 
             var decisionTree = sut.CreateDecisionTree(examples, "class", attributes);
 
+            Assert.Equal("windy", decisionTree.TestAttributeName);
+            Assert.Equal("true", decisionTree.Children[0].BranchForValue);
+            Assert.Equal("N", decisionTree.Children[0].TargetAttribute.Value);
+            Assert.Equal("false", decisionTree.Children[1].BranchForValue);
 
+            Assert.Equal("outlook", decisionTree.Children[1].TestAttributeName);
+            Assert.Equal("sunny", decisionTree.Children[1].Children[0].BranchForValue);
+            Assert.Equal("rain", decisionTree.Children[1].Children[1].BranchForValue);
+            Assert.Equal("P", decisionTree.Children[1].Children[1].TargetAttribute.Value);
+            Assert.Equal("overcast", decisionTree.Children[1].Children[2].BranchForValue);
         }
     }
 }
