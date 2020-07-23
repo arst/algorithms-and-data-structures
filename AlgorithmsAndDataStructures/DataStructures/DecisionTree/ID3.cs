@@ -57,7 +57,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             return dt;
         }
 
-        private bool CheckAllExamplesHaveTheSameAttributeValue(Dictionary<string, string>[] examples, string targetAttribute)
+        private static bool CheckAllExamplesHaveTheSameAttributeValue(Dictionary<string, string>[] examples, string targetAttribute)
         {
             if (examples.Length == 0)
             {
@@ -77,7 +77,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             return true;
         }
 
-        private string FindMostCommonAttributeValue(Dictionary<string, string>[] examples, string targetAttribute)
+        private static string FindMostCommonAttributeValue(Dictionary<string, string>[] examples, string targetAttribute)
         {
             var score = new Dictionary<string, int>();
 
@@ -99,7 +99,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 .Key;
         }
 
-        private Dictionary<string, string>[] FilterExamples(Dictionary<string, string>[] examples, string targetAttribute, string targetAttributeValue)
+        private static Dictionary<string, string>[] FilterExamples(Dictionary<string, string>[] examples, string targetAttribute, string targetAttributeValue)
         {
             var filtered = new List<Dictionary<string, string>>();
 
@@ -114,7 +114,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             return filtered.ToArray();
         }
 
-        private float CalculateEntrophy(Dictionary<string, string>[] examples, string targetAttribute)
+        private static float CalculateEntrophy(Dictionary<string, string>[] examples, string targetAttribute)
         {
             var scores = new Dictionary<string, int>();
 
@@ -142,7 +142,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             return entropy;
         }
 
-        private double CalculateInformationGane(Dictionary<string, string>[] examples, string testAttribute, string targetAttribute)
+        private static float CalculateInformationGane(Dictionary<string, string>[] examples, string testAttribute, string targetAttribute)
         {
             var groups = new Dictionary<string, List<Dictionary<string, string>>>();
 
