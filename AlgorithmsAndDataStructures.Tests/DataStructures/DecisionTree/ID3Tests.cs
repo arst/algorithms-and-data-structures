@@ -15,37 +15,43 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DecisionTree
             {
                 { "outlook", "sunny" },
                 { "humidity", "high" },
-                { "windy", "false" }
+                { "windy", "false" },
+                { "class", "N" }
             };
             var example2 = new Dictionary<string, string>()
             {
                 { "outlook", "overcast" },
                 { "humidity", "high" },
-                { "windy", "false" }
+                { "windy", "false" },
+                { "class", "P" }
             };
             var example3 = new Dictionary<string, string>()
             {
                 { "outlook", "rain" },
                 { "humidity", "high" },
-                { "windy", "false" }
+                { "windy", "false" },
+                { "class", "P" }
             };
             var example4 = new Dictionary<string, string>()
             {
                 { "outlook", "sunny" },
                 { "humidity", "normal" },
-                { "windy", "false" }
+                { "windy", "false" },
+                { "class", "P" }
             };
             var example5 = new Dictionary<string, string>()
             {
                 { "outlook", "rain" },
                 { "humidity", "high" },
-                { "windy", "true" }
+                { "windy", "true" },
+                { "class", "N" }
             };
             var example6 = new Dictionary<string, string>()
             {
                 { "outlook", "rain" },
                 { "humidity", "normal" },
-                { "windy", "true" }
+                { "windy", "true" },
+                { "class", "N" }
             };
             var examples = new Dictionary<string, string>[] { example1, example2, example3, example4, example5, example6 };
             var attributes = new Dictionary<string, List<string>>();
@@ -53,7 +59,9 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DecisionTree
             attributes.Add("humidity", new List<string>() { "high", "normal" });
             attributes.Add("windy", new List<string>() { "true", "false" });
 
-            var decisionTree = sut.CreateDecisionTree(examples, "outlook", attributes);
+            var decisionTree = sut.CreateDecisionTree(examples, "class", attributes);
+
+
         }
     }
 }

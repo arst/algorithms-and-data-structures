@@ -114,7 +114,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             return filtered.ToArray();
         }
 
-        private double CalculateEntrophy(Dictionary<string, string>[] examples, string targetAttribute)
+        private float CalculateEntrophy(Dictionary<string, string>[] examples, string targetAttribute)
         {
             var scores = new Dictionary<string, int>();
 
@@ -127,22 +127,22 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                     scores[attributeValue] = 0;
                 }
 
-                scores[attributeValue]++;
+                scores[attributeValue] = scores[attributeValue] + 1;
             }
 
-            double entropy = 0;
+            float entropy = 0;
 
             foreach (var score in scores)
             {
                 float p = (float)score.Value / examples.Length;
 
-                entropy -= (p * Math.Log(p, 2));
+                entropy = entropy - p * (float)Math.Log(p, 2);
             }
 
             return entropy;
         }
 
-        private double CalculateInformationGane(Dictionary<string, string>[] examples, string targetAttribute, string testAttribute)
+        private double CalculateInformationGane(Dictionary<string, string>[] examples, string testAttribute, string targetAttribute)
         {
             var groups = new Dictionary<string, List<Dictionary<string, string>>>();
 
@@ -157,14 +157,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 groups[attributeValue].Add(example);
             }
 
-            var informationGain = CalculateEntrophy(examples, targetAttribute);
+            float informationGain = CalculateEntrophy(examples, targetAttribute);
 
             foreach (var group in groups)
             {
                 var p = (float)group.Value.Count / examples.Length;
-                var entropy = CalculateEntrophy(examples, targetAttribute);
+                var entropy = CalculateEntrophy(group.Value.ToArray(), targetAttribute);
 
-                informationGain -= p * entropy;
+                informationGain = informationGain - p * entropy;
             }
 
             return informationGain;
@@ -180,7 +180,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
 
             foreach (var attribute in attributes)
             {
-                var informationGain = CalculateInformationGane(examples, targetAttributeName, attribute.Key);
+                var informationGain = CalculateInformationGane(examples, attribute.Key, targetAttributeName);
 
                 if (informationGain >= maxInformationGain)
                 {
