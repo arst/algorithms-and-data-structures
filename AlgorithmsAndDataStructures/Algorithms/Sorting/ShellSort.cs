@@ -16,9 +16,9 @@
     {
         public void Sort(int[] target)
         {
-            for (int gap = target.Length / 2; gap > 0; gap /= 2)
+            for (var gap = target.Length / 2; gap > 0; gap /= 2)
             {
-                for (int startingPosition = gap; startingPosition < target.Length; startingPosition++)
+                for (var startingPosition = gap; startingPosition < target.Length; startingPosition++)
                 {
                     var temp = target[startingPosition];
 

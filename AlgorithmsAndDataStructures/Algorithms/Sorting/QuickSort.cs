@@ -17,7 +17,7 @@
             SortInternal(target, 0, target.Length - 1);
         }
 
-        private void SortInternal(int[] input, int start, int end)
+        private static void SortInternal(int[] input, int start, int end)
         {
             if (end <= start)
             {
@@ -30,7 +30,7 @@
             SortInternal(input, pivot + 1, end);
         }
 
-        private int Partition(int[] input, int start, int end)
+        private static int Partition(int[] input, int start, int end)
         {
             var pivot = input[start + ((end - start) / 2)];
             var leftPointer = start-1;

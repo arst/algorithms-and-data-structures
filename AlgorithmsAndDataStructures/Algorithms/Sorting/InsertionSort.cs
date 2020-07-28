@@ -16,7 +16,7 @@
     {
         public void Sort(int[] target)
         {
-            for (int i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Length; i++)
             {
                 var j = i;
                 var temp = target[i];

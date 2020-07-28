@@ -1,29 +1,20 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Sorting;
-using System;
-
-namespace AlgorithmsAndDataStructures.Algorithms.Sorting
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 {
     public class HeapSort : ISortingAlgorithm
     {
         public void Sort(int[] target)
         {
-
-            // (target.Length / 2) - 1 - this will remove all leaves from the build, they are triviaal and has no children
-            // to they are already hipified
-            for (int i = (target.Length / 2) - 1; i >= 0; i--)
+            // (target.Length / 2) - 1 - this will remove all leaves from the build, they are trivial and has no children
+            // to they are already heapified
+            for (var i = (target.Length / 2) - 1; i >= 0; i--)
             {
                 BuildMaxHeapInPlace(target, target.Length, i);
             }
 
-            var lastElement = target.Length - 1;
-
-            for (int i = target.Length - 1; i >= 0; i--)
+            for (var i = target.Length - 1; i >= 0; i--)
             {
-                // Move current root to end 
-                int temp = target[0];
-                target[0] = target[i];
-                target[i] = temp;
-
+                // Move current root to the end 
+                SortUtilities.Swap(target, 0, i);
                 BuildMaxHeapInPlace(target, i, 0);
             }
         }
@@ -31,12 +22,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
         private static void BuildMaxHeapInPlace(int[] target, int heapSize, int root)
         {
             var largestIndexInSubtree = root;
-            var leftChildIdex = (root * 2) + 1;
+            var leftChildIndex = (root * 2) + 1;
             var rightChildIndex = (root * 2) + 2;
 
-            if (heapSize > leftChildIdex && target[largestIndexInSubtree] < target[leftChildIdex])
+            if (heapSize > leftChildIndex && target[largestIndexInSubtree] < target[leftChildIndex])
             {
-                largestIndexInSubtree = leftChildIdex;
+                largestIndexInSubtree = leftChildIndex;
             }
 
             if (heapSize > rightChildIndex && target[largestIndexInSubtree] < target[rightChildIndex])

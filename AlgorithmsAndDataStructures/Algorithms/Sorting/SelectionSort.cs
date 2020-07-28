@@ -13,11 +13,11 @@
         */
         public void Sort(int[] target)
         {
-            for (int i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Length; i++)
             {
                 var smallestIndex = i;
                 
-                for (int j = i; j < target.Length; j++)
+                for (var j = i; j < target.Length; j++)
                 {
                     if (target[smallestIndex] > target[j])
                     {

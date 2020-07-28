@@ -31,29 +31,29 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             }
         }
 
-        private void StableCountingSort(int[] target, int exp)
+        private static void StableCountingSort(int[] target, int exp)
         {
             var max = target.Max();
             var counters = new int[10];
             var holder = new int[target.Length];
 
-            for (int i = 0; i < target.Length; i++)
+            foreach (var element in target)
             {
-                counters[(target[i] / exp) % 10]++;
+                counters[(element / exp) % 10]++;
             }
 
-            for (int i = 1; i < counters.Length; i++)
+            for (var i = 1; i < counters.Length; i++)
             {
                 counters[i] = counters[i] + counters[i - 1];
             }
 
-            for (int i = target.Length - 1; i > -1; i--)
+            for (var i = target.Length - 1; i > -1; i--)
             {
                 counters[(target[i] / exp) % 10]--;
                 holder[counters[(target[i] / exp) % 10]] = target[i];
             }
 
-            for (int i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Length; i++)
             {
                 target[i] = holder[i];
             }

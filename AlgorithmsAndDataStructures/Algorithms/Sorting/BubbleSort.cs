@@ -13,7 +13,7 @@
 
         public void Sort(int[] target)
         {
-            var swapped = false;
+            bool swapped;
             var j = 0;
             do
             {

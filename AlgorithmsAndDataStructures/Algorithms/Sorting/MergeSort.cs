@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 {
@@ -27,7 +28,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             var sorted = Merge(target, 0, target.Length);
 
             //Just to adhere to the interface
-            Array.Copy(sorted, target, sorted.Length);
+            Buffer.BlockCopy(sorted, 0, target, 0, sorted.Length * sizeof(int));
         }
 
         private int[] Merge(int[] input, int start, int end)
@@ -45,14 +46,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             return MergeInternal(left, right);
         }
 
-        private int[] MergeInternal(int[] left, int[] right)
+        private static int[] MergeInternal(IReadOnlyList<int> left, IReadOnlyList<int> right)
         {
-            var result = new int[left.Length + right.Length];
+            var result = new int[left.Count + right.Count];
             var leftPointer = 0;
             var rightPointer = 0;
             var resultPointer = 0;
 
-            while (leftPointer < left.Length && rightPointer < right.Length)
+            while (leftPointer < left.Count && rightPointer < right.Count)
             {
                 var leftValue = left[leftPointer];
                 var rightValue = right[rightPointer];
@@ -71,14 +72,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
                 resultPointer++;
             }
 
-            while (rightPointer < right.Length)
+            while (rightPointer < right.Count)
             {
                 result[resultPointer] = right[rightPointer];
                 resultPointer++;
                 rightPointer++;
             }
 
-            while (leftPointer < left.Length)
+            while (leftPointer < left.Count)
             {
                 result[resultPointer] = left[leftPointer];
                 resultPointer++;

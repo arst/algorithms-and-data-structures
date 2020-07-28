@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sorting
@@ -20,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
-            var processCont = 4;
+            const int processCont = 4;
 
             if (target.Length < 1)
             {
@@ -31,7 +32,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             {
                 var nonPartitionedSorted = Merge(target, 0, target.Length);
 
-                Array.Copy(nonPartitionedSorted, target, nonPartitionedSorted.Length);
+                Buffer.BlockCopy(nonPartitionedSorted, 0, target, 0, nonPartitionedSorted.Length * sizeof(int));
                 return;
             }
 
@@ -40,7 +41,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 
             var partitionSize = target.Length / processCont;
 
-            for (int i = 0; i < processCont; i++)
+            for (var i = 0; i < processCont; i++)
             {
                 var j = i;
                 threads[i] = new Thread(() =>
@@ -48,11 +49,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
                      partitions[j] = Merge(target, j * partitionSize, GetPartitionEnd(j * partitionSize));
                 });
             }
-            for(int i = 0; i < processCont; i++)
+            for(var i = 0; i < processCont; i++)
             {
                 threads[i].Start();
             }
-            for (int i = 0; i < processCont; i++)
+            for (var i = 0; i < processCont; i++)
             {
                 threads[i].Join();
             }
@@ -63,7 +64,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             var sorted = MergeInternal(sortedLeft, sortedRight);
 
             //Just to adhere to the interface
-            Array.Copy(sorted, target, sorted.Length);
+            Buffer.BlockCopy(sorted, 0, target, 0, sorted.Length * sizeof(int));
 
             int GetPartitionEnd(int start)
             {
@@ -71,7 +72,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             }
         }
 
-        private int[] Merge(int[] input, int start, int end)
+        private int[] Merge(IReadOnlyList<int> input, int start, int end)
         {
             if (end - start == 1)
             {
@@ -86,14 +87,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             return MergeInternal(left, right);
         }
 
-        private int[] MergeInternal(int[] left, int[] right)
+        private static int[] MergeInternal(IReadOnlyList<int> left, int[] right)
         {
-            var result = new int[left.Length + right.Length];
+            var result = new int[left.Count + right.Length];
             var leftPointer = 0;
             var rightPointer = 0;
             var resultPointer = 0;
 
-            while (leftPointer < left.Length && rightPointer < right.Length)
+            while (leftPointer < left.Count && rightPointer < right.Length)
             {
                 var leftValue = left[leftPointer];
                 var rightValue = right[rightPointer];
@@ -119,7 +120,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
                 rightPointer++;
             }
 
-            while (leftPointer < left.Length)
+            while (leftPointer < left.Count)
             {
                 result[resultPointer] = left[leftPointer];
                 resultPointer++;

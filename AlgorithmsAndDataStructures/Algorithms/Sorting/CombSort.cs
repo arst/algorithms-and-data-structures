@@ -11,6 +11,7 @@
             {
                 if (gap > 1)
                 {
+                    // 1.3  is kinda recommended value for the gap reduction.
                     gap = (int)(gap / 1.3);
                 }
 

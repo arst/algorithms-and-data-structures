@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 {
@@ -7,16 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
-            if (!target.Any())
-            {
-                return;
-            }
+            var helper = new int[(target.Length > 0 ? target.Max() : 0) + 1];
 
-            var helper = new int[target.Max() + 1];
-
-            for (int i = 0; i < target.Length; i++)
+            foreach (var element in target)
             {
-                helper[target[i]]++;
+                helper[element]++;
             }
 
             var targetIndex = 0;
