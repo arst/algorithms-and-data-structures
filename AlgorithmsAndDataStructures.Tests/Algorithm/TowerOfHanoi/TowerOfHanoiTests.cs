@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.TowerOfHanoi
         [Fact]
         public void Test()
         {
-            var sut = new TowersOfHanoi(2);
+            var sut = new HanoiTowers(2);
             sut.Solve();
         }
     }
