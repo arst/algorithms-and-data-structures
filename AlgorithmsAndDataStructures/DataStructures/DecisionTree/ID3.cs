@@ -28,6 +28,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
             {
                 var attributeValue = FindMostCommonAttributeValue(examples, targetAttributeName);
                 dt.TargetAttribute = new KeyValuePair<string, string>(targetAttributeName, attributeValue);
+                return dt;
             }
 
             var attributeName = GetBestClassifier(examples, targetAttributeName, attributes);
