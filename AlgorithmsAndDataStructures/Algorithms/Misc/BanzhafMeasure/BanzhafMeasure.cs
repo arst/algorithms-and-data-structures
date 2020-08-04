@@ -7,11 +7,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BanzhafMeasure
     {
         public float Measure(string voterName, string[] otherVoters, int quota, Dictionary<string, int> voterWeights, int numberOfTries)
         {
-            var currentSample = 0;
             var subsetSelector = new SimpleRandomSubsetGenerator();
             var numberOfCriticalCoalitions = 0;
 
-            while (currentSample < numberOfTries)
+            for (var i = 0; i < numberOfTries; i++)
             {
                 var coalition = subsetSelector.GetRandomSubset(otherVoters);
                 var votes = 0;
@@ -25,11 +24,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BanzhafMeasure
                 {
                     numberOfCriticalCoalitions += 1;
                 }
-
-                currentSample++;
             }
 
-            return (float)numberOfCriticalCoalitions / currentSample;
+            return (float)numberOfCriticalCoalitions / numberOfTries;
         }
     }
 }
