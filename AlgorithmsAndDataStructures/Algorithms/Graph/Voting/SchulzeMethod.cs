@@ -66,7 +66,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
                 {
                     if (adjacencyMatrix[i][j] > adjacencyMatrix[j][i])
                     {
-                        strongestPath[i][j] = adjacencyMatrix[i][j] - adjacencyMatrix[j][i];
+                        strongestPath[i][j] = adjacencyMatrix[i][j];
                         path[i][j] = i;
                     }
                     else
