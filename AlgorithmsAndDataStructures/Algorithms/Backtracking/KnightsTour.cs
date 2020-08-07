@@ -1,60 +1,69 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 {
     public class KnightsTour
     {
+        private readonly int[] xCoordinateMoves = { 2, 1, -1, -2, -2, -1, 1, 2 };
+        private readonly int[] yCoordinateMoves = { 1, 2, 2, 1, -1, -2, -2, -1 };
+
         public bool GetTour(int startingPointX = 0, int startingPointY = 0)
         {
-            var result = new int[8][];
+            var result = CreateGameField();
 
-            for (int i = 0; i < result.Length; i++)
-            {
-                result[i] = new int[8];
-            }
-
-            var xCoordinateMoves = new int[] { 2, 1, -1, -2, -2, -1, 1, 2 };
-            var yCoordinateMoves = new int[] { 1, 2, 2, 1, -1, -2, -2, -1 };
             result[startingPointX][startingPointY] = 1;
-            var hasResult = Move(result, startingPointX, startingPointY, 2, xCoordinateMoves, yCoordinateMoves);
+
+            const int initialMove = 2;
+            var hasResult = Move(result, startingPointX, startingPointY, initialMove);
 
             return hasResult;
         }
 
-        private bool Move(int[][] result, int xPosition, int yPosition, int move, int[] xCoordinateMoves, int[] yCoordinateMoves)
+        private static int[][] CreateGameField()
         {
-            //need to substract one since we are not starting with 0
-            if (move - 1 == result.Length * result.Length)
+            var result = new int[8][];
+
+            for (var i = 0; i < result.Length; i++)
+            {
+                result[i] = new int[8];
+            }
+
+            return result;
+        }
+
+        private bool Move(IReadOnlyList<int[]> result, int xPosition, int yPosition, int move)
+        {
+            // Need to subtract 1 since out initial move is 2. 
+            if (move - 1 == result.Count * result.Count)
             {
                 return true;
             }
 
-            for (int i = 0; i < xCoordinateMoves.Length; i++)
-            {
-                int moveX = xPosition + xCoordinateMoves[i];
-                int moveY = yPosition + yCoordinateMoves[i];
 
-                var isSafeMove = IsSafeMove(result.Length, moveX, moveY);
+            for (var i = 0; i < xCoordinateMoves.Length; i++)
+            {
+                var moveX = xPosition + xCoordinateMoves[i];
+                var moveY = yPosition + yCoordinateMoves[i];
+
+                var isSafeMove = IsSafeMove(result.Count, moveX, moveY);
 
                 if (isSafeMove && result[moveX][moveY] == 0)
 
                 {
                     result[moveX][moveY] = move;
-                    if (Move(result, moveX, moveY, move + 1, xCoordinateMoves, yCoordinateMoves))
+                    if (Move(result, moveX, moveY, move + 1))
                     {
                         return true;
                     }
-                    else
-                    {
-                        result[moveX][moveY] = 0;
-                    }
+
+                    result[moveX][moveY] = 0;
                 }
             }
 
             return false;
         }
 
-        private bool IsSafeMove(int length, int moveX, int moveY)
+        private static bool IsSafeMove(int length, int moveX, int moveY)
         {
             return moveX < length && moveY < length && moveX >= 0 && moveY >= 0;
         }
