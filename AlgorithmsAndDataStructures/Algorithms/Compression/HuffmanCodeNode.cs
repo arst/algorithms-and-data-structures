@@ -2,7 +2,9 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Compression
 {
+#pragma warning disable CA1036 // Override methods on comparable types
     public class HuffmanCodeNode : IComparable<HuffmanCodeNode>
+#pragma warning restore CA1036 // Override methods on comparable types
     {
         public HuffmanCodeNode Right { get; set; }
 
@@ -12,6 +14,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
 
         public int Frequency { get; set; }
 
-        public int CompareTo(HuffmanCodeNode other) => Frequency.CompareTo(other?.Frequency);
+        public int CompareTo(HuffmanCodeNode other) => Frequency.CompareTo(other?.Frequency ?? default);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
+﻿using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -99,7 +98,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
         private static HuffmanCodeNode CreateSubTree(int combinedFrequency, HuffmanCodeNode highestFrequency, HuffmanCodeNode secondHighestFrequency)
         {
             var combinedTreeHead = 
-                new HuffmanCodeNode()
+                new HuffmanCodeNode
                 {
                     Frequency = combinedFrequency,
                     Left = highestFrequency,
