@@ -3,12 +3,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
-    public class DinicsAlgortihmForMaximumFlowTests
+    public class DinicsMaximumFlowTests
     {
         [Fact]
         public void BaselineWithZigZagPath()
         {
-            var sut = new DinicsAlgortihmForMaximumFlow();
+            var sut = new DinicsMaximumFlow();
             var graph = new int[4][];
 
             for (var i = 0; i < graph.Length; i++)
@@ -26,9 +26,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         }
 
         [Fact]
-        public void BaselinWithStraightLines()
+        public void BaselineWithStraightLines()
         {
-            var sut = new DinicsAlgortihmForMaximumFlow();
+            var sut = new DinicsMaximumFlow();
             var graph = new int[4][];
 
             for (var i = 0; i < graph.Length; i++)
@@ -47,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void Baseline()
         {
-            var sut = new DinicsAlgortihmForMaximumFlow();
+            var sut = new DinicsMaximumFlow();
             var graph = new int[6][];
 
             graph[0] = new[] { 0, 16, 13, 0, 0, 0 };
@@ -63,7 +63,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void BaselineExtended()
         {
-            var sut = new DinicsAlgortihmForMaximumFlow();
+            var sut = new DinicsMaximumFlow();
             var graph = new int[11][];
 
             graph[0] = new[] { 0, 5, 10, 15, 0, 0, 0, 0, 0, 0, 0 };

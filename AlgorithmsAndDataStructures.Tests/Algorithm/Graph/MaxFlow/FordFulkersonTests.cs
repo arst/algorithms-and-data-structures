@@ -26,7 +26,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.MaxFlow
         }
 
         [Fact]
-        public void BaselinWithStraightLines()
+        public void BaselineWithStraightLines()
         {
             var sut = new FordFulkerson();
             var graph = new int[4][];

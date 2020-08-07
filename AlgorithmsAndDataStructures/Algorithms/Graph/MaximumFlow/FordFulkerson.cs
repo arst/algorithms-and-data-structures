@@ -3,13 +3,20 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    // Ford Fulkerson is actually an approach and not the whle algorithm, it doesn't specify the exact way to traverse a residual graph.
+    // Ford-Fulkerson is actually an approach and not the while algorithm, it doesn't specify the exact way to traverse a residual graph.
     // Since this implementation uses BFS, it's technically Edmonds-Karp algorithm with complexity of O(V*E^2)
     public class FordFulkerson
     {
-        // Actually, flow netwrok here is just a directed graph, though, it may as well be undirected.
+        // Actually, flow network here is just a directed graph, though, it may as well be undirected.
+#pragma warning disable CA1822 // Mark members as static
         public int MaxFlow(int[][] flowNetwork)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (flowNetwork is null)
+            {
+                return default;
+            }
+
             var residualGraph = new int[flowNetwork.GetLength(0)][];
             var flow = 0;
             for (var i = 0; i < residualGraph.Length; i++)
@@ -24,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             bool hasPath;
             var sink = flowNetwork.Length - 1;
-            var source = 0;
+            const int source = 0;
 
             do
             {
@@ -40,18 +47,18 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                     flow += delta;
 
                     // Follow the path until we rich the source.
-                    var currentVertice = sink;
-                    var parent = path[currentVertice];
+                    var currentVertex = sink;
+                    var parent = path[currentVertex];
 
                     while (parent >= 0)
                     {
                         // Reduce capacity of the nodes along the path with delta.
-                        residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
+                        residualGraph[parent][currentVertex] = residualGraph[parent][currentVertex] - delta;
                         // Create back-node to allow flow undo.
-                        residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + delta;
+                        residualGraph[currentVertex][parent] = residualGraph[currentVertex][parent] + delta;
 
-                        currentVertice = parent;
-                        parent = path[currentVertice];
+                        currentVertex = parent;
+                        parent = path[currentVertex];
                     }
                 }
 
@@ -60,31 +67,31 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return flow;
         }
 
-        private int GetDelta(int[][] residualGraph,int[] path, int targetVertice)
+        private static int GetDelta(IReadOnlyList<int[]> residualGraph, IReadOnlyList<int> path, int targetVertex)
         {
             var delta = int.MaxValue;
-            var currentVertice = targetVertice;
-            var parent = path[currentVertice];
+            var currentVertex = targetVertex;
+            var parent = path[currentVertex];
 
             while (parent >= 0)
             {
-                delta = Math.Min(residualGraph[parent][currentVertice], delta);
-                currentVertice = parent;
-                parent = path[currentVertice];
+                delta = Math.Min(residualGraph[parent][currentVertex], delta);
+                currentVertex = parent;
+                parent = path[currentVertex];
             }
 
             return delta;
         }
 
-        // Since BFS is used, we getshortest path here.
-        private int[] GetPath(int[][] residualGraph, int currentVertice, int targetVertice)
+        // Since BFS is used, we get the shortest path here.
+        private static int[] GetPath(IReadOnlyList<int[]> residualGraph, int currentVertex, int targetVertex)
         {
-            var path = new int[residualGraph.Length];
+            var path = new int[residualGraph.Count];
             var queue = new Queue<int>();
-            var visited = new bool[residualGraph.Length];
-            path[currentVertice] = -1;
-            visited[currentVertice] = true;
-            queue.Enqueue(currentVertice);
+            var visited = new bool[residualGraph.Count];
+            path[currentVertex] = -1;
+            visited[currentVertex] = true;
+            queue.Enqueue(currentVertex);
 
             while (queue.Count > 0)
             {
@@ -92,14 +99,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
                 for (var i = 0; i < residualGraph[current].Length; i++)
                 {
-                    var adjacentVerticeCapacity = residualGraph[current][i];
+                    var adjacentVertexCapacity = residualGraph[current][i];
 
-                    if (adjacentVerticeCapacity > 0 && !visited[i])
+                    if (adjacentVertexCapacity > 0 && !visited[i])
                     {
                         path[i] = current;
                         visited[i] = true;
 
-                        if (i == targetVertice)
+                        if (i == targetVertex)
                             return path;
 
                         queue.Enqueue(i);

@@ -5,9 +5,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
     public class FordFulkersonWithCapacityHeuristic
     {
-        // Actually, flow netwrok here is just a directed graph, though, it may as well be undirected.
+        // Actually, flow network here is just a directed graph, though, it may as well be undirected.
+#pragma warning disable CA1822 // Mark members as static
         public int MaxFlow(int[][] flowNetwork)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (flowNetwork is null)
+            {
+                return default;
+            }
             var residualGraph = new int[flowNetwork.GetLength(0)][];
             var flow = 0;
             var maxEdgeWeight = int.MinValue;
@@ -27,18 +33,18 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-            var delta = 1;
+            var minConsiderableCapacity = 1;
 
-            while (delta * 2 < maxEdgeWeight)
+            while (minConsiderableCapacity * 2 < maxEdgeWeight)
             {
-                delta *= 2;
+                minConsiderableCapacity *= 2;
             }
 
-            while (delta > 0)
+            while (minConsiderableCapacity > 0)
             {
                 bool hasPath;
                 var sink = flowNetwork.Length - 1;
-                var source = 0;
+                const int source = 0;
 
                 do
                 {
@@ -47,7 +53,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                     path[source] = -1;
                     visited[source] = true;
                     // Do simple DFS and record the path from source to sink if such path exists.
-                    path = GetPath(residualGraph, source, sink, path, visited, delta);
+                    path = GetPath(residualGraph, source, sink, path, visited, minConsiderableCapacity);
                     hasPath = path != null;
 
                     if (hasPath)
@@ -58,61 +64,61 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                         flow += capacity;
 
                         // Follow the path until we rich the source.
-                        var currentVertice = sink;
-                        var parent = path[currentVertice];
+                        var currentVertex = sink;
+                        var parent = path[currentVertex];
 
                         while (parent >= 0)
                         {
-                            // Reduce capacity of the nodes along the path with delta.
-                            residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - capacity;
-                            // Create back-node to allow flow undo.
-                            residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + capacity;
+                            // Reduce capacity of the vertices along the path with delta.
+                            residualGraph[parent][currentVertex] = residualGraph[parent][currentVertex] - capacity;
+                            // Create back-vertex to allow flow undo.
+                            residualGraph[currentVertex][parent] = residualGraph[currentVertex][parent] + capacity;
 
-                            currentVertice = parent;
-                            parent = path[currentVertice];
+                            currentVertex = parent;
+                            parent = path[currentVertex];
                         }
                     }
 
                 } while (hasPath);
 
-                delta /= 2;
+                minConsiderableCapacity /= 2;
             }
 
             return flow;
         }
 
-        private int GetDelta(int[][] residualGraph,int[] path, int targetVertice)
+        private static int GetDelta(IReadOnlyList<int[]> residualGraph, IReadOnlyList<int> path, int targetVertex)
         {
             var delta = int.MaxValue;
-            var currentVertice = targetVertice;
-            var parent = path[currentVertice];
+            var currentVertex = targetVertex;
+            var parent = path[currentVertex];
 
             while (parent >= 0)
             {
-                delta = Math.Min(residualGraph[parent][currentVertice], delta);
-                currentVertice = parent;
-                parent = path[currentVertice];
+                delta = Math.Min(residualGraph[parent][currentVertex], delta);
+                currentVertex = parent;
+                parent = path[currentVertex];
             }
 
             return delta;
         }
 
-        private int[] GetPath(int[][] residualGraph, int currentVertice, int targetVertice, int[] path, bool[] visited, int delta)
+        private static int[] GetPath(IReadOnlyList<int[]> residualGraph, int currentVertex, int targetVertex, int[] path, IList<bool> visited, int delta)
         {
 
-            for (var i = 0; i < residualGraph[currentVertice].Length; i++)
+            for (var i = 0; i < residualGraph[currentVertex].Length; i++)
             {
-                var adjacentVerticeCapacity = residualGraph[currentVertice][i];
+                var adjacentVertexCapacity = residualGraph[currentVertex][i];
 
-                if (adjacentVerticeCapacity > 0 && !visited[i] && adjacentVerticeCapacity >= delta)
+                if (adjacentVertexCapacity > 0 && !visited[i] && adjacentVertexCapacity >= delta)
                 {
-                    path[i] = currentVertice;
+                    path[i] = currentVertex;
                     visited[i] = true;
 
-                    if (i == targetVertice)
+                    if (i == targetVertex)
                         return path;
 
-                    var tempPath = GetPath(residualGraph, i, targetVertice, path, visited, delta);
+                    var tempPath = GetPath(residualGraph, i, targetVertex, path, visited, delta);
 
                     if (tempPath != null)
                     {

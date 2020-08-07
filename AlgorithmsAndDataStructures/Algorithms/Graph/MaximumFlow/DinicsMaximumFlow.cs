@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    public class DinicsAlgortihmForMaximumFlow
+    public class DinicsMaximumFlow
     {
+#pragma warning disable CA1822 // Mark members as static
         public int MaxFlow(int[][] flowNetwork, int source, int sink)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (flowNetwork is null)
             {
@@ -47,7 +49,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return flow;
         }
 
-        private int GetAugmentingPath(IReadOnlyList<int[]> residualGraph, int current, int target, IList<bool> visited, IReadOnlyList<int> verticesLevels, IList<int> startAt, int flow)
+        private static int GetAugmentingPath(IReadOnlyList<int[]> residualGraph, int current, int target, IList<bool> visited, IReadOnlyList<int> verticesLevels, IList<int> startAt, int flow)
         {
             if (current == target)
             {
@@ -83,12 +85,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return 0;
         }
 
-        private bool LeveledBfs(int currentVertice, int targetVertice, int[][] residualGraph, int[] verticesLevels, int[][] flowNetwork)
+        private static bool LeveledBfs(int currentVertex, int targetVertex, IReadOnlyList<int[]> residualGraph, int[] verticesLevels, IReadOnlyList<int[]> flowNetwork)
         {
             var queue = new Queue<int>();
             Reset(verticesLevels);
-            verticesLevels[currentVertice] = 0;
-            queue.Enqueue(currentVertice);
+            verticesLevels[currentVertex] = 0;
+            queue.Enqueue(currentVertex);
 
             while (queue.Count > 0)
             {
@@ -110,12 +112,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-            return verticesLevels[targetVertice] > -1;
+            return verticesLevels[targetVertex] > -1;
         }
 
-        private static void Reset(int[] verticesLevels)
+        private static void Reset(IList<int> verticesLevels)
         {
-            for (var i = 0; i < verticesLevels.Length; i++)
+            for (var i = 0; i < verticesLevels.Count; i++)
             {
                 verticesLevels[i] = -1;
             }

@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             graph[2] = new[] { 0, 0, 0, 1 };
             graph[3] = new[] { 0, 0, 1, 0 };
 
-            Assert.Equal(2, sut.GetMaxMathcing(graph));
+            Assert.Equal(2, sut.GetMaxMatching(graph));
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             graph[2] = new[] { 0, 1, 0, 0 };
             graph[3] = new[] { 1, 0, 0, 0 };
 
-            Assert.Equal(2, sut.GetMaxMathcing(graph));
+            Assert.Equal(2, sut.GetMaxMatching(graph));
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             graph[6] = new[] { 0, 1, 0, 1, 0, 1, 0, 1 };
             graph[7] = new[] { 1, 0, 0, 0, 0, 0, 1, 0 };
 
-            Assert.Equal(4, sut.GetMaxMathcing(graph));
+            Assert.Equal(4, sut.GetMaxMatching(graph));
         }
     }
 }

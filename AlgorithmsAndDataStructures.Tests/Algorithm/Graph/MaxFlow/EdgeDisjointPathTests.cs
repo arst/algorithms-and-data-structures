@@ -24,7 +24,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         }
 
         [Fact]
-        public void SinlgePath()
+        public void SinglePath()
         {
             var sut = new EdgeDisjointPath();
             var graph = new int[4][];

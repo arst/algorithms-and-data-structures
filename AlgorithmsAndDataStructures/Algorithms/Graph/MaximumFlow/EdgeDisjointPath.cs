@@ -5,8 +5,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
     public class EdgeDisjointPath
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetEdgeDisjointPathCount(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var residualGraph = new int[graph.Length][];
 
             for (var i = 0; i < graph.Length; i++)
@@ -33,15 +40,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 {
                     // We don't need to calculate delta for this kind of problem since all edges has max 1 capacity. 
                     var delta = 1;
-                    var currentVertice = sink;
+                    var currentVertex = sink;
                     var parent = path[sink];
                     edgeDisjointPathCount += 1;
                     while (parent >= 0)
                     {
-                        residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
-                        residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + delta;
-                        currentVertice = parent;
-                        parent = path[currentVertice];
+                        residualGraph[parent][currentVertex] = residualGraph[parent][currentVertex] - delta;
+                        residualGraph[currentVertex][parent] = residualGraph[currentVertex][parent] + delta;
+                        currentVertex = parent;
+                        parent = path[currentVertex];
                     }
                 }
 
@@ -50,11 +57,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return edgeDisjointPathCount;
         }
 
-        private int[] GetPath(int[][] residualGraph, int source, int sink)
+        private static int[] GetPath(IReadOnlyList<int[]> residualGraph, int source, int sink)
         {
             var queue = new Queue<int>();
-            var visited = new bool[residualGraph.Length];
-            var path = new int[residualGraph.Length];
+            var visited = new bool[residualGraph.Count];
+            var path = new int[residualGraph.Count];
 
             queue.Enqueue(source);
             visited[source] = true;
@@ -62,13 +69,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             while (queue.Count > 0)
             {
-                var currentVertice = queue.Dequeue();
+                var currentVertex = queue.Dequeue();
 
-                for (var i = 0; i < residualGraph[currentVertice].Length; i++)
+                for (var i = 0; i < residualGraph[currentVertex].Length; i++)
                 {
-                    if (!visited[i] && residualGraph[currentVertice][i] > 0)
+                    if (!visited[i] && residualGraph[currentVertex][i] > 0)
                     {
-                        path[i] = currentVertice;
+                        path[i] = currentVertex;
                         visited[i] = true;
                         queue.Enqueue(i);
                         

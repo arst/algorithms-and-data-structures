@@ -3,11 +3,18 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    // Insipred by https://algs4.cs.princeton.edu/home/
+    // Inspired by https://algs4.cs.princeton.edu/home/
     public class HopcroftKarp
     {
-        public int GetMaxMathcing(int[][] graph)
+#pragma warning disable CA1822 // Mark members as static
+        public int GetMaxMatching(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var matching = 0;
             var distance = new int[graph.Length];
             var pairs = new int[graph.Length];
@@ -15,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var leftSideVertices = BipartiteGraph(graph);
 
-            while (HasAugmetingPath(graph, leftSideVertices, pairs, distance))
+            while (HasAugmentingPath(graph, leftSideVertices, pairs, distance))
             {
                 for (var i = 0; i < graph.Length; i++)
                 {
@@ -31,34 +38,34 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
                     while (path.Count > 0)
                     {
-                        var currentVertice = path.Peek();
+                        var currentVertex = path.Peek();
                         
-                        // Move up the stack, no more edges in level graph leaving currentVertice
-                        if (position[currentVertice] == graph.Length)
+                        // Move up the stack, no more edges in level graph leaving currentVertex.
+                        if (position[currentVertex] == graph.Length)
                         {
                             path.Pop();
                         }
                         else
                         {
-                            var isEdgeExists = graph[currentVertice][position[currentVertice]] > 0;
-                            var w = position[currentVertice];
-                            position[currentVertice]++;
+                            var isEdgeExists = graph[currentVertex][position[currentVertex]] > 0;
+                            var w = position[currentVertex];
+                            position[currentVertex]++;
 
                             if (!isEdgeExists)
                             {
                                 continue;
                             }
 
-                            // Process edge currentVertice-position only if it is an edge in level graph
-                            if (!IsLevelGraphEdge(graph, leftSideVertices, pairs, distance, currentVertice, w))
+                            // Process edge currentVertex-position only if it is an edge in level graph.
+                            if (!IsLevelGraphEdge(leftSideVertices, pairs, distance, currentVertex, w))
                             {
                                 continue;
                             }
 
-                            // add w to augmenting path
+                            // add w to augmenting path.
                             path.Push(w);
 
-                            // Augmenting path found: update the matching
+                            // Augmenting path found: update the matching.
                             if (pairs[w] == -1)
                             {
                                 while (path.Count > 0)
@@ -78,24 +85,24 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return matching;
         }
 
-        private bool IsLevelGraphEdge(int[][] graph, HashSet<int> leftSetVertices, int[] pairs, int[] distance, int i, int w)
+        private static bool IsLevelGraphEdge(ICollection<int> leftSetVertices, IReadOnlyList<int> pairs, IReadOnlyList<int> distance, int from, int to)
         {
-            return (distance[w] == distance[i] + 1) && IsResidualGraphEdge(graph, leftSetVertices, pairs, i, w);
+            return (distance[to] == distance[from] + 1) && IsResidualGraphEdge(leftSetVertices, pairs, from, to);
         }
 
         // Use BFS to find an augmenting path.
-        private bool HasAugmetingPath(int[][] graph, HashSet<int> leftSideVertices, int[] pairs, int[] distance)
+        private static bool HasAugmentingPath(IReadOnlyList<int[]> graph, ICollection<int> leftSideVertices, IReadOnlyList<int> pairs, IList<int> distance)
         {
-            var visited = new bool[graph.Length];
+            var visited = new bool[graph.Count];
 
-            for (var i = 0; i < distance.Length; i++)
+            for (var i = 0; i < distance.Count; i++)
             {
                 distance[i] = int.MaxValue;
             }
 
             var queue = new Queue<int>();
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
                 if (leftSideVertices.Contains(i) && pairs[i] == -1)
                 {
@@ -109,20 +116,20 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             while (queue.Count > 0)
             {
-                var currentVertice = queue.Dequeue();
-                for (var i = 0; i < graph.Length; i++)
+                var currentVertex = queue.Dequeue();
+                for (var i = 0; i < graph.Count; i++)
                 {
-                    if (graph[currentVertice][i] < 1)
+                    if (graph[currentVertex][i] < 1)
                     {
                         continue;
                     }
 
                     // Forward edge not in matching or backwards edge in matching?
-                    if (IsResidualGraphEdge(graph, leftSideVertices, pairs, currentVertice, i))
+                    if (IsResidualGraphEdge(leftSideVertices, pairs, currentVertex, i))
                     {
                         if (!visited[i])
                         {
-                            distance[i] = distance[currentVertice] + 1;
+                            distance[i] = distance[currentVertex] + 1;
                             visited[i] = true;
 
                             if (pairs[i] == -1)
@@ -130,7 +137,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                                 hasAugmentingPath = true;
                             }
 
-                            // Once an augmenting path is disovered, stop enquing new vertices since no vertex on same side will be marked if its shortest path distance longer.
+                            // Once an augmenting path is discovered, stop en-queuing new vertices since no vertex on same side will be marked if its shortest path distance longer.
                             if (!hasAugmentingPath)
                             {
                                 queue.Enqueue(i);
@@ -144,7 +151,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         }
 
         // Is the edge from-to a forward edge not in the matching or a reverse edge in the matching?
-        private bool IsResidualGraphEdge(int[][] graph, HashSet<int> leftSideVertices, int[] pairs, int from, int to)
+        private static bool IsResidualGraphEdge(ICollection<int> leftSideVertices, IReadOnlyList<int> pairs, int from, int to)
         {
             // from isn't matched with to so forward edge isn't in the matching
             if ((pairs[from] != to) && leftSideVertices.Contains(from))
@@ -160,17 +167,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return false;
         }
 
-        private void Reset(int[] input)
+        private static void Reset(IList<int> input)
         {
-            for (var i = 0; i < input.Length; i++)
+            for (var i = 0; i < input.Count; i++)
             {
                 input[i] = -1;
             }
         }
 
-        private HashSet<int> BipartiteGraph(int[][] graph)
+        private static HashSet<int> BipartiteGraph(IReadOnlyList<int[]> graph)
         {
-            var colors = new int[graph.Length];
+            var colors = new int[graph.Count];
             const int startColor = 0;
 
             for (var i = 0; i < colors.Length; i++)
@@ -178,11 +185,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 colors[i] = -1;
             }
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
                 if (colors[i] == -1)
                 {
-                    BFSColoring(graph, colors, i, startColor);
+                    BfsColoring(graph, colors, i, startColor);
                 }
             }
 
@@ -199,33 +206,35 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return leftSetVertices;
         }
 
-        private void BFSColoring(int[][] graph, int[] colors, int startVertice, int startColor)
+        private static void BfsColoring(IReadOnlyList<int[]> graph, IList<int> colors, int startVertex, int startColor)
         {
             var queue = new Queue<int>();
-            colors[startVertice] = startColor;
-            queue.Enqueue(startVertice);
+            colors[startVertex] = startColor;
+            queue.Enqueue(startVertex);
 
             while (queue.Count > 0)
             {
-                var currentVertice = queue.Dequeue();
+                var currentVertex = queue.Dequeue();
 
-                for (var i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Count; i++)
                 {
-                    if (graph[currentVertice][i] < 1)
+                    if (graph[currentVertex][i] < 1)
                     {
                         continue;
                     }
 
                     if (colors[i] != -1)
                     {
-                        if (colors[i] == colors[currentVertice])
+                        if (colors[i] == colors[currentVertex])
                         {
-                            throw new Exception("Graph is not bipartite.");
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
+                            throw new Exception($"Graph is not bipartite.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
                         }
                     }
                     else
                     {
-                        colors[i] = 1 ^ colors[currentVertice];
+                        colors[i] = 1 ^ colors[currentVertex];
                         queue.Enqueue(i);
                     }
                 }
