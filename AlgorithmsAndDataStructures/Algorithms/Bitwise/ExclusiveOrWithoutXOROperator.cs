@@ -1,8 +1,10 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.Bitwise
 {
-    public class ExclusiveOrWithoutXOROperator
+    public class ExclusiveOrWithoutXorOperator
     {
-        public int XOR(int x, int y)
+#pragma warning disable CA1822 // Mark members as static
+        public int Xor(int x, int y)
+#pragma warning restore CA1822 // Mark members as static
         {
             return (x | y) & (~x | ~y);
         }

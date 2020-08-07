@@ -10,9 +10,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
         {
             var sut = new ModuloByAPowerOfTwo();
 
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
-                for (int j = 2; j < 256; j *= 2)
+                for (var j = 2; j < 256; j *= 2)
                 {
                     Assert.Equal(i % j, sut.Modulo(i,j));
                 }

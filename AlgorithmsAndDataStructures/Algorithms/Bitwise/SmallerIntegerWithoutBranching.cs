@@ -2,7 +2,9 @@
 {
     public class SmallerIntegerWithoutBranching
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetSmaller(int x, int y)
+#pragma warning restore CA1822 // Mark members as static
         {
             const int bitSize = 8;
 

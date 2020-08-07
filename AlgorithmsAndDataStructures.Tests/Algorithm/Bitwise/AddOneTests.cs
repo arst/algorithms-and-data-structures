@@ -9,7 +9,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
         public void Baseline() 
         {
             var sut = new AddOne();
-            for (int i = -100_000_000; i <= 1_000_000; i++)
+            for (var i = -100_000_000; i <= 1_000_000; i++)
             {
                 Assert.Equal(i+1, sut.Add(i));
             }

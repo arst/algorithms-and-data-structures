@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
             var sut = new SmallerIntegerWithoutBranching();
             var r = new Random();
 
-            for (int i = 0; i < 1000000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 var x = r.Next();
                 var y = r.Next();

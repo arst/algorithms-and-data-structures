@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
         {
             var sut = new IsPowerOfFour();
 
-            for (int i = 4; i < 1048576; i *= 4)
+            for (var i = 4; i < 1048576; i *= 4)
             {
                 Assert.True(sut.IsPower(i));
             }
@@ -22,9 +22,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
         {
             var sut = new IsPowerOfFour();
 
-            for (int i = 0; i < 1048576; i++)
+            for (var i = 0; i < 1048576; i++)
             {
-                Assert.Equal(Math.Log(i, 4) % 1 == 0, sut.IsPower(i));
+                Assert.Equal(Math.Abs(Math.Log(i, 4) % 1) < 0.001, sut.IsPower(i));
             }
         }
     }
