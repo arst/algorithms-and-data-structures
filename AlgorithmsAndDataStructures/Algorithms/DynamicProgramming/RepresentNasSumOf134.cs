@@ -2,7 +2,9 @@
 {
     public class RepresentNasSumOf134
     {
+#pragma warning disable CA1822 // Mark members as static
         public int Get(int n)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (n == 0)
                 return n;
@@ -21,7 +23,7 @@
             dp[3] = 2;
             dp[4] = 4;
 
-            for (int i = 5; i <= n; i++)
+            for (var i = 5; i <= n; i++)
             {
                 dp[n] = dp[n - 1] + dp[n - 3] + dp[n - 4];
             }
