@@ -4,8 +4,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.KCenters
 {
     public class KCentersGreedyApproximation
     {
+#pragma warning disable CA1822 // Mark members as static
         public int[] GetKCenters(int[][] graph, int centers)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return System.Array.Empty<int>();
+            }
+
             var result = new int[centers];
             var foundCentersCount = 0;
             result[foundCentersCount] = 0;
@@ -14,10 +21,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.KCenters
 
             while (foundCentersCount < result.Length)
             {
-                var maxDisatanceFromCentersVerticeIndex = -1;
-                var maxDisatanceFromCentersVertice = int.MinValue;
+                var maxDistanceFromCentersVertexIndex = -1;
+                var maxDistanceFromCentersVertex = int.MinValue;
 
-                for (int i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Length; i++)
                 {
                     if (result.Contains(i))
                     {
@@ -25,7 +32,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.KCenters
                     }
 
                     var minDistance = int.MaxValue;
-                    for (int c = 0; c < foundCentersCount; c++)
+                    for (var c = 0; c < foundCentersCount; c++)
                     {
                         if (c == i)
                         {
@@ -38,14 +45,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.KCenters
                         }
                     }
 
-                    if (maxDisatanceFromCentersVerticeIndex == -1 || maxDisatanceFromCentersVertice < minDistance)
+                    if (maxDistanceFromCentersVertexIndex == -1 || maxDistanceFromCentersVertex < minDistance)
                     {
-                        maxDisatanceFromCentersVerticeIndex = i;
-                        maxDisatanceFromCentersVertice = minDistance;
+                        maxDistanceFromCentersVertexIndex = i;
+                        maxDistanceFromCentersVertex = minDistance;
                     }
                 }
 
-                result[foundCentersCount] = maxDisatanceFromCentersVerticeIndex;
+                result[foundCentersCount] = maxDistanceFromCentersVertexIndex;
                 foundCentersCount++;
             }
 

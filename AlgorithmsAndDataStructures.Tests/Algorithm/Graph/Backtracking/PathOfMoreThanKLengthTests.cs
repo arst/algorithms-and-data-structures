@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 0);
@@ -29,7 +29,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 { 
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     { 
@@ -41,7 +41,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 9);
@@ -59,7 +59,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 9);
@@ -87,7 +87,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -105,7 +105,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -123,7 +123,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -147,7 +147,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -165,7 +165,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -177,7 +177,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -189,7 +189,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -207,7 +207,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -219,7 +219,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 50);
@@ -235,7 +235,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -253,7 +253,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -271,7 +271,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -295,7 +295,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -313,7 +313,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -325,7 +325,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -337,7 +337,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -355,7 +355,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode
+                new WeightedGraphVertex
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
@@ -367,7 +367,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode(),
+                new WeightedGraphVertex(),
             };
 
             var (hasPath, _) = sut.GetPathOfMoreThanKLength(graph, 0, 48);
