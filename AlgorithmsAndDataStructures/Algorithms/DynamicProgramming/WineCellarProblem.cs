@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 {
@@ -12,11 +13,18 @@ namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
      You want to find out, what is the maximum profit you can get, if you sell the wines in optimal order?"*/
     public class WineCellarProblem
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetMaxProfit(int[] prices)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (prices is null)
+            {
+                return default;
+            }
+
             var dp = new int[prices.Length][];
 
-            for (int i = 0; i < prices.Length; i++)
+            for (var i = 0; i < prices.Length; i++)
             {
                 dp[i] = new int[prices.Length];
             }
@@ -24,7 +32,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
             return GetOrderRecursive(prices, 0, prices.Length - 1, dp);
         }
 
-        private int GetOrderRecursive(int[] prices, int start, int end, int[][] dp)
+        private static int GetOrderRecursive(IReadOnlyList<int> prices, int start, int end, IReadOnlyList<int[]> dp)
         {
             if (start > end)
             {
@@ -37,7 +45,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
             }
 
             // Each year we allowed to sell only one bottle, so we can derive current year from difference between all bottles and sold bottles
-            var year = prices.Length - (end - start);
+            var year = prices.Count - (end - start);
 
             dp[start][end] = Math.Max(
                 GetOrderRecursive(prices, start + 1, end, dp) + year * prices[start],

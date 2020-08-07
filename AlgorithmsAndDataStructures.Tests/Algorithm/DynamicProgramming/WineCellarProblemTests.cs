@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamicProgramming
         {
             var sut = new WineCellarProblem();
 
-            Assert.Equal(50, sut.GetMaxProfit(new int[] { 2, 3, 5, 1, 4 }));
+            Assert.Equal(50, sut.GetMaxProfit(new [] { 2, 3, 5, 1, 4 }));
         }
     }
 }
