@@ -11,21 +11,21 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
         {
             var sut = new CriticalPath();
 
-            var vertice1 = new WeightedGraphVertex()
+            var vertex1 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 1,
                         Weight = 5
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 3,
                         Weight = 9
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 4,
                         Weight = 14
@@ -33,11 +33,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice2 = new WeightedGraphVertex()
+            var vertex2 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 2,
                         Weight = 7
@@ -45,11 +45,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice3 = new WeightedGraphVertex()
+            var vertex3 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 4,
                         Weight = 4
@@ -57,11 +57,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice4 = new WeightedGraphVertex()
+            var vertex4 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>() 
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 4,
                         Weight = 11
@@ -69,12 +69,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice5 = new WeightedGraphVertex()
+            var vertex5 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>() {}
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
             };
 
-            var graph = new WeightedGraphVertex[] { vertice1, vertice2, vertice3, vertice4, vertice5 };
+            var graph = new [] { vertex1, vertex2, vertex3, vertex4, vertex5 };
 
             Assert.Equal(20, sut.GetCriticalPath(graph));
         }
@@ -84,11 +84,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
         {
             var sut = new CriticalPath();
 
-            var vertice1 = new WeightedGraphVertex()
+            var vertex1 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 1,
                         Weight = 17
@@ -96,11 +96,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice2 = new WeightedGraphVertex()
+            var vertex2 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 2,
                         Weight = 13
@@ -108,11 +108,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice3 = new WeightedGraphVertex()
+            var vertex3 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 3,
                         Weight = 9
@@ -120,16 +120,16 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice4 = new WeightedGraphVertex()
+            var vertex4 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 4,
                         Weight = 11
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 8,
                         Weight = 10
@@ -137,23 +137,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice5 = new WeightedGraphVertex()
+            var vertex5 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
                 }
             };
 
-            var vertice6 = new WeightedGraphVertex()
+            var vertex6 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 6,
                         Weight = 11
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 9,
                         Weight = 15
@@ -161,11 +161,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice7 = new WeightedGraphVertex()
+            var vertex7 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 7,
                         Weight = 18
@@ -173,21 +173,21 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice8 = new WeightedGraphVertex()
+            var vertex8 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 3,
                         Weight = 16
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 8,
                         Weight = 13
                     },
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 11,
                         Weight = 19
@@ -195,18 +195,18 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice9 = new WeightedGraphVertex()
+            var vertex9 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
                 }
             };
 
-            var vertice10 = new WeightedGraphVertex()
+            var vertex10 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 10,
                         Weight = 14
@@ -214,11 +214,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice11 = new WeightedGraphVertex()
+            var vertex11 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
-                    new WeightedGraphNodeEdge()
+                    new WeightedGraphNodeEdge
                     {
                         To = 11,
                         Weight = 17
@@ -226,18 +226,18 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice12 = new WeightedGraphVertex()
+            var vertex12 = new WeightedGraphVertex
             {
-                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                 {
                 }
             };
 
-            var graph = new WeightedGraphVertex[] 
+            var graph = new [] 
             { 
-                vertice1, vertice2, vertice3, vertice4, vertice5,
-                vertice6, vertice7, vertice8, vertice9,
-                vertice10, vertice11, vertice12
+                vertex1, vertex2, vertex3, vertex4, vertex5,
+                vertex6, vertex7, vertex8, vertex9,
+                vertex10, vertex11, vertex12
             };
 
             Assert.Equal(56, sut.GetCriticalPath(graph));
