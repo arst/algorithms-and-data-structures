@@ -1,27 +1,32 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 {
     public class CapsAssignment
     {
-        private int hatCollectionSize;
-        private int[][] caps;
+        private int collectionSize;
+        private int[][] eachPersonCollections;
         private int allCapsAssignedMask;
         private int[][] dp;
 
-        public int GetMaxAssignment(int[][] caps, int hatCollectionMaxSize)
+        public int GetMaxAssignment(int[][] capCollections, int hatCollectionSize)
         {
-            this.hatCollectionSize = hatCollectionMaxSize;
-            this.caps = caps;
-            allCapsAssignedMask = (1 << caps.Length) - 1;
-            dp = new int[1 << caps.Length][];
-
-            for (int i = 0; i < dp.Length; i++)
+            if (capCollections is null || capCollections.Length == 0)
             {
-                dp[i] = new int[hatCollectionSize];
+                return default;
+            }
 
-                for (int j = 0; j < dp[i].Length; j++)
+            collectionSize = hatCollectionSize;
+            eachPersonCollections = capCollections;
+            allCapsAssignedMask = (1 << eachPersonCollections.Length) - 1;
+
+            dp = new int[1 << capCollections.Length][];
+
+            for (var i = 0; i < dp.Length; i++)
+            {
+                dp[i] = new int[collectionSize];
+
+                for (var j = 0; j < dp[i].Length; j++)
                 {
                     dp[i][j] = -1;
                 }
@@ -32,39 +37,40 @@ namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 
         private int GetMaxAssignmentInternal(int currentAssignment, int currentHat)
         {
-            // All caps assigned
+            // Each person has a hat assigned.
             if (allCapsAssignedMask == currentAssignment)
             {
                 return 1;
             }
 
-            // All caps inspected but nor all person were assigned a hat
-            if (currentHat >= hatCollectionSize)
+            // All hats were inspected but not everyone has a cap assigned.
+            if (currentHat >= collectionSize)
             {
                 return 0;
             }
 
-            // We already calculated this path
+            // We already calculated this path, so we return cached result.
             if (dp[currentAssignment][currentHat] > -1)
             {
                 return dp[currentAssignment][currentHat];
             }
 
-            // Do not use current hat
+            // Do not use current hat.
             var maxAssignmentsWithoutCurrentHat = GetMaxAssignmentInternal(currentAssignment, currentHat + 1);
 
-            // Try assign current hat
-            for (int j = 0; j < caps.Length; j++)
+            // Try to assign current hat.
+            var personsCount = eachPersonCollections.Length;
+            for (var currentPerson = 0; currentPerson < personsCount; currentPerson++)
             {
-                bool isPersonAlreadyHasHatAssigned = ((1 << j) & currentAssignment) != 0;
+                var isPersonAlreadyHasHatAssigned = ((1 << currentPerson) & currentAssignment) != 0;
 
-                // This person doesn't posses this hat
-                if (!caps[j].Contains(currentHat) || isPersonAlreadyHasHatAssigned)
+                // This person doesn't posses this hat.
+                if (!eachPersonCollections[currentPerson].Contains(currentHat) || isPersonAlreadyHasHatAssigned)
                 {
                     continue;
                 }
 
-                maxAssignmentsWithoutCurrentHat += GetMaxAssignmentInternal(currentAssignment | (1 << j), currentHat + 1);
+                maxAssignmentsWithoutCurrentHat += GetMaxAssignmentInternal(currentAssignment | (1 << currentPerson), currentHat + 1);
             }
 
             dp[currentAssignment][currentHat] = maxAssignmentsWithoutCurrentHat;
