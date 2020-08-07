@@ -1,4 +1,5 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
+﻿using System;
+using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +8,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
 {
     public class HuffmanCodeCompression
     {
+#pragma warning disable CA1822 // Mark members as static
         public (BitArray Compressed, HuffmanCodeNode HuffmanEncodingTree) Compress(string target)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (string.IsNullOrEmpty(target))
+            {
+                return (new BitArray(0), null);
+            }
+
             var frequencyMap = GetFrequencyMap(target);
             var frequencyHeap = BuildFrequencyMinHeap(frequencyMap);
 
@@ -38,17 +46,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
             return (new BitArray(compressed.ToArray()), huffmanEncodingTree);
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public string Decompress(BitArray compressedTarget, HuffmanCodeNode huffmanEncodingTree)
+#pragma warning restore CA1822 // Mark members as static
         {   
             var currentBitPointer = 0;
             var currentNode = huffmanEncodingTree;
-            var resultBuilder = new StringBuilder(compressedTarget.Length);
+            var resultBuilder = new StringBuilder(compressedTarget?.Length ?? 0);
 
-            while (currentBitPointer <= compressedTarget.Length)
+            while (currentBitPointer <= compressedTarget?.Length)
             {
-                if (currentNode.Character.HasValue)
+                if (currentNode?.Character.HasValue == true)
                 {
-                    resultBuilder.Append(currentNode.Character);
+                    resultBuilder.Append(currentNode.Character.Value);
                     currentNode = huffmanEncodingTree;
                 }
 
@@ -59,20 +69,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
 
                 var currentBit = compressedTarget[currentBitPointer];
                 currentBitPointer++;
-                if (currentBit == false)
-                {
-                    currentNode = currentNode.Left;
-                }
-                else
-                {
-                    currentNode = currentNode.Right;
-                }
+                currentNode = currentBit == false ? currentNode?.Left : currentNode?.Right;
             }
 
             return resultBuilder.ToString();
         }
 
-        private void BuildEncodingMap(HuffmanCodeNode huffmanEncodingTree, Dictionary<char, List<bool>> huffmanEncodingMap, List<bool> encoding)
+        private static void BuildEncodingMap(HuffmanCodeNode huffmanEncodingTree, IDictionary<char, List<bool>> huffmanEncodingMap, List<bool> encoding)
         {
             if (huffmanEncodingTree is null)
             {
@@ -93,7 +96,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
             BuildEncodingMap(huffmanEncodingTree.Right, huffmanEncodingMap, rightEncoding);
         }
 
-        private HuffmanCodeNode CreateSubTree(int combinedFrequency, HuffmanCodeNode highestFrequency, HuffmanCodeNode secondHighestFrequency)
+        private static HuffmanCodeNode CreateSubTree(int combinedFrequency, HuffmanCodeNode highestFrequency, HuffmanCodeNode secondHighestFrequency)
         {
             var combinedTreeHead = 
                 new HuffmanCodeNode()
@@ -106,23 +109,24 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
             return combinedTreeHead;
         } 
 
-        private MinBinaryHeap<HuffmanCodeNode> BuildFrequencyMinHeap(Dictionary<char, int> frequencyMap)
+        private static MinBinaryHeap<HuffmanCodeNode> BuildFrequencyMinHeap(Dictionary<char, int> frequencyMap)
         {
             var minHeap = new MinBinaryHeap<HuffmanCodeNode>(frequencyMap.Count);
 
             foreach (var frequency in frequencyMap)
             {
-                minHeap.Insert(new HuffmanCodeNode()
-                { 
-                    Character = frequency.Key,
-                    Frequency = frequency.Value
-                });
+                minHeap.Insert(
+                    new HuffmanCodeNode
+                    { 
+                        Character = frequency.Key,
+                        Frequency = frequency.Value
+                    });
             }
 
             return minHeap;
         }
 
-        private Dictionary<char, int> GetFrequencyMap(string target)
+        private static Dictionary<char, int> GetFrequencyMap(string target)
         {
             var frequencyMap = new Dictionary<char, int>();
 
