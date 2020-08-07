@@ -19,17 +19,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
             graph.Connect(2, 4);
             graph.Connect(3, 4);
 
-            var result = sut.HasHamiltonPath(graph);
+            var (hasPath, hasCycle, path) = sut.HasHamiltonPath(graph);
 
-            Assert.True(result.hasCycle);
-            Assert.True(result.hasPath);
-            Assert.Collection(result.path, 
+            Assert.True(hasCycle);
+            Assert.True(hasPath);
+#pragma warning disable HAA0101 // Array allocation for params parameter
+            Assert.Collection(path, 
                 arg => Assert.Equal(0, arg),
                 arg => Assert.Equal(1, arg),
                 arg => Assert.Equal(2, arg),
                 arg => Assert.Equal(4, arg),
                 arg => Assert.Equal(3, arg),
                 arg => Assert.Equal(0, arg));
+#pragma warning restore HAA0101 // Array allocation for params parameter
         }
 
         [Fact]
@@ -44,10 +46,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
             graph.Connect(1, 4);
             graph.Connect(2, 4);
 
-            var result = sut.HasHamiltonPath(graph);
+            var (hasPath, hasCycle, _) = sut.HasHamiltonPath(graph);
 
-            Assert.False(result.hasCycle);
-            Assert.True(result.hasPath);
+            Assert.False(hasCycle);
+            Assert.True(hasPath);
         }
 
         [Fact]
@@ -61,10 +63,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
             graph.Connect(1, 4);
             graph.Connect(2, 4);
 
-            var result = sut.HasHamiltonPath(graph);
+            var (hasPath, hasCycle, _) = sut.HasHamiltonPath(graph);
 
-            Assert.False(result.hasCycle);
-            Assert.False(result.hasPath);
+            Assert.False(hasCycle);
+            Assert.False(hasPath);
         }
     }
 }

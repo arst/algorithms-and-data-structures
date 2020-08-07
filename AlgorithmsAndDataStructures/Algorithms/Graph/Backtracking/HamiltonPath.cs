@@ -6,14 +6,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
 {
     public class HamiltonPath
     {
+#pragma warning disable CA1822 // Mark members as static
         public (bool hasPath, bool hasCycle, int[] path) HasHamiltonPath(UndirectedGraph graph)
+#pragma warning restore CA1822 // Mark members as static
         {
             var vertices = graph.Vertices();
             var visited = new bool[vertices.Length];
             var parent = new int[vertices.Length];
             var path = new int[vertices.Length + 1];
 
-            for (int i = 0; i < parent.Length; i++)
+            for (var i = 0; i < parent.Length; i++)
             {
                 parent[i] = -1;
             }
@@ -39,52 +41,52 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
             return (hasPath, hasCycle, path);
         }
 
-        private bool HasCycle(int[] parent, List<int>[] vertices)
+        private static bool HasCycle(IReadOnlyList<int> parent, IReadOnlyList<List<int>> vertices)
         {
-            var lastVerticeIndex = -1;
+            var lastVertexIndex = -1;
 
-            for (int i = 0; i < parent.Length && lastVerticeIndex < 0; i++)
+            for (var i = 0; i < parent.Count; i++)
             {
                 if (parent[i] == -1)
                 {
-                    lastVerticeIndex = i;
+                    lastVertexIndex = i;
                     break;
                 }
             }
 
-            return vertices[lastVerticeIndex].Any(arg => arg == 0);
+            return vertices[lastVertexIndex].Any(arg => arg == 0);
         }
 
-        private bool IsHamiltonPath(int currentVertice, List<int>[] vertices, bool[] visited, int[] parent)
+        private static bool IsHamiltonPath(int currentVertex, IReadOnlyList<List<int>> vertices, IList<bool> visited, IList<int> parent)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
 
             if (IsPathFormed(visited))
             {
                 return true;
             }
 
-            foreach (var adjacentVertices in vertices[currentVertice])
+            foreach (var adjacentVertex in vertices[currentVertex])
             {
-                if (!visited[adjacentVertices])
+                if (!visited[adjacentVertex])
                 {
-                    parent[currentVertice] = adjacentVertices;
-                    var isPathFormed = IsHamiltonPath(adjacentVertices, vertices, visited, parent);
+                    parent[currentVertex] = adjacentVertex;
+                    var isPathFormed = IsHamiltonPath(adjacentVertex, vertices, visited, parent);
 
                     if (isPathFormed)
                     {
                         return true;
                     }
 
-                    parent[currentVertice] = -1;
-                    visited[adjacentVertices] = false;
+                    parent[currentVertex] = -1;
+                    visited[adjacentVertex] = false;
                 }
             }
 
             return false;
         }
 
-        private bool IsPathFormed(bool[] visited)
+        private static bool IsPathFormed(IEnumerable<bool> visited)
         {
             return visited.All(arg => arg);
         }
