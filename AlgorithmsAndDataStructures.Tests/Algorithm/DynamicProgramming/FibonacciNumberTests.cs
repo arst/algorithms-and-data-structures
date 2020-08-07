@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamincProgramming
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamicProgramming
 {
     public class FibonacciNumberTests
     {
