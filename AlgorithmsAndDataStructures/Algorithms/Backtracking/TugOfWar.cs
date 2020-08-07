@@ -19,9 +19,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return (hasTug ? result : Array.Empty<int>(), hasTug ? GetRightTug(set, visited, leftTugLength) : Array.Empty<int>());
         }
 
-        private static bool GetLeftTug(IReadOnlyList<int> set, bool[] included, IList<int> result, int resultCounter)
+        private static bool GetLeftTug(IReadOnlyList<int> set, bool[] included, IList<int> result, int leftTugParticipants)
         {
-            if (resultCounter >= result.Count)
+            if (leftTugParticipants >= result.Count)
             {
                 var rightTug = GetRightTug(set, included, result.Count);
 
@@ -32,10 +32,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 
             while (firstNonIncludedIndex != -1)
             {
-                result[resultCounter] = set[firstNonIncludedIndex];
-                resultCounter++;
+                result[leftTugParticipants] = set[firstNonIncludedIndex];
+                leftTugParticipants++;
                 included[firstNonIncludedIndex] = true;
-                var hasTug = GetLeftTug(set, included, result, resultCounter);
+                var hasTug = GetLeftTug(set, included, result, leftTugParticipants);
 
                 if (hasTug)
                 {
@@ -43,7 +43,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
                 }
 
                 included[firstNonIncludedIndex] = false;
-                resultCounter--;
+                leftTugParticipants--;
                 firstNonIncludedIndex = GetNotIncludedIndex(set, included, firstNonIncludedIndex + 1);
             }
 
