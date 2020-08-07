@@ -8,7 +8,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Cryptography
 {
     public class OneTimePad
     {
+#pragma warning disable CA1822 // Mark members as static
         public (string Pad, string Encoded) Encode(string input)
+#pragma warning restore CA1822 // Mark members as static
         {
             var bitsString = ToBinaryString(Encoding.ASCII, input);
             var oneTimePad = GetOneTimePad(bitsString);
@@ -16,22 +18,29 @@ namespace AlgorithmsAndDataStructures.Algorithms.Cryptography
 
             for (int i = 0; i < bitsString.Length; i++)
             {
-                var inputBit = bitsString[i] == '1' ? true : false;
-                var oneTimePadBit = oneTimePad[i] == '1' ? true : false;
+                var inputBit = bitsString[i] == '1';
+                var oneTimePadBit = oneTimePad[i] == '1';
                 resultBuilder.Append(inputBit ^ oneTimePadBit ? '1' : '0');    
             }
 
             return (Pad: oneTimePad, Encoded: resultBuilder.ToString());
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public string Decode(string pad, string encoded)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (string.IsNullOrEmpty(pad) || string.IsNullOrEmpty(encoded))
+            {
+                return string.Empty;
+            }
+
             var resultBuilder = new StringBuilder(pad.Length);
 
-            for (int i = 0; i < encoded.Length; i++)
+            for (var i = 0; i < encoded.Length; i++)
             {
-                var inputBit = encoded[i] == '1' ? true : false;
-                var oneTimePadBit = pad[i] == '1' ? true : false;
+                var inputBit = encoded[i] == '1';
+                var oneTimePadBit = pad[i] == '1';
                 resultBuilder.Append(inputBit ^ oneTimePadBit ? '1' : '0');
             }
 
@@ -43,7 +52,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Cryptography
             var bytes = new List<byte>();
             var inputSpan = input.AsSpan();
 
-            for (int i = 0; i < input.Length; i += 8)
+            for (var i = 0; i < input.Length; i += 8)
             {
                 var temp = inputSpan.Slice(i, 8);
 
