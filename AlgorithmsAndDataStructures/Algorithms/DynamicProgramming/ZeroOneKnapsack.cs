@@ -3,7 +3,7 @@ using System;
 
 namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 {
-    public class ZeroOneKnapsack : IZeroOneKnapsack
+    public class ZeroOneKnapsack
     {
         // NOTE: Since it's a 0/1 you can get each item only once.
 #pragma warning disable CA1822 // Mark members as static
