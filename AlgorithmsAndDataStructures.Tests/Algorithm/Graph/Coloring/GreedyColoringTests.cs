@@ -38,26 +38,26 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Coloring
         }
 
         [Fact]
-        public void PropertyBased()
+        public void Fuzzy()
         {
             var sut = new GreedyColoring();
 
-            for (int z = 0; z < 1000; z++)
+            for (var z = 0; z < 1000; z++)
             {
                 var r = new Random();
                 var vertices = r.Next(1, 100);
 
                 var graph = new int[vertices][];
 
-                for (int i = 0; i < vertices; i++)
+                for (var i = 0; i < vertices; i++)
                 {
                     graph[i] = new int[vertices];
                 }
 
 
-                for (int i = 0; i < vertices; i++)
+                for (var i = 0; i < vertices; i++)
                 {
-                    for (int j = 0; j < vertices; j++)
+                    for (var j = 0; j < vertices; j++)
                     {
                         if (i != j)
                         {
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Coloring
 
                 var max = int.MinValue;
 
-                for (int i = 0; i < vertices; i++)
+                for (var i = 0; i < vertices; i++)
                 {
                     var current = graph[i].Sum();
 
@@ -81,7 +81,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Coloring
                     }
                 }
 
-                int colors = sut.Color(graph);
+                var colors = sut.Color(graph);
                 Assert.True(max + 1 >= colors);
             }
         }
