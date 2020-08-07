@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
    */
     public class FloydWarshall
     {
-        public (int[][] disatnces, int[][] path) MinDistances(WeightedGraphNode[] graph)
+        public (int[][] disatnces, int[][] path) MinDistances(WeightedGraphVertex[] graph)
         {
             var disatnces = new int[graph.Length][];
             var path = new int[graph.Length][];

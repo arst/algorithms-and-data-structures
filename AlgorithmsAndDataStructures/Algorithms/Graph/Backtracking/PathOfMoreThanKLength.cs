@@ -5,7 +5,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
 {
     public class PathOfMoreThanKLength
     {
-        public (bool hasPath, HashSet<int> path) GetPathOfMoreThanKLength(WeightedGraphNode[] graph, int startVertex, int targetWeight)
+        public (bool hasPath, HashSet<int> path) GetPathOfMoreThanKLength(WeightedGraphVertex[] graph, int startVertex, int targetWeight)
         {
             if (graph is null)
             {
@@ -19,7 +19,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
             return (hasPath, hasPath ? path : new HashSet<int>());
         }
 
-        private bool DFS(WeightedGraphNode[] graph, int currentVertexIndex, int currentWeight, int targetWeight, ISet<int> path)
+        private bool DFS(WeightedGraphVertex[] graph, int currentVertexIndex, int currentWeight, int targetWeight, ISet<int> path)
         {
             var currentVertex = graph[currentVertexIndex];
 

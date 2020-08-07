@@ -8,6 +8,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
         public int Weight { get; set; }
 
-        public WeightedGraphNode Node { get; set; }
+        public WeightedGraphVertex Vertex { get; set; }
     }
 }

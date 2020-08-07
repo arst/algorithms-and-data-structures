@@ -13,9 +13,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                     }
                 };
@@ -32,9 +32,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                     }
                 };
@@ -63,9 +63,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -77,7 +77,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -89,7 +89,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                     }
                 };
@@ -106,9 +106,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -126,7 +126,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -138,7 +138,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                     }
                 };
@@ -155,9 +155,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -175,7 +175,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -187,7 +187,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -214,9 +214,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphNode[]
+                new WeightedGraphVertex[]
                 {
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -240,7 +240,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -258,7 +258,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -282,7 +282,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             },
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -294,7 +294,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                         Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                         {
@@ -306,7 +306,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphNode()
+                    new WeightedGraphVertex()
                     {
                     }
                 };

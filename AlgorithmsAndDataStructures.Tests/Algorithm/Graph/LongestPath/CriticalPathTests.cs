@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
         {
             var sut = new CriticalPath();
 
-            var vertice1 = new WeightedGraphNode()
+            var vertice1 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -33,7 +33,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice2 = new WeightedGraphNode()
+            var vertice2 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -45,7 +45,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice3 = new WeightedGraphNode()
+            var vertice3 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -57,7 +57,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice4 = new WeightedGraphNode()
+            var vertice4 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>() 
                 {
@@ -69,12 +69,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice5 = new WeightedGraphNode()
+            var vertice5 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>() {}
             };
 
-            var graph = new WeightedGraphNode[] { vertice1, vertice2, vertice3, vertice4, vertice5 };
+            var graph = new WeightedGraphVertex[] { vertice1, vertice2, vertice3, vertice4, vertice5 };
 
             Assert.Equal(20, sut.GetCriticalPath(graph));
         }
@@ -84,7 +84,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
         {
             var sut = new CriticalPath();
 
-            var vertice1 = new WeightedGraphNode()
+            var vertice1 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -96,7 +96,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice2 = new WeightedGraphNode()
+            var vertice2 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -108,7 +108,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice3 = new WeightedGraphNode()
+            var vertice3 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -120,7 +120,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice4 = new WeightedGraphNode()
+            var vertice4 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -137,14 +137,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice5 = new WeightedGraphNode()
+            var vertice5 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
                 }
             };
 
-            var vertice6 = new WeightedGraphNode()
+            var vertice6 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -161,7 +161,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice7 = new WeightedGraphNode()
+            var vertice7 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -173,7 +173,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice8 = new WeightedGraphNode()
+            var vertice8 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -195,14 +195,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice9 = new WeightedGraphNode()
+            var vertice9 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
                 }
             };
 
-            var vertice10 = new WeightedGraphNode()
+            var vertice10 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -214,7 +214,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice11 = new WeightedGraphNode()
+            var vertice11 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -226,14 +226,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
                 }
             };
 
-            var vertice12 = new WeightedGraphNode()
+            var vertice12 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
                 }
             };
 
-            var graph = new WeightedGraphNode[] 
+            var graph = new WeightedGraphVertex[] 
             { 
                 vertice1, vertice2, vertice3, vertice4, vertice5,
                 vertice6, vertice7, vertice8, vertice9,

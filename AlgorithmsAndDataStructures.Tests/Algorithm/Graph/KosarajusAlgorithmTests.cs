@@ -10,9 +10,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneNodeGraphIsConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             Assert.True(sut.IsConnected(graph));
@@ -22,16 +22,16 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeConnectedGraphIsConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 { 
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     { 
                         new WeightedGraphNodeEdge() { From = 0, To = 1 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -47,10 +47,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeDisconnectedGraphIsNotConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode(),
-                new WeightedGraphNode()
+                new WeightedGraphVertex(),
+                new WeightedGraphVertex()
             };
 
             Assert.False(sut.IsConnected(graph));
@@ -60,23 +60,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneWayConnectedGraphIsNotConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                 new WeightedGraphNode()
+                 new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
                         new WeightedGraphNodeEdge() { From = 0, To = 1 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
                         new WeightedGraphNodeEdge() { From = 1, To = 2 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             Assert.False(sut.IsConnected(graph));
@@ -86,23 +86,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void Baseline()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                 new WeightedGraphNode()
+                 new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
                         new WeightedGraphNodeEdge() { From = 0, To = 1 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
                         new WeightedGraphNodeEdge() { From = 1, To = 2 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                  {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -110,14 +110,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         new WeightedGraphNodeEdge() { From = 2, To = 4 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                  {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
                         new WeightedGraphNodeEdge() { From = 3, To = 0 }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                  {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {

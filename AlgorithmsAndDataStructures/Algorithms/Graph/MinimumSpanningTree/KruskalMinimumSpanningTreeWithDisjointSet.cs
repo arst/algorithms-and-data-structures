@@ -15,7 +15,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
         // log V - find connectivity with union find
         // overall E*logE + logV
         // Without a disjoint set check for cycle takes linear time.
-        public int GetMinimumSpanningTreeWeight(WeightedGraphNode[] graph)
+        public int GetMinimumSpanningTreeWeight(WeightedGraphVertex[] graph)
         {
             var minimumSpanningTreeWeight = 0;
             var minimumSpanningTree = new List<WeightedGraphNodeEdge>();

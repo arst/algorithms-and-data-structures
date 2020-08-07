@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
 {
     public class CriticalPath
     {
-        public int GetCriticalPath(WeightedGraphNode[] graph)
+        public int GetCriticalPath(WeightedGraphVertex[] graph)
         {
             var modifiedGraph = AppendDummyNodes(graph);
 
@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             return criticalPathValue[criticalPathValue.Length - 1];
         }
 
-        private static int[] CalculateCriticalPath(WeightedGraphNode[] modifiedGraph, Stack<int> topologicalSort)
+        private static int[] CalculateCriticalPath(WeightedGraphVertex[] modifiedGraph, Stack<int> topologicalSort)
         {
             var criticalPathValue = new int[modifiedGraph.Length];
             var crtiticalPath = new int[modifiedGraph.Length];
@@ -39,12 +39,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             return criticalPathValue;
         }
 
-        private static WeightedGraphNode[] AppendDummyNodes(WeightedGraphNode[] graph)
+        private static WeightedGraphVertex[] AppendDummyNodes(WeightedGraphVertex[] graph)
         {
             var (hasInboundEdges, hasOutboundEdges) = GetEdgeNodes(graph);
 
-            var sourceNode = new WeightedGraphNode();
-            var targetNode = new WeightedGraphNode();
+            var sourceNode = new WeightedGraphVertex();
+            var targetNode = new WeightedGraphVertex();
 
             for (int i = 0; i < hasInboundEdges.Length; i++)
             {
@@ -67,7 +67,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             return modifiedGraph.ToArray();
         }
 
-        private static Stack<int> SortTopologically(WeightedGraphNode[] graph)
+        private static Stack<int> SortTopologically(WeightedGraphVertex[] graph)
         {
             var topologicalSort = new Stack<int>();
             var visited = new bool[graph.Length];
@@ -80,7 +80,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             return topologicalSort;
         }
 
-        private static void SortTopologically(int currentNode, WeightedGraphNode[] graph, Stack<int> topologicalSort, bool[] visited)
+        private static void SortTopologically(int currentNode, WeightedGraphVertex[] graph, Stack<int> topologicalSort, bool[] visited)
         {
             visited[currentNode] = true;
 
@@ -95,7 +95,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             topologicalSort.Push(currentNode);
         }
 
-        private static (bool[] HasInboundEdges, bool[] HasOutboundEdges) GetEdgeNodes(WeightedGraphNode[] graph)
+        private static (bool[] HasInboundEdges, bool[] HasOutboundEdges) GetEdgeNodes(WeightedGraphVertex[] graph)
         {
             var hasInboundEdges = new bool[graph.Length];
             var hasOutboundEdges = new bool[graph.Length];

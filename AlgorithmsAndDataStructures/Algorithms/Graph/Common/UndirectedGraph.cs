@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Common
 {
     public class UndirectedGraph
     {
-        private List<int>[] adj;
+        private readonly List<int>[] adjacentVertices;
 
         public UndirectedGraph(int size)
         {
-            adj = new List<int>[size];
-            for (int i = 0; i < size; ++i)
-                adj[i] = new List<int>();
+            adjacentVertices = new List<int>[size];
+
+            for (var i = 0; i < size; ++i)
+                adjacentVertices[i] = new List<int>();
         }
 
         public void Connect(int nodeA, int nodeB)
         {
-            adj[nodeA].Add(nodeB);
-            adj[nodeB].Add(nodeA); 
+            adjacentVertices[nodeA].Add(nodeB);
+            adjacentVertices[nodeB].Add(nodeA); 
         }
 
         public List<int>[] Vertices()
         {
-            return adj.ToArray();
+            return adjacentVertices.ToArray();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class NegativeCycleDetectionBellmanFordBased
     {
-        public bool HasNegativeCycle(WeightedGraphNode[] graph)
+        public bool HasNegativeCycle(WeightedGraphVertex[] graph)
         {
             var distance = new int[graph.Length];
             var distanceChanged = true;

@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
 {
     public class KruskalMinimumSpanningTree
     {
-        public int GetMinimumSpanningTreeWeight(WeightedGraphNode[] graph)
+        public int GetMinimumSpanningTreeWeight(WeightedGraphVertex[] graph)
         {
             var minimumSpanningTreeWeight = 0;
             var minimumSpanningTree = new List<WeightedGraphNodeEdge>();

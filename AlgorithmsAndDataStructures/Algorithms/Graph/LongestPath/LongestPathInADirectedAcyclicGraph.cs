@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
 {
     public class LongestPathInADirectedAcyclicGraph
     {
-        public int[] GetLongestPath(WeightedGraphNode[] graph)
+        public int[] GetLongestPath(WeightedGraphVertex[] graph)
         {
             var distances = new int[graph.Length];
             var topologicalOrdering = new Stack<int>(graph.Length);
@@ -40,7 +40,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath
             return distances;
         }
 
-        private void TopologicalSort(WeightedGraphNode[] graph, int currentVertice, Stack<int> topologicalOrdering, bool[] visited)
+        private void TopologicalSort(WeightedGraphVertex[] graph, int currentVertice, Stack<int> topologicalOrdering, bool[] visited)
         {
             var edges = graph[currentVertice].Edges;
             visited[currentVertice] = true;

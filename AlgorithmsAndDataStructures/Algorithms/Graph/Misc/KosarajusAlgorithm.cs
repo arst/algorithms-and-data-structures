@@ -4,7 +4,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class KosarajusAlgorithm
     {
-        public bool IsConnected(WeightedGraphNode[] graph)
+        public bool IsConnected(WeightedGraphVertex[] graph)
         {
             var visited = new bool[graph.Length];
 
@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return true;
         }
 
-        private void DFS(WeightedGraphNode[] graph, int currentVertice, bool[] visited)
+        private void DFS(WeightedGraphVertex[] graph, int currentVertice, bool[] visited)
         {
             visited[currentVertice] = true;
 
@@ -49,13 +49,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             }
         }
 
-        private WeightedGraphNode[] GetTransposed(WeightedGraphNode[] graph)
+        private WeightedGraphVertex[] GetTransposed(WeightedGraphVertex[] graph)
         {
-            var result = new WeightedGraphNode[graph.Length];
+            var result = new WeightedGraphVertex[graph.Length];
 
             for (int i = 0; i < graph.Length; i++)
             {
-                result[i] = result[i] == null ? new WeightedGraphNode() : result[i];
+                result[i] = result[i] == null ? new WeightedGraphVertex() : result[i];
 
                 for (int j = 0; j < graph[i].Edges.Count; j++)
                 {
@@ -63,7 +63,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
                     if (result[from] == null)
                     {
-                        result[from] = new WeightedGraphNode();
+                        result[from] = new WeightedGraphVertex();
                     }
 
                     result[from].Edges.Add(new WeightedGraphNodeEdge()

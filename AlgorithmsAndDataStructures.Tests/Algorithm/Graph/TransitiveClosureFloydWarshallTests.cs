@@ -10,9 +10,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneNodeGraphIsTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var reachabilityMatrix = sut.GetReachabilityMatrix(graph);
@@ -26,9 +26,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeGraphIsTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 { 
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     { 
@@ -38,7 +38,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -67,9 +67,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeGraphIsNonTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -79,7 +79,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                 }
             };
@@ -101,9 +101,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void Baseline()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -117,7 +117,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -127,7 +127,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -141,7 +141,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             var reachabilityMatrix = sut.GetReachabilityMatrix(graph);

@@ -11,9 +11,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new LongestPathInADirectedAcyclicGraph();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             { 
-                new WeightedGraphNode(),
+                new WeightedGraphVertex(),
             };
 
             Assert.Collection<int>(sut.GetLongestPath(graph), arg => Assert.Equal(0, arg));
@@ -24,9 +24,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new LongestPathInADirectedAcyclicGraph();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 { 
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     { 
@@ -38,7 +38,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
             };
 
             Assert.Collection<int>(sut.GetLongestPath(graph), arg => Assert.Equal(0, arg), arg => Assert.Equal(10, arg));
@@ -49,9 +49,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new LongestPathInADirectedAcyclicGraph();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new WeightedGraphVertex[]
             {
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -69,7 +69,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -87,7 +87,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -111,7 +111,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -129,7 +129,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                     Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                     {
@@ -141,7 +141,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphVertex()
                 {
                 },
             };

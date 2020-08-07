@@ -4,7 +4,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TransitiveClosureFloydWarshall
     {
-        public bool[][] GetReachabilityMatrix(WeightedGraphNode[] graph)
+        public bool[][] GetReachabilityMatrix(WeightedGraphVertex[] graph)
         {
             var reachabilityMatrix = new bool[graph.Length][];
 

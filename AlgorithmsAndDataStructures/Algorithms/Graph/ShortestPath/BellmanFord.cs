@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
     */
     public class BellmanFord
     {
-        public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)
+        public (int, int[] path) MinDistance(WeightedGraphVertex[] graph, int from, int to)
         {
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
@@ -52,12 +52,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
             return relaxed;
         }
 
-        private static List<WeightedGraphNodeEdge> CollectEdges(WeightedGraphNode[] graph)
+        private static List<WeightedGraphNodeEdge> CollectEdges(WeightedGraphVertex[] graph)
         {
             return graph.SelectMany(arg => arg.Edges).ToList();
         }
 
-        private static void InitializeDisatances(WeightedGraphNode[] graph, int from, int[] distance)
+        private static void InitializeDisatances(WeightedGraphVertex[] graph, int from, int[] distance)
         {
             for (int i = 0; i < graph.Length; i++)
             {

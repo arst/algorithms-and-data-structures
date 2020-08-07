@@ -11,9 +11,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new FloydWarshall();
 
-            var graph = new WeightedGraphNode[4];
+            var graph = new WeightedGraphVertex[4];
 
-            var node1 = new WeightedGraphNode()
+            var node1 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     new WeightedGraphNodeEdge() { To = 3, Weight = 0 },
                 }
             };
-            var node2 = new WeightedGraphNode()
+            var node2 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -29,14 +29,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     new WeightedGraphNodeEdge() { To = 3, Weight = 1 },
                 }
             };
-            var node3 = new WeightedGraphNode()
+            var node3 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
                     new WeightedGraphNodeEdge() { To = 3, Weight = 5 },
                 }
             };
-            var node4 = new WeightedGraphNode() 
+            var node4 = new WeightedGraphVertex() 
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -78,9 +78,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new FloydWarshall();
 
-            var graph = new WeightedGraphNode[4];
+            var graph = new WeightedGraphVertex[4];
 
-            var node1 = new WeightedGraphNode()
+            var node1 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -88,7 +88,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     new WeightedGraphNodeEdge() { To = 3, Weight = 30 },
                 }
             };
-            var node2 = new WeightedGraphNode()
+            var node2 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
@@ -96,14 +96,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     new WeightedGraphNodeEdge() { To = 3, Weight = 20 },
                 }
             };
-            var node3 = new WeightedGraphNode()
+            var node3 = new WeightedGraphVertex()
             {
                 Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
                 {
                     new WeightedGraphNodeEdge() { To = 3, Weight = 5 },
                 }
             };
-            var node4 = new WeightedGraphNode() {};
+            var node4 = new WeightedGraphVertex() {};
 
             graph[0] = node1;
             graph[1] = node2;

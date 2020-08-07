@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
    */
     public class DijkstraNaive
     {
-        public (int, int[] path) MinDistance(WeightedGraphNode[] graph, int from, int to)
+        public (int, int[] path) MinDistance(WeightedGraphVertex[] graph, int from, int to)
         {
             var visited = new bool[graph.Length];
             var distance = new int[graph.Length];
