@@ -7,19 +7,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
     public class PathOfMoreThanKLengthTests
     {
         [Fact]
-        public void OneVerticeGraphHashZeroWeightPath()
+        public void OneVertexGraphHashZeroWeightPath()
         {
             var sut = new PathOfMoreThanKLength();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new []
             {
                 new WeightedGraphNode()
             };
 
-            var result = sut.GetPathOfMoreThanKLength(graph, 0, 0);
+            var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 0);
 
-            Assert.True(result.hasPath);
-            Assert.Collection(result.path, arg => Assert.Equal(0, arg));
+            Assert.True(hasPath);
+            Assert.Collection(path, arg => Assert.Equal(0, arg));
         }
 
         [Fact]
@@ -27,13 +27,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
         {
             var sut = new PathOfMoreThanKLength();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new []
             {
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 { 
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     { 
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         { 
                             From = 0,
                             To = 1,
@@ -44,10 +44,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                 new WeightedGraphNode()
             };
 
-            var result = sut.GetPathOfMoreThanKLength(graph, 0, 9);
+            var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 9);
 
-            Assert.True(result.hasPath);
-            Assert.Collection(result.path, arg => Assert.Equal(0, arg), arg => Assert.Equal(1, arg));
+            Assert.True(hasPath);
+#pragma warning disable HAA0101 // Array allocation for params parameter
+            Assert.Collection(path, arg => Assert.Equal(0, arg), arg => Assert.Equal(1, arg));
+#pragma warning restore HAA0101 // Array allocation for params parameter
         }
 
         [Fact]
@@ -55,7 +57,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
         {
             var sut = new PathOfMoreThanKLength();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new []
             {
                 new WeightedGraphNode()
                 {
@@ -72,10 +74,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                 new WeightedGraphNode()
             };
 
-            var result = sut.GetPathOfMoreThanKLength(graph, 0, 9);
+            var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 9);
 
-            Assert.False(result.hasPath);
-            Assert.Empty(result.path);
+            Assert.False(hasPath);
+            Assert.Empty(path);
         }
 
         [Fact]
@@ -83,19 +85,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
         {
             var sut = new PathOfMoreThanKLength();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new []
             {
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 0,
                             To = 1,
                             Weight = 4,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 0,
                             To = 7,
@@ -103,17 +105,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 1,
                             To = 2,
                             Weight = 8,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 1,
                             To = 7,
@@ -121,23 +123,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 3,
                             Weight = 7,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 8,
                             Weight = 2,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 5,
@@ -145,17 +147,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 3,
                             To = 4,
                             Weight = 9,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 3,
                             To = 5,
@@ -163,11 +165,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 4,
                             To = 5,
@@ -175,11 +177,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 5,
                             To = 6,
@@ -187,17 +189,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 6,
                             To = 7,
                             Weight = 1,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 6,
                             To = 8,
@@ -205,11 +207,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 7,
                             To = 8,
@@ -220,10 +222,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                 new WeightedGraphNode()
             };
 
-            var result = sut.GetPathOfMoreThanKLength(graph, 0, 50);
+            var (hasPath, path) = sut.GetPathOfMoreThanKLength(graph, 0, 50);
 
-            Assert.False(result.hasPath);
-            Assert.Empty(result.path); 
+            Assert.False(hasPath);
+            Assert.Empty(path); 
         }
 
         [Fact]
@@ -231,19 +233,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
         {
             var sut = new PathOfMoreThanKLength();
 
-            var graph = new WeightedGraphNode[]
+            var graph = new []
             {
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 0,
                             To = 1,
                             Weight = 4,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 0,
                             To = 7,
@@ -251,17 +253,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 1,
                             To = 2,
                             Weight = 8,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 1,
                             To = 7,
@@ -269,23 +271,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 3,
                             Weight = 7,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 8,
                             Weight = 2,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 2,
                             To = 5,
@@ -293,17 +295,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 3,
                             To = 4,
                             Weight = 9,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 3,
                             To = 5,
@@ -311,11 +313,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 4,
                             To = 5,
@@ -323,11 +325,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 5,
                             To = 6,
@@ -335,17 +337,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         }
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 6,
                             To = 7,
                             Weight = 1,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 6,
                             To = 8,
@@ -353,11 +355,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                         },
                     }
                 },
-                new WeightedGraphNode()
+                new WeightedGraphNode
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 7,
                             To = 8,
@@ -368,9 +370,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
                 new WeightedGraphNode(),
             };
 
-            var result = sut.GetPathOfMoreThanKLength(graph, 0, 48);
+            var (hasPath, _) = sut.GetPathOfMoreThanKLength(graph, 0, 48);
 
-            Assert.True(result.hasPath);
+            Assert.True(hasPath);
         }
     }
 }
