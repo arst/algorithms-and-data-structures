@@ -1,23 +1,29 @@
 ﻿using System;
-using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.DynamicProgramming
 {
     public class ChangeMakingProblem
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetMinChange(int[] coins, int value)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (coins is null || coins.Length == 0)
+            {
+                return 0;
+            }
+
             var dp = new int[value + 1];
 
-            for (int i = 1; i < dp.Length; i++)
+            for (var i = 1; i < dp.Length; i++)
             {
                 dp[i] = int.MaxValue;
 
-                for (int j = 0; j < coins.Length; j++)
+                foreach (var coin in coins)
                 {
-                    if (coins[j] <= i)
+                    if (coin <= i)
                     {
-                        dp[i] = Math.Min(dp[i], dp[i - coins[j]] + 1);
+                        dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
                     }
                 }
             }
