@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 {
     public class TugOfWarBestMatch
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int[] left, int[] right) GetTug(int[] set)
+#pragma warning restore CA1822 // Mark members as static
         {
             var leftTugLength = set.Length % 2 == 1 ? (set.Length - 1) / 2 : set.Length / 2;
             var visited = new bool[set.Length];
@@ -16,7 +19,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return (GetLeftTug(set, solution, leftTugLength) , GetRightTug(set, solution, leftTugLength));
         }
 
-        private int GetLeftTug(int[] set, bool[] included, int resultCounter, int difference, bool[] solution, int leftTugLength)
+        private static int GetLeftTug(int[] set, bool[] included, int resultCounter, int difference, IList<bool> solution, int leftTugLength)
         {
             if (resultCounter >= leftTugLength)
             {
@@ -25,7 +28,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 
                 if (Math.Abs(rightTug.Sum() - leftTug.Sum()) <= difference)
                 {
-                    for (int i = 0; i < included.Length; i++)
+                    for (var i = 0; i < included.Length; i++)
                     {
                         solution[i] = included[i];
                     }
@@ -52,12 +55,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return difference;
         }
 
-        private int[] GetRightTug(int[] set, bool[] included, int leftTugLength)
+        private static int[] GetRightTug(IReadOnlyList<int> set, IReadOnlyList<bool> included, int leftTugLength)
         {
-            var result = new int[set.Length - leftTugLength];
+            var result = new int[set.Count - leftTugLength];
             var resultPointer = 0;
 
-            for (int i = 0; i < set.Length; i++)
+            for (var i = 0; i < set.Count; i++)
             {
                 if (!included[i])
                 {
@@ -69,12 +72,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return result;
         }
 
-        private int[] GetLeftTug(int[] set, bool[] included, int leftTugLength)
+        private static int[] GetLeftTug(IReadOnlyList<int> set, IReadOnlyList<bool> included, int leftTugLength)
         {
             var result = new int[leftTugLength];
             var resultPointer = 0;
 
-            for (int i = 0; i < set.Length; i++)
+            for (var i = 0; i < set.Count; i++)
             {
                 if (included[i])
                 {
@@ -86,9 +89,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return result;
         }
 
-        private int GetNotIncludedIndex(int[] set, bool[] included, int startingPosition)
+        private static int GetNotIncludedIndex(IReadOnlyCollection<int> set, IReadOnlyList<bool> included, int startingPosition)
         {
-            for (int i = startingPosition; i < set.Length; i++)
+            for (var i = startingPosition; i < set.Count; i++)
             {
                 if (!included[i])
                 {

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 {
     public class TugOfWar
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int[] left, int[] right) GetTug(int[] set)
+#pragma warning restore CA1822 // Mark members as static
         {
             var leftTugLength = set.Length % 2 == 1 ? (set.Length - 1) / 2 : set.Length / 2;
             var visited = new bool[set.Length];
@@ -16,45 +19,43 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return (hasTug ? result : Array.Empty<int>(), hasTug ? GetRightTug(set, visited, leftTugLength) : Array.Empty<int>());
         }
 
-        private bool GetLeftTug(int[] set, bool[] included, int[] result, int resultCounter)
+        private static bool GetLeftTug(IReadOnlyList<int> set, bool[] included, IList<int> result, int resultCounter)
         {
-            if (resultCounter >= result.Length)
+            if (resultCounter >= result.Count)
             {
-                var rightTug = GetRightTug(set, included, result.Length);
+                var rightTug = GetRightTug(set, included, result.Count);
 
                 return rightTug.Sum() == result.Sum();
             }
 
-            var firstNonIncluded = GetNotIncludedIndex(set, included, 0);
+            var firstNonIncludedIndex = GetNotIncludedIndex(set, included, 0);
 
-            while (firstNonIncluded != -1)
+            while (firstNonIncludedIndex != -1)
             {
-                result[resultCounter] = set[firstNonIncluded];
+                result[resultCounter] = set[firstNonIncludedIndex];
                 resultCounter++;
-                included[firstNonIncluded] = true;
+                included[firstNonIncludedIndex] = true;
                 var hasTug = GetLeftTug(set, included, result, resultCounter);
 
                 if (hasTug)
                 {
                     return true;
                 }
-                else
-                {
-                    included[firstNonIncluded] = false;
-                    resultCounter--;
-                    firstNonIncluded = GetNotIncludedIndex(set, included, firstNonIncluded + 1);
-                }
+
+                included[firstNonIncludedIndex] = false;
+                resultCounter--;
+                firstNonIncludedIndex = GetNotIncludedIndex(set, included, firstNonIncludedIndex + 1);
             }
 
             return false;
         }
 
-        private int[] GetRightTug(int[] set, bool[] included, int leftTugLength)
+        private static int[] GetRightTug(IReadOnlyList<int> set, IReadOnlyList<bool> included, int leftTugLength)
         {
-            var result = new int[set.Length - leftTugLength];
+            var result = new int[set.Count - leftTugLength];
             var resultPointer = 0;
 
-            for (int i = 0; i < set.Length; i++)
+            for (var i = 0; i < set.Count; i++)
             {
                 if (!included[i])
                 {
@@ -66,9 +67,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return result;
         }
 
-        private int GetNotIncludedIndex(int[] set, bool[] included, int startingPosition)
+        private static int GetNotIncludedIndex(IReadOnlyCollection<int> set, IReadOnlyList<bool> included, int startingPosition)
         {
-            for (int i = startingPosition; i < set.Length; i++)
+            for (var i = startingPosition; i < set.Count; i++)
             {
                 if (!included[i])
                 {

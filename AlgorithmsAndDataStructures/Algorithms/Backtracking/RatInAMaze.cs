@@ -6,7 +6,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 {
     public class RatInAMaze
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool IsPathExists(int[][] maze, int targetX, int targetY)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (maze == null)
             {
@@ -17,7 +19,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             return Go(maze, 0, 0, targetX, targetY, visited);
         }
 
-        private bool Go(IReadOnlyList<int[]> maze, int positionX, int positionY, int targetX, int targetY, IReadOnlyList<bool[]> visited)
+        private static bool Go(IReadOnlyList<int[]> maze, int positionX, int positionY, int targetX, int targetY, IReadOnlyList<bool[]> visited)
         {
             if (maze[positionX][positionY] == 0)
             {
