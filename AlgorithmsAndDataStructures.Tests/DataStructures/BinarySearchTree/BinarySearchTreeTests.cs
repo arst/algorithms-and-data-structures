@@ -77,9 +77,9 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinarySearchTree
             var sut = new BinarySearchTree<int>();
             var random = new Random();
 
-            for (int j = 0; j < 10; j++)
+            for (var j = 0; j < 10; j++)
             {
-                for (int i = 0; i < 100000; i++)
+                for (var i = 0; i < 100000; i++)
                 {
                     var number = random.Next();
                     sut.Insert(number);                               
@@ -95,15 +95,15 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinarySearchTree
             var sut = new BinarySearchTree<int>();
             var random = new Random();
 
-            for (int j = 0; j < 100; j++)
+            for (var j = 0; j < 100; j++)
             {
-                for (int i = 0; i < 10000; i++)
+                for (var i = 0; i < 10000; i++)
                 {
                     var number = random.Next(1000);
                     sut.Insert(number);
                 }
 
-                for (int z = 0; z < 1000; z++)
+                for (var z = 0; z < 1000; z++)
                 {
                     var number = random.Next(1000);
                     sut.Delete(number);

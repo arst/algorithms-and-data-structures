@@ -55,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
                 }
                 else
                 {
-                    for (int i = 0; i < adjacentNodes.Count; i++)
+                    for (var i = 0; i < adjacentNodes.Count; i++)
                     {
                         if (!visited.Contains(adjacentNodes[i]))
                         {

@@ -20,9 +20,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
 
             // Check if all non-zero degree vertices are connected
-            int nonZeroDegreeVertice = 0;
+            var nonZeroDegreeVertice = 0;
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 // We need to start from non-zero degree vertice to traverse non-zero degree vertices
                 if (vertices[i].Count > 0)
@@ -39,7 +39,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             DFS(vertices, visited, nonZeroDegreeVertice);
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 // If some of the vertices with non-zero degree are not visited during DFS, then graph is not Eulerian
                 if (!visited[i] && vertices[i].Count > 0)
@@ -52,7 +52,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var oddVerticesCount = 0;
             var oddVertice = 0;
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 if (vertices[i].Count % 2 != 0)
                 {
@@ -75,7 +75,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             var adjacentVertices = vertices[currentVertice];
 
-            for (int i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertice].Count; i++)
             {
                 if (adjacentVertices[i] == -1)
                 {
@@ -84,7 +84,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
                 if (IsValidEdgeToIncludeInEulerianTrail(currentVertice, adjacentVertices[i], vertices))
                 {
-                    int adjacentVertice = adjacentVertices[i];
+                    var adjacentVertice = adjacentVertices[i];
                     eulerianPath.Add(new Tuple<int, int>(currentVertice, adjacentVertice));
                     RemoveEdge(vertices, currentVertice, adjacentVertice);
                     EulerianTraversal(adjacentVertice, vertices, eulerianPath);
@@ -118,9 +118,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         private int DFSCount(int currentVertice, List<int>[] vertices, bool[] visited)
         {
             visited[currentVertice] = true;
-            int count = 1;
+            var count = 1;
 
-            for (int i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertice].Count; i++)
             {
                 if (!visited[vertices[currentVertice][i]])
                 {
@@ -141,7 +141,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
 
-            for (int i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertice].Count; i++)
             {
                 if (!visited[vertices[currentVertice][i]])
                 {

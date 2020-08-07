@@ -25,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 
             var max = target.Max();
 
-            for (int exp = 1; max / exp > 0; exp *= 10)
+            for (var exp = 1; max / exp > 0; exp *= 10)
             {
                 StableCountingSort(target, exp);
             }

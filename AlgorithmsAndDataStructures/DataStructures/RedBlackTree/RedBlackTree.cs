@@ -174,7 +174,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         #region Delete
         public void Delete(int value)
         {
-            root = DeleteInternal(root, value, out RedBlackTreeNode doubleBlackNode);
+            root = DeleteInternal(root, value, out var doubleBlackNode);
 
             if (doubleBlackNode != null)
             {

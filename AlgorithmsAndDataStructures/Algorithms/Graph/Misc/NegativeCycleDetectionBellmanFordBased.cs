@@ -9,15 +9,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var distance = new int[graph.Length];
             var distanceChanged = true;
 
-            for (int i = 1; i < graph.Length; i++)
+            for (var i = 1; i < graph.Length; i++)
             {
                 distance[i] = int.MaxValue;
             }
 
             // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
-            for (int j = 0; j < graph.Length - 1 && distanceChanged; j++)
+            for (var j = 0; j < graph.Length - 1 && distanceChanged; j++)
             {
-                for (int i = 0; i < graph.Length - 1 && distanceChanged; i++)
+                for (var i = 0; i < graph.Length - 1 && distanceChanged; i++)
                 {
                     var vertex = graph[i];
                     distanceChanged = false;
@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             }
 
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 var vertex = graph[i];
                 distanceChanged = false;

@@ -24,9 +24,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
                 foreach (var edge in current.Vertex.Edges)
                 {
-                    int heapIndexForDestinationNode = mapping[edge.To];
+                    var heapIndexForDestinationNode = mapping[edge.To];
 
-                    int heapIndexForCurrentlyInspectedNode = mapping[current.IndexInOriginalGraph];
+                    var heapIndexForCurrentlyInspectedNode = mapping[current.IndexInOriginalGraph];
 
                     var destinationNodeCurentWeight = heap[heapIndexForDestinationNode].Weight;
                     var destinationNodeProposedWeight = heap[heapIndexForCurrentlyInspectedNode].Weight + edge.Weight;
@@ -57,7 +57,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
         private static void PopulateHeap(WeightedGraphVertex[] graph, int from, HeapNode[] heap, int[] mapping)
         {
-            for (int i = 0; i < heap.Length; i++)
+            for (var i = 0; i < heap.Length; i++)
             {
                 heap[i] = new HeapNode()
                 {

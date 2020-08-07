@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
         public void Append(T value)
         {
             var path = new SkipListNode<T>[maxHeight - 1];
-            int counter = 0;
+            var counter = 0;
             var current = sentinel;
 
             while (current.Down != null)
@@ -68,7 +68,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             }
 
             var below = current.Next;
-            for (int i = levelsToAdd - 2; i >= 0; i--)
+            for (var i = levelsToAdd - 2; i >= 0; i--)
             {
                 nextInLine = path[i]?.Next;
                 path[i].Next = new SkipListNode<T>() { Value = value, Down = below };

@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTes
         {
             var sut = new MoveToForwardSelfOrganizingList<int>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 sut.Add(i);
             }
@@ -25,19 +25,19 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTes
         {
             var sut = new MoveToForwardSelfOrganizingList<int>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 sut.Add(i);
             }
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 sut.Get(i);
             }
 
             var current = sut.Head;
 
-            for (int i = 9; i > -1; i--)
+            for (var i = 9; i > -1; i--)
             {
                 Assert.Equal(i, current.Value);
                 current = current.Next;

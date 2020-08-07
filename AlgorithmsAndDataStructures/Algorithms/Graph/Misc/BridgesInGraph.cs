@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var bridges = new List<Tuple<int, int>>();
             var parents = new int[vertices.Length];
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 if (!visited[i])
                     GetBridges(i, 0, vertices, discoveryTimes, lowestReachableDicoveryTimeInSubtree, visited, parents, bridges);

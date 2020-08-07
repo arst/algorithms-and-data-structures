@@ -51,16 +51,16 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
             var testcaseSize = 10;
             var sut = new LFU(testcaseSize);
 
-            for (int i = 0; i < testcaseSize - 1; i++)
+            for (var i = 0; i < testcaseSize - 1; i++)
             {
                 sut.Add(i, i.ToString());
             }
 
             sut.Add(testcaseSize, testcaseSize.ToString());
 
-            for (int i = testcaseSize + 1; i < testcaseSize * 2; i++)
+            for (var i = testcaseSize + 1; i < testcaseSize * 2; i++)
             {
-                for (int j = 0; j < testcaseSize; j++)
+                for (var j = 0; j < testcaseSize; j++)
                 {
                     sut.Get(j);
                 }

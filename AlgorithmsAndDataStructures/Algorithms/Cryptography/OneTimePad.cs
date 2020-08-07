@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Cryptography
             var oneTimePad = GetOneTimePad(bitsString);
             var resultBuilder = new StringBuilder(bitsString.Length);
 
-            for (int i = 0; i < bitsString.Length; i++)
+            for (var i = 0; i < bitsString.Length; i++)
             {
                 var inputBit = bitsString[i] == '1';
                 var oneTimePadBit = oneTimePad[i] == '1';

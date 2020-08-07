@@ -143,22 +143,22 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
             var queue = new ConcurrentQueue<string>();
             var threads = new Thread[100];
 
-            for (int i = 0; i < 50; i++)
+            for (var i = 0; i < 50; i++)
             {
                 threads[i] = new Thread(() => Ride("D"));
             }
 
-            for (int i = 50; i < 100; i++)
+            for (var i = 50; i < 100; i++)
             {
                 threads[i] = new Thread(() => Ride("R"));
             }
 
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 threads[i].Start();
             }
 
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 threads[i].Join();
             }

@@ -24,11 +24,11 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Stack
         public void QueueStackWorksInLifoOrder()
         {
             var sut = new QueueStack<int>();
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 sut.Push(i);
             }
-            for (int i = 99; i >= 0; i--)
+            for (var i = 99; i >= 0; i--)
             {
                 Assert.Equal(i, sut.Pop());
             }

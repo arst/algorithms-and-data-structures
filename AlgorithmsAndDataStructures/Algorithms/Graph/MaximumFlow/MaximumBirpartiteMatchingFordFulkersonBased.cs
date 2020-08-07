@@ -10,12 +10,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var colors = new int[graph.Length];
             const int startColor = 0;
 
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 colors[i] = -1;
             }
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (colors[i] == -1)
                 {
@@ -25,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var leftSetVertices = new HashSet<int>();
 
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 if (colors[i] == 0)
                 {
@@ -36,11 +36,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var flowNetwork = BuildFlowNetwork(graph, leftSetVertices);
             var residualGraph = new int[flowNetwork.Length][];
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[flowNetwork[i].Length];
 
-                for (int j = 0; j < residualGraph[i].Length; j++)
+                for (var j = 0; j < residualGraph[i].Length; j++)
                 {
                     residualGraph[i][j] = flowNetwork[i][j];
                 }
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             visited[currentVertice] = true;
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 if (residualGraph[currentVertice][i] > 0 && !visited[i])
                 {
@@ -95,7 +95,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             flowNwetwork[0] = new int[flowNwetwork.Length];
             flowNwetwork[flowNwetwork.Length - 1] = new int[flowNwetwork.Length];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 var currentVertice = i + 1;
                 var isLeftSideVertice = leftSetVertices.Contains(i);
@@ -106,7 +106,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                     flowNwetwork[0][currentVertice] = 1;
                 }
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     flowNwetwork[currentVertice][j + 1] = graph[i][j];
                 }
@@ -130,7 +130,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var currentVertice = queue.Dequeue();
 
-                for (int i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Length; i++)
                 {
                     if (graph[currentVertice][i] < 1)
                     {

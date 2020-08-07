@@ -48,14 +48,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
             const int inputLength = 1000;
             var input = new int[inputLength];
 
-            for (int i = 0; i < inputLength; i++)
+            for (var i = 0; i < inputLength; i++)
             {
                 input[i] = random.Next(inputLength * 10);
             }
 
             var sorted = input.OrderBy(arg => arg).ToArray();
 
-            for (int i = 0; i < inputLength; i++)
+            for (var i = 0; i < inputLength; i++)
             {
                 Assert.Equal(sorted[i], sut.GetLargestElement(input, i));
             }

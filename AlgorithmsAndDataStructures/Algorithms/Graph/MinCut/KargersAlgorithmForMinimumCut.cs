@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             {
                 var vertices = new Dictionary<int, List<int>>();
                 // Copy all vertices to a new dictionary with indexes as a key and vadjacent vertices as values.
-                for (int j = 0; j < originalVertices.Length; j++)
+                for (var j = 0; j < originalVertices.Length; j++)
                 {
                     var original = originalVertices[j];
                     vertices.Add(j, new List<int>(original));
@@ -29,7 +29,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                     var randomEdge = GetRandomEdge(vertices);
 
                     // Iterate over adjacent vertices of 'to' vertice. We are going to conflate it with 'from' vertice.
-                    for (int i = 0; i < vertices[randomEdge.to].Count; i++)
+                    for (var i = 0; i < vertices[randomEdge.to].Count; i++)
                     {
                         var vertice = vertices[randomEdge.to][i];
 

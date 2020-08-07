@@ -256,20 +256,20 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsRebalanacedAfterDelete()
         {
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
                 var random = new Random();
                 var seed = new int[1000];
 
-                for (int j = 0; j < seed.Length; j++)
+                for (var j = 0; j < seed.Length; j++)
                 {
                     seed[j] = random.Next(seed.Length * 10);
                     sut.Insert(seed[j]);
                     sut.CheckTreeValidity();
                 }
 
-                for (int z = 0; z < seed.Length; z++)
+                for (var z = 0; z < seed.Length; z++)
                 {
                     sut.Delete(seed[z]);
                     sut.CheckTreeValidity();

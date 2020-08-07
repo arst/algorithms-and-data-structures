@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
             var ordering = new int[input.Length];
             var tuples = new EfficientSuffixArrayNode[input.Length];
 
-            for (int i = 0; i < input.Length - 1; i++)
+            for (var i = 0; i < input.Length - 1; i++)
             {
                 tuples[i] = new EfficientSuffixArrayNode(input)
                 {
@@ -41,13 +41,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
             Array.Sort(tuples); // can be raplced with Radix sort to make it more performant
 
-            for (int prefixLength = 4; input.Length * 2 > prefixLength; prefixLength = prefixLength * 2)
+            for (var prefixLength = 4; input.Length * 2 > prefixLength; prefixLength = prefixLength * 2)
             {
                 var rank = 0;
                 var previousSuffixRank = tuples[0].Rank;
                 tuples[0].Rank = 0;
 
-                for (int j = 1; j < input.Length; j++)
+                for (var j = 1; j < input.Length; j++)
                 {
                     if (tuples[j].Rank == previousSuffixRank && tuples[j].NextRank == tuples[j - 1].NextRank)
                     {
@@ -63,7 +63,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
                     ordering[tuples[j].Index] = j;
                 }
 
-                for (int i = 0; i < input.Length; i++)
+                for (var i = 0; i < input.Length; i++)
                 {
                     var next = tuples[i].Index + prefixLength / 2;
                     tuples[i].NextRank = next < input.Length ? tuples[ordering[next]].Rank : -1;

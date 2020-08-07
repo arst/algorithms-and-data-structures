@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
             var random = new Random();
 
             // We populate all samples from population to result rightaway because we don't know whether we get sampleSize + 1 at any time at all.
-            for (int i = 0; i < sampleSize; i++)
+            for (var i = 0; i < sampleSize; i++)
             {
                 result[i] = population.GetNext();
             }

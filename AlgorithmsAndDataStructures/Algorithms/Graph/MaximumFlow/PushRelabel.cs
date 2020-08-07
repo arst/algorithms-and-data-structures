@@ -25,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var flow = 0;
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 flow += residualGraph[i][0];
             }
@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         private bool HasAccess(int[] excess)
         {
-            for (int i = 1; i < excess.Length - 1; i++)
+            for (var i = 1; i < excess.Length - 1; i++)
             {
                 if (excess[i] > 0)
                 {
@@ -51,7 +51,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var maxHight = int.MinValue;
             var maxHeightIndex = -1;
 
-            for (int i = 1; i < excess.Length - 1; i++)
+            for (var i = 1; i < excess.Length - 1; i++)
             {
                 if (excess[i] > 0 && (maxHeightIndex == -1 || height[maxHeightIndex]  > maxHight))
                 {
@@ -65,17 +65,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         private static void Initialize(int[][] graph, int[][] residualGraph, int[] excess)
         {
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 residualGraph[i] = new int[graph.Length];
 
-                for (int j = 0; j < residualGraph[i].Length; j++)
+                for (var j = 0; j < residualGraph[i].Length; j++)
                 {
                     residualGraph[i][j] = graph[i][j];
                 }
             }
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 residualGraph[0][i] = 0;
                 residualGraph[i][0] = graph[0][i];
@@ -85,7 +85,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         public bool Push(int[][] residualGraph, int currentVertice, int[] excess, int[] heights)
         {
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 if (residualGraph[currentVertice][i] > 0 && heights[currentVertice] == heights[i] + 1)
                 {

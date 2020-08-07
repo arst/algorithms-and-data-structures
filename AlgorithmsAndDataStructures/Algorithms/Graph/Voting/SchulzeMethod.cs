@@ -26,14 +26,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
         {
             var result = new List<int>[strongestPath.Length];
 
-            for (int i = 0; i < result.Length; i++)
+            for (var i = 0; i < result.Length; i++)
             {
                 result[i] = new List<int>();
             }
 
-            for (int i = 0; i < strongestPath.Length; i++)
+            for (var i = 0; i < strongestPath.Length; i++)
             {
-                for (int j = 0; j < strongestPath.Length; j++)
+                for (var j = 0; j < strongestPath.Length; j++)
                 {
                     if (i != j)
                     {
@@ -50,19 +50,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
 
         private static (int[][] strongestPath, int[][] path) CalclateStrongestPath(int[][] adjacencyMatrix)
         {
-            int numberOfCandidates = adjacencyMatrix.Length;
+            var numberOfCandidates = adjacencyMatrix.Length;
             var strongestPath = CreateEmptySquareMatrix(numberOfCandidates);
             var path = CreateEmptySquareMatrix(numberOfCandidates);
 
-            for (int i = 0; i < strongestPath.Length; i++)
+            for (var i = 0; i < strongestPath.Length; i++)
             {
                 strongestPath[i] = new int[strongestPath.Length];
                 path[i] = new int[numberOfCandidates];
             }
 
-            for (int i = 0; i < numberOfCandidates; i++)
+            for (var i = 0; i < numberOfCandidates; i++)
             {
-                for (int j = 0; j < numberOfCandidates; j++)
+                for (var j = 0; j < numberOfCandidates; j++)
                 {
                     if (adjacencyMatrix[i][j] > adjacencyMatrix[j][i])
                     {
@@ -77,11 +77,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
                 }
             }
 
-            for (int k = 0; k < numberOfCandidates; k++)
+            for (var k = 0; k < numberOfCandidates; k++)
             {
-                for (int i = 0; i < numberOfCandidates; i++)
+                for (var i = 0; i < numberOfCandidates; i++)
                 {
-                    for (int j = 0; j < numberOfCandidates; j++)
+                    for (var j = 0; j < numberOfCandidates; j++)
                     {
                         if (i != j)
                         {
@@ -100,13 +100,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
 
         private static int[][] CreateAdjacencyMatrix(int[][] pairwisePreferences)
         {
-            int numberOfCandidates = pairwisePreferences.Length;
+            var numberOfCandidates = pairwisePreferences.Length;
 
             var adjacencyMatrix = CreateEmptySquareMatrix(numberOfCandidates);
 
-            for (int i = 0; i < numberOfCandidates; i++)
+            for (var i = 0; i < numberOfCandidates; i++)
             {
-                for (int j = 0; j < numberOfCandidates; j++)
+                for (var j = 0; j < numberOfCandidates; j++)
                 {
                     if (pairwisePreferences[i][j] > pairwisePreferences[j][i])
                     {
@@ -122,15 +122,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
         {
             var preferencesMatrix = CreateEmptySquareMatrix(numberOfCandidates);
 
-            for (int i = 0; i < ballots.Length; i++)
+            for (var i = 0; i < ballots.Length; i++)
             {
                 var ballot = ballots[i];
 
-                for (int j = 0; j < ballot.Length; j++)
+                for (var j = 0; j < ballot.Length; j++)
                 {
                     var candidate = ballot[j];
 
-                    for (int k = j + 1; k < ballot.Length; k++)
+                    for (var k = j + 1; k < ballot.Length; k++)
                     {
                         preferencesMatrix[candidate][ballot[k]] += 1;
                     }
@@ -144,7 +144,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
         {
             var preferencesMatrix = new int[numberOfCandidates][];
 
-            for (int i = 0; i < preferencesMatrix.Length; i++)
+            for (var i = 0; i < preferencesMatrix.Length; i++)
             {
                 preferencesMatrix[i] = new int[preferencesMatrix.Length];
             }

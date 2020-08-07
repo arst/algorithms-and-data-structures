@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         public void BaseSortingWorks()
         {
             var sut = GetSystemUnderTest();
-            int[] target = new[] { 6, 5, 3, 1, 8, 7, 2, 4 };
+            var target = new[] { 6, 5, 3, 1, 8, 7, 2, 4 };
             sut.Sort(target);
 
             AssertIsSorted(target);
@@ -44,9 +44,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
             var target = new int[10000];
             var test = new int[target.Length];
 
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
-                for (int j = 0; j < target.Length; j++)
+                for (var j = 0; j < target.Length; j++)
                 {
                     target[j] = r.Next(maxValue: MaxValue);
                 }
@@ -59,7 +59,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
 
         public void AssertIsSorted(int[] input)
         {
-            for (int i = 1; i < input.Length; i++)
+            for (var i = 1; i < input.Length; i++)
             {
                 Assert.True(input[i] >= input[i - 1]);
             }

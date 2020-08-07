@@ -135,7 +135,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
 
             foreach (var score in scores)
             {
-                float p = (float)score.Value / examples.Length;
+                var p = (float)score.Value / examples.Length;
 
                 entropy = entropy - p * (float)Math.Log(p, 2);
             }
@@ -158,7 +158,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 groups[attributeValue].Add(example);
             }
 
-            float informationGain = CalculateEntrophy(examples, targetAttribute);
+            var informationGain = CalculateEntrophy(examples, targetAttribute);
 
             foreach (var group in groups)
             {

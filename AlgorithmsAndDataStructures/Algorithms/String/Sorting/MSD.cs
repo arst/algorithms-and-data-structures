@@ -25,31 +25,31 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Sorting
             // So counters should shift one additional place to make place for -1 character
             var counter = new int[256 + 2];
 
-            for (int i = start; i <= end; i++)
+            for (var i = start; i <= end; i++)
             {
                 // In LSD we shift them by one to build indexes from counters
                 // Here we do the same but we need to shift them by 2 to makr place for -1 character
                 counter[CharAt(input[i], currentCharacter) + 2]++;
             }
 
-            for (int i = 0; i < counter.Length - 1; i++)
+            for (var i = 0; i < counter.Length - 1; i++)
             {
                 counter[i + 1] += counter[i];
             }
 
-            for (int i = start; i <= end; i++)
+            for (var i = start; i <= end; i++)
             {
                 auxilary[counter[CharAt(input[i], currentCharacter) + 1]++] = input[i];
             }
 
-            for (int i = start; i <= end; i++)
+            for (var i = start; i <= end; i++)
             {
                 // To convert auxilty indexes we need to substract start position from auxilary index
                 // Since when we filled auxilary we started at start position
                 input[i] = auxilary[i - start];
             }
 
-            for (int i = 0; i < alphabetSize; i++)
+            for (var i = 0; i < alphabetSize; i++)
             {
                 // Sort each subarray divided by first character in current substring
                 SortInternal(input, auxilary, start + counter[i], start + counter[i+1] - 1, currentCharacter + 1);

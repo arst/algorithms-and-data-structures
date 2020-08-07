@@ -39,7 +39,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.UnrolledLinkedList
 
             while (current != null)
             {
-                for (int i = 0; i < current.CurrentIndex; i++)
+                for (var i = 0; i < current.CurrentIndex; i++)
                 {
                     if (current.Values[i].Equals(value))
                     {
@@ -60,7 +60,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.UnrolledLinkedList
 
             while (current != null)
             {
-                for (int i = 0; i < current.CurrentIndex; i++)
+                for (var i = 0; i < current.CurrentIndex; i++)
                 {
                     result.Add(current.Values[i]);
                 }

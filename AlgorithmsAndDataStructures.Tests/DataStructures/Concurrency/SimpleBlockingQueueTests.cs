@@ -29,7 +29,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             void Write()
             {
-                for (int i = 0; i < testSize; i++)
+                for (var i = 0; i < testSize; i++)
                 {
                     sut.Enqueue(i);
                 }
@@ -59,8 +59,8 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             while (queue1.Count > 0)
             {
-                var smallerDequeued = queue1.TryDequeue(out int smaller);
-                var biggerDequeued = queue1.TryDequeue(out int bigger);
+                var smallerDequeued = queue1.TryDequeue(out var smaller);
+                var biggerDequeued = queue1.TryDequeue(out var bigger);
 
                 if (smallerDequeued && biggerDequeued)
                 {
@@ -73,8 +73,8 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             while (queue2.Count > 0)
             {
-                var smallerDequeued = queue2.TryDequeue(out int smaller);
-                var biggerDequeued = queue2.TryDequeue(out int bigger);
+                var smallerDequeued = queue2.TryDequeue(out var smaller);
+                var biggerDequeued = queue2.TryDequeue(out var bigger);
 
                 if (smallerDequeued && biggerDequeued)
                 {

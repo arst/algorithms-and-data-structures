@@ -8,7 +8,7 @@
         {
             set = new int[size];
 
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
                 set[i] = i;
             }
@@ -19,7 +19,7 @@
             var aSet = set[a];
             var bSet = set[b];
 
-            for (int i = 0; i < set.Length; i++)
+            for (var i = 0; i < set.Length; i++)
             {
                 if (set[i] == bSet)
                 {

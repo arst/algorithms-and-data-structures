@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             var sut = new FordFulkersonWithCapacityHeuristic();
             var graph = new int[4][];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 graph[i] = new int[4];
             }
@@ -31,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             var sut = new FordFulkersonWithCapacityHeuristic();
             var graph = new int[4][];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 graph[i] = new int[4];
             }

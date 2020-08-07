@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Graph
 
             var dfs = sut.DepthFirstSearch();
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 Assert.Equal(i, dfs[i]);
             }
@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Graph
 
             var dfs = sut.DepthFirstSearch();
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 Assert.Equal(i, dfs[i]);
             }

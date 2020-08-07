@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             var sut = new PushRelabel();
             var graph = new int[6][];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 graph[i] = new int[graph.Length];
             }
@@ -36,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             var sut = new PushRelabel();
             var graph = new int[4][];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 graph[i] = new int[graph.Length];
             }

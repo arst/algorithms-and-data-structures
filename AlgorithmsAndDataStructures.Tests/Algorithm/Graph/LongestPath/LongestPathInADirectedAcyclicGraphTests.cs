@@ -41,7 +41,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                 new WeightedGraphVertex()
             };
 
+#pragma warning disable HAA0101 // Array allocation for params parameter
             Assert.Collection(sut.GetLongestPath(graph), arg => Assert.Equal(0, arg), arg => Assert.Equal(10, arg));
+#pragma warning restore HAA0101 // Array allocation for params parameter
         }
 
         [Fact]
@@ -148,6 +150,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
 
             var collection = sut.GetLongestPath(graph);
 
+#pragma warning disable HAA0101 // Array allocation for params parameter
             Assert.Collection(collection, 
                 arg => Assert.Equal(0, arg), 
                 arg => Assert.Equal(5, arg),
@@ -155,6 +158,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                 arg => Assert.Equal(14, arg),
                 arg => Assert.Equal(13, arg),
                 arg => Assert.Equal(15, arg));
+#pragma warning restore HAA0101 // Array allocation for params parameter
         }
     }
 }

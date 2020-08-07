@@ -12,11 +12,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         {
             var residualGraph = new int[flowNetwork.GetLength(0)][];
             var flow = 0;
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[flowNetwork[i].Length];
 
-                for (int j = 0; j < residualGraph[i].Length; j++)
+                for (var j = 0; j < residualGraph[i].Length; j++)
                 {
                     residualGraph[i][j] = flowNetwork[i][j];
                 }
@@ -90,9 +90,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var current = queue.Dequeue();
 
-                for (int i = 0; i < residualGraph[current].Length; i++)
+                for (var i = 0; i < residualGraph[current].Length; i++)
                 {
-                    int adjacentVerticeCapacity = residualGraph[current][i];
+                    var adjacentVerticeCapacity = residualGraph[current][i];
 
                     if (adjacentVerticeCapacity > 0 && !visited[i])
                     {

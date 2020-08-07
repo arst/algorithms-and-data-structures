@@ -9,11 +9,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             var dp = new int[(int)Math.Pow(2, graph.Length)][];
             var allvisited = (1 << graph.Length) - 1;
 
-            for (int i = 0; i < dp.Length; i++)
+            for (var i = 0; i < dp.Length; i++)
             {
                 dp[i] = new int[graph.Length];
 
-                for (int j = 0; j < dp[i].Length; j++)
+                for (var j = 0; j < dp[i].Length; j++)
                 {
                     dp[i][j] = -1;
                 }
@@ -40,12 +40,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
 
             var minDistance = int.MaxValue;
 
-            for (int city = 0; city < graph.Length; city++)
+            for (var city = 0; city < graph.Length; city++)
             {
                 // Check if city is already a part of the route.
                 if ((currentRoute & (1 << city)) == 0)
                 {
-                    int distanceThroughCity = graph[currentCity][city] + Travel(graph, dp, allvisited, currentRoute | (1 << city) /*to ensure that city is included in the route*/, city/*we travel further from the city*/);
+                    var distanceThroughCity = graph[currentCity][city] + Travel(graph, dp, allvisited, currentRoute | (1 << city) /*to ensure that city is included in the route*/, city/*we travel further from the city*/);
 
                     minDistance = Math.Min(minDistance, distanceThroughCity);
                 }

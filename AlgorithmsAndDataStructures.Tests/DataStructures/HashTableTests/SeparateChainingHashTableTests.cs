@@ -70,27 +70,27 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.HashTableTests
         {
             var sut = new SeparateChainingHashTable<string, int>(100000);
 
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 sut.Add(i.ToString(), i);
             }
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 Assert.Equal(i, sut.Get(i.ToString()));
             }
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 sut.Add(i.ToString(), i * 2);
             }
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 Assert.Equal(i * 2, sut.Get(i.ToString()));
             }
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 sut.Delete(i.ToString());
             }
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 Assert.False(sut.Find(i.ToString()));
             }

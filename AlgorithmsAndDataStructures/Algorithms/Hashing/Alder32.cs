@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Hashing
              */
             var endIndex = ibStart + cbSize;
 
-            for (int i = ibStart; i < endIndex; i++)
+            for (var i = ibStart; i < endIndex; i++)
             {
                 sum1 = (ushort)((sum1 + array[i]) % Modulo);
                 sum2 = (ushort)((sum1 + sum2) % Modulo);

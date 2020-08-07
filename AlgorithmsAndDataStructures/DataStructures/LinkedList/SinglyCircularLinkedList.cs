@@ -63,7 +63,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return null;
             }
 
-            Node<T> next = this.end?.Next;
+            var next = this.end?.Next;
             this.end.Next = next?.Next;
 
             if (next == this.end)

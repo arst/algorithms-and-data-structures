@@ -12,12 +12,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet
             set = new int[size];
             weight = new int[size];
 
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
                 set[i] = i;
             }
 
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
                 weight[i] = 1;
             }

@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 
             while (inputIndex < input.Length)
             {
-                bool isMatch = input[inputIndex] == pattern[patternIndex];
+                var isMatch = input[inputIndex] == pattern[patternIndex];
                 if (isMatch)
                 {
                     inputIndex--;
@@ -53,7 +53,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
         {
             var result = new Dictionary<char, int>();
 
-            for (int i = 0; i < pattern.Length - 1; i++)
+            for (var i = 0; i < pattern.Length - 1; i++)
             {
                 result[pattern[i]] = pattern.Length - i - 1;
             }

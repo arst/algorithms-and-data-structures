@@ -43,7 +43,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
             var current = nextElementPointer;
             while (current > 1)
             {
-                int parentIndex = current / 2;
+                var parentIndex = current / 2;
                 if (heap[current].CompareTo(heap[parentIndex]) == 0)
                 {
                     break;
@@ -83,9 +83,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
         private void Sink(int index)
         {
-            int rightChildIndex = index * 2 + 1;
-            int leftChildIndex = index * 2;
-            int swapChildIndex = leftChildIndex;
+            var rightChildIndex = index * 2 + 1;
+            var leftChildIndex = index * 2;
+            var swapChildIndex = leftChildIndex;
 
             if (leftChildIndex >= nextElementPointer)
             {

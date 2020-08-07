@@ -12,11 +12,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var flow = 0;
             var maxEdgeWeight = int.MinValue;
             
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[flowNetwork[i].Length];
 
-                for (int j = 0; j < residualGraph[i].Length; j++)
+                for (var j = 0; j < residualGraph[i].Length; j++)
                 {
                     residualGraph[i][j] = flowNetwork[i][j];
 
@@ -100,9 +100,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         private int[] GetPath(int[][] residualGraph, int currentVertice, int targetVertice, int[] path, bool[] visited, int delta)
         {
 
-            for (int i = 0; i < residualGraph[currentVertice].Length; i++)
+            for (var i = 0; i < residualGraph[currentVertice].Length; i++)
             {
-                int adjacentVerticeCapacity = residualGraph[currentVertice][i];
+                var adjacentVerticeCapacity = residualGraph[currentVertice][i];
 
                 if (adjacentVerticeCapacity > 0 && !visited[i] && adjacentVerticeCapacity >= delta)
                 {

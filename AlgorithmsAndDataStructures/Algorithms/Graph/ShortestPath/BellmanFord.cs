@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
             InitializeDisatances(graph, from, distance);
 
             // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
-            for (int i = 0; i < graph.Length - 1 && isRelaxed; i++)
+            for (var i = 0; i < graph.Length - 1 && isRelaxed; i++)
             {
                 foreach (var edge in edges)
                 {
@@ -59,7 +59,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 
         private static void InitializeDisatances(WeightedGraphVertex[] graph, int from, int[] distance)
         {
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 distance[i] = int.MaxValue;
             }

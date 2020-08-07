@@ -14,7 +14,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
             var minimumSpanningTree = new List<WeightedGraphNodeEdge>();
             var spanningTree = new GraphNode<int>[graph.Length];
 
-            for (int i = 0; i < spanningTree.Length; i++)
+            for (var i = 0; i < spanningTree.Length; i++)
             {
                 spanningTree[i] = new GraphNode<int>();
             }

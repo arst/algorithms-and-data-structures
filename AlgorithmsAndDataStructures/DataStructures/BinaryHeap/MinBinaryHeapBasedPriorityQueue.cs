@@ -39,7 +39,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
             lock (lockObject)
             {
-                T[] heapCopy = heap.GetHeap();
+                var heapCopy = heap.GetHeap();
                 Array.Sort(heapCopy);
                 result = heapCopy.AsEnumerable().GetEnumerator();
             }
@@ -49,7 +49,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
         public T[] ToArray()
         {
-            T[] heapCopy = heap.GetHeap();
+            var heapCopy = heap.GetHeap();
             Array.Sort(heapCopy);
             return heapCopy;
         }

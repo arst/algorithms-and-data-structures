@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 
             while (inputIndex < input.Length)
             {
-                bool isMatch = input[inputIndex] == pattern[patternIndex];
+                var isMatch = input[inputIndex] == pattern[patternIndex];
                 if (isMatch)
                 {
                     inputIndex--;

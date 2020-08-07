@@ -9,14 +9,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
         {
             var visited = new bool[graph.Length];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (visited[i])
                 {
                     continue;
                 }
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     if (graph[i][j] == 0)
                     {
@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
 
             var result = new List<int>();
 
-            for (int i = 0; i < visited.Length; i++)
+            for (var i = 0; i < visited.Length; i++)
             {
                 if (visited[i])
                 {
@@ -49,11 +49,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
         {
             var visited = new int[graph.Length];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 var vertexWithMaxDegree = -1;
 
-                for (int v = 0; v < graph.Length; v++)
+                for (var v = 0; v < graph.Length; v++)
                 {
                     if (visited[v] == 0 && (vertexWithMaxDegree == -1 || graph[vertexWithMaxDegree].Sum() < graph[v].Sum()))
                     {
@@ -66,7 +66,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
                     break;
                 }
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     if (graph[vertexWithMaxDegree][j] == 0)
                     {
@@ -84,7 +84,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
 
             var result = new List<int>();
 
-            for (int i = 0; i < visited.Length; i++)
+            for (var i = 0; i < visited.Length; i++)
             {
                 if (visited[i] == 2)
                 {

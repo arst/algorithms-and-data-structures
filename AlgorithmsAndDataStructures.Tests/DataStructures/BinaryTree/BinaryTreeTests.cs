@@ -111,9 +111,9 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
             sut.Insert(8);
 
             var bfsResult = sut.BreadthFirstTraversal();
-            int counter = 0;
+            var counter = 0;
 
-            for (int i = 1; i < 9; i++)
+            for (var i = 1; i < 9; i++)
             {
                 Assert.Equal(i, bfsResult[counter]);
                 counter++;
@@ -132,7 +132,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
             sut.Insert(5);
 
             var dfsResult = sut.DepthFirstTraversalPostorder();
-            int counter = 0;
+            var counter = 0;
             Assert.Equal(4, dfsResult[0]);
             Assert.Equal(5, dfsResult[1]);
             Assert.Equal(2, dfsResult[2]);

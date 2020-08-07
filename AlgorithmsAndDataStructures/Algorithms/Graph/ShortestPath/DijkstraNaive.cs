@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
 
-            for (int i = 0; i < distance.Length; i++)
+            for (var i = 0; i < distance.Length; i++)
             {
                 distance[i] = Int32.MaxValue;
             }
@@ -49,7 +49,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             var currentMin = int.MaxValue;
             var currentMinIndex = -1;
 
-            for (int i = 0; i < distance.Length; i++)
+            for (var i = 0; i < distance.Length; i++)
             {
                 if (visited[i])
                 {

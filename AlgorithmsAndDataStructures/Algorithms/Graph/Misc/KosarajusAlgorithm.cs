@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             DFS(graph, 0, visited);
 
-            for (int i = 0; i < visited.Length; i++)
+            for (var i = 0; i < visited.Length; i++)
             {
                 if (!visited[i])
                 {
@@ -23,7 +23,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             DFS(transposedGraph, 0, transposedVisited);
 
-            for (int i = 0; i < transposedVisited.Length; i++)
+            for (var i = 0; i < transposedVisited.Length; i++)
             {
                 if (!transposedVisited[i])
                 {
@@ -38,9 +38,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
 
-            for (int i = 0; i < graph[currentVertice].Edges.Count; i++)
+            for (var i = 0; i < graph[currentVertice].Edges.Count; i++)
             {
-                int neigbhor = graph[currentVertice].Edges[i].To;
+                var neigbhor = graph[currentVertice].Edges[i].To;
 
                 if (!visited[neigbhor])
                 {
@@ -53,11 +53,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             var result = new WeightedGraphVertex[graph.Length];
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 result[i] = result[i] == null ? new WeightedGraphVertex() : result[i];
 
-                for (int j = 0; j < graph[i].Edges.Count; j++)
+                for (var j = 0; j < graph[i].Edges.Count; j++)
                 {
                     var from = graph[i].Edges[j].To;
 

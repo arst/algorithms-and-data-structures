@@ -16,9 +16,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
 
             // Check if all non-zero degree vertices are connected
-            int nonZeroDegreeVertice = 0;
+            var nonZeroDegreeVertice = 0;
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 // We need to start from non-zero degree vertice to traverse non-zero degree vertices
                 if (vertices[i].Count > 0)
@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             DFS(vertices, visited, nonZeroDegreeVertice);
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 // If some of the vertices with non-zero degree are not visited during DFS, then graph is not Eulerian
                 if (!visited[i] && vertices[i].Count > 0)
@@ -47,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             //Count vertices with odd degree, in Eulerian graph there are 0 or 2 vertices with odd degree. It is impossible to have 1 odd degree vertice in undirected graph.
             var odd = 0;
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 if (vertices[i].Count % 2 != 0)
                 {
@@ -68,7 +68,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
 
-            for (int i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertice].Count; i++)
             {
                 if (!visited[vertices[currentVertice][i]])
                 {

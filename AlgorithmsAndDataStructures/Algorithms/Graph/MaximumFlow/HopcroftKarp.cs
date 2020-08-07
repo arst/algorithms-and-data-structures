@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             while (HasAugmetingPath(graph, leftSideVertices, pairs, distance))
             {
-                for (int i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Length; i++)
                 {
                     var position = new int[graph.Length];
 
@@ -26,12 +26,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                         continue;
                     }
 
-                    Stack<int> path = new Stack<int>();
+                    var path = new Stack<int>();
                     path.Push(i);
 
                     while (path.Count > 0)
                     {
-                        int currentVertice = path.Peek();
+                        var currentVertice = path.Peek();
                         
                         // Move up the stack, no more edges in level graph leaving currentVertice
                         if (position[currentVertice] == graph.Length)
@@ -41,7 +41,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                         else
                         {
                             var isEdgeExists = graph[currentVertice][position[currentVertice]] > 0;
-                            int w = position[currentVertice];
+                            var w = position[currentVertice];
                             position[currentVertice]++;
 
                             if (!isEdgeExists)
@@ -63,8 +63,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                             {
                                 while (path.Count > 0)
                                 {
-                                    int x = path.Pop();
-                                    int y = path.Pop();
+                                    var x = path.Pop();
+                                    var y = path.Pop();
                                     pairs[x] = y;
                                     pairs[y] = x;
                                 }
@@ -88,14 +88,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         {
             var visited = new bool[graph.Length];
 
-            for (int i = 0; i < distance.Length; i++)
+            for (var i = 0; i < distance.Length; i++)
             {
                 distance[i] = int.MaxValue;
             }
 
             var queue = new Queue<int>();
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (leftSideVertices.Contains(i) && pairs[i] == -1)
                 {
@@ -109,8 +109,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             while (queue.Count > 0)
             {
-                int currentVertice = queue.Dequeue();
-                for (int i = 0; i < graph.Length; i++)
+                var currentVertice = queue.Dequeue();
+                for (var i = 0; i < graph.Length; i++)
                 {
                     if (graph[currentVertice][i] < 1)
                     {
@@ -162,7 +162,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         private void Reset(int[] input)
         {
-            for (int i = 0; i < input.Length; i++)
+            for (var i = 0; i < input.Length; i++)
             {
                 input[i] = -1;
             }
@@ -173,12 +173,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var colors = new int[graph.Length];
             const int startColor = 0;
 
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 colors[i] = -1;
             }
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (colors[i] == -1)
                 {
@@ -188,7 +188,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var leftSetVertices = new HashSet<int>();
 
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 if (colors[i] == 0)
                 {
@@ -209,7 +209,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var currentVertice = queue.Dequeue();
 
-                for (int i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Length; i++)
                 {
                     if (graph[currentVertice][i] < 1)
                     {

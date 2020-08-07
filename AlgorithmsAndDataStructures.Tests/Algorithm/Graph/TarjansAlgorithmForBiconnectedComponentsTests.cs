@@ -27,7 +27,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoVerticeGraphHashHashOneBiconnectedComponent()
         {
             var sut = new TarjansAlgorithmForBiconnectedComponents();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(2);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(2);
             graph.Connect(0, 1);
             var biconnectedComponents = sut.GetBiconnectedComponents(graph);
             Assert.Collection(biconnectedComponents, arg => {
@@ -39,7 +39,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void ThreeVerticeGraphHashHashTwoBiconnectedComponent()
         {
             var sut = new TarjansAlgorithmForBiconnectedComponents();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(3);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(3);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             var biconnectedComponents = sut.GetBiconnectedComponents(graph);
@@ -55,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void LinedUpGraph()
         {
             var sut = new TarjansAlgorithmForBiconnectedComponents();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(4);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(4);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             graph.Connect(2, 3);

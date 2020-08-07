@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
     {
         public int Search(T[] target, T value)
         {
-            for (int i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Length; i++)
             {
                 if (target[i].CompareTo(value) == 0)
                 {

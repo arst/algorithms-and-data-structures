@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var order = new Stack<int>();
             var visited = new bool[graph.Length];
 
-            for (int i = 0; i < visited.Length; i++)
+            for (var i = 0; i < visited.Length; i++)
             {
                 if (!visited[i])
                 {
@@ -31,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
         private void Sort(GraphNode<int>[] graph, int currentVertex, Stack<int> order, bool[] visited)
         {
-            for (int i = 0; i < graph[currentVertex].AdjacentNodes.Count; i++)
+            for (var i = 0; i < graph[currentVertex].AdjacentNodes.Count; i++)
             {
                 if (!visited[graph[currentVertex].AdjacentNodes[i]])
                 {

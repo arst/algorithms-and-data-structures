@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             void DoWork()
             {
-                for (int i = 0; i < 1000; i++)
+                for (var i = 0; i < 1000; i++)
                 {
                     sut.Wait();
                 }
@@ -46,9 +46,9 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             void DoWork()
             {
-                for (int i = 0; i < 10; i++)
+                for (var i = 0; i < 10; i++)
                 {
-                    string item = "STAGE:" + i;
+                    var item = "STAGE:" + i;
                     result.Enqueue(item);
                     sut.Wait();
                 }
@@ -56,8 +56,8 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             while (result.Any())
             {
-                result.TryDequeue(out string worker1Item);
-                result.TryDequeue(out string worker2Item);
+                result.TryDequeue(out var worker1Item);
+                result.TryDequeue(out var worker2Item);
 
                 Assert.Equal(worker1Item, worker2Item);
             }

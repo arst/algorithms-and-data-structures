@@ -63,12 +63,12 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DisjointSet
                 }
             }
 
-            for (int i = 0; i < size / 2; i++)
+            for (var i = 0; i < size / 2; i++)
             {
                 var leftCurrent = leftSet[i];
                 var rightCurrent = rightSet[i];
 
-                for (int j = 0; j < size / 2; j++)
+                for (var j = 0; j < size / 2; j++)
                 {
                     sut.Union(leftCurrent, leftSet[j]);
                     sut.Union(rightCurrent, rightSet[j]);
@@ -78,7 +78,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DisjointSet
             sut.Union(leftSet[0], rightSet[0]);
 
 
-            for (int i = 0; i < size / 2; i++)
+            for (var i = 0; i < size / 2; i++)
             {
                 var leftCurrent = leftSet[i];
                 var rightCurrent = rightSet[i];

@@ -7,15 +7,20 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
     {
         public int MaxFlow(int[][] flowNetwork, int source, int sink)
         {
+            if (flowNetwork is null)
+            {
+                return default;
+            }
+
             var residualGraph = new int[flowNetwork.GetLength(0)][];
             var flow = 0;
             var verticesLevels = new int[flowNetwork.Length];
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[flowNetwork[i].Length];
 
-                for (int j = 0; j < residualGraph[i].Length; j++)
+                for (var j = 0; j < residualGraph[i].Length; j++)
                 {
                     residualGraph[i][j] = flowNetwork[i][j];
                 }
@@ -30,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 {
                     var visited = new bool[residualGraph.Length];
 
-                    var delta = GetAugmetingPath(residualGraph, source, sink, visited, verticesLevels, startAt, Int32.MaxValue);
+                    var delta = GetAugmentingPath(residualGraph, source, sink, visited, verticesLevels, startAt, int.MaxValue);
                     hasPath = delta > 0;
                     
                     if (hasPath)
@@ -42,14 +47,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return flow;
         }
 
-        private int GetAugmetingPath(int[][] residualGraph, int current, int target, bool[] visited, int[] verticesLevels, int[] startAt, int flow)
+        private int GetAugmentingPath(IReadOnlyList<int[]> residualGraph, int current, int target, IList<bool> visited, IReadOnlyList<int> verticesLevels, IList<int> startAt, int flow)
         {
             if (current == target)
             {
                 return flow;
             }
 
-            for (int i = startAt[current]; i < residualGraph[current].Length; i++)
+            for (var i = startAt[current]; i < residualGraph[current].Length; i++)
             {
                 if (residualGraph[current][i] < 1)
                 {
@@ -60,7 +65,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 {
                     visited[i] = true;
 
-                    var delta = GetAugmetingPath(residualGraph, i, target, visited, verticesLevels, startAt, Math.Min(flow, residualGraph[current][i]));
+                    var delta = GetAugmentingPath(residualGraph, i, target, visited, verticesLevels, startAt, Math.Min(flow, residualGraph[current][i]));
                     // We eliminate dead-end paths, since we can't achieve target nodes through them.
                     startAt[current] = i;
 
@@ -89,7 +94,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var current = queue.Dequeue();
 
-                for (int i = 0; i < residualGraph[current].Length; i++)
+                for (var i = 0; i < residualGraph[current].Length; i++)
                 {
                     if (residualGraph[current][i] < 1)
                     {
@@ -110,7 +115,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
         private static void Reset(int[] verticesLevels)
         {
-            for (int i = 0; i < verticesLevels.Length; i++)
+            for (var i = 0; i < verticesLevels.Length; i++)
             {
                 verticesLevels[i] = -1;
             }

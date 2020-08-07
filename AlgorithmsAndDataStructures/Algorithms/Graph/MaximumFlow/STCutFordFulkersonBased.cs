@@ -9,11 +9,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         {
             var residualGraph = new int[graph.Length][];
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[graph.Length];
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     residualGraph[i][j] = graph[i][j];
                 }
@@ -54,11 +54,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var result = new List<Tuple<int, int>>();
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 var currentVertice = graph[i];
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     if (currentVertice[j] > 0 && visited[i] && !visited[j])
                     {
@@ -74,7 +74,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         {
             visited[v] = true;
 
-            for (int i = 0; i < residualGraph[v].Length; i++)
+            for (var i = 0; i < residualGraph[v].Length; i++)
             {
                 if (!visited[i] && residualGraph[v][i] > 0)
                 {
@@ -112,7 +112,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var currenntVertice = queue.Dequeue();
 
-                for (int i = 0; i < residualGraph[currenntVertice].Length; i++)
+                for (var i = 0; i < residualGraph[currenntVertice].Length; i++)
                 {
                     if (!visited[i] && residualGraph[currenntVertice][i] > 0)
                     {

@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sampling
             var random = new Random();
             var population = new int[100];
 
-            for (int i = 0; i < population.Length; i++)
+            for (var i = 0; i < population.Length; i++)
             {
                 population[i] = random.Next(1, 10000);
             }

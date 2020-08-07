@@ -20,7 +20,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
                 visited.Add(current);
                 var adjacentNodes = graph[current].AdjacentNodes;
 
-                for (int i = 0; i < adjacentNodes.Count; i++)
+                for (var i = 0; i < adjacentNodes.Count; i++)
                 {
                     if (visited.Contains(adjacentNodes[i]))
                     {

@@ -24,11 +24,11 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures
         public void QueueStackWorksInFifoOrder()
         {
             var sut = new CircularQueue<int>(100);
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 sut.Enqueue(i);
             }
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 Assert.Equal(i, sut.Dequeue());
             }

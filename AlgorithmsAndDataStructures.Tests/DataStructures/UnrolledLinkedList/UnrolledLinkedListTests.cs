@@ -10,14 +10,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.UnrolledLinkedList
         {
             var sut = new UnrolledLinkedList<int>();
 
-            for (int i = 0; i < 10000; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 sut.Add(i);
             }
 
             var unrolled = sut.Unroll();
 
-            for (int i = 0; i < 10000; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 Assert.Equal(i, unrolled[i]);
             }
@@ -28,7 +28,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.UnrolledLinkedList
         {
             var sut = new UnrolledLinkedList<int>();
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 sut.Add(i);
             }

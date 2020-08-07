@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         {
             var sut = new AsynchronousToSynchronous();
 
-            for (int i = 0; i < 10000; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 var queue = new Queue<int>();
                 sut.ExecuteSync(queue);

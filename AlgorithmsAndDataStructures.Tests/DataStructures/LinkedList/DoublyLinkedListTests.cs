@@ -101,7 +101,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
             sut.Reverse();
             var traverseReverted = sut.Traverse();
 
-            for (int i = 0; i < traversed.Count; i++)
+            for (var i = 0; i < traversed.Count; i++)
             {
                 Assert.Equal(traversed[i], traverseReverted[traverseReverted.Count - i - 1]);
             }

@@ -48,12 +48,12 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
             var testcaseSize = 1000;
             var sut = new LRU(testcaseSize);
 
-            for (int i = 0; i < testcaseSize; i++)
+            for (var i = 0; i < testcaseSize; i++)
             {
                 sut.Add(i, i.ToString());
             }
 
-            for (int i = testcaseSize; i < testcaseSize * 2; i++)
+            for (var i = testcaseSize; i < testcaseSize * 2; i++)
             {
                 sut.Add(i, i.ToString());
                 Assert.Null(sut.Get(i - testcaseSize));

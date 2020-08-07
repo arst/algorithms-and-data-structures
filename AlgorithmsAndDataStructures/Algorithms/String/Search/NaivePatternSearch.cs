@@ -11,14 +11,14 @@
                 return negativeResult;
             }
 
-            for (int i = 0; i <= input.Length - pattern.Length; i++)
+            for (var i = 0; i <= input.Length - pattern.Length; i++)
             {
                 if (input[i] == pattern[0])
                 {
                     var originalPosition = i + 1;
                     var isMatch = true;
 
-                    for (int j = 1; j < pattern.Length; j++)
+                    for (var j = 1; j < pattern.Length; j++)
                     {
                         if (input[originalPosition] != pattern[j])
                         {

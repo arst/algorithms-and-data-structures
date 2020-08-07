@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
         {
             var suffixArray = new NaiveSuffixArrayNode[input.Length];
 
-            for (int i = 0; i < suffixArray.Length; i++)
+            for (var i = 0; i < suffixArray.Length; i++)
             {
                 suffixArray[i] = new NaiveSuffixArrayNode();
                 suffixArray[i].Suffix = input.Substring(i);

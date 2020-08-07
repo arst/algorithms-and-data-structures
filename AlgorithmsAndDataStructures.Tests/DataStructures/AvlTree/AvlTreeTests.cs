@@ -70,14 +70,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
             var random = new Random();
             var seed = new int[10000];
 
-            for (int j = 0; j < seed.Length; j++)
+            for (var j = 0; j < seed.Length; j++)
             {
                 seed[j] = random.Next(100000);
                 sut.Insert(seed[j]);
                 Assert.True(sut.IsBalanced);
             }
 
-            for (int j = 0; j < seed.Length; j++)
+            for (var j = 0; j < seed.Length; j++)
             {
                 sut.Delete(seed[j]);
                 Assert.True(sut.IsBalanced);

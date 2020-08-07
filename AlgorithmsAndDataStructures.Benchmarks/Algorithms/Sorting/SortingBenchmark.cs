@@ -76,7 +76,7 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.Sorting
 
         private static int[] Copy(int[] input)
         {
-            int[] copy = new int[input.Length];
+            var copy = new int[input.Length];
             System.Buffer.BlockCopy(input, 0, copy, 0, input.Length *  sizeof(int));
 
             return copy;

@@ -18,7 +18,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
             {
                 WeightedGraphNodeEdge minEdge = null;
 
-                for (int i = 0; i < edges.Count; i++)
+                for (var i = 0; i < edges.Count; i++)
                 {
                     if ((minEdge == null || minEdge.Weight > edges[i].Weight) && spanningTree.Contains(edges[i].From) && !spanningTree.Contains(edges[i].To))
                     {

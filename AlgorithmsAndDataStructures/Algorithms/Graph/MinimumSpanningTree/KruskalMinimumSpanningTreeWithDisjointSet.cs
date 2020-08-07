@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
             var spanningTree = new GraphNode<int>[graph.Length];
             var disjointSet = new WeightedTreeCoompressedPathDisjoinSet(graph.Length);
 
-            for (int i = 0; i < spanningTree.Length; i++)
+            for (var i = 0; i < spanningTree.Length; i++)
             {
                 spanningTree[i] = new GraphNode<int>();
             }

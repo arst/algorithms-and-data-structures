@@ -33,7 +33,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 
             void Dine(int philosopherNumber)
             {
-                for (int i = 0; i < 10; i++)
+                for (var i = 0; i < 10; i++)
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(1,5)));
                     sut.Dine(philosopherNumber);

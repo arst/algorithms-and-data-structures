@@ -19,7 +19,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
 
         public void SetLeft(T parent, T value)
         {
-            for (int i = 0; i < tree.Length; i++)
+            for (var i = 0; i < tree.Length; i++)
             {
                 if (tree[i].Equals(parent))
                 {
@@ -37,7 +37,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
 
         public void SetRight(T parent, T value)
         {
-            for (int i = 0; i < tree.Length; i++)
+            for (var i = 0; i < tree.Length; i++)
             {
                 if (tree[i].Equals(parent))
                 {

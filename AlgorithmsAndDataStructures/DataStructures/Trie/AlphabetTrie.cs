@@ -24,7 +24,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
             var current = root;
 
-            for (int i = 0; i < key.Length; i++)
+            for (var i = 0; i < key.Length; i++)
             {
                 var index = GetIndex(key, i);
 
@@ -49,7 +49,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
             var current = root;
 
-            for (int i = 0; i < key.Length; i++)
+            for (var i = 0; i < key.Length; i++)
             {
                 var index = GetIndex(key, i);
 

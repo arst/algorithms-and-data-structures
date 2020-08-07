@@ -19,7 +19,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
                 if (target[currentJump].CompareTo(value) > 0)
                 {
                     // Search latest jumped interval with simple linear search.
-                    for (int i = currentJump - jumpStep; i < currentJump; i++)
+                    for (var i = currentJump - jumpStep; i < currentJump; i++)
                     {
                         if (target[i].CompareTo(value) == 0)
                         {
@@ -36,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
             }
 
             // Search latest jumped interval with simple linear search.
-            for (int i = currentJump - jumpStep; i < target.Length; i++)
+            for (var i = currentJump - jumpStep; i < target.Length; i++)
             {
                 if (target[i].CompareTo(value) == 0)
                 {

@@ -8,12 +8,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         public bool IsBipartite(int[][] graph)
         {
             var colors = new int[graph.Length];
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 colors[i] = -1;
             }
 
-            for (int i = 0; i < colors.Length; i++)
+            for (var i = 0; i < colors.Length; i++)
             {
                 if (colors[i] == -1)
                 {
@@ -31,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var flipColor = 1 ^ colors[currentVertice];
             colors[currentVertice] = color;
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (graph[currentVertice][i] < 1)
                 {

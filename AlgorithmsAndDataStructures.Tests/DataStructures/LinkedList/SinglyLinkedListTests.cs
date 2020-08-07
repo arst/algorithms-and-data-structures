@@ -138,7 +138,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         {
             var sut = new SinglyLinkedList<int>();
 
-            for (int i = 5; i > -1; i--)
+            for (var i = 5; i > -1; i--)
             {
                 sut.Prepend(i);
             }
@@ -147,7 +147,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
 
             Assert.Equal(6, traversedSut.Count);
             
-            for (int i = 0; i < traversedSut.Count; i++)
+            for (var i = 0; i < traversedSut.Count; i++)
             {
                 Assert.Equal(i, traversedSut[i]);
             }
@@ -229,7 +229,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
             var traversedSut = sut.Traverse();
             var recursivelyTraversedSut = sut.TraverseRecursive();
 
-            for (int i = 0; i < traversedSut.Count; i++)
+            for (var i = 0; i < traversedSut.Count; i++)
             {
                 Assert.Equal(traversedSut[i], recursivelyTraversedSut[i]);
             }
@@ -253,7 +253,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
             sut.ReverseIterative();
             var traverseReverted = sut.Traverse();
 
-            for (int i = 0; i < traversed.Count; i++)
+            for (var i = 0; i < traversed.Count; i++)
             {
                 Assert.Equal(traversed[i], traverseReverted[traverseReverted.Count - i - 1]);
             }
@@ -269,7 +269,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
             sut.ReverseRecursive();
             var traverseReverted = sut.Traverse();
 
-            for (int i = 0; i < traversed.Count; i++)
+            for (var i = 0; i < traversed.Count; i++)
             {
                 Assert.Equal(traversed[i], traverseReverted[traverseReverted.Count - i - 1]);
             }

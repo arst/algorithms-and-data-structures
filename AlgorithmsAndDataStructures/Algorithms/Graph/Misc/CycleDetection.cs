@@ -9,7 +9,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         public bool IsCyclic(GraphNode<int>[] graph)
         {
             // We need to iterate over all vertices for diconnected graphs.
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 var visited = new bool[graph.Length];
                 visited[i] = true;
@@ -25,9 +25,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
         private bool IsCyclic(GraphNode<int>[] graph, int node, bool[] visited)
         {
-            List<int> adjacentNodes = graph[node].AdjacentNodes;
+            var adjacentNodes = graph[node].AdjacentNodes;
 
-            for (int i = 0; i < adjacentNodes.Count; i++)
+            for (var i = 0; i < adjacentNodes.Count; i++)
             {
                 if (visited[adjacentNodes[i]])
                 {

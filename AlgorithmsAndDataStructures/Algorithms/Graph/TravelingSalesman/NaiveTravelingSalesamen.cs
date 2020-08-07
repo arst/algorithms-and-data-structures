@@ -20,7 +20,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
                 return Math.Min(currentPathhWeight + graph[currentVertice][0], minPathWeight);
             }
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (graph[currentVertice][i] < 1 || visited[i])
                 {

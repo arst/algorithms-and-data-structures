@@ -10,19 +10,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             var residualGraph = new int[graph.Length][];
             var result = new List<Tuple<int, int>>();
 
-            for (int i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Length; i++)
             {
                 residualGraph[i] = new int[graph.Length];
 
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     residualGraph[i][j] = graph[i][j];
                 }
             }
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     if (i == j)
                     {
@@ -63,11 +63,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
                     var tempResult = new List<Tuple<int, int>>();
 
-                    for (int k = 0; k < graph.Length; k++)
+                    for (var k = 0; k < graph.Length; k++)
                     {
                         var currentVertice = graph[k];
 
-                        for (int z = 0; z < graph.Length; z++)
+                        for (var z = 0; z < graph.Length; z++)
                         {
                             if (currentVertice[z] > 0 && visited[k] && !visited[z])
                             {
@@ -93,7 +93,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
         {
             visited[v] = true;
 
-            for (int i = 0; i < residualGraph[v].Length; i++)
+            for (var i = 0; i < residualGraph[v].Length; i++)
             {
                 if (!visited[i] && residualGraph[v][i] > 0)
                 {
@@ -131,7 +131,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 var currenntVertice = queue.Dequeue();
 
-                for (int i = 0; i < residualGraph[currenntVertice].Length; i++)
+                for (var i = 0; i < residualGraph[currenntVertice].Length; i++)
                 {
                     if (!visited[i] && residualGraph[currenntVertice][i] > 0)
                     {

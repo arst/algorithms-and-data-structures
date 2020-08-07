@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTes
         {
             var sut = new TransposeSelfOrginizingList<int>();
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 sut.Add(i);
             }
@@ -25,19 +25,19 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTes
         {
             var sut = new TransposeSelfOrginizingList<int>();
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 sut.Add(i);
             }
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 sut.Get(i);
             }
 
             var current = sut.Head;
 
-            for (int i = 1; i < 3; i++)
+            for (var i = 1; i < 3; i++)
             {
                 Assert.Equal(i, current.Value);
                 current = current.Next;
@@ -51,7 +51,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTes
         {
             var sut = new TransposeSelfOrginizingList<int>();
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 sut.Add(i);
             }

@@ -11,7 +11,7 @@
 
             seed = new long[16];
 
-            for (int i = 0; i < seed.Length; i++)
+            for (var i = 0; i < seed.Length; i++)
             {
                 seed[i] = xORShift64Star.Generate();
             }

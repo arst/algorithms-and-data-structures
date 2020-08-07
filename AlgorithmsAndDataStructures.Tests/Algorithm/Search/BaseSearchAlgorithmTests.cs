@@ -64,7 +64,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
                 }
             }
 
-            for (int i = 0; i < toSearchPositive.Length; i++)
+            for (var i = 0; i < toSearchPositive.Length; i++)
             {
                 toSearchPositive[i] = new Tuple<int, int>(i * 10, testData[i * 10]);
             }

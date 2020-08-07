@@ -15,7 +15,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Numbers
 
             var result = sut.FindPrimesUpTo(input);
 
-            for (int i = 0; i < result.Length; i++)
+            for (var i = 0; i < result.Length; i++)
             {
                 if (primesUpTo31.Contains(i))
                 {

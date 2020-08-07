@@ -48,9 +48,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
 
         private void Sink(int index)
         {
-            int rightChildIndex = index * 2 + 1;
-            int leftChildIndex = index * 2;
-            int swapChildIndex = leftChildIndex;
+            var rightChildIndex = index * 2 + 1;
+            var leftChildIndex = index * 2;
+            var swapChildIndex = leftChildIndex;
 
             if (leftChildIndex >= nextElement)
             {

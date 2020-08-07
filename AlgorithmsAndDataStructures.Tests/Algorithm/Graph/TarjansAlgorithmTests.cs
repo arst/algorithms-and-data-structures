@@ -23,7 +23,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoVerticeGraphHashNoArticulationPoints()
         {
             var sut = new TarjansAlgorithm();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(2);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(2);
             graph.Connect(0,1);
             Assert.Empty(sut.GetArticulationPoints(graph));
         }
@@ -32,7 +32,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void ThreeVerticeGraphHashOneArticulationPoint()
         {
             var sut = new TarjansAlgorithm();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(3);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(3);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             Assert.Collection<int>(sut.GetArticulationPoints(graph), arg => Assert.Equal(1, arg));
@@ -42,7 +42,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void NonDenseGraph()
         {
             var sut = new TarjansAlgorithm();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(5);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(5);
             graph.Connect(1, 0);
             graph.Connect(0, 2);
             graph.Connect(2, 1);
@@ -55,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void DenseGraph()
         {
             var sut = new TarjansAlgorithm();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(7);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(7);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             graph.Connect(2, 0);
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void LinedUpGraph()
         {
             var sut = new TarjansAlgorithm();
-            Algorithms.Graph.Common.UndirectedGraph graph = new Algorithms.Graph.Common.UndirectedGraph(4);
+            var graph = new Algorithms.Graph.Common.UndirectedGraph(4);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             graph.Connect(2, 3);

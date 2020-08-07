@@ -50,9 +50,9 @@
 
         private static int GetPosition(int[] target, int targetValue, int start, int end)
         {
-            int xSlope = target[end] - target[start];
-            int ySlope = end - start;
-            int difference = targetValue - target[start];
+            var xSlope = target[end] - target[start];
+            var ySlope = end - start;
+            var difference = targetValue - target[start];
 
             return start + (ySlope / xSlope * difference);
         }

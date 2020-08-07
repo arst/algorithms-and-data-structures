@@ -41,14 +41,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryIndexedTreeTest
             var random = new Random();
             var data = new int[99];
 
-            for (int i = 0; i < 99; i++)
+            for (var i = 0; i < 99; i++)
             {
                 var number = random.Next(200);
                 data[i] = number;
                 sut.SetValue(i, number);
             }
 
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var range = random.Next(0, 98);
                 var expectedSum = data.Take(range + 1).Sum();

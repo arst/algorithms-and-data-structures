@@ -25,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var dfs = new Stack<int>(vertices.Length);
             var biconnectedComponents = new List<List<int>>();
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
             {
                 if (!visited[i])
                 {
@@ -64,7 +64,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
         {
             visited[currentVertice] = true;
             var children = 0;
-            int currentDiscoveryTime = time++;
+            var currentDiscoveryTime = time++;
             dicoveryTime[currentVertice] = currentDiscoveryTime;
             lowestSubTreeDiscoveryTime[currentVertice] = currentDiscoveryTime;
             dfs.Push(currentVertice);

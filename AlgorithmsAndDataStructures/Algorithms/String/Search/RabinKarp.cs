@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                 {
                     var isMatched = true;
 
-                    for (int i = index; i < index + pattern.Length; i++)
+                    for (var i = index; i < index + pattern.Length; i++)
                     {
                         if (input[i] != pattern[i - index])
                         {
@@ -45,8 +45,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 
         private int RecalculateHash(string input, int currentHash, int index, int primeNumber, string pattern)
         {
-            int suffixHash = currentHash - input[index - 1];
-            int fullHash = suffixHash + (input[index + pattern.Length - 1] * (int)Math.Pow(primeNumber, pattern.Length));
+            var suffixHash = currentHash - input[index - 1];
+            var fullHash = suffixHash + (input[index + pattern.Length - 1] * (int)Math.Pow(primeNumber, pattern.Length));
             var normalizedHash = fullHash / primeNumber;
             return normalizedHash;
         }
@@ -55,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
         {
             var hash = 0;
 
-            for (int i = 0; i < stopAt; i++)
+            for (var i = 0; i < stopAt; i++)
             {
                 hash += pattern[i] * (int)Math.Pow(primeNumber, i);
             }

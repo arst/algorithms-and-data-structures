@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryHeap
             var randomValues = new int[1000];
             var random = new Random();
 
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 randomValues[i] = random.Next(10000);
                 sut.Insert(randomValues[i]);
@@ -43,7 +43,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryHeap
 
             var orderedArray = randomValues.OrderByDescending(arg => arg).ToArray();
 
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 Assert.Equal(orderedArray[i], sut.GetTop());
             }

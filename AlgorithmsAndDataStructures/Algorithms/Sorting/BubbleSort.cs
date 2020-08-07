@@ -18,7 +18,7 @@
             do
             {
                 swapped = false;
-                for (int i = 1; i < target.Length - j; i++)
+                for (var i = 1; i < target.Length - j; i++)
                 {
                     if (target[i - 1] > target[i])
                     {

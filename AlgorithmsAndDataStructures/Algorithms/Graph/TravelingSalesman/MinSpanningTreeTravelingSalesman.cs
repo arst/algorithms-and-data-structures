@@ -17,9 +17,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             spanningTree.Add(startingCity); 
 
             //collect all edges for Prim's algorithm
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
-                for (int j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Length; j++)
                 {
                     if (graph[i][j] > 0)
                     {
@@ -33,7 +33,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             {
                 Tuple<int, int, int> minEdge = null;
 
-                for (int i = 0; i < edges.Count; i++)
+                for (var i = 0; i < edges.Count; i++)
                 {
                     if ((minEdge == null || minEdge.Item3 > edges[i].Item3) && spanningTree.Contains(edges[i].Item1) && !spanningTree.Contains(edges[i].Item2))
                     {
@@ -50,7 +50,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             //Construct a graph with MST tree edges only
             var minSpanningTreeGraph = new Tuple<int, List<int>>[graph.Length];
 
-            for (int i = 0; i < minimumSpanningTree.Count; i++)
+            for (var i = 0; i < minimumSpanningTree.Count; i++)
             {
                 var edge = minimumSpanningTree[i];
 
@@ -68,7 +68,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             var weight = 0;
 
             // Calculate path weight
-            for (int i = 0; i < path.Count - 1; i++)
+            for (var i = 0; i < path.Count - 1; i++)
             {
                 weight += graph[path[i]][path[i + 1]];
             }
@@ -82,8 +82,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             visited[current] = true;
             path.Add(current);
 
-            List<int> adjacentVertices = minSpanningTreeGraph[current].Item2;
-            for (int i = 0; i < adjacentVertices.Count; i++)
+            var adjacentVertices = minSpanningTreeGraph[current].Item2;
+            for (var i = 0; i < adjacentVertices.Count; i++)
             {
                 if (!visited[adjacentVertices[i]])
                 {

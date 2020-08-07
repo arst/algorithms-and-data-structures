@@ -33,7 +33,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             var minIndex = -1;
             var minValue = int.MaxValue;
 
-            for (int i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Length; i++)
             {
                 if (graph[currentVertice][i] > 0 && minValue > graph[currentVertice][i] && !visited[i])
                 {

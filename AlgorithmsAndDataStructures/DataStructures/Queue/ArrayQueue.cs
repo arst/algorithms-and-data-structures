@@ -32,7 +32,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
 
             var value = queue[0];
 
-            for (int i = 0; i < pointer; i++)
+            for (var i = 0; i < pointer; i++)
             {
                 queue[i] = queue[i + 1];
             }
