@@ -1,21 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Compression
 {
-    public class LZWCompression
+    public class LzwCompression
     {
+#pragma warning disable CA1822 // Mark members as static
         public List<int> Compress(string input)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (string.IsNullOrEmpty(input))
+            {
+                return new List<int>(0);
+            }
+
             var codeByNGramMap = new Dictionary<string, int>();
             
             // Fill up array with 1-n grams
-            for (int i = 0; i < 256; i++)
+            for (var i = 0; i < 256; i++)
             {
-                codeByNGramMap.Add(((char)i).ToString(), i);
+                codeByNGramMap.Add(((char)i).ToString(CultureInfo.InvariantCulture), i);
             }
 
-            string temp = string.Empty;
+            var temp = string.Empty;
 
             var compressed = new List<int>();
 
@@ -32,7 +40,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
                     compressed.Add(codeByNGramMap[temp]);
                     codeByNGramMap[ngram] = codeByNGramMap.Count;
 
-                    temp = symbol.ToString();
+                    temp = symbol.ToString(CultureInfo.InvariantCulture);
                 }
             }
 
@@ -44,21 +52,28 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
             return compressed;
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public string Decompress(List<int> compressed)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (compressed is null || compressed.Count == 0)
+            {
+                return string.Empty;
+            }
+
             var nGramByCodeMap = new Dictionary<int, string>();
 
             // Fill up array with 1-n grams
-            for (int i = 0; i < 256; i++)
-                nGramByCodeMap.Add(i, ((char)i).ToString());
+            for (var i = 0; i < 256; i++)
+                nGramByCodeMap.Add(i, ((char)i).ToString(CultureInfo.InvariantCulture));
 
-            string current = nGramByCodeMap[compressed[0]];
+            var current = nGramByCodeMap[compressed[0]];
             compressed.RemoveAt(0);
             var decompressed = new StringBuilder(current);
 
-            foreach (int code in compressed)
+            foreach (var code in compressed)
             {
-                var isAlreadyDecoded = nGramByCodeMap.TryGetValue(code, out string entry);
+                var isAlreadyDecoded = nGramByCodeMap.TryGetValue(code, out var entry);
 
                 if (!isAlreadyDecoded && code == nGramByCodeMap.Count)
                 {
@@ -67,9 +82,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
 
                 decompressed.Append(entry);
 
-                nGramByCodeMap.Add(nGramByCodeMap.Count, current + entry[0]);
-                
-                current = entry;
+                if (entry != null)
+                {
+                    nGramByCodeMap.Add(nGramByCodeMap.Count, current + entry[0]);
+
+                    current = entry;
+                }
             }
 
             return decompressed.ToString();
