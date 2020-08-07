@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
         {
             var sut = new MSD();
 
-            var input = new string[]
+            var input = new[]
                 {
                     "4PGC938",
                     "2IYE230",
@@ -48,7 +48,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
         {
             var sut = new MSD();
 
-            var input = new string[]
+            var input = new[]
                 {
                     "she",
                     "sells",

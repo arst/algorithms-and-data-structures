@@ -12,9 +12,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -31,20 +31,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -61,31 +61,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -102,36 +102,36 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -148,40 +148,40 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 0
@@ -203,89 +203,89 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DijkstraHeapified();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 1,
                                 Weight = 14
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 2,
                                 Weight = 9
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 3,
                                 Weight = 7
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 4,
                                 Weight = 9
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 2,
                                 Weight = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 3,
                                 Weight = 10
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 5,
                                 Weight = 11
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 1,
                                 Weight = 2
                             },
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 5,
                                 Weight = 15
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 5,
                                 Weight = 6
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };

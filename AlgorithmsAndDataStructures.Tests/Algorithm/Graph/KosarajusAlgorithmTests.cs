@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneNodeGraphIsConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
                 new WeightedGraphVertex()
             };
@@ -22,20 +22,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeConnectedGraphIsConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 { 
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     { 
-                        new WeightedGraphNodeEdge() { From = 0, To = 1 }
+                        new WeightedGraphNodeEdge { From = 0, To = 1 }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 1, To = 0 }
+                        new WeightedGraphNodeEdge { From = 1, To = 0 }
                     }
                 }
             };
@@ -47,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeDisconnectedGraphIsNotConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
                 new WeightedGraphVertex(),
                 new WeightedGraphVertex()
@@ -60,20 +60,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneWayConnectedGraphIsNotConnected()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                 new WeightedGraphVertex()
-                {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                 new WeightedGraphVertex
+                 {
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 0, To = 1 }
+                        new WeightedGraphNodeEdge { From = 0, To = 1 }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 1, To = 2 }
+                        new WeightedGraphNodeEdge { From = 1, To = 2 }
                     }
                 },
                 new WeightedGraphVertex()
@@ -86,42 +86,42 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void Baseline()
         {
             var sut = new KosarajusAlgorithm();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                 new WeightedGraphVertex()
+                 new WeightedGraphVertex
+                 {
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
+                    {
+                        new WeightedGraphNodeEdge { From = 0, To = 1 }
+                    }
+                },
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 0, To = 1 }
+                        new WeightedGraphNodeEdge { From = 1, To = 2 }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 1, To = 2 }
+                        new WeightedGraphNodeEdge { From = 2, To = 3 },
+                        new WeightedGraphNodeEdge { From = 2, To = 4 }
                     }
                 },
-                new WeightedGraphVertex()
-                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                new WeightedGraphVertex
+                {
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 2, To = 3 },
-                        new WeightedGraphNodeEdge() { From = 2, To = 4 }
+                        new WeightedGraphNodeEdge { From = 3, To = 0 }
                     }
                 },
-                new WeightedGraphVertex()
-                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                new WeightedGraphVertex
+                {
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge() { From = 3, To = 0 }
-                    }
-                },
-                new WeightedGraphVertex()
-                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
-                    {
-                        new WeightedGraphNodeEdge() { From = 4, To = 2 }
+                        new WeightedGraphNodeEdge { From = 4, To = 2 }
                     }
                 },
             };

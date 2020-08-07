@@ -59,11 +59,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 
             var graph = new []
             {
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             From = 0,
                             To = 1,

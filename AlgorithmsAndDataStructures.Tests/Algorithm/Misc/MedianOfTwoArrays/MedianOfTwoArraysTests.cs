@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(1.5f, sut.GetMedian(new int[] { 1, 3 }, new int[] { 2 }));
+            Assert.Equal(1.5f, sut.GetMedian(new[] { 1, 3 }, new[] { 2 }));
         }
 
         [Fact]
@@ -20,7 +20,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(1.5f, sut.GetMedian(new int[] { 1 }, new int[] { 2, 3 }));
+            Assert.Equal(1.5f, sut.GetMedian(new[] { 1 }, new[] { 2, 3 }));
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(1.5f, sut.GetMedian(new int[] { 1 }, new int[] { 2 }));
+            Assert.Equal(1.5f, sut.GetMedian(new[] { 1 }, new[] { 2 }));
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(4f, sut.GetMedian(new int[] { 4, 4, 4 }, new int[] { 4, 4, 4 }));
+            Assert.Equal(4f, sut.GetMedian(new[] { 4, 4, 4 }, new[] { 4, 4, 4 }));
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(4f, sut.GetMedian(new int[] { 4, 4 }, new int[] { 4, 4, 4 }));
+            Assert.Equal(4f, sut.GetMedian(new[] { 4, 4 }, new[] { 4, 4, 4 }));
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
         {
             var sut = GetSut();
 
-            Assert.Equal(3.5f, sut.GetMedian(new int[] { 1, 3, 5 }, new int[] { 2, 4, 6 }));
+            Assert.Equal(3.5f, sut.GetMedian(new[] { 1, 3, 5 }, new[] { 2, 4, 6 }));
         }
     }
 }

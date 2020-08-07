@@ -10,9 +10,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneNodeGraph()
         {
             var sut = new BreadthFirstSearch();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1
                     },
@@ -24,17 +24,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodesGraph()
         {
             var sut = new BreadthFirstSearch();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentNodes = new System.Collections.Generic.List<int>
                         {
                             1
                         }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2
                     },
@@ -46,20 +46,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodesGraphWithCircularDependency()
         {
             var sut = new BreadthFirstSearch();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentNodes = new System.Collections.Generic.List<int>
                         {
                             1
                         }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentNodes = new System.Collections.Generic.List<int>
                         {
                             0
                         }
@@ -72,30 +72,30 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void BreadthFirstSearchTraversal()
         {
             var sut = new BreadthFirstSearch();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentNodes = new System.Collections.Generic.List<int>
                         {
                             1,2
                         }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentNodes = new System.Collections.Generic.List<int>
                         {
                             3
                         }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 3,
                         AdjacentNodes = new System.Collections.Generic.List<int>()
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 4,
                         AdjacentNodes = new System.Collections.Generic.List<int>()

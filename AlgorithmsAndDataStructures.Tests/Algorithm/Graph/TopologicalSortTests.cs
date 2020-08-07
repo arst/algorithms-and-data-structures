@@ -14,7 +14,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
 
             var node1 = new GraphNode<int>();
 
-            var topologicalOrder = sut.GetTopologicalOrder(new GraphNode<int>[] { node1 });
+            var topologicalOrder = sut.GetTopologicalOrder(new[] { node1 });
 
             Assert.Single(topologicalOrder);
             Assert.Collection<int>(topologicalOrder, arg => Assert.Equal(0, arg));
@@ -25,14 +25,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>()
+            var node1 = new GraphNode<int>
             { 
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
             };
 
             var node2 = new GraphNode<int>();
 
-            var topologicalOrder = sut.GetTopologicalOrder(new GraphNode<int>[] { node1, node2 });
+            var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2 });
 
             Assert.Equal(2,topologicalOrder.Count);
             Assert.Collection<int>(topologicalOrder, arg => Assert.Equal(0, arg), arg => Assert.Equal(1, arg));
@@ -43,17 +43,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>()
+            var node1 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
             };
 
-            var node2 = new GraphNode<int>()
+            var node2 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 0 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 0 }
             };
 
-            Assert.Throws<ArgumentException>(() => sut.GetTopologicalOrder(new GraphNode<int>[] { node1, node2 }));
+            Assert.Throws<ArgumentException>(() => sut.GetTopologicalOrder(new[] { node1, node2 }));
         }
 
         [Fact]
@@ -61,16 +61,16 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>()
+            var node1 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
             };
 
             var node2 = new GraphNode<int>();
 
             var node3 = new GraphNode<int>();
 
-            var topologicalOrder = sut.GetTopologicalOrder(new GraphNode<int>[] { node1, node2, node3 });
+            var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2, node3 });
 
             Assert.Equal(3, topologicalOrder.Count);
             Assert.Collection<int>(topologicalOrder, arg => Assert.Equal(2, arg), arg => Assert.Equal(0, arg), arg => Assert.Equal(1, arg));
@@ -81,28 +81,28 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>()
+            var node1 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 1, 2 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 1, 2 }
             };
 
             var node2 = new GraphNode<int>();
 
-            var node3 = new GraphNode<int>()
+            var node3 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 3, 5 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 3, 5 }
             };
 
-            var node4 = new GraphNode<int>()
+            var node4 = new GraphNode<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int>() { 4 }
+                AdjacentNodes = new System.Collections.Generic.List<int> { 4 }
             };
 
             var node5 = new GraphNode<int>();
 
             var node6 = new GraphNode<int>();
 
-            var topologicalOrder = sut.GetTopologicalOrder(new GraphNode<int>[] { node1, node2, node3, node4, node5, node6 });
+            var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2, node3, node4, node5, node6 });
 
             Assert.Equal(6, topologicalOrder.Count);
             Assert.Collection<int>(topologicalOrder, 

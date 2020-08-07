@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Numbers
         {
             var sut = new SieveOfEratosthenes();
             const int input = 31;
-            var primesUpTo31 = new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 };
+            var primesUpTo31 = new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 };
 
             var result = sut.FindPrimesUpTo(input);
 

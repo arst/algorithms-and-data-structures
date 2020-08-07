@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void TraversalForSimpleLinkedListWithHeadOnlyReturnsListWithOneElement()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             Assert.Single(sut.Traverse());
             Assert.Equal(1, sut.Traverse().First());
         }
@@ -25,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void TraversalForSimpleLinkedListWithHeadAndTailReturnsListWithTwoElements()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             Assert.Equal(2, sut.Traverse().Count);
             Assert.Equal(1, sut.Traverse().First());
@@ -42,7 +42,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveFromSimpleLinkedListEmptyDoesntThrowAnExceptionWhenValueNotFound()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByValue(4);
@@ -51,7 +51,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveHeadMakesSimpleLinkedListEmpty()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.RemoveByValue(1);
             Assert.Empty(sut.Traverse());
         }
@@ -59,7 +59,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveNodeFromTheMiddleOfSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByValue(2);
@@ -72,7 +72,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveNodeFromTheTailSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByValue(3);
@@ -85,7 +85,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveNodeFromTheHeadSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByValue(1);
@@ -98,7 +98,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void TailIsPreservedAfterRemovalFromSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByValue(3);
@@ -123,7 +123,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void PrependChangesHeadOfSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Prepend(3);
 
@@ -163,7 +163,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByPositionOutsideBoundariesOfSimpleLinkedListDoesntThrowAnError()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.RemoveByPosition(1);
 
             Assert.Single(sut.Traverse());
@@ -172,7 +172,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByPositionOutsideBoundariesOfSimpleLinkedListDoesntRemoveNodes()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(int.MaxValue);
@@ -183,7 +183,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByMiddlePositionInSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(1);
@@ -196,7 +196,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByStartingPositionInSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(0);
@@ -209,7 +209,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByEndPositionInSimpleLinkedList()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(2);
@@ -222,7 +222,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void TraverseRecursiveMatchesItterativeRaverse()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
 
@@ -246,7 +246,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void ReverseItterative()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             var traversed = sut.Traverse();
@@ -262,7 +262,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void ReverseRecursive()
         {
-            var sut = new SinglyLinkedList<int>(new Node<int>() { Value = 1 });
+            var sut = new SinglyLinkedList<int>(new Node<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             var traversed = sut.Traverse();

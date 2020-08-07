@@ -18,14 +18,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
         public void AlgorithmCanFindElementInOneElementArray()
         {
             var sut = GetSystemUnderTest();
-            Assert.Equal(0, sut.Search(new int[] { 1 }, 1));
+            Assert.Equal(0, sut.Search(new[] { 1 }, 1));
         }
 
         [Fact]
         public void BaseSearching()
         {
             var sut = GetSystemUnderTest();
-            var testData = new int[] { 6, 5, 3, 1, 8, 7, 2, 4 };
+            var testData = new[] { 6, 5, 3, 1, 8, 7, 2, 4 };
             Array.Sort(testData);
             Assert.Equal(2, sut.Search(testData, 3));
         }

@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByPositionOutsideOfBoundariesDoesntThrowAnError()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.RemoveByPosition(1);
 
             Assert.Single(sut.Traverse());
@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByPositionOutsideOfBoundariesDoesntRemoveNodes()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(int.MaxValue);
@@ -55,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByMiddlePosition()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(1);
@@ -68,7 +68,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByStartingPosition()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(0);
@@ -81,7 +81,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void RemoveByEndPosition()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             sut.RemoveByPosition(2);
@@ -94,7 +94,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void Reverse()
         {
-            var sut = new DoublyLinkedList<int>(new DoublyNode<int>() { Value = 1 });
+            var sut = new DoublyLinkedList<int>(new DoublyNode<int> { Value = 1 });
             sut.Append(2);
             sut.Append(3);
             var traversed = sut.Traverse();

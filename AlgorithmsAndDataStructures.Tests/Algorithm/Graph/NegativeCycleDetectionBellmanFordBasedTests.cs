@@ -12,9 +12,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -28,20 +28,20 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -55,31 +55,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -93,36 +93,36 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -136,40 +136,40 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 0
@@ -187,47 +187,47 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new NegativeCycleDetectionBellmanFordBased();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 1,
                                 Weight = 1
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 2,
                                 Weight = 3
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 3,
                                 Weight = 2
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 1,
                                 Weight = -6
                             }

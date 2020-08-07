@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void OneNodeGraphIsTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
                 new WeightedGraphVertex()
             };
@@ -26,23 +26,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeGraphIsTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 { 
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     { 
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         { 
                             To = 1,
                         }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 0,
                         }
@@ -67,19 +67,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void TwoNodeGraphIsNonTransitive()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 1,
                         }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
                 }
             };
@@ -101,41 +101,41 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void Baseline()
         {
             var sut = new TransitiveClosureFloydWarshall();
-            var graph = new WeightedGraphVertex[]
+            var graph = new[]
             {
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 1,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 2,
                         }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 2,
                         }
                     }
                 },
-                new WeightedGraphVertex()
+                new WeightedGraphVertex
                 {
-                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                    Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                     {
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 0,
                         },
-                        new WeightedGraphNodeEdge()
+                        new WeightedGraphNodeEdge
                         {
                             To = 3,
                         }

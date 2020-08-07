@@ -13,9 +13,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-               new WeightedGraphVertex[]
+               new[]
                {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                };
@@ -29,13 +29,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-                 new WeightedGraphVertex[]
+                 new[]
                  {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 1,
@@ -43,7 +43,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                  };
@@ -57,13 +57,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 1,
@@ -71,11 +71,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 1,
                                 Weight = 2,
@@ -83,7 +83,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -97,19 +97,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 5,
@@ -117,11 +117,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 1,
                                 Weight = 2,
@@ -129,7 +129,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -143,19 +143,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 1,
                                 To = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 Weight = 5,
@@ -163,11 +163,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 1,
                                 Weight = 2,
@@ -175,11 +175,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 2,
                                 Weight = 2,
@@ -199,25 +199,25 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new PrimsAlgorithm();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 To = 1,
                                 Weight = 14
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 To = 2,
                                 Weight = 9
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 0,
                                 To = 3,
@@ -225,17 +225,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 1,
                                 To = 4,
                                 Weight = 9
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 1,
                                 To = 2,
@@ -243,23 +243,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 From = 2,
                                 To = 3,
                                 Weight = 10
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 2,
                                 To = 5,
                                 Weight = 11
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 From = 2,
                                 To = 1,
@@ -267,31 +267,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             },
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 From = 3,
                                 To = 5,
                                 Weight = 15
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 From = 4,
                                 To = 5,
                                 Weight = 6
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };

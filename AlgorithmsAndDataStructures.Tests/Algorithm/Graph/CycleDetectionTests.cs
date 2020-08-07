@@ -10,12 +10,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void SelfCycleIsDetected()
         {
             var sut = new CycleDetection();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 0 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 0 }
                     },
                 };
 
@@ -26,17 +26,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void SimpleTwoNodeCycleIsDetected()
         {
             var sut = new CycleDetection();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 0 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 0 }
                     },
                 };
 
@@ -47,14 +47,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void CycleIsNotDetectedForNonCycledGraph()
         {
             var sut = new CycleDetection();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
                     },
@@ -67,21 +67,21 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void DisconnectedGraphCycleIsDetected()
         {
             var sut = new CycleDetection();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 2 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 2 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 1 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
                     },
                 };
 
@@ -92,27 +92,27 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         public void DisconnectedGraphWithMultipleCyclesIsDetected()
         {
             var sut = new CycleDetection();
-            var graph = new GraphNode<int>[]
+            var graph = new[]
                 {
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 1, 2 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 1, 2 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 2 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 2 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 0, 3 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 0, 3 }
                     },
-                    new GraphNode<int>()
+                    new GraphNode<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>() { 3 }
+                        AdjacentNodes = new System.Collections.Generic.List<int> { 3 }
                     },
                 };
 

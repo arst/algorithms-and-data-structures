@@ -10,9 +10,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.BanzhafMeasure
             var sut = new Algorithms.Misc.BanzhafMeasure.BanzhafMeasure();
             var votingPower = sut.Measure(
                 "A",
-                new string[] { "B", "C", "D" },
+                new[] { "B", "C", "D" },
                 6,
-                new System.Collections.Generic.Dictionary<string, int>()
+                new System.Collections.Generic.Dictionary<string, int>
                 {
                     { "A", 4 },
                     { "B", 2 },

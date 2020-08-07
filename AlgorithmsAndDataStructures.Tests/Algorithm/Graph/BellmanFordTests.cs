@@ -13,9 +13,9 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -32,13 +32,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1,
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -63,13 +63,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1,
@@ -77,11 +77,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2,
@@ -89,7 +89,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -106,19 +106,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1,
                                 From = 0
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2,
@@ -126,11 +126,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2,
@@ -138,7 +138,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };
@@ -155,19 +155,19 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 1,
                                 To = 1,
                                 From = 0
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 5,
                                 To = 2,
@@ -175,11 +175,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 2,
@@ -187,11 +187,11 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 Weight = 2,
                                 To = 0,
@@ -214,25 +214,25 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new BellmanFord();
 
             var graph =
-                new WeightedGraphVertex[]
+                new[]
                 {
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 1,
                                 Weight = 14,
                                 From = 0
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 2,
                                 Weight = 9,
                                 From = 0
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 3,
                                 Weight = 7,
@@ -240,17 +240,17 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 4,
                                 Weight = 9,
                                 From = 1
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 2,
                                 Weight = 2,
@@ -258,23 +258,23 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 3,
                                 Weight = 10,
                                 From = 2
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 5,
                                 Weight = 11,
                                 From = 2
                             },
-                            new WeightedGraphNodeEdge()
+                            new WeightedGraphNodeEdge
                             {
                                 To = 1,
                                 Weight = 2,
@@ -282,31 +282,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                             },
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 5,
                                 Weight = 15,
                                 From = 3
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
-                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>()
+                        Edges = new System.Collections.Generic.List<WeightedGraphNodeEdge>
                         {
-                           new WeightedGraphNodeEdge()
-                            {
+                           new WeightedGraphNodeEdge
+                           {
                                 To = 5,
                                 Weight = 6,
                                 From = 4
                             }
                         }
                     },
-                    new WeightedGraphVertex()
+                    new WeightedGraphVertex
                     {
                     }
                 };

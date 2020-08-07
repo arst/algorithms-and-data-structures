@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
         {
             if (end - start == 1)
             {
-                return new int[] {input[start]};
+                return new[] {input[start]};
             }
 
             var middle = start + ((end - start) / 2);

@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SegmentTree
         [Fact]
         public void GetMin()
         {
-            var sut = new MinSegmentTree(new int[] { 1, 3, 5, 7, 9, 11 });
+            var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
 
             Assert.Equal(3, sut.GetSegmentValue(1, 3));
         }
@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.SegmentTree
         [Fact]
         public void CanUpdateValue()
         {
-            var sut = new MinSegmentTree(new int[] { 1, 3, 5, 7, 9, 11 });
+            var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
 
             Assert.Equal(3, sut.GetSegmentValue(1, 3));
 

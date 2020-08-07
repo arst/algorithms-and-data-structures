@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamicProgramming
         {
             var sut = new ChangeMakingProblem();
 
-            Assert.Equal(3, sut.GetMinChange(new int[] { 1, 2, 5 }, 11));
+            Assert.Equal(3, sut.GetMinChange(new[] { 1, 2, 5 }, 11));
         }
     }
 }

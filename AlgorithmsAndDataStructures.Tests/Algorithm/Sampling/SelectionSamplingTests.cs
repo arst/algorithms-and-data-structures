@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sampling
         public void CanSelectSample()
         {
             var sut = new SelectionSampling();
-            var population = new int[] { 1, 2 };
+            var population = new[] { 1, 2 };
             const int sampleSize = 1;
             var sample = sut.GetRandomSample(population, sampleSize);
 
@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sampling
         public void ThrowsOnIncorrectParams()
         {
             var sut = new SelectionSampling();
-            var population = new int[] { 1, 2 };
+            var population = new[] { 1, 2 };
             const int sampleSize = 3;
             Assert.Throws<ArgumentException>(() => sut.GetRandomSample(population, sampleSize));
         }

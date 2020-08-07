@@ -10,10 +10,10 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         {
             var sut = new MaximumBirpartiteMatchingDfsBased();
             var graph = new int[4][];
-            graph[0] = new int[] { 0, 1, 0, 1 };
-            graph[1] = new int[] { 0, 0, 0, 0 };
-            graph[2] = new int[] { 0, 1, 0, 0 };
-            graph[3] = new int[] { 0, 0, 0, 0 };
+            graph[0] = new[] { 0, 1, 0, 1 };
+            graph[1] = new[] { 0, 0, 0, 0 };
+            graph[2] = new[] { 0, 1, 0, 0 };
+            graph[3] = new[] { 0, 0, 0, 0 };
 
             Assert.Equal(2, sut.GetMaxMatching(graph));
         }
@@ -24,12 +24,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             var sut = new MaximumBirpartiteMatchingDfsBased();
             var graph = new int[6][];
 
-            graph[0] = new int[] { 0, 1, 1, 0, 0, 0 };
-            graph[1] = new int[] { 1, 0, 0, 1, 0, 0 };
-            graph[2] = new int[] { 0, 0, 1, 0, 0, 0 };
-            graph[3] = new int[] { 0, 0, 1, 1, 0, 0 };
-            graph[4] = new int[] { 0, 0, 0, 0, 0, 0 };
-            graph[5] = new int[] { 0, 0, 0, 0, 0, 1 };
+            graph[0] = new[] { 0, 1, 1, 0, 0, 0 };
+            graph[1] = new[] { 1, 0, 0, 1, 0, 0 };
+            graph[2] = new[] { 0, 0, 1, 0, 0, 0 };
+            graph[3] = new[] { 0, 0, 1, 1, 0, 0 };
+            graph[4] = new[] { 0, 0, 0, 0, 0, 0 };
+            graph[5] = new[] { 0, 0, 0, 0, 0, 1 };
 
             Assert.Equal(5, sut.GetMaxMatching(graph));
         }

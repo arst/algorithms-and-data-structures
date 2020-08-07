@@ -37,13 +37,13 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void Dequeue()
         {
-            var node = new Node<int>()
+            var node = new Node<int>
             {
                 Value = 1,
-                Next = new Node<int>()
+                Next = new Node<int>
                 {
                     Value = 2,
-                    Next = new Node<int>()
+                    Next = new Node<int>
                     {
                         Value = 3,
                         Next = null
@@ -59,13 +59,13 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void Traverse()
         {
-            var node = new Node<int>()
+            var node = new Node<int>
             {
                 Value = 1,
-                Next = new Node<int>()
+                Next = new Node<int>
                 {
                     Value = 2,
-                    Next = new Node<int>()
+                    Next = new Node<int>
                     {
                         Value = 3,
                         Next = null
@@ -83,7 +83,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void DequeueEmptiesSingleNodeList()
         {
-            var sut = SinglyCircularLinkedList<int>.FromSingleLinkedList(new SinglyLinkedList<int>(new Node<int>() { Value = 1 }));
+            var sut = SinglyCircularLinkedList<int>.FromSingleLinkedList(new SinglyLinkedList<int>(new Node<int> { Value = 1 }));
             sut.Dequeue();
 
             Assert.Empty(sut.Traverse());
@@ -92,13 +92,13 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void DequeueEmptiesList()
         {
-            var node = new Node<int>()
+            var node = new Node<int>
             {
                 Value = 1,
-                Next = new Node<int>()
+                Next = new Node<int>
                 {
                     Value = 2,
-                    Next = new Node<int>()
+                    Next = new Node<int>
                     {
                         Value = 3,
                         Next = null
@@ -116,13 +116,13 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
         [Fact]
         public void DequeueReturnsElementsInOrderReversedToEnqueue()
         {
-            var node = new Node<int>()
+            var node = new Node<int>
             {
                 Value = 1,
-                Next = new Node<int>()
+                Next = new Node<int>
                 {
                     Value = 2,
-                    Next = new Node<int>()
+                    Next = new Node<int>
                     {
                         Value = 3,
                         Next = null

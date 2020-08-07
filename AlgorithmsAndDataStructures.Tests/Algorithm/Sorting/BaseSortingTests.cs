@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         public void OneElementArrayIsSorted()
         {
             var sut = GetSystemUnderTest();
-            var target = new int[] { 1 };
+            var target = new[] { 1 };
             sut.Sort(target);
             AssertIsSorted(target);
         }
@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         public void BaseSortingWorks()
         {
             var sut = GetSystemUnderTest();
-            int[] target = new int[] { 6, 5, 3, 1, 8, 7, 2, 4 };
+            int[] target = new[] { 6, 5, 3, 1, 8, 7, 2, 4 };
             sut.Sort(target);
 
             AssertIsSorted(target);

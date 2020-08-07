@@ -10,14 +10,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryIndexedTreeTest
         [Fact]
         public void CanConstructFromArray()
         {
-            var sut = BinaryIndexedTree.FromArray(new int[] { 1,2,3,4,5 });
+            var sut = BinaryIndexedTree.FromArray(new[] { 1,2,3,4,5 });
             Assert.Equal(15, sut.GetSum(4));
         }
 
         [Fact]
         public void CanUpdateValue()
         {
-            var sut = BinaryIndexedTree.FromArray(new int[] { 1, 2, 3, 4, 5 });
+            var sut = BinaryIndexedTree.FromArray(new[] { 1, 2, 3, 4, 5 });
             Assert.Equal(15, sut.GetSum(4));
             sut.SetValue(2, 2);
             Assert.Equal(17, sut.GetSum(4));
@@ -26,7 +26,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryIndexedTreeTest
         [Fact]
         public void CanQueryRangeValue()
         {
-            var sut = BinaryIndexedTree.FromArray(new int[] { 1, 2, 3, 4, 5 });
+            var sut = BinaryIndexedTree.FromArray(new[] { 1, 2, 3, 4, 5 });
             Assert.Equal(3, sut.GetSum(0, 1));
             Assert.Equal(6, sut.GetSum(0, 2));
             Assert.Equal(10, sut.GetSum(0, 3));
