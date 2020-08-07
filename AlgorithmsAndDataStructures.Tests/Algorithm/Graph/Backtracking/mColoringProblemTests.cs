@@ -4,12 +4,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
 {
-    public class mColoringProblemTests
+    public class MColoringProblemTests
     {
         [Fact]
         public void Baseline()
         {
-            var sut = new mColoringProblem();
+            var sut = new MColoringProblem();
             var graph = new UndirectedGraph(4);
             graph.Connect(0, 1);
             graph.Connect(0, 2);
@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.Backtracking
             graph.Connect(1, 2);
             graph.Connect(2, 3);
 
-            var result = sut.CanBeColored(graph, 3);
+            var result = sut.CanColor(graph, 3);
 
             Assert.True(result);
         }

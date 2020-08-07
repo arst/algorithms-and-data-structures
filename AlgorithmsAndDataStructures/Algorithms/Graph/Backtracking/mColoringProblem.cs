@@ -4,46 +4,54 @@ using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
 {
-    public class mColoringProblem
+    public class MColoringProblem
     {
-        public bool CanBeColored(UndirectedGraph graph, int colors)
+#pragma warning disable CA1822 // Mark members as static
+        public bool CanColor(UndirectedGraph graph, int colors)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var vertices = graph.Vertices();
             var assignedColors = new int[vertices.Length];
 
-            for (int i = 0; i < assignedColors.Length; i++)
+            for (var i = 0; i < assignedColors.Length; i++)
             {
                 assignedColors[i] = -1;
             }
-            
 
-            return CanColor(0, vertices, assignedColors, colors);
+
+            const int bootstrapVertex = 0;
+            return CanColor(bootstrapVertex, vertices, assignedColors, colors);
         }
 
-        private bool CanColor(int currentVertice, List<int>[] vertices, int[] assignedColors, int colors)
+        private static bool CanColor(int currentVertex, IReadOnlyList<List<int>> vertices, int[] assignedColors, int colors)
         {
-            // Try to assign each color to the current vertice.
-            for (int i = 0; i < colors; i++)
+            // Try to assign each color to the current vertex.
+            for (var i = 0; i < colors; i++)
             {
                 // If it is safe to assign, assign and continue to adjacent non-colored vertices.
-                if (IsSafeColor(currentVertice, vertices, assignedColors, i))
+                if (IsSafeColor(currentVertex, vertices, assignedColors, i))
                 {
-                    assignedColors[currentVertice] = i;
+                    assignedColors[currentVertex] = i;
 
                     if (IsAllColored(assignedColors))
                     {
                         return true;
                     }
 
-                    foreach (var adjacentVertice in vertices[currentVertice])
+                    foreach (var adjacentVertex in vertices[currentVertex])
                     {
                         // If color is already assigned on this path we don't need to color it.
-                        if (assignedColors[adjacentVertice] != -1)
+                        if (assignedColors[adjacentVertex] != -1)
                         {
                             continue;
                         }
 
-                        var canColor = CanColor(adjacentVertice, vertices, assignedColors, colors);
+                        var canColor = CanColor(adjacentVertex, vertices, assignedColors, colors);
 
                         if (canColor)
                         {
@@ -51,23 +59,23 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
                         }
                     }
 
-                    assignedColors[currentVertice] = -1;
+                    assignedColors[currentVertex] = -1;
                 }
             }
 
             return false;
         }
 
-        private bool IsAllColored(int[] assignedColors)
+        private static bool IsAllColored(IEnumerable<int> assignedColors)
         {
             return assignedColors.All(arg => arg > -1);
         }
 
-        private bool IsSafeColor(int currentVertice, List<int>[] vertices, int[] assignedColors, int color)
+        private static bool IsSafeColor(int currentVertex, IReadOnlyList<List<int>> vertices, IReadOnlyList<int> assignedColors, int color)
         {
-            foreach (var adjacentVertice in vertices[currentVertice])
+            foreach (var adjacentVertex in vertices[currentVertex])
             {
-                if (assignedColors[adjacentVertice] == color)
+                if (assignedColors[adjacentVertex] == color)
                 {
                     return false;
                 }
