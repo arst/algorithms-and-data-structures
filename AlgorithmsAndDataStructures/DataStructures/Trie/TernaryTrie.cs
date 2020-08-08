@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
         private TernaryTrieNode InsertInternal(string key, int index, TernaryTrieNode currentNode)
         {
-            var node = currentNode ?? new TernaryTrieNode()
+            var node = currentNode ?? new TernaryTrieNode
             {
                 Value = key[index]
             };

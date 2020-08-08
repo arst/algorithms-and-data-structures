@@ -5,8 +5,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
 {
     public class VertexCoverSimpleApproximation
     {
+#pragma warning disable CA1822 // Mark members as static
         public List<int> GetVertexCover(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return new List<int>(0);
+            }
+
             var visited = new bool[graph.Length];
 
             for (var i = 0; i < graph.Length; i++)
@@ -45,8 +52,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
             return result;
         }
 
-        public List<int> GetVertexCoverOptimized(int[][] graph)
+        public static List<int> GetVertexCoverOptimized(int[][] graph)
         {
+            if (graph is null)
+            {
+                return new List<int>(0);
+            }
+
             var visited = new int[graph.Length];
 
             for (var i = 0; i < graph.Length; i++)

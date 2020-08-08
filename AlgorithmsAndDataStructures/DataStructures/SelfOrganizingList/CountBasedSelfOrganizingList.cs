@@ -12,12 +12,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
         {
             if (Head == null)
             {
-                Head = new CountBaseSelfOganizedListNode<T>() { Value = value };
+                Head = new CountBaseSelfOganizedListNode<T> { Value = value };
                 tail = Head;
                 return;
             }
 
-            tail.Next = new CountBaseSelfOganizedListNode<T>() { Value = value };
+            tail.Next = new CountBaseSelfOganizedListNode<T> { Value = value };
             tail = tail.Next;
         }
 

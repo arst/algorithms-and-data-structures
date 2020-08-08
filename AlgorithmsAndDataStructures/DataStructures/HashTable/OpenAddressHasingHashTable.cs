@@ -32,7 +32,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
             {
                 if (hashTable[currentIndex] == DeletedEntry || hashTable[currentIndex] == null)
                 {
-                    hashTable[currentIndex] = new HashEntry<TKey, TValue>()
+                    hashTable[currentIndex] = new HashEntry<TKey, TValue>
                     { 
                         Value = value,
                         Key = key,

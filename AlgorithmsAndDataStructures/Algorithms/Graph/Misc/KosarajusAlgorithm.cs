@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
                     result[from] ??= new WeightedGraphVertex();
 
-                    result[from].Edges.Add(new WeightedGraphNodeEdge()
+                    result[from].Edges.Add(new WeightedGraphNodeEdge
                     {
                         From = from,
                         To = graph[i].Edges[j].From,

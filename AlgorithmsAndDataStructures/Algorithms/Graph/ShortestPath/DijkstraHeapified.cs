@@ -1,7 +1,8 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
     /*
     Negative weighted edges allowed: NO
@@ -10,8 +11,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
    */
     public class DijkstraHeapified
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int, int[] path) MinDistance(WeightedGraphVertex[] graph, int from, int to)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return (default, Array.Empty<int>());
+            }
+
             var heap = new HeapNode[graph.Length];
             var heapEnd = heap.Length;
             var mapping = new int[graph.Length];
@@ -28,10 +36,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
                     var heapIndexForCurrentlyInspectedNode = mapping[current.IndexInOriginalGraph];
 
-                    var destinationNodeCurentWeight = heap[heapIndexForDestinationNode].Weight;
+                    var destinationNodeCurrentWeight = heap[heapIndexForDestinationNode].Weight;
                     var destinationNodeProposedWeight = heap[heapIndexForCurrentlyInspectedNode].Weight + edge.Weight;
 
-                    if (destinationNodeCurentWeight > destinationNodeProposedWeight)
+                    if (destinationNodeCurrentWeight > destinationNodeProposedWeight)
                     {
                         heap[heapIndexForDestinationNode].Weight = destinationNodeProposedWeight;
                         path[edge.To] = current.IndexInOriginalGraph;
@@ -55,11 +63,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             return (heap[mapping[to]].Weight, path);
         }
 
-        private static void PopulateHeap(WeightedGraphVertex[] graph, int from, HeapNode[] heap, int[] mapping)
+        private static void PopulateHeap(IReadOnlyList<WeightedGraphVertex> graph, int from, IList<HeapNode> heap, IList<int> mapping)
         {
-            for (var i = 0; i < heap.Length; i++)
+            for (var i = 0; i < heap.Count; i++)
             {
-                heap[i] = new HeapNode()
+                heap[i] = new HeapNode
                 {
                     IndexInOriginalGraph = i,
                     Weight = i == from ? 0 : int.MaxValue,
@@ -69,7 +77,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             }
         }
 
-        private static void Sink(HeapNode[] heap, int current, int[] mapping, int heapEnd)
+        private static void Sink(IList<HeapNode> heap, int current, IList<int> mapping, int heapEnd)
         {
             var leftChild = current * 2 + 1;
             var rightChild = current * 2 + 2;
@@ -90,7 +98,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             }
         }
 
-        private static void RestoreHeap(HeapNode[] heap, int[] mapping, int i)
+        private static void RestoreHeap(IList<HeapNode> heap, IList<int> mapping, int i)
         {
             if (i == 0)
             {
@@ -107,7 +115,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             }
         }
 
-        private static void Swap(HeapNode[] heap, int[] mapping, int from, int to)
+        private static void Swap(IList<HeapNode> heap, IList<int> mapping, int from, int to)
         {
             var temp = heap[to];
             heap[to] = heap[from];

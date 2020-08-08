@@ -1,13 +1,13 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
-    public class HeapNode
+    internal sealed class HeapNode
     {
-        public int IndexInOriginalGraph { get; set; }
+        internal int IndexInOriginalGraph { get; set; }
 
-        public int Weight { get; set; }
+        internal int Weight { get; set; }
 
-        public WeightedGraphVertex Vertex { get; set; }
+        internal WeightedGraphVertex Vertex { get; set; }
     }
 }

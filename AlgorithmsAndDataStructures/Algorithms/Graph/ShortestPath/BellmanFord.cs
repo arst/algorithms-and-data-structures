@@ -1,3 +1,4 @@
+using System;
 using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,24 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
     */
     public class BellmanFord
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int, int[] path) MinDistance(WeightedGraphVertex[] graph, int from, int to)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return (default, Array.Empty<int>());
+            }
+
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
             var isRelaxed = true;
             var edges = CollectEdges(graph);
 
-            InitializeDisatances(graph, from, distance);
+            InitializeDistances(graph, from, distance);
 
             // Algorithm performs only V -1 cycles here to avoid being caught in negative cycle.
-            for (var i = 0; i < graph.Length - 1 && isRelaxed; i++)
+            for (var i = 0; i < graph.Length - 1; i++)
             {
                 foreach (var edge in edges)
                 {
@@ -38,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
             return (distance[to], path);
         }
 
-        private static bool RelaxEdge(WeightedGraphNodeEdge edge, int[] distance, int[] path)
+        private static bool RelaxEdge(WeightedGraphNodeEdge edge, IList<int> distance, IList<int> path)
         {
             var relaxed = false;
 
@@ -52,14 +60,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
             return relaxed;
         }
 
-        private static List<WeightedGraphNodeEdge> CollectEdges(WeightedGraphVertex[] graph)
+        private static List<WeightedGraphNodeEdge> CollectEdges(IEnumerable<WeightedGraphVertex> graph)
         {
             return graph.SelectMany(arg => arg.Edges).ToList();
         }
 
-        private static void InitializeDisatances(WeightedGraphVertex[] graph, int from, int[] distance)
+        private static void InitializeDistances(IReadOnlyCollection<WeightedGraphVertex> graph, int from, IList<int> distance)
         {
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
                 distance[i] = int.MaxValue;
             }

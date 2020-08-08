@@ -26,7 +26,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         #region Insert
         public void Insert(int value)
         {
-            var newNode = new RedBlackTreeNode()
+            var newNode = new RedBlackTreeNode
             { 
                 IsRed = true,
                 Value = value,

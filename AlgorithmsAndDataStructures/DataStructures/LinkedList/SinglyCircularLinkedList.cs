@@ -40,7 +40,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Enqueue(T value)
         {
-            var newNode = new Node<T>() { Value = value };
+            var newNode = new Node<T> { Value = value };
 
             if (IsEmpty())
             {

@@ -6,8 +6,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
 {
     public class BreadthFirstSearch
     {
+#pragma warning disable CA1822 // Mark members as static
         public List<int> Traverse(GraphVertex<int>[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return new List<int>(0);
+            }
+
             var result = new List<int>();
             var traversalQueue = new Queue<int>();
             var visited = new HashSet<int>();

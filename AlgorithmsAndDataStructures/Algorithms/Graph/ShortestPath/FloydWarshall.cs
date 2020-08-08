@@ -1,32 +1,40 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
     /*
     Negative weighted edges allowed: YES
     Complexity: o(n^3)
-    NOTE: Since it is o(n^3) it is mostly usefull only for small graphs(up to 100 vertices)
+    NOTE: Since it is o(n^3) it is mostly useful only for small graphs(up to 100 vertices)
     Application: Most famous - Transitive closure is a graph.
    */
     public class FloydWarshall
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int[][] disatnces, int[][] path) MinDistances(WeightedGraphVertex[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
-            var disatnces = new int[graph.Length][];
+            if (graph is null)
+            {
+                return (Array.Empty<int[]>(), Array.Empty<int[]>());
+            }
+
+            var distances = new int[graph.Length][];
             var path = new int[graph.Length][];
 
-            for (var i = 0; i < disatnces.Length; i++)
+            for (var i = 0; i < distances.Length; i++)
             {
-                disatnces[i] = new int[graph.Length];
+                distances[i] = new int[graph.Length];
                 path[i] = new int[graph.Length];
-                disatnces[i][i] = 0;
+                distances[i][i] = 0;
                 path[i][i] = i;
 
-                for (var j = 0; j < disatnces[i].Length; j++)
+                for (var j = 0; j < distances[i].Length; j++)
                 {
                     if (j != i)
                     {
-                        disatnces[i][j] = int.MaxValue / 2; // int.MaxValue will give us an overflow inside main loop
+                        distances[i][j] = int.MaxValue / 2; // int.MaxValue will give us an overflow inside main loop
                     }
                 }
             }
@@ -37,27 +45,27 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
 
                 for (var j = 0; j < vertex.Edges.Count; j++)
                 {
-                    disatnces[i][vertex.Edges[j].To] = vertex.Edges[j].Weight;
+                    distances[i][vertex.Edges[j].To] = vertex.Edges[j].Weight;
                     path[i][vertex.Edges[j].To] = i;
                 }
             }
 
-            for (var k = 0; k < disatnces.Length; k++)
+            for (var k = 0; k < distances.Length; k++)
             {
-                for (var i = 0; i < disatnces.Length; i++)
+                for (var i = 0; i < distances.Length; i++)
                 {
-                    for (var j = 0; j < disatnces.Length; j++)
+                    for (var j = 0; j < distances.Length; j++)
                     {
-                        if (disatnces[i][j] > disatnces[i][k] + disatnces[k][j])
+                        if (distances[i][j] > distances[i][k] + distances[k][j])
                         {
-                            disatnces[i][j] = disatnces[i][k] + disatnces[k][j];
+                            distances[i][j] = distances[i][k] + distances[k][j];
                             path[i][j] = k;
                         }
                     }
                 }
             }
 
-            return (disatnces, path);
+            return (distances, path);
         }
     }
 }

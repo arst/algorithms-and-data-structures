@@ -1,7 +1,8 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.ShortestPath
 {
     /*
     Negative weighted edges allowed: NO
@@ -10,15 +11,22 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
    */
     public class DijkstraNaive
     {
+#pragma warning disable CA1822 // Mark members as static
         public (int, int[] path) MinDistance(WeightedGraphVertex[] graph, int from, int to)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return (default, Array.Empty<int>());
+            }
+
             var visited = new bool[graph.Length];
             var distance = new int[graph.Length];
             var path = new int[graph.Length];
 
             for (var i = 0; i < distance.Length; i++)
             {
-                distance[i] = Int32.MaxValue;
+                distance[i] = int.MaxValue;
             }
 
             distance[from] = 0;
@@ -44,12 +52,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph
             return (distance[to], path);
         }
 
-        private int GetMinNodeIndex(int[] distance, bool[] visited)
+        private static int GetMinNodeIndex(IReadOnlyList<int> distance, IReadOnlyList<bool> visited)
         {
             var currentMin = int.MaxValue;
             var currentMinIndex = -1;
 
-            for (var i = 0; i < distance.Length; i++)
+            for (var i = 0; i < distance.Count; i++)
             {
                 if (visited[i])
                 {

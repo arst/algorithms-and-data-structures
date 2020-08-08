@@ -6,15 +6,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
 {
     public class MinSpanningTreeTravelingSalesman
     {
+#pragma warning disable CA1822 // Mark members as static
         public int Travel(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
             const int startingCity = 0;
             var edges = new List<Tuple<int, int, int>>();
             var minimumSpanningTree = new List<Tuple<int, int, int>>();
-            var spanningTree = new HashSet<int>();
-            var minimumSpanningTreeWeight = 0;
-
-            spanningTree.Add(startingCity); 
+            var spanningTree = new HashSet<int> {startingCity};
 
             //collect all edges for Prim's algorithm
             for (var i = 0; i < graph.Length; i++)
@@ -41,9 +40,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
                     }
                 }
 
+                if (minEdge is null)
+                {
+                    continue;
+                }
+
                 edges.Remove(minEdge);
                 minimumSpanningTree.Add(minEdge);
-                minimumSpanningTreeWeight += minEdge.Item3;
                 spanningTree.Add(minEdge.Item2);
             }
 
@@ -52,19 +55,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
 
             for (var i = 0; i < minimumSpanningTree.Count; i++)
             {
-                var edge = minimumSpanningTree[i];
+                var (item1, item2, _) = minimumSpanningTree[i];
 
-                minSpanningTreeGraph[edge.Item1] = minSpanningTreeGraph[edge.Item1] ?? new Tuple<int, List<int>>(edge.Item1, new List<int>());
-                minSpanningTreeGraph[edge.Item2] = minSpanningTreeGraph[edge.Item2] ?? new Tuple<int, List<int>>(edge.Item2, new List<int>());
+                minSpanningTreeGraph[item1] = minSpanningTreeGraph[item1] ?? new Tuple<int, List<int>>(item1, new List<int>());
+                minSpanningTreeGraph[item2] = minSpanningTreeGraph[item2] ?? new Tuple<int, List<int>>(item2, new List<int>());
 
-                minSpanningTreeGraph[edge.Item1].Item2.Add(edge.Item2);
-                minSpanningTreeGraph[edge.Item2].Item2.Add(edge.Item1);
+                minSpanningTreeGraph[item1].Item2.Add(item2);
+                minSpanningTreeGraph[item2].Item2.Add(item1);
             }
 
             // Make DFS traversal of constructed graph
             var path = new List<int>();
             var visited = new bool[graph.Length];
-            DFS(minSpanningTreeGraph, path, visited, startingCity);
+            Dfs(minSpanningTreeGraph, path, visited, startingCity);
             var weight = 0;
 
             // Calculate path weight
@@ -77,7 +80,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             return weight + graph[path.Last()][startingCity];
         }
 
-        private void DFS(Tuple<int, List<int>>[] minSpanningTreeGraph, List<int> path, bool[] visited, int current)
+        private static void Dfs(IReadOnlyList<Tuple<int, List<int>>> minSpanningTreeGraph, ICollection<int> path, IList<bool> visited, int current)
         {
             visited[current] = true;
             path.Add(current);
@@ -87,7 +90,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
             {
                 if (!visited[adjacentVertices[i]])
                 {
-                    DFS(minSpanningTreeGraph, path, visited, adjacentVertices[i]);
+                    Dfs(minSpanningTreeGraph, path, visited, adjacentVertices[i]);
                 }
             }
         }

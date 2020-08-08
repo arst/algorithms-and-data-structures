@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
             }
             else
             {
-                hashTable[hash].AddLast(new HashEntry<TKey, TValue>() { Value = value, Key = key });
+                hashTable[hash].AddLast(new HashEntry<TKey, TValue> { Value = value, Key = key });
             }
         }
 

@@ -11,12 +11,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
         {
             if (IsEmpty)
             {
-                this.head = new LinkedListQueueNode<T>() { Value = value };
+                this.head = new LinkedListQueueNode<T> { Value = value };
                 this.tail = this.head;
             }
             else
             { 
-                this.tail.Next = new LinkedListQueueNode<T>() { Value = value };
+                this.tail.Next = new LinkedListQueueNode<T> { Value = value };
                 this.tail = this.tail.Next;
             }
         }

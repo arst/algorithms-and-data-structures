@@ -10,12 +10,12 @@
         {
             if (Head == null)
             {
-                Head = new SelfOrganizingListNode<T>() { Value = value };
+                Head = new SelfOrganizingListNode<T> { Value = value };
                 tail = Head;
                 return;
             }
 
-            tail.Next = new SelfOrganizingListNode<T>() { Value = value };
+            tail.Next = new SelfOrganizingListNode<T> { Value = value };
             tail = tail.Next;
         }
 

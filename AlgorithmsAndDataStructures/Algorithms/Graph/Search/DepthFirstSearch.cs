@@ -1,5 +1,4 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.Graph;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +6,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
 {
     public class DepthFirstSearch
     {
+#pragma warning disable CA1822 // Mark members as static
         public List<int> Traverse(GraphVertex<int>[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return new List<int>(0);
+            }
+
             var result = new HashSet<int>();
             var visited = new HashSet<int>();
 
@@ -17,7 +23,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
             return result.ToList();
         }
 
-        private void TraverseInternal(int node, GraphVertex<int>[] graph, HashSet<int> result, HashSet<int> visited)
+        private static void TraverseInternal(int node, IReadOnlyList<GraphVertex<int>> graph, ISet<int> result, ISet<int> visited)
         {
             result.Add(graph[node].Value);
             visited.Add(node);
@@ -31,8 +37,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
             }
         }
 
+#pragma warning disable CA1822 // Mark members as static
         public List<int> TraverseNonRecursive(GraphVertex<int>[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return new List<int>(0);
+            }
+
             var result = new HashSet<int>();
             var visited = new HashSet<int>();
             var stack = new Stack<int>();
@@ -46,8 +59,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
                     break;
                 }
 
-                var currentVertice = stack.Peek();
-                var adjacentNodes = graph[currentVertice].AdjacentVertices;
+                var currentVertex = stack.Peek();
+                var adjacentNodes = graph[currentVertex].AdjacentVertices;
 
                 if (!adjacentNodes.Except(visited).Any())
                 {

@@ -10,7 +10,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
 
         public void Insert(int value)
         {
-            var toInsert = new AvlTreeNode()
+            var toInsert = new AvlTreeNode
             {
                 Value = value,
             };

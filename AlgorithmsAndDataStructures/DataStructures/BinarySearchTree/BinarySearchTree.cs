@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
         {
             if (root == null)
             {
-                root = new BinaryTreeNode<T>() { Value = value };
+                root = new BinaryTreeNode<T> { Value = value };
 
                 return;
             }
@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
                 {
                     if (current.Left == null)
                     {
-                        current.Left = new BinaryTreeNode<T>() { Value = value };
+                        current.Left = new BinaryTreeNode<T> { Value = value };
 
                         return;
                     }
@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
                 {
                     if (current.Right == null)
                     {
-                        current.Right = new BinaryTreeNode<T>() { Value = value };
+                        current.Right = new BinaryTreeNode<T> { Value = value };
 
                         return;
                     }

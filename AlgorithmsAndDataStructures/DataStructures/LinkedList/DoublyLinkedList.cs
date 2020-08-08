@@ -33,7 +33,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Prepend(T value)
         {
-            var newNode = new DoublyNode<T>() { Value = value };
+            var newNode = new DoublyNode<T> { Value = value };
 
             if (IsEmpty())
             {
@@ -50,7 +50,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Append(T value)
         {
-            var newNode = new DoublyNode<T>() { Value = value };
+            var newNode = new DoublyNode<T> { Value = value };
 
             if (IsEmpty())
             {

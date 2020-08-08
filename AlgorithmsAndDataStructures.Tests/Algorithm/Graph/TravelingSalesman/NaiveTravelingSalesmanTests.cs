@@ -3,12 +3,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.TravelingSalesman
 {
-    public class NaiveTravelingSalesmenTests
+    public class NaiveTravelingSalesmanTests
     {
         [Fact]
         public void Baseline()
         {
-            var sut = new NaiveTravelingSalesamen();
+            var sut = new NaiveTravelingSalesman();
             var graph = new int[4][];
 
             graph[0] = new[] { 0, 10, 15, 20 };

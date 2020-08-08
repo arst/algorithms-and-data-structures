@@ -14,7 +14,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public SkipList(int maxHeight = 32)
         {
-            sentinel = new SkipListNode<T>() { Value = default, IsSentinelNode = true };
+            sentinel = new SkipListNode<T> { Value = default, IsSentinelNode = true };
             this.maxHeight = maxHeight;
             var level = maxHeight - 1;
             var current = sentinel;
@@ -54,7 +54,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             }
 
             var nextInLine = current?.Next;
-            current.Next = new SkipListNode<T>() { Value = value };
+            current.Next = new SkipListNode<T> { Value = value };
 
             if (nextInLine != null)
             {
@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             for (var i = levelsToAdd - 2; i >= 0; i--)
             {
                 nextInLine = path[i]?.Next;
-                path[i].Next = new SkipListNode<T>() { Value = value, Down = below };
+                path[i].Next = new SkipListNode<T> { Value = value, Down = below };
 
                 if (nextInLine != null)
                 {

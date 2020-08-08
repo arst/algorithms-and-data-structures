@@ -1,43 +1,50 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
 {
     public class GreedyTravelingSalesman
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetPath(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var visited = new bool[graph.Length];
 
             return Travel(graph, 0, visited, 0, 0);
         }
 
-        private int Travel(int[][] graph, int currentVertice, bool[] visited, int startingVertice, int path)
+        private static int Travel(IReadOnlyList<int[]> graph, int currentVertex, bool[] visited, int startingVertex, int path)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
 
-            if (graph[currentVertice][startingVertice] > 0 && visited.All(arg => arg))
+            if (graph[currentVertex][startingVertex] > 0 && visited.All(arg => arg))
             {
-                return path + graph[currentVertice][startingVertice];
+                return path + graph[currentVertex][startingVertex];
             }
 
-            var minEdghe = GetMinEdge(graph, currentVertice, visited);
+            var minEdge = GetMinEdge(graph, currentVertex, visited);
 
-            path += graph[currentVertice][minEdghe];
+            path += graph[currentVertex][minEdge];
 
-            return Travel(graph, minEdghe, visited, startingVertice, path);
+            return Travel(graph, minEdge, visited, startingVertex, path);
         }
 
-        private int GetMinEdge(int[][] graph, int currentVertice, bool[] visited)
+        private static int GetMinEdge(IReadOnlyList<int[]> graph, int currentVertex, IReadOnlyList<bool> visited)
         {
             var minIndex = -1;
             var minValue = int.MaxValue;
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                if (graph[currentVertice][i] > 0 && minValue > graph[currentVertice][i] && !visited[i])
+                if (graph[currentVertex][i] > 0 && minValue > graph[currentVertex][i] && !visited[i])
                 {
-                    minValue = graph[currentVertice][i];
+                    minValue = graph[currentVertex][i];
                     minIndex = i;
                 }
             }

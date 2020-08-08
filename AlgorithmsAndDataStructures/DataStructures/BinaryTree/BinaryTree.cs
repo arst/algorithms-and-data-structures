@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
         {
             if (this.root == null)
             {
-                this.root = new BinaryTreeNode<T>() { Value = value };
+                this.root = new BinaryTreeNode<T> { Value = value };
                 return;
             }
 
@@ -24,12 +24,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
 
                 if (currentNode.Left == null)
                 {
-                    currentNode.Left = new BinaryTreeNode<T>() { Value = value };
+                    currentNode.Left = new BinaryTreeNode<T> { Value = value };
                     return;
                 }
                 else if (currentNode.Right == null)
                 {
-                    currentNode.Right = new BinaryTreeNode<T>() { Value = value };
+                    currentNode.Right = new BinaryTreeNode<T> { Value = value };
                     return;
                 }
 
@@ -48,7 +48,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
             BinaryTreeNode<T> toDelete = null;
             
             var queue = new Queue<ParentChildNodePair<T>>();
-            queue.Enqueue(new ParentChildNodePair<T>()
+            queue.Enqueue(new ParentChildNodePair<T>
             { 
                 Child = root,
                 Parent = null,
@@ -66,11 +66,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
 
                 if (currentNode.Left != null)
                 {
-                    queue.Enqueue(new ParentChildNodePair<T>() { Child = currentNode.Left, Parent = currentNode });
+                    queue.Enqueue(new ParentChildNodePair<T> { Child = currentNode.Left, Parent = currentNode });
                 }
                 if (currentNode.Right != null)
                 {
-                    queue.Enqueue(new ParentChildNodePair<T>() { Child = currentNode.Right, Parent = currentNode });
+                    queue.Enqueue(new ParentChildNodePair<T> { Child = currentNode.Right, Parent = currentNode });
                 }
 
                 if (queue.Count == 0 && toDelete != null)

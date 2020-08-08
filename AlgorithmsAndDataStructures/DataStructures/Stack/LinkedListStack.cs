@@ -15,11 +15,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
         {
             if (head == null)
             {
-                head = new LinkedListStackNode<T>() { Value = value };
+                head = new LinkedListStackNode<T> { Value = value };
             }
             else
             {
-                var node = new LinkedListStackNode<T>() { Value = value };
+                var node = new LinkedListStackNode<T> { Value = value };
                 node.Next = head;
                 head = node;
             }
