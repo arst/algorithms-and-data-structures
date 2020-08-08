@@ -6,12 +6,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
     {
         public int Search(string input, string pattern)
         {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
             if (input.Length < pattern.Length)
             {
                 return -1;
             }
 
-            var primeNumber = 3;
+            const int primeNumber = 3;
             var hash = ComputeHash(pattern, pattern.Length, primeNumber);
             var index = 0;
             var startingHash = ComputeHash(input, pattern.Length, primeNumber);
@@ -43,7 +48,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return -1;
         }
 
-        private int RecalculateHash(string input, int currentHash, int index, int primeNumber, string pattern)
+        private static int RecalculateHash(string input, int currentHash, int index, int primeNumber, string pattern)
         {
             var suffixHash = currentHash - input[index - 1];
             var fullHash = suffixHash + (input[index + pattern.Length - 1] * (int)Math.Pow(primeNumber, pattern.Length));
@@ -51,7 +56,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return normalizedHash;
         }
 
-        private int ComputeHash(string pattern, int stopAt, int primeNumber)
+        private static int ComputeHash(string pattern, int stopAt, int primeNumber)
         {
             var hash = 0;
 

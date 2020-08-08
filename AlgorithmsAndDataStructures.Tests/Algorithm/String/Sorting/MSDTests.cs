@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
         [Fact]
         public void BaselineSameLength()
         {
-            var sut = new MSD();
+            var sut = new Msd();
 
             var input = new[]
                 {
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
         [Fact]
         public void BaselineDifferentLength()
         {
-            var sut = new MSD();
+            var sut = new Msd();
 
             var input = new[]
                 {

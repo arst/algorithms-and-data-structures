@@ -1,10 +1,17 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.String.Search
+﻿using System;
+
+namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 {
     public class NaivePatternSearch : IStringPatternSearchAlgorithm
     {
         public int Search(string input, string pattern)
         {
-            var negativeResult = -1;
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
+            const int negativeResult = -1;
 
             if (pattern.Length > input.Length)
             {

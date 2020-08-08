@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
         [Fact]
         public void Baseline()
         {
-            var sut = new LSD();
+            var sut = new Lsd();
 
             var input = new[]
                 {

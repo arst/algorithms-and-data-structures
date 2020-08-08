@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 {
@@ -7,6 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
     {
         public int Search(string input, string pattern)
         {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
             var goodSuffixHeuristic = BuildGodSuffixHeuristic(pattern);
             PostProcessGodSuffixHeuristic(pattern, goodSuffixHeuristic);
             
@@ -27,7 +31,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                 {
                     return inputIndex + 1;
                 }
-                else if (inputIndex > 0 && !isMatch)
+
+                if (inputIndex > 0 && !isMatch)
                 {
                     if (patternIndex == pattern.Length - 1)
                     {
@@ -36,7 +41,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                     else
                     {
                         patternIndex = pattern.Length - 1;
-                        inputIndex = inputIndex + goodSuffixHeuristic.shifts[patternIndex + 1];
+                        inputIndex += goodSuffixHeuristic.shifts[patternIndex + 1];
                             
                     }
                 }
@@ -45,7 +50,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return -1;
         }
 
-        private void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
+        private static void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
         {
             int i, j;
             // The whole string longest border
@@ -61,7 +66,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             }
         }
 
-        private (int[] borders, int[] shifts) BuildGodSuffixHeuristic(string pattern)
+        private static (int[] borders, int[] shifts) BuildGodSuffixHeuristic(string pattern)
         {
             // A border is a substring which is both proper suffix and proper prefix. 
             // F.E., in string “ccacc”, “c” is a border, “cc” is a border because it appears in both end of string but “cca” is not a border.

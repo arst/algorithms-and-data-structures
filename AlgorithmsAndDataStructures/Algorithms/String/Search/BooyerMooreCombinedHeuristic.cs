@@ -7,6 +7,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
     {
         public int Search(string input, string pattern)
         {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
             var badCharacterHeuristicTable = BuildBadCharacterHeuristicTable(pattern);
 
             var goodSuffixHeuristic = BuildGodSuffixHeuristic(pattern);
@@ -28,7 +33,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                 {
                     return inputIndex + 1;
                 }
-                else if (inputIndex > 0 && !isMatch)
+
+                if (inputIndex > 0 && !isMatch)
                 {
                     if (patternIndex == pattern.Length - 1)
                     {
@@ -41,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                         var goodSuffixHeuristicShift = goodSuffixHeuristic.shifts[patternIndex + 1];
                         var badSuffixHeuristicShift = (badCharacterHeuristicTable.ContainsKey(mismatchedCharacter) ? badCharacterHeuristicTable[mismatchedCharacter] : pattern.Length);
 
-                        inputIndex = inputIndex + Math.Max(goodSuffixHeuristicShift, badSuffixHeuristicShift);
+                        inputIndex += Math.Max(goodSuffixHeuristicShift, badSuffixHeuristicShift);
                     }
                 }
             }
@@ -49,7 +55,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return -1;
         }
 
-        private Dictionary<char, int> BuildBadCharacterHeuristicTable(string pattern)
+        private static Dictionary<char, int> BuildBadCharacterHeuristicTable(string pattern)
         {
             var result = new Dictionary<char, int>();
 
@@ -61,7 +67,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return result;
         }
 
-        private void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
+        private static void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
         {
             int i, j;
             j = goodSuffixHeuristic.borders[0];
@@ -75,7 +81,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             }
         }
 
-        private (int[] borders, int[] shifts) BuildGodSuffixHeuristic(string pattern)
+        private static (int[] borders, int[] shifts) BuildGodSuffixHeuristic(string pattern)
         {
             var borders = new int[pattern.Length + 1];
             var shifts = new int[pattern.Length + 1];

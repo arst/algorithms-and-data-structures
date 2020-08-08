@@ -4,9 +4,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.LevenstineDistance
 {
     public class LevenstineDistanceDynamicProgramming
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "To follow code style")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static",
+            Justification = "To follow code style")]
         public int GetLevenstineDistance(string left, string right)
         {
+            if (string.IsNullOrEmpty(right) || string.IsNullOrEmpty(left))
+            {
+                return default;
+            }
+
             var distancesTable = new int[left.Length + 1][];
             
             for (var i = 0; i < left.Length + 1; i++)

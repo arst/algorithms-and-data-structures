@@ -6,10 +6,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
     {
         public int Search(string input, string pattern)
         {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
             return SearchInternal(input, 0, pattern, 0);
         }
 
-        private int SearchInternal(string input, int inputPosition, string pattern, int patternPosition)
+        private static int SearchInternal(string input, int inputPosition, string pattern, int patternPosition)
         {
             if (input.Length - inputPosition < pattern.Length - patternPosition)
             {
@@ -25,10 +30,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
 
                 return SearchInternal(input, inputPosition + 1, pattern, patternPosition + 1);
             }
-            else
-            {
-                return SearchInternal(input, patternPosition != 0 ? inputPosition : inputPosition + 1, pattern, 0);
-            }
+
+            return SearchInternal(input, patternPosition != 0 ? inputPosition : inputPosition + 1, pattern, 0);
         }
     }
 }

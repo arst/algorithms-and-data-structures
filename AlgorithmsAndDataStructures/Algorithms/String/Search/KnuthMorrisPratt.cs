@@ -6,6 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
     {
         public int Search(string input, string pattern)
         {
+            if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
+            {
+                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+            }
+
             var aux = ComputeAuxArray(pattern);
             var patternIndex = 0;
             var inputIndex = 0;
@@ -24,7 +29,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
                     return inputIndex - patternIndex;
                 }
                 // No match and some characters in input left undiscovered
-                else if (inputIndex < input.Length && pattern[patternIndex] != input[inputIndex])
+
+                if (inputIndex < input.Length && pattern[patternIndex] != input[inputIndex])
                 {
                     //Pattern at non-starting position, try to match some prefix
                     if (patternIndex != 0)
@@ -42,7 +48,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.String.Search
             return -1;
         }
 
-        private int[] ComputeAuxArray(string pattern)
+        private static int[] ComputeAuxArray(string pattern)
         {
             var result = new int[pattern.Length];
 
