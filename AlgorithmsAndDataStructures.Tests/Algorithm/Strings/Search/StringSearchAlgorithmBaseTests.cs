@@ -1,7 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Search
 {
     public abstract class StringSearchAlgorithmBaseTests
     {

@@ -18,7 +18,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
         }
 
         [Fact]
-        public void Baseline()
+        public void Fuzzy()
         {
             var sut = new IsPowerOfFour();
 

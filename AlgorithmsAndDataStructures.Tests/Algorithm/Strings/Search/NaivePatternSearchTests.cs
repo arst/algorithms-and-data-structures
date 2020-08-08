@@ -1,6 +1,6 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Search
 {
     public class NaivePatternSearchTests : StringSearchAlgorithmBaseTests
     {

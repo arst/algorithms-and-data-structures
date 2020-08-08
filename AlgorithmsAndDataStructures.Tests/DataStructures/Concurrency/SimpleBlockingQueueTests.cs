@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
             var sut = new SimpleBlockingQueue();
             var queue1 = new Queue<int>();
             var queue2 = new Queue<int>();
-            var testSize = 1000000;
+            const int testSize = 1000000;
             var taskDelay = Task.Delay(TimeSpan.FromSeconds(60));
 #pragma warning disable HAA0302 // Display class allocation to capture closure
             using var cancellationTokenSource = new CancellationTokenSource();

@@ -1,7 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Sorting;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Sorting
 {
     public class MsdTests
     {

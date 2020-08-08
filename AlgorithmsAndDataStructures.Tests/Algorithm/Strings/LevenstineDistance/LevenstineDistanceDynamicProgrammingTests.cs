@@ -1,7 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.LevenstineDistance;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.LevenstineDistance
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.LevenstineDistance
 {
     public class LevenstineDistanceDynamicProgrammingTests
     {
