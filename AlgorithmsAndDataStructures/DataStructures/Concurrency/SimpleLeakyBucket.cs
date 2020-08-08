@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
-    public class SimpleLeakyBucket
+    public class SimpleLeakyBucket : IDisposable
     {
         private readonly int outputRate;
         private readonly int leakInterval;
@@ -14,6 +14,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         private readonly Queue<int> queue;
         private int locked;
         private Timer leaker;
+        private bool disposed;
 
         public SimpleLeakyBucket(int maxBucketSize, int outputRate, int leakInterval)
         {
@@ -59,7 +60,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             {
                 if (Interlocked.Exchange(ref locked, 1) == 0)
                 {
-                    var remainingRate = outputRate;
                     try
                     {
                         while (queue.Any() && queue.Peek() <= outputRate)
@@ -67,7 +67,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                             var output = queue.Dequeue();
                             
                             bucketSize -= output;
-                            remainingRate -= output;
                         }
 
                         leaker = new Timer(Leak, null, Timeout.Infinite, Timeout.Infinite);
@@ -80,6 +79,27 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                     }
                 }
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if(disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                leaker.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -16,7 +16,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
         {
             if (pointer == queue.Length - 1)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Queue is full.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             pointer++;
@@ -27,7 +29,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
         {
             if (IsEmpty)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Queue is empty");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var value = queue[0];

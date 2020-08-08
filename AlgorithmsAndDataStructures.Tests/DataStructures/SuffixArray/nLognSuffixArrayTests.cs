@@ -1,5 +1,4 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.SuffixArray;
-using System;
 using System.Linq;
 using Xunit;
 

@@ -13,6 +13,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
         {
             var dt = new DecisionTreeNode();
 
+            if (examples is null)
+            {
+                return dt;
+            }
+
             dt.Examples.AddRange(examples);
             
             if (CheckAllExamplesHaveTheSameAttributeValue(examples, targetAttributeName))
@@ -67,7 +72,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
 
             var attributeValue = examples.First()[targetAttribute];
 
+#pragma warning disable HAA0401 // Possible allocation of reference type enumerator
             foreach (var example in examples.Skip(1))
+#pragma warning restore HAA0401 // Possible allocation of reference type enumerator
             {
                 if (example[targetAttribute] != attributeValue)
                 {
@@ -165,13 +172,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 var p = (float)group.Value.Count / examples.Length;
                 var entropy = CalculateEntrophy(group.Value.ToArray(), targetAttribute);
 
-                informationGain = informationGain - p * entropy;
+                informationGain -= p * entropy;
             }
 
             return informationGain;
         }
 
-        private string GetBestClassifier(
+        private static string GetBestClassifier(
             Dictionary<string, string>[] examples,
             string targetAttributeName,
             Dictionary<string, List<string>> attributes)

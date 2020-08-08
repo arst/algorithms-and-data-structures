@@ -3,13 +3,14 @@ using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
-    public class UberRide
+    public class UberRide : IDisposable
     {
         private int democratsCount;
         private int republicansCount;
         private readonly Semaphore ridersCountSemaphore = new Semaphore(1, 1);
         private readonly Semaphore waitForARideAsDemocratSemaphore = new Semaphore(0, 3);
         private readonly Semaphore waitForARideAsRepublicanSemaphore = new Semaphore(0, 3);
+        private bool disposed;
 
         public UberRide()
         {
@@ -19,12 +20,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
         public void RideAsDemocrat(Action<bool> driverAction)
         {
-            var rided = false;
+            var ride = false;
             ridersCountSemaphore.WaitOne();
             democratsCount++;
             if (democratsCount >= 4)
             {
-                rided = true;
+                ride = true;
                 democratsCount -= 4;
                 waitForARideAsDemocratSemaphore.Release(3);
             }
@@ -37,22 +38,22 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
             ridersCountSemaphore.Release();
 
-            if (!rided)
+            if (!ride)
             {
                 waitForARideAsDemocratSemaphore.WaitOne();
             }
 
-            driverAction(rided);
+            driverAction?.Invoke(ride);
         }
 
         public void RideAsRepublican(Action<bool> driveAction)
         {
-            var rided = false;
+            var ride = false;
             ridersCountSemaphore.WaitOne();
             republicansCount++;
             if (republicansCount >= 4)
             {
-                rided = true;
+                ride = true;
                 democratsCount -= 4;
                 waitForARideAsDemocratSemaphore.Release(3);
             }
@@ -65,12 +66,35 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
             ridersCountSemaphore.Release();
 
-            if (!rided)
+            if (!ride)
             {
                 waitForARideAsRepublicanSemaphore.WaitOne();
             }
 
-            driveAction(rided);
+            driveAction?.Invoke(ride);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ridersCountSemaphore?.Dispose();
+                waitForARideAsDemocratSemaphore?.Dispose();
+                waitForARideAsRepublicanSemaphore?.Dispose();
+            }
+
+            disposed = true;
         }
     }
 }

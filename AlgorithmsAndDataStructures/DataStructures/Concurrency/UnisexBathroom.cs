@@ -3,25 +3,26 @@ using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
-    public class UnisexBathroom
+    public class UnisexBathroom : IDisposable
     {
-        private readonly Semaphore maleCounterSemaphor;
+        private readonly Semaphore maleCounterSemaphore;
         private readonly Semaphore femaleTurnSemaphore;
         private readonly Semaphore maleTurnSemaphore;
-        private readonly Semaphore startvationPreventionSemaphore;
-        private readonly Semaphore femaleCounterSemaphor;
-        private readonly Semaphore occupiedSemaphor;
+        private readonly Semaphore starvationPreventionSemaphore;
+        private readonly Semaphore femaleCounterSemaphore;
+        private readonly Semaphore occupiedSemaphore;
         private int maleCount;
         private int femaleCount;
+        private bool disposed;
 
         public UnisexBathroom()
         {
-            maleCounterSemaphor = new Semaphore(0, 3);
-            femaleCounterSemaphor = new Semaphore(0, 3);
-            occupiedSemaphor = new Semaphore(0, 1);
+            maleCounterSemaphore = new Semaphore(0, 3);
+            femaleCounterSemaphore = new Semaphore(0, 3);
+            occupiedSemaphore = new Semaphore(0, 1);
             femaleTurnSemaphore = new Semaphore(0, 1);
             maleTurnSemaphore = new Semaphore(0, 1);
-            startvationPreventionSemaphore = new Semaphore(0, 1);
+            starvationPreventionSemaphore = new Semaphore(0, 1);
         }
 
         public void Enter(int gender)
@@ -38,30 +39,32 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
         private void EnterFemale()
         {
-            startvationPreventionSemaphore.WaitOne();
+            starvationPreventionSemaphore.WaitOne();
             femaleTurnSemaphore.WaitOne();
             femaleCount += 1;
 
             if (femaleCount == 1)
             {
-                occupiedSemaphor.WaitOne();
+                occupiedSemaphore.WaitOne();
             }
 
             femaleTurnSemaphore.Release();
-            startvationPreventionSemaphore.Release();
+            starvationPreventionSemaphore.Release();
 
-            femaleCounterSemaphor.WaitOne();
+            femaleCounterSemaphore.WaitOne();
 
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("In a bathroom F.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
-            femaleCounterSemaphor.Release();
+            femaleCounterSemaphore.Release();
             femaleTurnSemaphore.WaitOne();
             femaleCount -= 1;
 
             if (femaleCount == 0)
             {
-                occupiedSemaphor.Release();
+                occupiedSemaphore.Release();
             }
 
             femaleTurnSemaphore.Release();
@@ -69,24 +72,26 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
         private void EnterMale()
         {
-            startvationPreventionSemaphore.WaitOne();
+            starvationPreventionSemaphore.WaitOne();
             maleTurnSemaphore.WaitOne();
 
             maleCount += 1;
 
             if (maleCount == 1)
             {
-                occupiedSemaphor.WaitOne();
+                occupiedSemaphore.WaitOne();
             }
 
             maleTurnSemaphore.Release();
-            startvationPreventionSemaphore.Release();
-            maleCounterSemaphor.WaitOne();
+            starvationPreventionSemaphore.Release();
+            maleCounterSemaphore.WaitOne();
 
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("In a bath room M.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
-            maleCounterSemaphor.Release();
+            maleCounterSemaphore.Release();
 
             maleTurnSemaphore.WaitOne();
 
@@ -94,10 +99,36 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
             if (maleCount == 0)
             {
-                occupiedSemaphor.Release();
+                occupiedSemaphore.Release();
             }
 
             maleTurnSemaphore.Release();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                maleCounterSemaphore?.Dispose();
+                femaleTurnSemaphore?.Dispose();
+                maleTurnSemaphore?.Dispose();
+                starvationPreventionSemaphore?.Dispose();
+                femaleCounterSemaphore?.Dispose();
+                occupiedSemaphore?.Dispose();
+            }
+
+            disposed = true;
         }
     }
 }

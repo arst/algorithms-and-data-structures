@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryTree;
+﻿using AlgorithmsAndDataStructures.DataStructures.BinaryTrees;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
@@ -131,7 +131,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
             sut.Insert(4);
             sut.Insert(5);
 
-            var dfsResult = sut.DepthFirstTraversalPostorder();
+            var dfsResult = sut.DepthFirstTraversalPostOrder();
             Assert.Equal(4, dfsResult[0]);
             Assert.Equal(5, dfsResult[1]);
             Assert.Equal(2, dfsResult[2]);
@@ -150,7 +150,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
             sut.Insert(4);
             sut.Insert(5);
 
-            var dfsResult = sut.DepthFirstTraversalPreorder();
+            var dfsResult = sut.DepthFirstTraversalPreOrder();
             Assert.Equal(1, dfsResult[0]);
             Assert.Equal(2, dfsResult[1]);
             Assert.Equal(4, dfsResult[2]);
@@ -169,7 +169,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree
             sut.Insert(4);
             sut.Insert(5);
 
-            var dfsResult = sut.DepthFirstTraversalInorder();
+            var dfsResult = sut.DepthFirstTraversalInOrder();
             Assert.Equal(4, dfsResult[0]);
             Assert.Equal(2, dfsResult[1]);
             Assert.Equal(5, dfsResult[2]);

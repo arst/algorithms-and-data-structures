@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.String.Search;
+﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search;
 using BenchmarkDotNet.Attributes;
 
 namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.String.Search

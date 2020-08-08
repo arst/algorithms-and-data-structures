@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         public void FourDemocratsCanRide()
         {
 #pragma warning disable HAA0302 // Display class allocation to capture closure
-            var sut = new UberRide();
+            using var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
 #pragma warning restore HAA0302 // Display class allocation to capture closure
 #pragma warning disable HAA0301 // Closure Allocation Source
@@ -53,7 +53,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         public void PairOfDemocratsAndPairOfRepublicansCanRide()
         {
 #pragma warning disable HAA0302 // Display class allocation to capture closure
-            var sut = new UberRide();
+            using var sut = new UberRide();
 #pragma warning restore HAA0302 // Display class allocation to capture closure
 #pragma warning disable HAA0302 // Display class allocation to capture closure
             var queue = new ConcurrentQueue<string>();
@@ -98,7 +98,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         {
 #pragma warning disable HAA0301 // Closure Allocation Source
 #pragma warning disable HAA0302 // Display class allocation to capture closure
-            var sut = new UberRide();
+            using var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
             var democrat1 = new Thread(() => Ride("R"));
             var democrat2 = new Thread(() => Ride("D"));
@@ -164,7 +164,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         {
 #pragma warning disable HAA0301 // Closure Allocation Source
 #pragma warning disable HAA0302 // Display class allocation to capture closure
-            var sut = new UberRide();
+            using var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
             var threads = new Thread[100];
 

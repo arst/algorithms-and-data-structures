@@ -11,7 +11,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void CanSendCorrectPacket()
         {
-            var sut = new SimpleLeakyBucket(101, 100, 2000);
+            using var sut = new SimpleLeakyBucket(101, 100, 2000);
             var producer = new Thread(Send);
             var result = false;
             producer.Start();
@@ -28,7 +28,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void PacketBiggerThenBucketIsDropped()
         {
-            var sut = new SimpleLeakyBucket(101, 100, 2000);
+            using var sut = new SimpleLeakyBucket(101, 100, 2000);
             var producer = new Thread(Send);
             var result = true;
             producer.Start();
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void QueuesPacketsInTheBucket()
         {
-            var sut = new SimpleLeakyBucket(200, 100, 20000);
+            using var sut = new SimpleLeakyBucket(200, 100, 20000);
             var producer = new Thread(Send);
             var result1 = false;
             var result2 = false;
@@ -67,7 +67,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void DropPacketsWhenQueueIsFull()
         {
-            var sut = new SimpleLeakyBucket(200, 100, 20000);
+            using var sut = new SimpleLeakyBucket(200, 100, 20000);
             var producer = new Thread(Send);
             var result1 = false;
             var result2 = false;
@@ -90,7 +90,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void LeaksWithConstantRate()
         {
-            var sut = new SimpleLeakyBucket(200, 100, 20000);
+            using var sut = new SimpleLeakyBucket(200, 100, 20000);
             var producer = new Thread(Send);
             var result1 = false;
             var result2 = false;

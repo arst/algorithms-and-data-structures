@@ -1,7 +1,7 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
-using System;
+﻿using System;
 using Xunit;
 using System.Linq;
+using AlgorithmsAndDataStructures.DataStructures.BinaryHeaps;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryHeap
 {

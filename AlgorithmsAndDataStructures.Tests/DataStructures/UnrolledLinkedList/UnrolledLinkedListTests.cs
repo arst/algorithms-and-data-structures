@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.UnrolledLinkedList;
+﻿using AlgorithmsAndDataStructures.DataStructures.UnrolledLinkedLists;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.UnrolledLinkedList

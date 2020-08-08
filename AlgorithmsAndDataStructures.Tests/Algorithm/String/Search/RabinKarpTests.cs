@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.String.Search;
+﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Search
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
+﻿namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
 {
     public class CountBasedSelfOrganizingList<T>
     {
@@ -10,7 +8,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
 
         public void Add(T value)
         {
-            if (Head == null)
+            if (Head is null)
             {
                 Head = new CountBaseSelfOganizedListNode<T> { Value = value };
                 tail = Head;
@@ -23,14 +21,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
 
         public CountBaseSelfOganizedListNode<T> Get(T value)
         {
-            if (Head == null)
+            if (Head is null)
             {
                 return null;
             }
-
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
             if (Head.Value.Equals(value))
             {
-                Head.Count = Head.Count + 1;
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
+                Head.Count += 1;
 
                 return Head;
             }
@@ -40,12 +39,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
 
             while (current != null)
             {
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (current.Value.Equals(value))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     previous.Next = current.Next;
                     current.Next = Head;
                     Head = current;
-                    Head.Count = Head.Count + 1;
+                    Head.Count += 1;
                     Sink();
                     return current;
                 }
@@ -58,7 +59,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
 
         private void Sink()
         {
-            if (Head.Next == null)
+            if (Head.Next is null)
             {
                 return;
             }
@@ -74,7 +75,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
             var current = Head.Next;
             var previous = Head;
 
-            while (current != null && current.Next != null)
+            while (current?.Next != null)
             {
                 if (current.Count < current.Next.Count)
                 {
@@ -84,9 +85,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
             }
         }
 
-        private void Swap(CountBaseSelfOganizedListNode<T> previous, CountBaseSelfOganizedListNode<T> current, CountBaseSelfOganizedListNode<T> next)
+        private static void Swap(CountBaseSelfOganizedListNode<T> previous, CountBaseSelfOganizedListNode<T> current, CountBaseSelfOganizedListNode<T> next)
         {
-            if (next == null)
+            if (next is null)
             {
                 return;
             }

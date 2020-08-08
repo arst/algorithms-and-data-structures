@@ -1,7 +1,7 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.RedBlackTree;
-using System;
+﻿using System;
 using System.Runtime.ExceptionServices;
 using System.Security;
+using AlgorithmsAndDataStructures.DataStructures.RbTree;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -19,7 +19,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void EmptyTreeIsBalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
 
             sut.CheckTreeValidity();
         }
@@ -27,7 +27,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void EmptyTreeHasZeroHeight()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
 
             Assert.Equal(0, sut.Height);
             sut.CheckTreeValidity();
@@ -36,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void CanInsertRootNode()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
             sut.Insert(3);
 
             Assert.Equal(0, sut.Height);
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsBalancedWhenLeftSideUnbalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
             sut.Insert(5);
             sut.Insert(4);
             sut.Insert(3);
@@ -58,7 +58,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsBalancedWhenRightSideUnbalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
             sut.Insert(5);
             sut.Insert(6);
             sut.Insert(7);
@@ -70,7 +70,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsBalancedWhenLeftRightSideUnbalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
             sut.Insert(5);
             sut.Insert(3);
             sut.Insert(4);
@@ -82,7 +82,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         [Fact]
         public void TreeIsBalancedWhenRightLeftSideUnbalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
             sut.Insert(3);
             sut.Insert(5);
             sut.Insert(4);
@@ -148,7 +148,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
                 Value = 80,
             };
 
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree(root);
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree(root);
             sut.Delete(10);
 
             sut.CheckTreeValidity();
@@ -173,7 +173,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
                 Value = 30,
             };
 
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree(root);
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree(root);
             sut.Delete(-10);
 
             sut.CheckTreeValidity();
@@ -210,7 +210,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
                 Value = 38,
             };
 
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree(root);
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree(root);
             sut.Delete(20);
 
             sut.CheckTreeValidity();
@@ -247,7 +247,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
                 Value = 40,
             };
 
-            var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree(root);
+            var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree(root);
             sut.Delete(-10);
 
             sut.CheckTreeValidity();
@@ -258,7 +258,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
         {
             for (var i = 0; i < 100; i++)
             {
-                var sut = new AlgorithmsAndDataStructures.DataStructures.RedBlackTree.RedBlackTree();
+                var sut = new AlgorithmsAndDataStructures.DataStructures.RbTree.RedBlackTree();
                 var random = new Random();
                 var seed = new int[1000];
 

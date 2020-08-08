@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
-    public class SimpleTokenBucket
+    public class SimpleTokenBucket : IDisposable
     {
         private readonly int tokenBucketSize;
         private volatile int currentTokens;
@@ -11,6 +11,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         private readonly int refillInterval;
         private Timer refiller;
         private int locked;
+        private bool disposed;
 
         public SimpleTokenBucket(int tokenBucketSize, int refillRate, int refillInterval)
         {
@@ -67,6 +68,27 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                     }
                 }
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                refiller.Dispose();
+            }
+
+            disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.String.Sorting;
+﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Sorting;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting

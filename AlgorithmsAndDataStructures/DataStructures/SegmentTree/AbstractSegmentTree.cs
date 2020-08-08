@@ -21,6 +21,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
 
         protected AbstractSegmentTree(int[] input, Func<int, int, int> segmentAggregate)
         {
+            if (input is null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
             var x = (int)Math.Ceiling(Math.Log(input.Length) / Math.Log(2));
             var treeSize = 2 * (int)Math.Pow(2, x) - 1;
             Tree = new int[treeSize];

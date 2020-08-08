@@ -13,11 +13,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
         public EfficientSuffixArray(string input)
         {
-            suffixes = Build(input);
+            suffixes = string.IsNullOrEmpty(input) ? Array.Empty<int>() : Build(input);
             this.input = input;
         }
 
-        private int[] Build(string input)
+        private static int[] Build(string input)
         {
             var ordering = new int[input.Length];
             var tuples = new EfficientSuffixArrayNode[input.Length];
@@ -69,7 +69,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
                     tuples[i].NextRank = next < input.Length ? tuples[ordering[next]].Rank : -1;
                 }
 
-                Array.Sort(tuples); // can be raplced with Radix sort to make it more performant
+                Array.Sort(tuples); // can be replaced with Radix sort to make it more pre-formant
             }
 
             return tuples.Select(arg => arg.Index).ToArray(); 
@@ -78,6 +78,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
         public bool Contains(string pattern)
         {
+            if (string.IsNullOrEmpty(pattern))
+            {
+                return true;
+            }
+
             var start = 0;
             var end = suffixes.Length - 1;
 
@@ -86,7 +91,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
                 var mid = start + (end - start) / 2;
                 var substring = input.Substring(mid, Math.Min(pattern.Length, input.Length - mid));
 
-                var comparisonResult = substring.CompareTo(pattern);
+                var comparisonResult = string.Compare(substring, pattern, StringComparison.InvariantCulture);
 
                 if (comparisonResult == 0)
                 {

@@ -1,5 +1,5 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.DataStructures.BinaryHeaps;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryHeap

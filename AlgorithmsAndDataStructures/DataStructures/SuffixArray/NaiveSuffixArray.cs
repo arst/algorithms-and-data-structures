@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
         public NaiveSuffixArray(string input)
         {
-            suffixes = BuildSuffixArray(input);
+            suffixes = string.IsNullOrEmpty(input) ? Array.Empty<int>().ToList() : BuildSuffixArray(input);
             this.input = input;
         }
 
@@ -35,6 +35,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
         public bool Contains(string pattern)
         {
+            if (string.IsNullOrEmpty(pattern))
+            {
+                return true;
+            }
+
             var start = 0;
             var end = suffixes.Count - 1;
 
@@ -43,7 +48,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
                 var mid = start + (end - start) / 2;
                 var substring = input.Substring(mid, Math.Min(pattern.Length, input.Length - mid));
 
-                var comparisonResult = substring.CompareTo(pattern);
+                var comparisonResult = string.Compare(substring, pattern, StringComparison.InvariantCulture);
 
                 if (comparisonResult == 0)
                 {

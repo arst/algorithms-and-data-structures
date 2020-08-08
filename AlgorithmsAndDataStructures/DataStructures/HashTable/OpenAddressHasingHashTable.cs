@@ -22,7 +22,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
         {
             if (counter == hashTable.Length && !Find(key))
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Hash table is full.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var initialIndex = Math.Abs(key.GetHashCode() % hashTable.Length);
@@ -40,7 +42,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
                     break;
                 }
 
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (hashTable[currentIndex].Key.Equals(key))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     hashTable[currentIndex].Value = value;
                     break;
@@ -64,7 +68,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
                     return false;
                 }
 
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (hashTable[currentIndex].Key?.Equals(key) == true)
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     return true;
                 }
@@ -88,7 +94,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
                     throw new ArgumentException($"Hash table has no entry with key {key}.");
                 }
 
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (hashTable[currentIndex].Key?.Equals(key) == true)
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     return hashTable[currentIndex].Value;
                 }
@@ -113,7 +121,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
                     return;
                 }
 
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (hashTable[currentIndex] != DeletedEntry && hashTable[currentIndex].Key.Equals(key))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     hashTable[currentIndex] = DeletedEntry;
                     counter -= 1;

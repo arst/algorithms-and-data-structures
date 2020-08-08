@@ -1,7 +1,7 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryHeap;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using AlgorithmsAndDataStructures.DataStructures.BinaryHeaps;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Compression
 {

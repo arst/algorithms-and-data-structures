@@ -57,8 +57,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
             }
         }
 
-        public void AssertIsSorted(int[] input)
+        public static void AssertIsSorted(int[] input)
         {
+            if (input is null)
+            {
+                return;
+            }
+
             for (var i = 1; i < input.Length; i++)
             {
                 Assert.True(input[i] >= input[i - 1]);

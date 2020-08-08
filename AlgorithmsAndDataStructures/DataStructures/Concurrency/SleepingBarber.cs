@@ -1,14 +1,16 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
-    public class SleepingBarber
+    public class SleepingBarber : IDisposable
     {
         private static readonly Mutex NumberOfCustomers = new Mutex();
         private readonly Semaphore clientsSemaphore;
         private readonly Semaphore barberSemaphore;
         private readonly int waitChairCounter;
         private volatile int currentClients;
+        private bool disposed;
 
         public SleepingBarber(int waitChairCounter)
         {
@@ -50,6 +52,28 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                 NumberOfCustomers.ReleaseMutex();
 
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                clientsSemaphore?.Dispose();
+                barberSemaphore?.Dispose();
+            }
+
+            disposed = true;
         }
     }
 }

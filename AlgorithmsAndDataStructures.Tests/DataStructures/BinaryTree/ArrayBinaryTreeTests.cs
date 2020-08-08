@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinaryTree;
+﻿using AlgorithmsAndDataStructures.DataStructures.BinaryTrees;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinaryTree

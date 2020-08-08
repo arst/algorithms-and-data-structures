@@ -8,10 +8,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
         public void Insert(string key)
         {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
             root = InsertInternal(key, 0, root);
         }
 
-        private TernaryTrieNode InsertInternal(string key, int index, TernaryTrieNode currentNode)
+        private static TernaryTrieNode InsertInternal(string key, int index, TernaryTrieNode currentNode)
         {
             var node = currentNode ?? new TernaryTrieNode
             {
@@ -43,6 +48,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
         public bool Search(string key)
         {
+            if (string.IsNullOrEmpty(key))
+            {
+                return default;
+            }
+
             if (root == null)
             {
                 return false;
@@ -51,7 +61,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
             return SearchInternal(key, 0, root);
         }
 
-        private bool SearchInternal(string key, int index, TernaryTrieNode currentNode)
+        private static bool SearchInternal(string key, int index, TernaryTrieNode currentNode)
         {
             if (currentNode == null)
             {
@@ -77,14 +87,17 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
             {
                 return SearchInternal(key, index , currentNode.GreaterThanCurrentCharacter);
             }
-            else
-            {
-                return SearchInternal(key, index, currentNode.LessThanCurrentCharacter);
-            }
+
+            return SearchInternal(key, index, currentNode.LessThanCurrentCharacter);
         }
 
         public void Delete(string key)
         {
+            if (string.IsNullOrEmpty(key))
+            {
+                return;
+            }
+
             root = DeleteInternal(key, 0, root);
         }
 
@@ -101,12 +114,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
                 {
                     currentNode.IsWord = false;
 
-                    return IsEmmptyNode(currentNode) ? null : currentNode;
+                    return IsEmptyNode(currentNode) ? null : currentNode;
                 }
-                else
-                {
-                    currentNode.EqualToCurrentCharacter = DeleteInternal(key, index + 1, currentNode.EqualToCurrentCharacter);
-                }
+
+                currentNode.EqualToCurrentCharacter = DeleteInternal(key, index + 1, currentNode.EqualToCurrentCharacter);
             }
             else if (currentNode.Value < key[index])
             {
@@ -120,7 +131,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
             return currentNode;
         }
 
-        private bool IsEmmptyNode(TernaryTrieNode currentNode)
+        private static bool IsEmptyNode(TernaryTrieNode currentNode)
         {
             return currentNode.EqualToCurrentCharacter != null
                 || currentNode.GreaterThanCurrentCharacter != null
