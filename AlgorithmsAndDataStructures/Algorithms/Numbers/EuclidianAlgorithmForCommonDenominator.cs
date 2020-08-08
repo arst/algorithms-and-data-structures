@@ -1,15 +1,10 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Numbers
 {
     public class EuclidianAlgorithmForCommonDenominator
     {
-        public int CommnDenominator(int a, int b)
+        public int CommonDenominator(int a, int b)
         {
-            if (b == 0)
-            {
-                return a;
-            }
-
-            return CommnDenominator(b, a % b);
+            return b == 0 ? a : CommonDenominator(b, a % b);
         }
     }
 }

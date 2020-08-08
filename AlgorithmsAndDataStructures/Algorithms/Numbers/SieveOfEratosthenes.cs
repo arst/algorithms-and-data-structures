@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.Algorithms.Numbers
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Numbers
 {
     public class SieveOfEratosthenes
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool[] FindPrimesUpTo(int inclusiveUpperBound)
+#pragma warning restore CA1822 // Mark members as static
         {
             var result = new bool[inclusiveUpperBound + 1];
 
@@ -18,7 +18,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Numbers
             
             for (var i = 2; i * i < inclusiveUpperBound; i++)
             {
-                if (result[i] == true)
+                if (result[i])
                 {
                     for (var j = i; j <= inclusiveUpperBound / i; j++)
                     {
