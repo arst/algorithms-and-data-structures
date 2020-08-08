@@ -57,7 +57,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
                     },
                 };
 
-            Assert.True(CycleDetector.IsCyclic(graph));
+            Assert.False(CycleDetector.IsCyclic(graph));
         }
 
         [Fact]
