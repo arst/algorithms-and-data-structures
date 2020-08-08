@@ -1,19 +1,19 @@
 ﻿namespace AlgorithmsAndDataStructures.Algorithms.PseudorandomNumberGenerators
 {
-    public class XORShift1024Star
+    public class XorShift1024Star
     {
         private readonly long[] seed;
         private int pointer;
 
-        public XORShift1024Star()
+        public XorShift1024Star()
         {
-            var xORShift64Star = new XORShift64Star();
+            var xOrShift64Star = new XORShift64Star();
 
             seed = new long[16];
 
             for (var i = 0; i < seed.Length; i++)
             {
-                seed[i] = xORShift64Star.Generate();
+                seed[i] = xOrShift64Star.Generate();
             }
         }
 

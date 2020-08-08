@@ -3,17 +3,17 @@
     public class LinearCongruentialRandomNumberGenerator
     {
         // This value was proven to be a good candidate for a seed.
-        private const long seed = 4294967296;
+        private const long Seed = 4294967296;
         // This value was proven to be a good candidate for a multiplier.
-        private const int multiplier = 32310901;
-        // This value has no particular recomendations, except for an oddity of this value.
-        private const int increment = 321777;
-        // This value has no particular recomendations, the only recomndation is that it should be a power of two. This one is Math.Pow(2, 26).
-        private const int modulos = 67108864;
+        private const int Multiplier = 32310901;
+        // This value has no particular recommendations, except for an oddity of this value.
+        private const int Increment = 321777;
+        // This value has no particular recommendations, the only recommendation is that it should be a power of two. This one is Math.Pow(2, 26).
+        private const int Modulos = 67108864;
 
         private long lastGeneratedValue;
 
-        public LinearCongruentialRandomNumberGenerator() => lastGeneratedValue = GenerateInternal(seed);
+        public LinearCongruentialRandomNumberGenerator() => lastGeneratedValue = GenerateInternal(Seed);
 
         public long Generate()
         {
@@ -22,6 +22,6 @@
             return lastGeneratedValue;
         }
 
-        private static long GenerateInternal(long previous) => (multiplier * previous + increment) % modulos;
+        private static long GenerateInternal(long previous) => (Multiplier * previous + Increment) % Modulos;
     }
 }
