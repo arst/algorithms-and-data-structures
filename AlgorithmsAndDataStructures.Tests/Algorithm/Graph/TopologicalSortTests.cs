@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>();
+            var node1 = new GraphVertex<int>();
 
             var topologicalOrder = sut.GetTopologicalOrder(new[] { node1 });
 
@@ -25,12 +25,12 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>
+            var node1 = new GraphVertex<int>
             { 
-                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 1 }
             };
 
-            var node2 = new GraphNode<int>();
+            var node2 = new GraphVertex<int>();
 
             var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2 });
 
@@ -43,14 +43,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>
+            var node1 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 1 }
             };
 
-            var node2 = new GraphNode<int>
+            var node2 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 0 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 0 }
             };
 
             Assert.Throws<ArgumentException>(() => sut.GetTopologicalOrder(new[] { node1, node2 }));
@@ -61,14 +61,14 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>
+            var node1 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 1 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 1 }
             };
 
-            var node2 = new GraphNode<int>();
+            var node2 = new GraphVertex<int>();
 
-            var node3 = new GraphNode<int>();
+            var node3 = new GraphVertex<int>();
 
             var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2, node3 });
 
@@ -81,26 +81,26 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         {
             var sut = new TopologicalSort();
 
-            var node1 = new GraphNode<int>
+            var node1 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 1, 2 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 1, 2 }
             };
 
-            var node2 = new GraphNode<int>();
+            var node2 = new GraphVertex<int>();
 
-            var node3 = new GraphNode<int>
+            var node3 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 3, 5 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 3, 5 }
             };
 
-            var node4 = new GraphNode<int>
+            var node4 = new GraphVertex<int>
             {
-                AdjacentNodes = new System.Collections.Generic.List<int> { 4 }
+                AdjacentVertices = new System.Collections.Generic.List<int> { 4 }
             };
 
-            var node5 = new GraphNode<int>();
+            var node5 = new GraphVertex<int>();
 
-            var node6 = new GraphNode<int>();
+            var node6 = new GraphVertex<int>();
 
             var topologicalOrder = sut.GetTopologicalOrder(new[] { node1, node2, node3, node4, node5, node6 });
 

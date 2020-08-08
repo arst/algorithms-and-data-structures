@@ -7,11 +7,20 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TopologicalSort
     {
-        public List<int> GetTopologicalOrder(GraphNode<int>[] graph)
+#pragma warning disable CA1822 // Mark members as static
+        public List<int> GetTopologicalOrder(GraphVertex<int>[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
-            if (new CycleDetection().IsCyclic(graph))
+            if (graph is null)
             {
+                return new List<int>(0);
+            }
+
+            if (CycleDetector.IsCyclic(graph))
+            {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("This algorythm only operates on acyclic graphs.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var order = new Stack<int>();
@@ -29,13 +38,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return order.ToList();
         }
 
-        private void Sort(GraphNode<int>[] graph, int currentVertex, Stack<int> order, bool[] visited)
+        private static void Sort(IReadOnlyList<GraphVertex<int>> graph, int currentVertex, Stack<int> order, IList<bool> visited)
         {
-            for (var i = 0; i < graph[currentVertex].AdjacentNodes.Count; i++)
+            for (var i = 0; i < graph[currentVertex].AdjacentVertices.Count; i++)
             {
-                if (!visited[graph[currentVertex].AdjacentNodes[i]])
+                if (!visited[graph[currentVertex].AdjacentVertices[i]])
                 {
-                    Sort(graph, graph[currentVertex].AdjacentNodes[i], order, visited);
+                    Sort(graph, graph[currentVertex].AdjacentVertices[i], order, visited);
                 }
             }
 

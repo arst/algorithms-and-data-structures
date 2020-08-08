@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1
                     },
@@ -27,15 +27,15 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         { 
                             1
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2
                     },
@@ -49,18 +49,18 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             1
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             0
                         }
@@ -75,7 +75,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1
                     },
@@ -89,15 +89,15 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             1
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2
                     },
@@ -111,18 +111,18 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             1
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             0
                         }
@@ -137,31 +137,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             1,2
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             3
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 3,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentVertices = new System.Collections.Generic.List<int>()
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 4,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentVertices = new System.Collections.Generic.List<int>()
                     },
                 };
             Assert.Collection(sut.Traverse(graph),
@@ -177,31 +177,31 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             var sut = new DepthFirstSearch();
             var graph = new[]
                 {
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 1,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             1,2
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 2,
-                        AdjacentNodes = new System.Collections.Generic.List<int>
+                        AdjacentVertices = new System.Collections.Generic.List<int>
                         {
                             3
                         }
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 3,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentVertices = new System.Collections.Generic.List<int>()
                     },
-                    new GraphNode<int>
+                    new GraphVertex<int>
                     {
                         Value = 4,
-                        AdjacentNodes = new System.Collections.Generic.List<int>()
+                        AdjacentVertices = new System.Collections.Generic.List<int>()
                     },
                 };
             Assert.Collection(sut.TraverseNonRecursive(graph),

@@ -1,22 +1,30 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TransitiveClosureFloydWarshall
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool[][] GetReachabilityMatrix(WeightedGraphVertex[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
-            var reachabilityMatrix = new bool[graph.Length][];
-
-            for (var i = 0; i < reachabilityMatrix.Length; i++)
+            if (graph is null)
             {
-                reachabilityMatrix[i] = new bool[graph.Length];
-                reachabilityMatrix[i][i] = true;
+                return Array.Empty<bool[]>();
+            }
+
+            var reachabillityMatrix = new bool[graph.Length][];
+
+            for (var i = 0; i < reachabillityMatrix.Length; i++)
+            {
+                reachabillityMatrix[i] = new bool[graph.Length];
+                reachabillityMatrix[i][i] = true;
 
                 for (var j = 0; j < graph[i].Edges.Count; j++)
                 {
                     var edge = graph[i].Edges[j];
-                    reachabilityMatrix[i][edge.To] = true;
+                    reachabillityMatrix[i][edge.To] = true;
                 }
             }
 
@@ -27,16 +35,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 {
                     for (var k = 0; k < graph.Length; k++)
                     {
-                        var isReachableThroughCurrentlyInspectedVertice = reachabilityMatrix[i][k] && reachabilityMatrix[k][j];
-                        if (isReachableThroughCurrentlyInspectedVertice)
+                        var isReachableThroughCurrentlyInspectedVertex = reachabillityMatrix[i][k] && reachabillityMatrix[k][j];
+                        if (isReachableThroughCurrentlyInspectedVertex)
                         {
-                            reachabilityMatrix[i][j] = isReachableThroughCurrentlyInspectedVertice;
+                            reachabillityMatrix[i][j] = true;
                         }
                     }
                 }
             }
 
-            return reachabilityMatrix;
+            return reachabillityMatrix;
         }
     }
 }

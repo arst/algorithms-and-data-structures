@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    public class MaximumBirpartiteMatchingFordFulkersonBased
+    public class MaximumBiPartiteMatchingFordFulkersonBased
     {
+#pragma warning disable CA1822 // Mark members as static
         public int MaxMatching(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var colors = new int[graph.Length];
             const int startColor = 0;
 
@@ -19,7 +26,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 if (colors[i] == -1)
                 {
-                    BFS(graph, colors, i, startColor);
+                    Bfs(graph, colors, i, startColor);
                 }
             }
 
@@ -46,9 +53,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-            var hasPath = false;
+            bool hasPath;
             var flow = 0;
-            var source = 0;
+            const int source = 0;
             var sink = flowNetwork.Length - 1;
 
             do
@@ -62,25 +69,25 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return flow;
         }
 
-        private int GetPath(int[][] residualGraph, int currentVertice, int targetVertice, bool[] visited, int flow)
+        private static int GetPath(IReadOnlyList<int[]> residualGraph, int currentVertex, int targetVertex, IList<bool> visited, int flow)
         {
-            if (currentVertice == targetVertice)
+            if (currentVertex == targetVertex)
             {
                 return flow;
             }
 
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
 
-            for (var i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Count; i++)
             {
-                if (residualGraph[currentVertice][i] > 0 && !visited[i])
+                if (residualGraph[currentVertex][i] > 0 && !visited[i])
                 {
-                    var delta = GetPath(residualGraph, i, targetVertice, visited, Math.Min(flow, residualGraph[currentVertice][i]));
+                    var delta = GetPath(residualGraph, i, targetVertex, visited, Math.Min(flow, residualGraph[currentVertex][i]));
 
                     if (delta > 0)
                     {
-                        residualGraph[currentVertice][i] = residualGraph[currentVertice][i] - delta;
-                        residualGraph[i][currentVertice] = residualGraph[i][currentVertice] + delta;
+                        residualGraph[currentVertex][i] = residualGraph[currentVertex][i] - delta;
+                        residualGraph[i][currentVertex] = residualGraph[i][currentVertex] + delta;
                         return delta;
                     }
                 }
@@ -89,64 +96,66 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return 0;
         }
 
-        private int[][] BuildFlowNetwork(int[][] graph, HashSet<int> leftSetVertices)
+        private static int[][] BuildFlowNetwork(IReadOnlyList<int[]> graph, ICollection<int> leftSetVertices)
         {
-            var flowNwetwork = new int[graph.Length + 2][];
-            flowNwetwork[0] = new int[flowNwetwork.Length];
-            flowNwetwork[flowNwetwork.Length - 1] = new int[flowNwetwork.Length];
+            var flowNetwork = new int[graph.Count + 2][];
+            flowNetwork[0] = new int[flowNetwork.Length];
+            flowNetwork[^1] = new int[flowNetwork.Length];
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                var currentVertice = i + 1;
-                var isLeftSideVertice = leftSetVertices.Contains(i);
-                flowNwetwork[currentVertice] = new int[flowNwetwork.Length];
+                var currentVertex = i + 1;
+                var isLeftSideVertex = leftSetVertices.Contains(i);
+                flowNetwork[currentVertex] = new int[flowNetwork.Length];
 
-                if (isLeftSideVertice)
+                if (isLeftSideVertex)
                 {
-                    flowNwetwork[0][currentVertice] = 1;
+                    flowNetwork[0][currentVertex] = 1;
                 }
 
-                for (var j = 0; j < graph.Length; j++)
+                for (var j = 0; j < graph.Count; j++)
                 {
-                    flowNwetwork[currentVertice][j + 1] = graph[i][j];
+                    flowNetwork[currentVertex][j + 1] = graph[i][j];
                 }
 
-                if (!isLeftSideVertice)
+                if (!isLeftSideVertex)
                 {
-                    flowNwetwork[currentVertice][flowNwetwork.Length - 1] = 1;
+                    flowNetwork[currentVertex][flowNetwork.Length - 1] = 1;
                 }
             }
 
-            return flowNwetwork;
+            return flowNetwork;
         }
 
-        private void BFS(int[][] graph, int[] colors, int startVertice, int startColor)
+        private static void Bfs(IReadOnlyList<int[]> graph, IList<int> colors, int startVertex, int startColor)
         {
             var queue = new Queue<int>();
-            colors[startVertice] = startColor;
-            queue.Enqueue(startVertice);
+            colors[startVertex] = startColor;
+            queue.Enqueue(startVertex);
 
             while (queue.Count > 0)
             {
-                var currentVertice = queue.Dequeue();
+                var currentVertex = queue.Dequeue();
 
-                for (var i = 0; i < graph.Length; i++)
+                for (var i = 0; i < graph.Count; i++)
                 {
-                    if (graph[currentVertice][i] < 1)
+                    if (graph[currentVertex][i] < 1)
                     {
                         continue;
                     }
 
                     if (colors[i] != -1)
                     {
-                        if (colors[i] == colors[currentVertice])
+                        if (colors[i] == colors[currentVertex])
                         {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                             throw new Exception("Graph is not bipartite.");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
                         }
                     }
                     else
                     {
-                        colors[i] = 1 ^ colors[currentVertice];
+                        colors[i] = 1 ^ colors[currentVertex];
                         queue.Enqueue(i);
                     }
                 }

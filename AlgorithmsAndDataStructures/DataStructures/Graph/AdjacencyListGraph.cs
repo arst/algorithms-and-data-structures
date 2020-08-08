@@ -5,27 +5,27 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
 {
     public class AdjacencyListGraph<T>
     {
-        private GraphNode<T>[] graph;
+        private GraphVertex<T>[] graph;
 
         public AdjacencyListGraph(int initialCapacity = 8)
         {
-            graph = new GraphNode<T>[initialCapacity];
+            graph = new GraphVertex<T>[initialCapacity];
         }
 
         public void AddEdge(int source, int destination)
         {
             if (graph[source] == null)
             {
-                graph[source] = new GraphNode<T>();
+                graph[source] = new GraphVertex<T>();
             }
 
             if (graph[destination] == null)
             {
-                graph[destination] = new GraphNode<T>();
+                graph[destination] = new GraphVertex<T>();
             }
 
-            graph[source].AdjacentNodes.Add(destination);
-            graph[destination].AdjacentNodes.Add(source);
+            graph[source].AdjacentVertices.Add(destination);
+            graph[destination].AdjacentVertices.Add(source);
         }
 
         public List<int> DepthFirstSearch()
@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
                 var current = graph[stack.Peek()];
                 var i = 0;
                 var foundNotVisited = false;
-                var adjacentNodes = current.AdjacentNodes;
+                var adjacentNodes = current.AdjacentVertices;
 
                 while (i < adjacentNodes.Count && !foundNotVisited)
                 {
@@ -84,7 +84,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
             result.Add(v);
             visited.Add(v);
 
-            foreach (var adjacentNode in graph[v].AdjacentNodes)
+            foreach (var adjacentNode in graph[v].AdjacentVertices)
             {
                 if (!visited.Contains(adjacentNode))
                 {
@@ -108,7 +108,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
             {
                 var current = graph[queue.Dequeue()];
 
-                foreach (var adjacentNode in current.AdjacentNodes)
+                foreach (var adjacentNode in current.AdjacentVertices)
                 {
                     if (!visited.Contains(adjacentNode))
                     {
@@ -137,7 +137,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
             {
                 var current = graph[queue.Dequeue()];
 
-                foreach (var adjacentNode in current.AdjacentNodes)
+                foreach (var adjacentNode in current.AdjacentVertices)
                 {
                     if (!visited.Contains(adjacentNode))
                     {

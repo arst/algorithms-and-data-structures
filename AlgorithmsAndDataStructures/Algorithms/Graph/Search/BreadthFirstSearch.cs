@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
 {
     public class BreadthFirstSearch
     {
-        public List<int> Traverse(GraphNode<int>[] graph)
+        public List<int> Traverse(GraphVertex<int>[] graph)
         {
             var result = new List<int>();
             var traversalQueue = new Queue<int>();
@@ -18,7 +18,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
                 var current = traversalQueue.Dequeue();
                 result.Add(graph[current].Value);
                 visited.Add(current);
-                var adjacentNodes = graph[current].AdjacentNodes;
+                var adjacentNodes = graph[current].AdjacentVertices;
 
                 for (var i = 0; i < adjacentNodes.Count; i++)
                 {

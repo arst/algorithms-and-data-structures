@@ -8,6 +8,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
     {
         public List<Tuple<int, int>> GetEulerianTrail(UndirectedGraph graph)
         {
+            if (graph is null)
+            {
+                return new List<Tuple<int, int>>(0);
+            }
+
             var result = new List<Tuple<int, int>>();
 
             if (graph.Vertices().Length < 2)
@@ -20,14 +25,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
 
             // Check if all non-zero degree vertices are connected
-            var nonZeroDegreeVertice = 0;
+            var nonZeroDegreeVertex = 0;
 
             for (var i = 0; i < vertices.Length; i++)
             {
-                // We need to start from non-zero degree vertice to traverse non-zero degree vertices
+                // We need to start from non-zero degree vertex to traverse non-zero degree vertices
                 if (vertices[i].Count > 0)
                 {
-                    nonZeroDegreeVertice = i;
+                    nonZeroDegreeVertex = i;
                     break;
                 }
                 //There is no non-zero degree vertices, graph is disconnected
@@ -37,7 +42,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 }
             }
 
-            DFS(vertices, visited, nonZeroDegreeVertice);
+            Dfs(vertices, visited, nonZeroDegreeVertex);
 
             for (var i = 0; i < vertices.Length; i++)
             {
@@ -48,16 +53,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 }
             }
 
-            //Count vertices with odd degree, in Eulerian graph there are 0 or 2 vertices with odd degree. It is impossible to have 1 odd degree vertice in undirected graph.
+            //Count vertices with odd degree, in Eulerian graph there are 0 or 2 vertices with odd degree. It is impossible to have 1 odd degree vertex in undirected graph.
             var oddVerticesCount = 0;
-            var oddVertice = 0;
+            var oddVertex = 0;
 
             for (var i = 0; i < vertices.Length; i++)
             {
                 if (vertices[i].Count % 2 != 0)
                 {
                     oddVerticesCount++;
-                    oddVertice = i;
+                    oddVertex = i;
                 }
             }
 
@@ -66,86 +71,86 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 return result;
             }
 
-            EulerianTraversal(oddVertice, vertices, result);
+            EulerianTraversal(oddVertex, vertices, result);
 
             return result;
         }
 
-        private void EulerianTraversal(int currentVertice, List<int>[] vertices, List<Tuple<int, int>> eulerianPath)
+        private static void EulerianTraversal(int currentVertex, IReadOnlyList<List<int>> vertices, ICollection<Tuple<int, int>> eulerianPath)
         {
-            var adjacentVertices = vertices[currentVertice];
+            var adjacentVertices = vertices[currentVertex];
 
-            for (var i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertex].Count; i++)
             {
                 if (adjacentVertices[i] == -1)
                 {
                     continue;
                 }
 
-                if (IsValidEdgeToIncludeInEulerianTrail(currentVertice, adjacentVertices[i], vertices))
+                if (IsValidEdgeToIncludeInEulerianTrail(currentVertex, adjacentVertices[i], vertices))
                 {
-                    var adjacentVertice = adjacentVertices[i];
-                    eulerianPath.Add(new Tuple<int, int>(currentVertice, adjacentVertice));
-                    RemoveEdge(vertices, currentVertice, adjacentVertice);
-                    EulerianTraversal(adjacentVertice, vertices, eulerianPath);
+                    var adjacentVertex = adjacentVertices[i];
+                    eulerianPath.Add(new Tuple<int, int>(currentVertex, adjacentVertex));
+                    RemoveEdge(vertices, currentVertex, adjacentVertex);
+                    EulerianTraversal(adjacentVertex, vertices, eulerianPath);
                 }
             }
         }
 
-        private bool IsValidEdgeToIncludeInEulerianTrail(int from, int to, List<int>[] vertices)
+        private static bool IsValidEdgeToIncludeInEulerianTrail(int from, int to, IReadOnlyList<List<int>> vertices)
         {
 
-            //if it is the nly edge we have no other choises then to take it
+            //if it is the nly edge we have no other choices then to take it
             if (vertices[from].Count == 1)
             {
                 return true;
             }
 
-            var visited = new bool[vertices.Length];
-            var reachableVerticesCount = DFSCount(from, vertices, visited);
+            var visited = new bool[vertices.Count];
+            var reachableVerticesCount = DfsCount(from, vertices, visited);
             RemoveEdge(vertices, from, to);
 
-            var visitedReduced = new bool[vertices.Length];
-            var reachableVerticesCountReduced = DFSCount(from, vertices, visitedReduced);
+            var visitedReduced = new bool[vertices.Count];
+            var reachableVerticesCountReduced = DfsCount(from, vertices, visitedReduced);
 
             //add removed edge back to the graph
             vertices[from].Add(to);
             vertices[to].Add(from);
-            //if dfs could reach less vertices after node removal then we have a bridge and according to Flurys algorithm we should prefer non-bridges over bridges
-            return reachableVerticesCountReduced > reachableVerticesCount ? false : true;
+            //if dfs could reach less vertices after node removal then we have a bridge and according to Fleury's algorithm we should prefer non-bridges over bridges
+            return reachableVerticesCountReduced <= reachableVerticesCount;
         }
 
-        private int DFSCount(int currentVertice, List<int>[] vertices, bool[] visited)
+        private static int DfsCount(int currentVertex, IReadOnlyList<List<int>> vertices, IList<bool> visited)
         {
-            visited[currentVertice] = true;
-            var count = 1;
+            visited[currentVertex] = true;
+            const int count = 1;
 
-            for (var i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertex].Count; i++)
             {
-                if (!visited[vertices[currentVertice][i]])
+                if (!visited[vertices[currentVertex][i]])
                 {
-                    return count + DFSCount(vertices[currentVertice][i], vertices, visited);
+                    return count + DfsCount(vertices[currentVertex][i], vertices, visited);
                 }
             }
 
             return count;
         }
 
-        private static void RemoveEdge(List<int>[] vertices, int from, int to)
+        private static void RemoveEdge(IReadOnlyList<List<int>> vertices, int from, int to)
         {
-            var fromIndex = vertices[from].Remove(to);
-            var toIndex = vertices[to].Remove(from);
+            vertices[from].Remove(to);
+            vertices[to].Remove(from);
         }
 
-        private static void DFS(List<int>[] vertices, bool[] visited, int currentVertice)
+        private static void Dfs(IReadOnlyList<List<int>> vertices, IList<bool> visited, int currentVertex)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
 
-            for (var i = 0; i < vertices[currentVertice].Count; i++)
+            for (var i = 0; i < vertices[currentVertex].Count; i++)
             {
-                if (!visited[vertices[currentVertice][i]])
+                if (!visited[vertices[currentVertex][i]])
                 {
-                    DFS(vertices, visited, vertices[currentVertice][i]);
+                    Dfs(vertices, visited, vertices[currentVertex][i]);
                 }
             }
         }

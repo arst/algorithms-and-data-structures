@@ -1,12 +1,13 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
-    public class STCutFordFulkersonBasedTests
+    public class StCutFordFulkersonBasedTests
     {
         [Fact]
-        public void Baseine()
+        public void Baseline()
         {
             var sut = new STCutFordFulkersonBased();
             var graph = new int[6][];
@@ -17,23 +18,26 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
             graph[4] = new[] { 0, 0, 0, 7, 0, 4 };
             graph[5] = new[] { 0, 0, 0, 0, 0, 0 };
 
-            var stCut = sut.GetSTCut(graph);
+            var stCut = sut.GetStCut(graph);
 
             Assert.Collection(stCut,
                 arg =>
                 {
-                    Assert.Equal(1, arg.Item1);
-                    Assert.Equal(3, arg.Item2);
+                    var (item1, item2) = arg;
+                    Assert.Equal(1, item1);
+                    Assert.Equal(3, item2);
                 },
                 arg => 
                 {
-                    Assert.Equal(4, arg.Item1);
-                    Assert.Equal(3, arg.Item2);
+                    var (item1, item2) = arg;
+                    Assert.Equal(4, item1);
+                    Assert.Equal(3, item2);
                 },
                 arg =>
                 {
-                    Assert.Equal(4, arg.Item1);
-                    Assert.Equal(5, arg.Item2);
+                    var (item1, item2) = arg;
+                    Assert.Equal(4, item1);
+                    Assert.Equal(5, item2);
                 });
         }
     }

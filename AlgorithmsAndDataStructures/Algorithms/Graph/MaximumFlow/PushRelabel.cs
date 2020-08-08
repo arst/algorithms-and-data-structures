@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
     public class PushRelabel
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetMaxFlow(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var residualGraph = new int[graph.Length][];
             var heights = new int[graph.Length];
             heights[0] = graph.Length;
@@ -13,13 +21,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             Initialize(graph, residualGraph, excess);
 
-            while (HasAccess(excess))
+            while (HasExcess(excess))
             {
-                var currentVertice = GetMostHighVedrticeWithAnExcess(excess, heights);
+                var currentVertex = GetHighestVertexWithAnExcess(excess, heights);
 
-                if (!Push(residualGraph, currentVertice, excess, heights))
+                if (!Push(residualGraph, currentVertex, excess, heights))
                 {
-                    Relabel(currentVertice, heights);
+                    Relabel(currentVertex, heights);
                 }
             }
 
@@ -33,9 +41,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return flow;
         }
 
-        private bool HasAccess(int[] excess)
+        private static bool HasExcess(IReadOnlyList<int> excess)
         {
-            for (var i = 1; i < excess.Length - 1; i++)
+            for (var i = 1; i < excess.Count - 1; i++)
             {
                 if (excess[i] > 0)
                 {
@@ -46,28 +54,28 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return false;
         }
 
-        private int GetMostHighVedrticeWithAnExcess(int[] excess, int[] height)
+        private static int GetHighestVertexWithAnExcess(IReadOnlyList<int> excess, IReadOnlyList<int> height)
         {
-            var maxHight = int.MinValue;
+            var maxHeight = int.MinValue;
             var maxHeightIndex = -1;
 
-            for (var i = 1; i < excess.Length - 1; i++)
+            for (var i = 1; i < excess.Count - 1; i++)
             {
-                if (excess[i] > 0 && (maxHeightIndex == -1 || height[maxHeightIndex]  > maxHight))
+                if (excess[i] > 0 && (maxHeightIndex == -1 || height[maxHeightIndex]  > maxHeight))
                 {
                     maxHeightIndex = i;
-                    maxHight = height[maxHeightIndex];
+                    maxHeight = height[maxHeightIndex];
                 }
             }
 
             return maxHeightIndex;
         }
 
-        private static void Initialize(int[][] graph, int[][] residualGraph, int[] excess)
+        private static void Initialize(IReadOnlyList<int[]> graph, IList<int[]> residualGraph, IList<int> excess)
         {
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                residualGraph[i] = new int[graph.Length];
+                residualGraph[i] = new int[graph.Count];
 
                 for (var j = 0; j < residualGraph[i].Length; j++)
                 {
@@ -75,7 +83,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                 }
             }
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
                 residualGraph[0][i] = 0;
                 residualGraph[i][0] = graph[0][i];
@@ -83,18 +91,18 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             }
         }
 
-        public bool Push(int[][] residualGraph, int currentVertice, int[] excess, int[] heights)
+        private static bool Push(IReadOnlyList<int[]> residualGraph, int currentVertex, IList<int> excess, IReadOnlyList<int> heights)
         {
-            for (var i = 0; i < residualGraph.Length; i++)
+            for (var i = 0; i < residualGraph.Count; i++)
             {
-                if (residualGraph[currentVertice][i] > 0 && heights[currentVertice] == heights[i] + 1)
+                if (residualGraph[currentVertex][i] > 0 && heights[currentVertex] == heights[i] + 1)
                 {
-                    var delta = Math.Min(excess[currentVertice], residualGraph[currentVertice][i]);
+                    var delta = Math.Min(excess[currentVertex], residualGraph[currentVertex][i]);
 
-                    residualGraph[currentVertice][i] = residualGraph[currentVertice][i] - delta;
-                    residualGraph[i][currentVertice] = residualGraph[i][currentVertice] + delta;
+                    residualGraph[currentVertex][i] = residualGraph[currentVertex][i] - delta;
+                    residualGraph[i][currentVertex] = residualGraph[i][currentVertex] + delta;
 
-                    excess[currentVertice] = excess[currentVertice] - delta;
+                    excess[currentVertex] = excess[currentVertex] - delta;
                     excess[i] = excess[i] + delta;
 
                     return true;
@@ -104,9 +112,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return false;
         }
 
-        public void Relabel(int currentVertice, int[] heights)
+        private static void Relabel(int currentVertex, IList<int> heights)
         {
-            heights[currentVertice] = heights[currentVertice] + 1;
+            heights[currentVertex] = heights[currentVertex] + 1;
         }
     }
 }

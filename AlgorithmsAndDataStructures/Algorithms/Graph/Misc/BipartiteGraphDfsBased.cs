@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class BipartiteGraphDfsBased
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool IsBipartite(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var colors = new int[graph.Length];
             for (var i = 0; i < colors.Length; i++)
             {
@@ -17,7 +23,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             {
                 if (colors[i] == -1)
                 {
-                    if (!DFS(graph, i, 1, colors))
+                    if (!Dfs(graph, i, 1, colors))
                     {
                         return false;
                     }
@@ -26,28 +32,28 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return true;
         }
 
-        private bool DFS(int[][] graph, int currentVertice, int color, int[] colors)
+        private static bool Dfs(IReadOnlyList<int[]> graph, int currentVertex, int color, IList<int> colors)
         {
-            var flipColor = 1 ^ colors[currentVertice];
-            colors[currentVertice] = color;
+            var flipColor = 1 ^ colors[currentVertex];
+            colors[currentVertex] = color;
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                if (graph[currentVertice][i] < 1)
+                if (graph[currentVertex][i] < 1)
                 {
                     continue;
                 }
 
                 if (colors[i] != -1)
                 {
-                    if (colors[i] == colors[currentVertice])
+                    if (colors[i] == colors[currentVertex])
                     {
                         return false;
                     }
                 }
                 else
                 {
-                    var result = DFS(graph, i, flipColor, colors);
+                    var result = Dfs(graph, i, flipColor, colors);
 
                     if (!result)
                     {

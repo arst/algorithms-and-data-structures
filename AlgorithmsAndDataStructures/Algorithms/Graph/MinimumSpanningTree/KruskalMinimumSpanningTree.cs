@@ -8,15 +8,23 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
 {
     public class KruskalMinimumSpanningTree
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetMinimumSpanningTreeWeight(WeightedGraphVertex[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var minimumSpanningTreeWeight = 0;
+            // ReSharper disable once CollectionNeverQueried.Local
             var minimumSpanningTree = new List<WeightedGraphNodeEdge>();
-            var spanningTree = new GraphNode<int>[graph.Length];
+            var spanningTree = new GraphVertex<int>[graph.Length];
 
             for (var i = 0; i < spanningTree.Length; i++)
             {
-                spanningTree[i] = new GraphNode<int>();
+                spanningTree[i] = new GraphVertex<int>();
             }
 
             var spanningTreeSize = 0;
@@ -28,9 +36,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
             while (spanningTreeSize < graph.Length - 1)
             {
                 var currentEdge = edges[currentEdgeIndex];
-                spanningTree[currentEdge.From].AdjacentNodes.Add(currentEdge.To);
+                spanningTree[currentEdge.From].AdjacentVertices.Add(currentEdge.To);
 
-                if (!IsCyclic(spanningTree))
+                if (!CycleDetector.IsCyclic(spanningTree))
                 {
                     spanningTreeSize++;
                     minimumSpanningTreeWeight += currentEdge.Weight;
@@ -38,18 +46,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree
                 }
                 else
                 {
-                    spanningTree[currentEdge.From].AdjacentNodes.Remove(currentEdge.To);
+                    spanningTree[currentEdge.From].AdjacentVertices.Remove(currentEdge.To);
                 }
 
                 currentEdgeIndex++;
             }
 
             return minimumSpanningTreeWeight;
-        }
-
-        private bool IsCyclic(GraphNode<int>[] spanningTree)
-        {
-            return new CycleDetection().IsCyclic(spanningTree);
         }
     }
 }

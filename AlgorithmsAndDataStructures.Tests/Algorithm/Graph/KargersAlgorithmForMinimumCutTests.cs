@@ -1,5 +1,5 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
-using AlgorithmsAndDataStructures.Algorithms.Graph.Misc;
+using AlgorithmsAndDataStructures.Algorithms.Graph.MinCut;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph

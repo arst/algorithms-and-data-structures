@@ -137,7 +137,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         }
 
         [Fact]
-        public void MinimumSpanningTreeWeightIsClculatedForGraphWithCycle()
+        public void MinimumSpanningTreeWeightIsCalculatedForGraphWithCycle()
         {
             var sut = new KruskalMinimumSpanningTreeWithDisjointSet();
 
@@ -193,7 +193,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         }
 
         [Fact]
-        public void BaseLine()
+        public void Baseline()
         {
             var sut = new KruskalMinimumSpanningTreeWithDisjointSet();
 

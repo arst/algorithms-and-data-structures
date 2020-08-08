@@ -1,14 +1,22 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+﻿using System.Collections.Generic;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class KosarajusAlgorithm
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool IsConnected(WeightedGraphVertex[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var visited = new bool[graph.Length];
 
-            DFS(graph, 0, visited);
+            Dfs(graph, 0, visited);
 
             for (var i = 0; i < visited.Length; i++)
             {
@@ -21,7 +29,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var transposedGraph = GetTransposed(graph);
             var transposedVisited = new bool[graph.Length];
 
-            DFS(transposedGraph, 0, transposedVisited);
+            Dfs(transposedGraph, 0, transposedVisited);
 
             for (var i = 0; i < transposedVisited.Length; i++)
             {
@@ -34,26 +42,26 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return true;
         }
 
-        private void DFS(WeightedGraphVertex[] graph, int currentVertice, bool[] visited)
+        private static void Dfs(WeightedGraphVertex[] graph, int currentVertex, IList<bool> visited)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
 
-            for (var i = 0; i < graph[currentVertice].Edges.Count; i++)
+            for (var i = 0; i < graph[currentVertex].Edges.Count; i++)
             {
-                var neigbhor = graph[currentVertice].Edges[i].To;
+                var adjacentVertex = graph[currentVertex].Edges[i].To;
 
-                if (!visited[neigbhor])
+                if (!visited[adjacentVertex])
                 {
-                    DFS(graph, neigbhor, visited);
+                    Dfs(graph, adjacentVertex, visited);
                 }
             }
         }
 
-        private WeightedGraphVertex[] GetTransposed(WeightedGraphVertex[] graph)
+        private static WeightedGraphVertex[] GetTransposed(IReadOnlyList<WeightedGraphVertex> graph)
         {
-            var result = new WeightedGraphVertex[graph.Length];
+            var result = new WeightedGraphVertex[graph.Count];
 
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
                 result[i] = result[i] == null ? new WeightedGraphVertex() : result[i];
 
@@ -61,10 +69,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                 {
                     var from = graph[i].Edges[j].To;
 
-                    if (result[from] == null)
-                    {
-                        result[from] = new WeightedGraphVertex();
-                    }
+                    result[from] ??= new WeightedGraphVertex();
 
                     result[from].Edges.Add(new WeightedGraphNodeEdge()
                     {

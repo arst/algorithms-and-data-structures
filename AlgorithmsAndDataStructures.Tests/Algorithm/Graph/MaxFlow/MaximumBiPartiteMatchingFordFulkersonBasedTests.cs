@@ -4,12 +4,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
-    public class MaximumBirpartiteMatchingFordFulkersonBasedTests
+    public class MaximumBiPartiteMatchingFordFulkersonBasedTests
     {
         [Fact]
         public void FourVerticesBipartite()
         {
-            var sut = new MaximumBirpartiteMatchingFordFulkersonBased();
+            var sut = new MaximumBiPartiteMatchingFordFulkersonBased();
             var graph = new int[4][];
             graph[0] = new[] { 0, 1, 0, 1 };
             graph[1] = new[] { 0, 0, 0, 0 };
@@ -22,7 +22,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void CycleGraphWithEvenCycle()
         {
-            var sut = new MaximumBirpartiteMatchingFordFulkersonBased();
+            var sut = new MaximumBiPartiteMatchingFordFulkersonBased();
             var graph = new int[4][];
             graph[0] = new[] { 0, 1, 0, 1 };
             graph[1] = new[] { 1, 0, 1, 0 };
@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void CycleGraphWithOddCycle()
         {
-            var sut = new MaximumBirpartiteMatchingFordFulkersonBased();
+            var sut = new MaximumBiPartiteMatchingFordFulkersonBased();
             var graph = new int[5][];
             graph[0] = new[] { 0, 1, 0, 1, 0 };
             graph[1] = new[] { 1, 0, 1, 0, 0 };

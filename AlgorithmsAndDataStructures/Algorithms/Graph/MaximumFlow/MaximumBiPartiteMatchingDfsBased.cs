@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    public class MaximumBirpartiteMatchingDfsBased
+    public class MaximumBiPartiteMatchingDfsBased
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetMaxMatching(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var result = 0;
             var assignment = new int[graph.Length];
 
@@ -26,16 +34,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return result;
         }
 
-        private bool TryAssign(int currentVertice, int[][] graph, bool[] visited, int[] assignment)
+        private static bool TryAssign(int currentVertex, IReadOnlyList<int[]> graph, IList<bool> visited, IList<int> assignment)
         {
-            for (var i = 0; i < graph.Length; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                if (graph[currentVertice][i] > 0 && !visited[i])
+                if (graph[currentVertex][i] > 0 && !visited[i])
                 {
                     visited[i] = true;
                     if (assignment[i] < 0 || TryAssign(assignment[i], graph, visited, assignment))
                     {
-                        assignment[i] = currentVertice;
+                        assignment[i] = currentVertex;
                         return true;
                     }
                 }

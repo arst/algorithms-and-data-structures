@@ -4,8 +4,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class NegativeCycleDetectionBellmanFordBased
     {
+#pragma warning disable CA1822 // Mark members as static
         public bool HasNegativeCycle(WeightedGraphVertex[] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             var distance = new int[graph.Length];
             var distanceChanged = true;
 

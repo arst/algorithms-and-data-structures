@@ -1,4 +1,5 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow;
+﻿using AlgorithmsAndDataStructures.Algorithms.Graph.MinCut;
+using System;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
@@ -8,26 +9,28 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void Baseline()
         {
-            var sut = new MinSTCutNaive();
+            var sut = new MinStCutNaive();
             var graph = new int[4][];
 
-            graph[0] = new[] { 0, 1, 1, 1 };
-            graph[1] = new[] { 1, 0, 0, 1 };
-            graph[2] = new[] { 1, 0, 0, 1 };
-            graph[3] = new[] { 1, 1, 1, 0 };
+            graph[0] = new [] { 0, 1, 1, 1 };
+            graph[1] = new [] { 1, 0, 0, 1 };
+            graph[2] = new [] { 1, 0, 0, 1 };
+            graph[3] = new [] { 1, 1, 1, 0 };
 
-            var minCut = sut.GetSTCut(graph);
+            var minCut = sut.GetStCut(graph);
 
             Assert.Collection(minCut, 
                 arg => 
                 {
-                    Assert.Equal(0, arg.Item1);
-                    Assert.Equal(1, arg.Item2);
+                    var (item1, item2) = arg;
+                    Assert.Equal(0, item1);
+                    Assert.Equal(1, item2);
                 },
                 arg =>
                 {
-                    Assert.Equal(3, arg.Item1);
-                    Assert.Equal(1, arg.Item2);
+                    var (item1, item2) = arg;
+                    Assert.Equal(3, item1);
+                    Assert.Equal(1, item2);
                 });
         }
     }

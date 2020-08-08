@@ -3,12 +3,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
-    public class MaximumBirpartiteMatchingDfsBasedTests
+    public class MaximumBipartiteMatchingDfsBasedTests
     {
         [Fact]
         public void FourVerticesBipartite()
         {
-            var sut = new MaximumBirpartiteMatchingDfsBased();
+            var sut = new MaximumBiPartiteMatchingDfsBased();
             var graph = new int[4][];
             graph[0] = new[] { 0, 1, 0, 1 };
             graph[1] = new[] { 0, 0, 0, 0 };
@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void SixVerticesBipartite()
         {
-            var sut = new MaximumBirpartiteMatchingDfsBased();
+            var sut = new MaximumBiPartiteMatchingDfsBased();
             var graph = new int[6][];
 
             graph[0] = new[] { 0, 1, 1, 0, 0, 0 };

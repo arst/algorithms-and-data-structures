@@ -7,7 +7,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
 {
     public class DepthFirstSearch
     {
-        public List<int> Traverse(GraphNode<int>[] graph)
+        public List<int> Traverse(GraphVertex<int>[] graph)
         {
             var result = new HashSet<int>();
             var visited = new HashSet<int>();
@@ -17,12 +17,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
             return result.ToList();
         }
 
-        private void TraverseInternal(int node, GraphNode<int>[] graph, HashSet<int> result, HashSet<int> visited)
+        private void TraverseInternal(int node, GraphVertex<int>[] graph, HashSet<int> result, HashSet<int> visited)
         {
             result.Add(graph[node].Value);
             visited.Add(node);
 
-            var notVisitedAdjacentNodes = graph[node].AdjacentNodes
+            var notVisitedAdjacentNodes = graph[node].AdjacentVertices
                 .Where(arg => !visited.Contains(arg));
 
             foreach (var adjacentNode in notVisitedAdjacentNodes)
@@ -31,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
             }
         }
 
-        public List<int> TraverseNonRecursive(GraphNode<int>[] graph)
+        public List<int> TraverseNonRecursive(GraphVertex<int>[] graph)
         {
             var result = new HashSet<int>();
             var visited = new HashSet<int>();
@@ -47,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Search
                 }
 
                 var currentVertice = stack.Peek();
-                var adjacentNodes = graph[currentVertice].AdjacentNodes;
+                var adjacentNodes = graph[currentVertice].AdjacentVertices;
 
                 if (!adjacentNodes.Except(visited).Any())
                 {

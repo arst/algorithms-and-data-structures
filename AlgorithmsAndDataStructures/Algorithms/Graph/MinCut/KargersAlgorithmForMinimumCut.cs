@@ -1,53 +1,60 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
+namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinCut
 {
     public class KargersAlgorithmForMinimumCut
     {
+#pragma warning disable CA1822 // Mark members as static
         public int MinCut(UndirectedGraph originalGraph, int samplingCount)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (originalGraph is null)
+            {
+                return default;
+            }
+
             var originalVertices = originalGraph.Vertices();
             var minCuts = new List<int>(samplingCount);
 
-            // It's a randomized algorithm so we should run a few itterations to achieve the results as close as possible to the optimum.
+            // It's a randomized algorithm so we should run a few iterations to achieve the results as close as possible to the optimum.
             while (samplingCount > 0)
             {
                 var vertices = new Dictionary<int, List<int>>();
-                // Copy all vertices to a new dictionary with indexes as a key and vadjacent vertices as values.
+                // Copy all vertices to a new dictionary with indexes as a key and adjacent vertices as values.
                 for (var j = 0; j < originalVertices.Length; j++)
                 {
                     var original = originalVertices[j];
                     vertices.Add(j, new List<int>(original));
                 }
-                // Keep contracting ddges until only two left.
+                // Keep contracting edges until only two left.
                 while (vertices.Count > 2)
                 {
                     // Pick random edge.
-                    var randomEdge = GetRandomEdge(vertices);
+                    var (from, to) = GetRandomEdge(vertices);
 
-                    // Iterate over adjacent vertices of 'to' vertice. We are going to conflate it with 'from' vertice.
-                    for (var i = 0; i < vertices[randomEdge.to].Count; i++)
+                    // Iterate over adjacent vertices of 'to' vertex. We are going to conflate it with 'from' vertex.
+                    for (var i = 0; i < vertices[to].Count; i++)
                     {
-                        var vertice = vertices[randomEdge.to][i];
+                        var vertex = vertices[to][i];
 
                         // To avoid self-loops. They aren't allowed according to Karger's algorithm.
-                        if (vertice != randomEdge.from)
+                        if (vertex != from)
                         {
-                            vertices[randomEdge.from].Add(vertice);
+                            vertices[from].Add(vertex);
                         }
-                        // Remove edge to conflated vertice from adjacent vertice.
-                        vertices[vertice].Remove(randomEdge.to);
-                        // Add edge to 'from' vertice since 'to' vertice was conflated into it.
-                        if (vertice != randomEdge.from)
+                        // Remove edge to conflated vertex from adjacent vertex.
+                        vertices[vertex].Remove(to);
+                        // Add edge to 'from' vertex since 'to' vertex was conflated into it.
+                        if (vertex != from)
                         {
-                            vertices[vertice].Add(randomEdge.from);
+                            vertices[vertex].Add(from);
                         }
                     }
-                    // We don't need sconflated vertice anymore.
-                    vertices.Remove(randomEdge.to);
+                    // We don't need conflated vertex anymore.
+                    vertices.Remove(to);
                 }
 
                 // Count of vertices from the first node is the min cut. 
@@ -58,9 +65,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return minCuts.Min();
         }
 
-        private (int from, int to) GetRandomEdge(Dictionary<int, List<int>> vertices)
+        // TODO: There is should be a better way to pick random edge.
+        private static (int from, int to) GetRandomEdge(Dictionary<int, List<int>> vertices)
         {
-            // There is should be a better way to pick random edge.
+            
             var r = new Random();
             var from = -1;
             var to = -1;

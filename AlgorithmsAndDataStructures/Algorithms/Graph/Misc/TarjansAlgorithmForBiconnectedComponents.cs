@@ -7,10 +7,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TarjansAlgorithmForBiconnectedComponents
     {
-        private const int nullParent = -1;
+        private const int NullParent = -1;
 
         public List<List<int>> GetBiconnectedComponents(UndirectedGraph graph)
         {
+            if (graph is null)
+            {
+                return new List<List<int>>(0);
+            }
+
             var vertices = graph.Vertices();
 
             if (vertices.Length == 0)
@@ -20,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             var visited = new bool[vertices.Length];
             var parents = new int[vertices.Length];
-            var dicoveryTime = new int[vertices.Length];
+            var discoveryTime = new int[vertices.Length];
             var lowestSubTreeDiscoveryTime = new int[vertices.Length];
             var dfs = new Stack<int>(vertices.Length);
             var biconnectedComponents = new List<List<int>>();
@@ -29,8 +34,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             {
                 if (!visited[i])
                 {
-                    parents[i] = nullParent;
-                    DFSArticulationTraversal(vertices, 0, visited, parents, dicoveryTime, lowestSubTreeDiscoveryTime, dfs, biconnectedComponents, 0);
+                    parents[i] = NullParent;
+                    DfsArticulationTraversal(vertices, 0, visited, parents, discoveryTime, lowestSubTreeDiscoveryTime, dfs, biconnectedComponents, 0);
                 }
 
 
@@ -51,61 +56,52 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             return biconnectedComponents;
         }
 
-        private void DFSArticulationTraversal(
-            List<int>[] vertices,
-            int currentVertice,
-            bool[] visited, 
-            int[] parents, 
-            int[] dicoveryTime, 
-            int[] lowestSubTreeDiscoveryTime,
+        private static void DfsArticulationTraversal(
+            IReadOnlyList<List<int>> vertices,
+            int currentVertex,
+            IList<bool> visited, 
+            IList<int> parents, 
+            IList<int> discoveryTime, 
+            IList<int> lowestSubTreeDiscoveryTime,
             Stack<int> dfs,
-            List<List<int>> biconnectedComponents,
+            ICollection<List<int>> biconnectedComponents,
             int time)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
             var children = 0;
             var currentDiscoveryTime = time++;
-            dicoveryTime[currentVertice] = currentDiscoveryTime;
-            lowestSubTreeDiscoveryTime[currentVertice] = currentDiscoveryTime;
-            dfs.Push(currentVertice);
+            discoveryTime[currentVertex] = currentDiscoveryTime;
+            lowestSubTreeDiscoveryTime[currentVertex] = currentDiscoveryTime;
+            dfs.Push(currentVertex);
 
-            foreach (var adjacentVertice in vertices[currentVertice])
+            foreach (var adjacentVertex in vertices[currentVertex])
             {
-                if (!visited[adjacentVertice])
+                if (!visited[adjacentVertex])
                 {
                     children++;
-                    parents[adjacentVertice] = currentVertice;
-                    DFSArticulationTraversal(
+                    parents[adjacentVertex] = currentVertex;
+                    DfsArticulationTraversal(
                         vertices,
-                        adjacentVertice,
+                        adjacentVertex,
                         visited,
                         parents,
-                        dicoveryTime,
+                        discoveryTime,
                         lowestSubTreeDiscoveryTime,
                         dfs,
                         biconnectedComponents,
                         time);
 
-                    lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], lowestSubTreeDiscoveryTime[adjacentVertice]);
+                    lowestSubTreeDiscoveryTime[currentVertex] = Math.Min(lowestSubTreeDiscoveryTime[currentVertex], lowestSubTreeDiscoveryTime[adjacentVertex]);
 
-                    var isActiculationPoint = false;
+                    var isRootNode = parents[currentVertex] == NullParent && children > 1;
+                    var isChildrenCantReachBeyondParent = parents[currentVertex] != NullParent && lowestSubTreeDiscoveryTime[adjacentVertex] >= discoveryTime[currentVertex];
+                    var isArticulationPoint = isRootNode || isChildrenCantReachBeyondParent;
 
-                    if (parents[currentVertice] == nullParent && children > 1)
+                    if (isArticulationPoint)
                     {
-                        isActiculationPoint = true;
-                        
-                    }
-                    if (parents[currentVertice] != nullParent && lowestSubTreeDiscoveryTime[adjacentVertice] >= dicoveryTime[currentVertice])
-                    {
-                        isActiculationPoint = true;
-                    }
+                        var component = new List<int> {currentVertex};
 
-                    if (isActiculationPoint)
-                    {
-                        var component = new List<int>();
-                        component.Add(currentVertice);
-
-                        while (dfs.Peek() != currentVertice)
+                        while (dfs.Peek() != currentVertex)
                         {
                             component.Add(dfs.Pop());
                         }
@@ -113,9 +109,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
                         biconnectedComponents.Add(component);
                     }
                 }
-                else if(adjacentVertice != parents[currentVertice])
+                else if(adjacentVertex != parents[currentVertex])
                 {
-                    lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], dicoveryTime[adjacentVertice]);
+                    lowestSubTreeDiscoveryTime[currentVertex] = Math.Min(lowestSubTreeDiscoveryTime[currentVertex], discoveryTime[adjacentVertex]);
                 }
             }
         }

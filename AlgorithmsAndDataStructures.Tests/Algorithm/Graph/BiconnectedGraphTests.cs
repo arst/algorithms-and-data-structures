@@ -9,40 +9,40 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
         [Fact]
         public void TriangularGraphIsBiconnected()
         {
-            var sut = new BiconnectedGraph();
+            var sut = new BiConnectedGraph();
             var graph = new UndirectedGraph(3);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
             graph.Connect(2, 0);
 
-            Assert.True(sut.IsBiconnected(graph));
+            Assert.True(sut.IsBiConnected(graph));
         }
 
         [Fact]
         public void LinedUpGraphIsNotBiconnected()
         {
-            var sut = new BiconnectedGraph();
+            var sut = new BiConnectedGraph();
             var graph = new UndirectedGraph(3);
             graph.Connect(0, 1);
             graph.Connect(1, 2);
 
-            Assert.False(sut.IsBiconnected(graph));
+            Assert.False(sut.IsBiConnected(graph));
         }
 
         [Fact]
         public void TwoVerticesGraphIsBiconnected()
         {
-            var sut = new BiconnectedGraph();
+            var sut = new BiConnectedGraph();
             var graph = new UndirectedGraph(2);
             graph.Connect(0, 1);
 
-            Assert.True(sut.IsBiconnected(graph));
+            Assert.True(sut.IsBiConnected(graph));
         }
 
         [Fact]
         public void DenseGraphIsBiconnected()
         {
-            var sut = new BiconnectedGraph();
+            var sut = new BiConnectedGraph();
             var graph = new UndirectedGraph(5);
             graph.Connect(1, 0);
             graph.Connect(0, 2);
@@ -51,13 +51,13 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             graph.Connect(3, 4);
             graph.Connect(2, 4);
 
-            Assert.True(sut.IsBiconnected(graph));
+            Assert.True(sut.IsBiConnected(graph));
         }
 
         [Fact]
         public void DenseGraphWithoutBackedgeIsNotBiconnected()
         {
-            var sut = new BiconnectedGraph();
+            var sut = new BiConnectedGraph();
             var graph = new UndirectedGraph(5);
             graph.Connect(1, 0);
             graph.Connect(0, 2);
@@ -65,7 +65,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
             graph.Connect(0, 3);
             graph.Connect(3, 4);
 
-            Assert.False(sut.IsBiconnected(graph));
+            Assert.False(sut.IsBiConnected(graph));
         }
     }
 }

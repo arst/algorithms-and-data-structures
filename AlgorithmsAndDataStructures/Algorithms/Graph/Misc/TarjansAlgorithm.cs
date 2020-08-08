@@ -7,10 +7,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class TarjansAlgorithm
     {
-        private const int nullParent = -1;
+        private const int NullParent = -1;
 
+#pragma warning disable CA1822 // Mark members as static
         public int[] GetArticulationPoints(UndirectedGraph graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return Array.Empty<int>();
+            }
+
             var vertices = graph.Vertices();
 
             if (vertices.Length == 0)
@@ -21,62 +28,62 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
             var visited = new bool[vertices.Length];
             var articulationPoints = new bool[vertices.Length];
             var parents = new int[vertices.Length];
-            var dicoveryTime = new int[vertices.Length];
+            var discoveryTime = new int[vertices.Length];
             var lowestSubTreeDiscoveryTime = new int[vertices.Length];
 
-            parents[0] = nullParent;
+            parents[0] = NullParent;
 
-            DFSArticulationTraversal(vertices, 0, visited, articulationPoints, parents, dicoveryTime, lowestSubTreeDiscoveryTime, 0);
+            DfsArticulationTraversal(vertices, 0, visited, articulationPoints, parents, discoveryTime, lowestSubTreeDiscoveryTime, 0);
 
             return vertices.Select((arg, index) => index).Where(arg => articulationPoints[arg]).ToArray();
         }
 
-        private void DFSArticulationTraversal(
-            List<int>[] vertices,
-            int currentVertice,
-            bool[] visited, 
-            bool[] articulationPoints, 
-            int[] parents, 
-            int[] dicoveryTime, 
-            int[] lowestSubTreeDiscoveryTime,
+        private static void DfsArticulationTraversal(
+            IReadOnlyList<List<int>> vertices,
+            int currentVertex,
+            IList<bool> visited, 
+            IList<bool> articulationPoints, 
+            IList<int> parents, 
+            IList<int> discoveryTime, 
+            IList<int> lowestSubTreeDiscoveryTime,
             int time)
         {
-            visited[currentVertice] = true;
+            visited[currentVertex] = true;
             var children = 0;
             var currentDiscoveryTime = time + 1;
-            dicoveryTime[currentVertice] = currentDiscoveryTime;
-            lowestSubTreeDiscoveryTime[currentVertice] = currentDiscoveryTime;
+            discoveryTime[currentVertex] = currentDiscoveryTime;
+            lowestSubTreeDiscoveryTime[currentVertex] = currentDiscoveryTime;
 
-            foreach (var adjacentVertice in vertices[currentVertice])
+            foreach (var adjacentVertex in vertices[currentVertex])
             {
-                if (!visited[adjacentVertice])
+                if (!visited[adjacentVertex])
                 {
                     children++;
-                    parents[adjacentVertice] = currentVertice;
-                    DFSArticulationTraversal(
+                    parents[adjacentVertex] = currentVertex;
+                    DfsArticulationTraversal(
                         vertices,
-                        adjacentVertice,
+                        adjacentVertex,
                         visited,
                         articulationPoints,
                         parents,
-                        dicoveryTime,
+                        discoveryTime,
                         lowestSubTreeDiscoveryTime,
                         currentDiscoveryTime);
 
-                    lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], lowestSubTreeDiscoveryTime[adjacentVertice]);
+                    lowestSubTreeDiscoveryTime[currentVertex] = Math.Min(lowestSubTreeDiscoveryTime[currentVertex], lowestSubTreeDiscoveryTime[adjacentVertex]);
 
-                    if (parents[currentVertice] == nullParent && children > 1)
+                    if (parents[currentVertex] == NullParent && children > 1)
                     {
-                        articulationPoints[currentVertice] = true;
+                        articulationPoints[currentVertex] = true;
                     }
-                    if (parents[currentVertice] != nullParent && lowestSubTreeDiscoveryTime[adjacentVertice] >= dicoveryTime[currentVertice])
+                    if (parents[currentVertex] != NullParent && lowestSubTreeDiscoveryTime[adjacentVertex] >= discoveryTime[currentVertex])
                     {
-                        articulationPoints[currentVertice] = true;
+                        articulationPoints[currentVertex] = true;
                     }
                 }
-                else if(adjacentVertice != parents[currentVertice])
+                else if(adjacentVertex != parents[currentVertex])
                 {
-                    lowestSubTreeDiscoveryTime[currentVertice] = Math.Min(lowestSubTreeDiscoveryTime[currentVertice], dicoveryTime[adjacentVertice]);
+                    lowestSubTreeDiscoveryTime[currentVertex] = Math.Min(lowestSubTreeDiscoveryTime[currentVertex], discoveryTime[adjacentVertex]);
                 }
             }
         }

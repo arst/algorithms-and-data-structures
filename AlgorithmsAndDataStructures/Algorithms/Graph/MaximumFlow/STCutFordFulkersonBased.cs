@@ -5,8 +5,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
     public class STCutFordFulkersonBased
     {
-        public List<Tuple<int, int>> GetSTCut(int[][] graph)
+#pragma warning disable CA1822 // Mark members as static
+        public List<Tuple<int, int>> GetStCut(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return new List<Tuple<int, int>>(0);
+            }
+
             var residualGraph = new int[graph.Length][];
 
             for (var i = 0; i < residualGraph.Length; i++)
@@ -20,29 +27,26 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             }
 
             bool hasPath;
-            int[] path;
-            var targetVertice = graph.Length - 1;
-            var maxFlow = 0;
+            var targetVertex = graph.Length - 1;
 
             do
             {
-                path = GetBFSPath(residualGraph, targetVertice);
+                var path = GetBfsPath(residualGraph, targetVertex);
                 hasPath = path != null;
 
                 if (hasPath)
                 {
-                    var delta = GetDelta(path, residualGraph, targetVertice);
-                    maxFlow += delta;
-                    var currentVertice = graph.Length - 1;
-                    var parent = path[currentVertice];
+                    var delta = GetDelta(path, residualGraph, targetVertex);
+                    var currentVertex = graph.Length - 1;
+                    var parent = path[currentVertex];
 
                     while (parent >= 0)
                     {
-                        residualGraph[parent][currentVertice] = residualGraph[parent][currentVertice] - delta;
-                        residualGraph[currentVertice][parent] = residualGraph[currentVertice][parent] + delta;
+                        residualGraph[parent][currentVertex] = residualGraph[parent][currentVertex] - delta;
+                        residualGraph[currentVertex][parent] = residualGraph[currentVertex][parent] + delta;
 
-                        currentVertice = parent;
-                        parent = path[currentVertice];
+                        currentVertex = parent;
+                        parent = path[currentVertex];
                     }
                 }
                 
@@ -50,17 +54,17 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 
             var visited = new bool[graph.Length];
 
-            DFS(0, residualGraph, visited);
+            Dfs(0, residualGraph, visited);
 
             var result = new List<Tuple<int, int>>();
 
             for (var i = 0; i < graph.Length; i++)
             {
-                var currentVertice = graph[i];
+                var currentVertex = graph[i];
 
                 for (var j = 0; j < graph.Length; j++)
                 {
-                    if (currentVertice[j] > 0 && visited[i] && !visited[j])
+                    if (currentVertex[j] > 0 && visited[i] && !visited[j])
                     {
                         result.Add(new Tuple<int, int>(i,j));
                     }
@@ -70,7 +74,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             return result;
         }
 
-        private void DFS(int v, int[][] residualGraph, bool[] visited)
+        private static void Dfs(int v, IReadOnlyList<int[]> residualGraph, IList<bool> visited)
         {
             visited[v] = true;
 
@@ -78,48 +82,48 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
             {
                 if (!visited[i] && residualGraph[v][i] > 0)
                 {
-                    DFS(i, residualGraph, visited);
+                    Dfs(i, residualGraph, visited);
                 }
             }
         }
 
-        private int GetDelta(int[] path, int[][] residualGraph, int targetVertice)
+        private static int GetDelta(IReadOnlyList<int> path, IReadOnlyList<int[]> residualGraph, int targetVertex)
         {
             var delta = int.MaxValue;
-            var currentVertice = targetVertice;
-            var parent = path[currentVertice];
+            var currentVertex = targetVertex;
+            var parent = path[currentVertex];
         
             while (parent >= 0)
             {
-                delta = Math.Min(residualGraph[parent][currentVertice], delta);
-                currentVertice = parent;
-                parent = path[currentVertice];
+                delta = Math.Min(residualGraph[parent][currentVertex], delta);
+                currentVertex = parent;
+                parent = path[currentVertex];
             }
 
             return delta;
         }
 
-        private int[] GetBFSPath(int[][] residualGraph, int targetVertice)
+        private static int[] GetBfsPath(IReadOnlyList<int[]> residualGraph, int targetVertex)
         {
             var queue = new Queue<int>();
-            var visited = new bool[residualGraph.Length];
-            var path = new int[residualGraph.Length];
+            var visited = new bool[residualGraph.Count];
+            var path = new int[residualGraph.Count];
             visited[0] = true;
             path[0] = -1;
             queue.Enqueue(0);
 
             while (queue.Count > 0)
             {
-                var currenntVertice = queue.Dequeue();
+                var currentVertex = queue.Dequeue();
 
-                for (var i = 0; i < residualGraph[currenntVertice].Length; i++)
+                for (var i = 0; i < residualGraph[currentVertex].Length; i++)
                 {
-                    if (!visited[i] && residualGraph[currenntVertice][i] > 0)
+                    if (!visited[i] && residualGraph[currentVertex][i] > 0)
                     {
-                        path[i] = currenntVertice;
+                        path[i] = currentVertex;
                         visited[i] = true;
 
-                        if (i == targetVertice)
+                        if (i == targetVertex)
                         {
                             return path;
                         }
