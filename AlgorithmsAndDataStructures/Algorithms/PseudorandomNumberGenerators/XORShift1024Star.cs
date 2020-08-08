@@ -7,7 +7,7 @@
 
         public XorShift1024Star()
         {
-            var xOrShift64Star = new XORShift64Star();
+            var xOrShift64Star = new XorShift64Star();
 
             seed = new long[16];
 

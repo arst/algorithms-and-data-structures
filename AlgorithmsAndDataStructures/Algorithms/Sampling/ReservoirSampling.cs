@@ -4,12 +4,19 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
 {
     public class ReservoirSampling
     {
+#pragma warning disable CA1822 // Mark members as static
         public int[] GetRandomSample(SampleSource population, int sampleSize)
+#pragma warning restore CA1822 // Mark members as static
         {
+            if (population is null)
+            {
+                return Array.Empty<int>();
+            }
+
             var result = new int[sampleSize];
             var random = new Random();
 
-            // We populate all samples from population to result rightaway because we don't know whether we get sampleSize + 1 at any time at all.
+            // We populate all samples from population to result right-away because we don't know whether we get sampleSize + 1 at any time at all.
             for (var i = 0; i < sampleSize; i++)
             {
                 result[i] = population.GetNext();

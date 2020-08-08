@@ -10,13 +10,13 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.PseudorandomNumberGe
     public class PseudorandomNumberGeneratorsBenchmark
     {
         private readonly LinearCongruentialRandomNumberGenerator linearCongruentialRandomNumberGenerator;
-        private readonly XORShift64Star xORShift64Star;
+        private readonly XorShift64Star xORShift64Star;
         private readonly XorShift1024Star xORShift1024Star;
 
         public PseudorandomNumberGeneratorsBenchmark()
         {
             linearCongruentialRandomNumberGenerator = new LinearCongruentialRandomNumberGenerator();
-            xORShift64Star = new XORShift64Star();
+            xORShift64Star = new XorShift64Star();
             xORShift1024Star = new XorShift1024Star();
         }
 

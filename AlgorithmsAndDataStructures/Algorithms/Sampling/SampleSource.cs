@@ -2,7 +2,7 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sampling
 {
-    // This is dummy source, for the purpose of demonstration. This can be stream of samples, lines from the file with unknow length etc.
+    // This is a dummy source, for the purpose of a demonstration. This can be stream of samples, lines from the file with unknown length etc.
     public class SampleSource
     {
         private readonly Random random = new Random();
