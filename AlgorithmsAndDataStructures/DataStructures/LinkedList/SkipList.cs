@@ -29,6 +29,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Append(T value)
         {
+            // TODO: This approach with path is ugly. Refactor to some recursive approach?
             var path = new SkipListNode<T>[maxHeight - 1];
             var counter = 0;
             var current = sentinel;
@@ -97,7 +98,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 var line = string.Empty;
                 while (currentLineStarter != null)
                 {
+#pragma warning disable HAA0202 // Value type to reference type conversion allocation for string concatenation
                     line += currentLineStarter.Value + " ";
+#pragma warning restore HAA0202 // Value type to reference type conversion allocation for string concatenation
                     currentLineStarter = currentLineStarter.Next;
                 }
 
