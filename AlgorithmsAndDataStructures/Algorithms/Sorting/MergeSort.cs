@@ -20,6 +20,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             if (target.Length < 1)
             {
                 return;
@@ -31,7 +36,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             Buffer.BlockCopy(sorted, 0, target, 0, sorted.Length * sizeof(int));
         }
 
-        private int[] Merge(int[] input, int start, int end)
+        private static int[] Merge(IReadOnlyList<int> input, int start, int end)
         {
             if (end - start == 1)
             {

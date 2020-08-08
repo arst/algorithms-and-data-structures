@@ -21,6 +21,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             const int processCont = 4;
 
             if (target.Length < 1)
@@ -72,7 +77,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             }
         }
 
-        private int[] Merge(IReadOnlyList<int> input, int start, int end)
+        private static int[] Merge(IReadOnlyList<int> input, int start, int end)
         {
             if (end - start == 1)
             {
@@ -87,14 +92,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             return MergeInternal(left, right);
         }
 
-        private static int[] MergeInternal(IReadOnlyList<int> left, int[] right)
+        private static int[] MergeInternal(IReadOnlyList<int> left, IReadOnlyList<int> right)
         {
-            var result = new int[left.Count + right.Length];
+            var result = new int[left.Count + right.Count];
             var leftPointer = 0;
             var rightPointer = 0;
             var resultPointer = 0;
 
-            while (leftPointer < left.Count && rightPointer < right.Length)
+            while (leftPointer < left.Count && rightPointer < right.Count)
             {
                 var leftValue = left[leftPointer];
                 var rightValue = right[rightPointer];
@@ -113,7 +118,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
                 resultPointer++;
             }
 
-            while (rightPointer < right.Length)
+            while (rightPointer < right.Count)
             {
                 result[resultPointer] = right[rightPointer];
                 resultPointer++;

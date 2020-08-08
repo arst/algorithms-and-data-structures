@@ -13,6 +13,11 @@
 
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             bool swapped;
             var j = 0;
             do

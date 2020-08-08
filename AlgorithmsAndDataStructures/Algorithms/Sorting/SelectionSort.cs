@@ -13,6 +13,11 @@
         */
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             for (var i = 0; i < target.Length; i++)
             {
                 var smallestIndex = i;

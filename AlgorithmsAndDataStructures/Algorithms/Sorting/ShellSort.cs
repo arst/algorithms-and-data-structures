@@ -16,6 +16,11 @@
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             for (var gap = target.Length / 2; gap > 0; gap /= 2)
             {
                 for (var startingPosition = gap; startingPosition < target.Length; startingPosition++)

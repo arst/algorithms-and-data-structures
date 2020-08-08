@@ -6,6 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             var helper = new int[(target.Length > 0 ? target.Max() : 0) + 1];
 
             foreach (var element in target)

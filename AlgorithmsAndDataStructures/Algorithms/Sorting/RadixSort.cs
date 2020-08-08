@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Sorting
 {
@@ -18,6 +19,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             if (!target.Any())
             {
                 return;
@@ -31,11 +37,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
             }
         }
 
-        private static void StableCountingSort(int[] target, int exp)
+        private static void StableCountingSort(IList<int> target, int exp)
         {
-            var max = target.Max();
             var counters = new int[10];
-            var holder = new int[target.Length];
+            var holder = new int[target.Count];
 
             foreach (var element in target)
             {
@@ -47,13 +52,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sorting
                 counters[i] = counters[i] + counters[i - 1];
             }
 
-            for (var i = target.Length - 1; i > -1; i--)
+            for (var i = target.Count - 1; i > -1; i--)
             {
                 counters[(target[i] / exp) % 10]--;
                 holder[counters[(target[i] / exp) % 10]] = target[i];
             }
 
-            for (var i = 0; i < target.Length; i++)
+            for (var i = 0; i < target.Count; i++)
             {
                 target[i] = holder[i];
             }

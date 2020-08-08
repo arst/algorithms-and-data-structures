@@ -4,6 +4,10 @@
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
             var swapped = true;
             var gap = target.Length;
 

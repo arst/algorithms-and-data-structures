@@ -14,6 +14,11 @@
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             SortInternal(target, 0, target.Length - 1);
         }
 

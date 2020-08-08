@@ -4,6 +4,11 @@
     {
         public void Sort(int[] target)
         {
+            if (target is null)
+            {
+                return;
+            }
+
             // (target.Length / 2) - 1 - this will remove all leaves from the build, they are trivial and has no children
             // to they are already heapified
             for (var i = (target.Length / 2) - 1; i >= 0; i--)
