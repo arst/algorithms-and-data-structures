@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void DropPacketsWhenThereAreNotEnoughTokens()
         {
-            using var sut = new SimpleTokenBucket(200, 100, 20000);
+            using var sut = new SimpleTokenBucket(100, 100, 20000);
             var producer = new Thread(Send);
             var result1 = false;
             var result2 = true;
