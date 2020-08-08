@@ -32,6 +32,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Hashing
              * Add the numeric value of the message block to Sum 1, modulo 65521.
              * Add the value of Sum 1 to Sum 2, modulo 65521.
              */
+            if (array is null)
+            {
+                throw new ArgumentNullException($"{nameof(array)} can't be null.");
+            }
+
             var endIndex = ibStart + cbSize;
 
             for (var i = ibStart; i < endIndex; i++)

@@ -4,20 +4,25 @@
     {
         public float GetMedian(int[] left, int[] right)
         {
+            if (left is null || right is null)
+            {
+                return default;
+            }
+
             var leftPointer = 0;
             var rightPointer = 0;
             var resultPointer = 0;
-            var smallerMdiaNumber = 0;
+            var smallerMedianNumber = 0;
             var biggerMedianNumber = 0;
 
             var result = new int[left.Length + right.Length];
 
             while (leftPointer < left.Length || rightPointer < right.Length)
             {
-                var t = leftPointer < left.Length && rightPointer < right.Length;
+                var isInsideBorders = leftPointer < left.Length && rightPointer < right.Length;
 
 
-                if (t)
+                if (isInsideBorders)
                 {
                     if (left[leftPointer] < right[rightPointer])
                     {
@@ -46,7 +51,7 @@
 
                 if (leftPointer + rightPointer == (result.Length / 2))
                 {
-                    smallerMdiaNumber = result[resultPointer];
+                    smallerMedianNumber = result[resultPointer];
                 }
                 if (leftPointer + rightPointer == (result.Length / 2) + 1)
                 {
@@ -57,7 +62,7 @@
                 resultPointer++;
             }
 
-            return (float)(smallerMdiaNumber + biggerMedianNumber) / 2;
+            return (float)(smallerMedianNumber + biggerMedianNumber) / 2;
         }
     }
 }

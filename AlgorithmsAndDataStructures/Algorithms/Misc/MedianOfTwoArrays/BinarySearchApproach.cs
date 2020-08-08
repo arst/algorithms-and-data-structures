@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
 {
@@ -6,10 +7,15 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
     {
         public float GetMedian(int[] left, int[] right)
         {
+            if (left is null || right is null)
+            {
+                return default;
+            }
+
             return GetMedian(left, 0, left.Length, right, 0, right.Length);
         }
 
-        public float GetMedian(int[] left, int leftStart, int leftEnd, int[] right, int rightStart, int rightEnd)
+        private static float GetMedian(IReadOnlyList<int> left, int leftStart, int leftEnd, IReadOnlyList<int> right, int rightStart, int rightEnd)
         {
             if ((leftEnd - leftStart) + (rightEnd - rightStart) <= 4)
             {
@@ -20,39 +26,38 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
             var leftMedian = GetMedian(left, leftStart, leftEnd);
             var rightMedian = GetMedian(right, rightStart, rightEnd);
 
-            if (leftMedian == rightMedian)
+            if (Math.Abs(leftMedian - rightMedian) < 0.1)
             {
                 return leftMedian;
             }
-            else if (leftMedian < rightMedian)
+
+            if (leftMedian < rightMedian)
             {
                 // Take bigger part of the smaller array since these element would be closer to the median
                 // Take smaller elements from the bigger array since there elements would be closer to median
                 return GetMedian(
                     left,
-                    leftStart: (left.Length / 2),
+                    leftStart: (left.Count / 2),
                     leftEnd: leftEnd,
                     right,
                     rightStart: 0,
-                    rightEnd: (right.Length / 2) + 1);
+                    rightEnd: (right.Count / 2) + 1);
             }
-            else
-            {
-                // Take bigger part of the smaller array since these element would be closer to the median
-                // Take smaller elements from the bigger array since there elements would be closer to median
-                return GetMedian(
-                   left,
-                   leftStart: leftStart,
-                   leftEnd: (left.Length / 2) + 1,
-                   right,
-                   rightStart: (right.Length / 2),
-                   rightEnd: rightEnd);
-            }
+
+            // Take bigger part of the smaller array since these element would be closer to the median
+            // Take smaller elements from the bigger array since there elements would be closer to median
+            return GetMedian(
+                left,
+                leftStart: leftStart,
+                leftEnd: (left.Count / 2) + 1,
+                right,
+                rightStart: (right.Count / 2),
+                rightEnd: rightEnd);
         }
 
-        private float GetMedian(int[] input, int start, int end)
+        private static float GetMedian(IReadOnlyList<int> input, int start, int end)
         {
-            if (input.Length == 1)
+            if (input.Count == 1)
             {
                 return input[0];
             }
@@ -62,7 +67,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
             return (float)(input[mid] + input[mid - 1]) / 2;
         }
 
-        private int[] Merge(int[] left, int leftStart, int leftEnd, int[] right, int rightStart, int rightEnd)
+        private static int[] Merge(IReadOnlyList<int> left, int leftStart, int leftEnd, IReadOnlyList<int> right, int rightStart, int rightEnd)
         {
             var leftPointer = leftStart;
             var rightPointer = rightStart;
@@ -92,7 +97,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
             return result;
         }
 
-        private void UpFillArray(int[] result, int[] source, int resultIndex, int sourceStart, int sourceEnd)
+        private static void UpFillArray(IList<int> result, IReadOnlyList<int> source, int resultIndex, int sourceStart, int sourceEnd)
         {
             while (sourceStart < sourceEnd)
             {

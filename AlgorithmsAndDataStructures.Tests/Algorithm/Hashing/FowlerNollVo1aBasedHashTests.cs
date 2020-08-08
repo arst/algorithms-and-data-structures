@@ -1,10 +1,9 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Hashing;
-using Microsoft.VisualBasic;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Hashing
 {
-    public class FowlerNollVo1aBasedHashTests
+    public class FowlerNollVo1ABasedHashTests
     {
         [Fact]
         public void DifferentHashForDifferentSeedValue()

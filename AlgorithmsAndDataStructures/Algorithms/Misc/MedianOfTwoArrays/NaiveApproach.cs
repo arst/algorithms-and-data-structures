@@ -1,9 +1,16 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
+﻿using System.Collections.Generic;
+
+namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
 {
     public class NaiveApproach : IMediaOfTwoArraysAlgorithm
     {
         public float GetMedian(int[] left, int[] right)
         {
+            if (left is null || right is null)
+            {
+                return default;
+            }
+
             var leftPointer = 0;
             var rightPointer = 0;
             var resultPointer = 0;
@@ -32,9 +39,9 @@
             return (float)(result[(result.Length / 2) - 1] + result[result.Length / 2]) / 2;
         }
 
-        private void UpFillArray(int[] result, int[] source, int resultIndex, int sourceIndex)
+        private static void UpFillArray(IList<int> result, IReadOnlyList<int> source, int resultIndex, int sourceIndex)
         {
-            while (sourceIndex < source.Length)
+            while (sourceIndex < source.Count)
             {
                 result[resultIndex] = source[sourceIndex];
                 sourceIndex++;

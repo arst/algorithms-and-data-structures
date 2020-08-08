@@ -5,21 +5,21 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BloomFilters
     public class CountingBloomFilter
     {
         private readonly int[] filter;
-        private readonly int hashfunctionsSetSize;
+        private readonly int hashFunctionsSetSize;
         private readonly FowlerNollVo1aBasedHash hash;
         private readonly int filterSize;
 
-        public CountingBloomFilter(int filterSize, byte hashfunctionsSetSize)
+        public CountingBloomFilter(int filterSize, byte hashFunctionsSetSize)
         {
             filter = new int[filterSize];
-            this.hashfunctionsSetSize = hashfunctionsSetSize + 1;
+            this.hashFunctionsSetSize = hashFunctionsSetSize + 1;
             hash = new FowlerNollVo1aBasedHash();
             this.filterSize = filterSize;
         }
 
         public void Insert(string input)
         {
-            for (byte i = 1; i < hashfunctionsSetSize; i++)
+            for (byte i = 1; i < hashFunctionsSetSize; i++)
             {
                 var bitPosition = hash.GetHash(input, i);
                 filter[bitPosition % filterSize]++;
@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BloomFilters
         {
             var result = true;
 
-            for (byte i = 1; i < hashfunctionsSetSize; i++)
+            for (byte i = 1; i < hashFunctionsSetSize; i++)
             {
                 var bitPosition = hash.GetHash(input, i);
                 result = filter[bitPosition % filterSize] > 0;
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BloomFilters
 
         public void RemoveFromFilter(string input)
         {
-            for (byte i = 1; i < hashfunctionsSetSize; i++)
+            for (byte i = 1; i < hashFunctionsSetSize; i++)
             {
                 var bitPosition = hash.GetHash(input, i);
 
