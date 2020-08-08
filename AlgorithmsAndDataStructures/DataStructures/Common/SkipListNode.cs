@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AlgorithmsAndDataStructures.DataStructures.Common
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Common
 {
     public class SkipListNode<T>
     {

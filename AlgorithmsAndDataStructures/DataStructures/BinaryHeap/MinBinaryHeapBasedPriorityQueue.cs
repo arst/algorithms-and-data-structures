@@ -6,21 +6,32 @@ using System.Linq;
 
 namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 {
+#pragma warning disable CA1010 // Collections should implement generic interface
+#pragma warning disable CA1710 // Identifiers should have correct suffix
     public class MinBinaryHeapBasedPriorityQueue<T> : IProducerConsumerCollection<T> where T: IComparable<T>
+#pragma warning restore CA1710 // Identifiers should have correct suffix
+#pragma warning restore CA1010 // Collections should implement generic interface
     {
-        private readonly object lockObject = new object();
-
         private readonly MinBinaryHeap<T> heap;
 
-        public int Count => heap.GetHeap().Length;
+        public int Count
+        {
+            get
+            {
+                lock (SyncRoot)
+                {
+                    return heap?.GetHeap()?.Length ?? 0;
+                }
+            }
+        }
 
         public bool IsSynchronized => true;
 
-        public object SyncRoot => lockObject;
+        public object SyncRoot { get; } = new object();
 
         public MinBinaryHeapBasedPriorityQueue(int initialCapacity = 8)
         {
-            this.heap = new MinBinaryHeap<T>(initialCapacity);
+            heap = new MinBinaryHeap<T>(initialCapacity);
         }
 
         public void CopyTo(T[] array, int index)
@@ -37,11 +48,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         {
             IEnumerator<T> result;
 
-            lock (lockObject)
+            lock (SyncRoot)
             {
                 var heapCopy = heap.GetHeap();
                 Array.Sort(heapCopy);
+#pragma warning disable HAA0401 // Possible allocation of reference type enumerator
                 result = heapCopy.AsEnumerable().GetEnumerator();
+#pragma warning restore HAA0401 // Possible allocation of reference type enumerator
             }
 
             return result;
@@ -58,12 +71,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         {
             try
             {
-                lock (lockObject)
+                lock (SyncRoot)
                 {
                     heap.Insert(item);
                 }
             }
-            // Probably not the best idea to controll execution like this.
+            // Probably not the best idea to control execution like this.
             catch (ArgumentException)
             {
                 return false;
@@ -76,12 +89,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         {
             try
             {
-                lock (lockObject)
+                lock (SyncRoot)
                 {
                     item = heap.GetTop();
                 }
             }
-            // Probably not the best idea to controll execution like this.
+            // Probably not the best idea to control execution like this.
             catch (ArgumentException)
             {
                 item = default;
@@ -95,7 +108,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         {
             IEnumerator result;
 
-            lock (lockObject)
+            lock (SyncRoot)
             {
                 result = heap.GetHeap().GetEnumerator();
             }

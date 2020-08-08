@@ -4,12 +4,12 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.DecisionTree
 {
-    public class ID3Tests
+    public class Id3Tests
     {
         [Fact]
         public void Base()
         {
-            var sut = new ID3();
+            var sut = new Id3();
 
             var example1 = new Dictionary<string, string>
             {

@@ -5,17 +5,17 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class SimpleNonBlockingQueue
     {
-        private int size;
-        private Queue<int> queue;
+        private readonly int size;
+        private readonly Queue<int> queue;
         private int currentSize;
         private int locked;
 
         public SimpleNonBlockingQueue(int size = 8)
         {
-            this.queue = new Queue<int>();
-            this.currentSize = 0;
+            queue = new Queue<int>();
+            currentSize = 0;
             this.size = size;
-            this.locked = 0;
+            locked = 0;
         }
 
         public void Enqueue(int value)

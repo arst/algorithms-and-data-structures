@@ -6,7 +6,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 {
     public class FleurysAlgorithm
     {
+#pragma warning disable CA1822 // Mark members as static
         public List<Tuple<int, int>> GetEulerianTrail(UndirectedGraph graph)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (graph is null)
             {

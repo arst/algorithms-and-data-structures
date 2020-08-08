@@ -11,11 +11,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public DoublyLinkedList(DoublyNode<T> node = null)
         {
-            this.head = node;
+            head = node;
 
             if (node != null)
             {
-                this.tail = GetTail(head);
+                tail = GetTail(head);
             }
         }
 
@@ -37,14 +37,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (IsEmpty())
             {
-                this.head = newNode;
-                this.tail = newNode;
+                head = newNode;
+                tail = newNode;
             }
             else
             {
-                this.head.Previous = newNode;
-                newNode.Next = this.head;
-                this.head = newNode;
+                head.Previous = newNode;
+                newNode.Next = head;
+                head = newNode;
             }
         }
 
@@ -54,13 +54,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (IsEmpty())
             {
-                this.head = newNode;
+                head = newNode;
             }
             else
             {
-                this.tail.Next = newNode;
-                newNode.Previous = this.tail;
-                this.tail = newNode;
+                tail.Next = newNode;
+                newNode.Previous = tail;
+                tail = newNode;
             }
         }
 
@@ -73,13 +73,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (position == 0)
             {
-                this.head = this.head.Next;
-                this.head.Previous = null;
+                head = head.Next;
+                head.Previous = null;
                 return;
             }
 
-            var previous = this.head;
-            var current = this.head.Next;
+            var previous = head;
+            var current = head.Next;
             var pointer = 1;
 
             while (pointer < position && current != null)
@@ -113,7 +113,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return result;
             }
 
-            var current = this.head;
+            var current = head;
 
             while (current != null)
             {
@@ -126,9 +126,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Reverse()
         {
-            var tmp = this.head;
+            var tmp = head;
 
-            var node = ReverseRecursive(this.head);
+            var node = ReverseRecursive(head);
             node.Next = null;
             head.Previous = node;
         }
@@ -153,7 +153,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void SwapHeadAndTail()
         {
-            var node = this.head;
+            var node = head;
             var previous = (DoublyNode<T>)null;
 
             while (node.Next != null)
@@ -164,9 +164,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             previous.Next = null;
             node.Previous = null;
-            node.Next = this.head;
-            this.head.Previous = node;
-            this.head = node;
+            node.Next = head;
+            head.Previous = node;
+            head = node;
             
         }
     }

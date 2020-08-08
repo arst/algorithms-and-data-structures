@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
 {
-    public class STCutFordFulkersonBased
+    public class StCutFordFulkersonBased
     {
 #pragma warning disable CA1822 // Mark members as static
         public List<Tuple<int, int>> GetStCut(int[][] graph)

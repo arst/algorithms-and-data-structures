@@ -4,7 +4,7 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
-    public class MinSTCutNaiveTests
+    public class MinStCutNaiveTests
     {
         [Fact]
         public void Baseline()

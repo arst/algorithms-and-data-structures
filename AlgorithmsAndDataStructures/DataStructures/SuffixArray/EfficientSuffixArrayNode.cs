@@ -4,7 +4,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 {
     class EfficientSuffixArrayNode : IComparable
     {
-        private string input;
+        private readonly string input;
 
         public EfficientSuffixArrayNode(string input)
         {
@@ -23,12 +23,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
         {
             var node = obj as EfficientSuffixArrayNode;
 
-            if (node.Rank != this.Rank)
+            if (node.Rank != Rank)
             {
-                return this.Rank.CompareTo(node.Rank);
+                return Rank.CompareTo(node.Rank);
             }
 
-            return this.NextRank.CompareTo(node.NextRank);
+            return NextRank.CompareTo(node.NextRank);
         }
     }
 }

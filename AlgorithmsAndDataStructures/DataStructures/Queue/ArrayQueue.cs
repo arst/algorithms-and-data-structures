@@ -5,11 +5,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
     public class ArrayQueue<T>
     {
         private int pointer = -1;
-        private T[] queue;
+        private readonly T[] queue;
 
         public ArrayQueue(int initialCapacity = 8)
         {
-            this.queue = new T[initialCapacity];
+            queue = new T[initialCapacity];
         }
 
         public void Enqueue(T value)

@@ -11,13 +11,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
         {
             if (IsEmpty)
             {
-                this.head = new LinkedListQueueNode<T> { Value = value };
-                this.tail = this.head;
+                head = new LinkedListQueueNode<T> { Value = value };
+                tail = head;
             }
             else
             { 
-                this.tail.Next = new LinkedListQueueNode<T> { Value = value };
-                this.tail = this.tail.Next;
+                tail.Next = new LinkedListQueueNode<T> { Value = value };
+                tail = tail.Next;
             }
         }
 
@@ -28,8 +28,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Queue
                 throw new ArgumentException("Queue is empty");
             }
 
-            var value = this.head.Value;
-            this.head = this.head.Next;
+            var value = head.Value;
+            head = head.Next;
 
             return value;
         }

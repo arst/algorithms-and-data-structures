@@ -1,4 +1,4 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
+﻿namespace AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree
 {
     public class AvlTreeNode
     {

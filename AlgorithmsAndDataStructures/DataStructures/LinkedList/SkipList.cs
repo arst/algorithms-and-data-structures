@@ -7,7 +7,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 {
     public class SkipList<T> where T : IComparable<T>
     {
-        private SkipListNode<T> sentinel;
+        private readonly SkipListNode<T> sentinel;
         private readonly int maxHeight;
         private readonly Random random = new Random();
 

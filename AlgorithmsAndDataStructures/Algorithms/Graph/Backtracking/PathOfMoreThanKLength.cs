@@ -14,12 +14,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
 
             var path = new HashSet<int> {startVertex};
 
-            var hasPath = DFS(graph, startVertex, 0, targetWeight, path);
+            var hasPath = Dfs(graph, startVertex, 0, targetWeight, path);
 
             return (hasPath, hasPath ? path : new HashSet<int>());
         }
 
-        private bool DFS(WeightedGraphVertex[] graph, int currentVertexIndex, int currentWeight, int targetWeight, ISet<int> path)
+        private bool Dfs(WeightedGraphVertex[] graph, int currentVertexIndex, int currentWeight, int targetWeight, ISet<int> path)
         {
             var currentVertex = graph[currentVertexIndex];
 
@@ -34,7 +34,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
                 {
                     path.Add(edge.To);
 
-                    var isPath = DFS(graph, edge.To, currentWeight + edge.Weight, targetWeight, path);
+                    var isPath = Dfs(graph, edge.To, currentWeight + edge.Weight, targetWeight, path);
 
                     if (isPath)
                     {

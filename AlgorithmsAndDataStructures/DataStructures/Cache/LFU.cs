@@ -2,17 +2,17 @@
 
 namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
-    public class LFU
+    public class Lfu
     {
-        private Dictionary<int, CacheEntry> values;
-        private Dictionary<int, CacheDoubleLinkedList> frequencies;
-        private Dictionary<CacheEntry, int> nodeFrequencies;
+        private readonly Dictionary<int, CacheEntry> values;
+        private readonly Dictionary<int, CacheDoubleLinkedList> frequencies;
+        private readonly Dictionary<CacheEntry, int> nodeFrequencies;
         private int minFrequency;
-        private int capacity;
+        private readonly int capacity;
         private int entriesCount;
-        private const int defaultFrequency = 1;
+        private const int DefaultFrequency = 1;
 
-        public LFU(int capacity)
+        public Lfu(int capacity)
         {
             values = new Dictionary<int, CacheEntry>();
             frequencies = new Dictionary<int, CacheDoubleLinkedList>();
@@ -44,16 +44,16 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
                 entriesCount--;
             }
 
-            if (!frequencies.ContainsKey(defaultFrequency))
+            if (!frequencies.ContainsKey(DefaultFrequency))
             {
-                frequencies[defaultFrequency] = new CacheDoubleLinkedList();
+                frequencies[DefaultFrequency] = new CacheDoubleLinkedList();
             }
 
             var newEntry = new CacheEntry(key, value);
-            frequencies[defaultFrequency].InsertToHead(newEntry);
+            frequencies[DefaultFrequency].InsertToHead(newEntry);
             values[key] = newEntry;
-            nodeFrequencies[newEntry] = defaultFrequency;
-            minFrequency = defaultFrequency;
+            nodeFrequencies[newEntry] = DefaultFrequency;
+            minFrequency = DefaultFrequency;
             entriesCount++;
         }
 
@@ -81,7 +81,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
                 frequencies.Remove(currentFrequency);
             }
 
-            var newFrequency = currentFrequency++;
+            var newFrequency = ++currentFrequency;
 
             if (!frequencies.ContainsKey(newFrequency))
             {

@@ -2,12 +2,14 @@
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
+#pragma warning disable CA1001 // Types that own disposable fields should be disposable
     public class ReaderWriterLock
+#pragma warning restore CA1001 // Types that own disposable fields should be disposable
     {
-        private Semaphore writerSemaphore = new Semaphore(1, 1);
+        private readonly Semaphore writerSemaphore = new Semaphore(1, 1);
         private volatile int readersCounter;
-        private Mutex readersMutex = new Mutex();
-        private Mutex readersCounterMutex = new Mutex();
+        private readonly Mutex readersMutex = new Mutex();
+        private readonly Mutex readersCounterMutex = new Mutex();
 
         public void AcquireReaderLock()
         {

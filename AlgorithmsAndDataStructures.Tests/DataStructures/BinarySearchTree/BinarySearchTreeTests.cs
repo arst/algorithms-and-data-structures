@@ -30,7 +30,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinarySearchTree
 
             sut.Insert(1);
 
-            var dfsInOrder = sut.DepthFirstTraversalInorder();
+            var dfsInOrder = sut.DepthFirstTraversalInOrder();
 
             Assert.Equal(1, dfsInOrder[0]);
         }

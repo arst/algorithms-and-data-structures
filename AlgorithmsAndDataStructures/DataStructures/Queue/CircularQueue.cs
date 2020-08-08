@@ -4,13 +4,13 @@ namespace AlgorithmsAndDataStructures.DataStructures
 {
     public class CircularQueue<T>
     {
-        private T[] queue;
+        private readonly T[] queue;
         int rear = -1;
         int front = -1;
 
         public CircularQueue(int initialCapacity = 8)
         {
-            this.queue = new T[initialCapacity];
+            queue = new T[initialCapacity];
         }
 
         public void Enqueue(T value)

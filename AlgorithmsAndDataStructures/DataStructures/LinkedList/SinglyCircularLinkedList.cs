@@ -35,7 +35,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public SinglyCircularLinkedList(Node<T> node = null)
         {
-            this.end = node;
+            end = node;
         }
 
         public void Enqueue(T value)
@@ -44,15 +44,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (IsEmpty())
             {
-                this.end = newNode;
-                this.end.Next = newNode;
+                end = newNode;
+                end.Next = newNode;
             }
             else
             {
-                var temp = this.end.Next;
-                this.end.Next = newNode;
-                this.end.Next.Next = temp;
-                this.end = newNode;
+                var temp = end.Next;
+                end.Next = newNode;
+                end.Next.Next = temp;
+                end = newNode;
             }
         }
 
@@ -63,12 +63,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return null;
             }
 
-            var next = this.end?.Next;
-            this.end.Next = next?.Next;
+            var next = end?.Next;
+            end.Next = next?.Next;
 
-            if (next == this.end)
+            if (next == end)
             {
-                this.end = null;
+                end = null;
             }
 
             return next;
@@ -76,12 +76,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public Node<T> GetFront()
         {
-            return this.end?.Next;
+            return end?.Next;
         }
 
         public Node<T> GetRear()
         {
-            return this.end;
+            return end;
         }
 
         public List<T> Traverse()
@@ -93,22 +93,22 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return result;
             }
 
-            var start = this.end.Next;
+            var start = end.Next;
 
-            while (start != this.end)
+            while (start != end)
             {
                 result.Add(start.Value);
                 start = start.Next;
             }
 
-            result.Add(this.end.Value);
+            result.Add(end.Value);
 
             return result;
         }
 
         private bool IsEmpty()
         {
-            return this.end == null;
+            return end == null;
         }
     }
 }

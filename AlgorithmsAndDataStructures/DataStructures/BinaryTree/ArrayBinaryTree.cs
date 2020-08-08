@@ -5,7 +5,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
     public class ArrayBinaryTree<T>
     {
         private T[] tree;
-        int insertPointer = 1;
 
         public ArrayBinaryTree(int initialCapacity = 8)
         {
@@ -21,7 +20,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
         {
             for (var i = 0; i < tree.Length; i++)
             {
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (tree[i].Equals(parent))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     var leftIndex = i * 2;
 
@@ -39,7 +40,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
         {
             for (var i = 0; i < tree.Length; i++)
             {
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (tree[i].Equals(parent))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     var rightIndex = i * 2 + 1;
 

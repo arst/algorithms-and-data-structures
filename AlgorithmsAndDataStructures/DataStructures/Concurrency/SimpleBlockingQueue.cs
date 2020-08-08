@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Concurrency
+namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class SimpleBlockingQueue
     {
-        private int size;
-        private Queue<int> queue;
+        private readonly int size;
+        private readonly Queue<int> queue;
         private int currentSize;
-        private object lockObject = new object();
+        private readonly object lockObject = new object();
 
         public SimpleBlockingQueue(int size = 8)
         {
-            this.queue = new Queue<int>();
-            this.currentSize = 0;
+            queue = new Queue<int>();
+            currentSize = 0;
             this.size = size;
         }
 

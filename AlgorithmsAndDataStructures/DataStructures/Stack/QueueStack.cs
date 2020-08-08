@@ -5,8 +5,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
 {
     public class QueueStack<T>
     {
-        private Queue<T> leftQueue;
-        private Queue<T> rightQueue;
+        private readonly Queue<T> leftQueue;
+        private readonly Queue<T> rightQueue;
 
         public QueueStack()
         {

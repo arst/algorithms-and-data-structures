@@ -9,7 +9,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RedBlackTree
         #endregion
 
         #region Properties
-        public int Height => Math.Max(HeightInternal(this.root) - 1, 0);
+        public int Height => Math.Max(HeightInternal(root) - 1, 0);
         #endregion
 
         #region Constructors

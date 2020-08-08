@@ -4,8 +4,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class SleepingBarber
     {
-        private static Mutex numberOfCustomers = new Mutex();
-        private Semaphore clientsSemaphore;
+        private static readonly Mutex NumberOfCustomers = new Mutex();
+        private readonly Semaphore clientsSemaphore;
         private readonly Semaphore barberSemaphore;
         private readonly int waitChairCounter;
         private volatile int currentClients;
@@ -23,18 +23,18 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         {
             while (true)
             {
-                numberOfCustomers.WaitOne();
+                NumberOfCustomers.WaitOne();
 
                 if (currentClients < waitChairCounter)
                 {
                     currentClients++;
                     clientsSemaphore.Release();
-                    numberOfCustomers.ReleaseMutex();
+                    NumberOfCustomers.ReleaseMutex();
                     barberSemaphore.WaitOne();
                 }
                 else
                 {
-                    numberOfCustomers.ReleaseMutex();
+                    NumberOfCustomers.ReleaseMutex();
                 }
             }
         }
@@ -44,10 +44,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             while (true)
             {
                 clientsSemaphore.WaitOne();
-                numberOfCustomers.WaitOne();
+                NumberOfCustomers.WaitOne();
                 currentClients--;
                 barberSemaphore.Release();
-                numberOfCustomers.ReleaseMutex();
+                NumberOfCustomers.ReleaseMutex();
 
             }
         }

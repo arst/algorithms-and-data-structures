@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Graph
     public class AdjacencyListGraphTests
     {
         [Fact]
-        public void DFSNonRecursive()
+        public void DfsNonRecursive()
         {
             var sut = new AdjacencyListGraph<int>();
             sut.AddEdge(0, 1);
@@ -24,7 +24,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Graph
         }
 
         [Fact]
-        public void DFSRecursive()
+        public void DfsRecursive()
         {
             var sut = new AdjacencyListGraph<int>();
             sut.AddEdge(0, 1);
@@ -42,7 +42,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Graph
         }
 
         [Fact]
-        public void BFSNonRecursive()
+        public void BfsNonRecursive()
         {
             var sut = new AdjacencyListGraph<int>();
             sut.AddEdge(0, 1);

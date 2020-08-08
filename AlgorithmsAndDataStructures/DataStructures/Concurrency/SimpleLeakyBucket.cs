@@ -20,10 +20,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             this.outputRate = outputRate;
             this.leakInterval = leakInterval;
             this.maxBucketSize = maxBucketSize;
-            this.bucketSize = 0;
+            bucketSize = 0;
             locked = 0;
             queue = new Queue<int>();
-            this.leaker = new Timer(Leak, null, Timeout.Infinite, Timeout.Infinite);
+            leaker = new Timer(Leak, null, Timeout.Infinite, Timeout.Infinite);
             leaker.Change(leakInterval, Timeout.Infinite);
         }
 

@@ -5,9 +5,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
 {
     public abstract class AbstractSegmentTree
     {
+#pragma warning disable CA1819 // Properties should not return arrays
         protected int[] Tree { get; }
+#pragma warning restore CA1819 // Properties should not return arrays
 
+#pragma warning disable CA1819 // Properties should not return arrays
         protected int[] OriginalInput { get; }
+#pragma warning restore CA1819 // Properties should not return arrays
 
         protected int OriginalInputLength { get; }
 

@@ -2,7 +2,7 @@
 {
     public class AdjacencyMatrixGraph
     {
-        private int[][] graph;
+        private readonly int[][] graph;
 
         public AdjacencyMatrixGraph(int capacity)
         {

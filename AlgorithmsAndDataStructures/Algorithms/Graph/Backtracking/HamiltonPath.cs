@@ -1,4 +1,5 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Common;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Backtracking
         public (bool hasPath, bool hasCycle, int[] path) HasHamiltonPath(UndirectedGraph graph)
 #pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return (default, default, Array.Empty<int>());
+            }
+
             var vertices = graph.Vertices();
             var visited = new bool[vertices.Length];
             var parent = new int[vertices.Length];

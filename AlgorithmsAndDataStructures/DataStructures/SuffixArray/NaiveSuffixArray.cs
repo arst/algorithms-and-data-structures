@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 {
     public class NaiveSuffixArray
     {
-        private List<int> suffixes;
+        private readonly List<int> suffixes;
         private readonly string input;
 
         public IReadOnlyCollection<int> Suffixes => suffixes.ToList().AsReadOnly();

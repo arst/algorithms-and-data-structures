@@ -10,8 +10,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
 
         public ArrayStack(int initialCapacity = 8)
         {
-            this.initialCapaciy = initialCapacity;
-            this.stack = new T[initialCapacity]; 
+            initialCapaciy = initialCapacity;
+            stack = new T[initialCapacity]; 
         }
 
         public void Push(T value)
@@ -49,6 +49,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
             return stack[pointer - 1];
         }
 
-        public bool IsEmpty => this.pointer == 0;
+        public bool IsEmpty => pointer == 0;
     }
 }

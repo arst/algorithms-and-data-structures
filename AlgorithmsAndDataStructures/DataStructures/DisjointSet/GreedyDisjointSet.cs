@@ -2,7 +2,7 @@
 {
     public class GreedyDisjointSet : IDisjointSet
     {
-        private int[] set;
+        private readonly int[] set;
 
         public GreedyDisjointSet(int size)
         {

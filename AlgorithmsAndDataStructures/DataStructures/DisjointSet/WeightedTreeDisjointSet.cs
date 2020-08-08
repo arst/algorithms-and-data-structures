@@ -4,8 +4,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet
 {
     public class WeightedTreeDisjointSet : IDisjointSet
     {
-        private int[] set;
-        private int[] weight;
+        private readonly int[] set;
+        private readonly int[] weight;
 
         public WeightedTreeDisjointSet(int size)
         {

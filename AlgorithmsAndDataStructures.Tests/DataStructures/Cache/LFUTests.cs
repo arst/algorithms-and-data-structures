@@ -1,21 +1,22 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Cache;
+﻿using System.Globalization;
+using AlgorithmsAndDataStructures.DataStructures.Cache;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
 {
-    public class LFUTests
+    public class LfuTests
     {
         [Fact]
         public void CanInsertEntry()
         {
-            var sut = new LFU(1);
+            var sut = new Lfu(1);
             sut.Add(1, "Test");
         }
 
         [Fact]
         public void CanGetEntry()
         {
-            var sut = new LFU(1);
+            var sut = new Lfu(1);
             sut.Add(1, "Test");
 
             Assert.Equal("Test", sut.Get(1));
@@ -24,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void CanUpdateEntry()
         {
-            var sut = new LFU(1);
+            var sut = new Lfu(1);
             sut.Add(1, "Test");
             sut.Add(1, "Test1");
 
@@ -34,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void LeastFrequentlyUsedEntryRemoved()
         {
-            var sut = new LRU(2);
+            var sut = new Lru(2);
             sut.Add(1, "Test");
             sut.Add(2, "Test1");
             sut.Get(2);
@@ -48,26 +49,26 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void PropertyBased()
         {
-            var testcaseSize = 10;
-            var sut = new LFU(testcaseSize);
+            var testCaseSize = 10;
+            var sut = new Lfu(testCaseSize);
 
-            for (var i = 0; i < testcaseSize - 1; i++)
+            for (var i = 0; i < testCaseSize - 1; i++)
             {
-                sut.Add(i, i.ToString());
+                sut.Add(i, i.ToString(CultureInfo.InvariantCulture));
             }
 
-            sut.Add(testcaseSize, testcaseSize.ToString());
+            sut.Add(testCaseSize, testCaseSize.ToString(CultureInfo.InvariantCulture));
 
-            for (var i = testcaseSize + 1; i < testcaseSize * 2; i++)
+            for (var i = testCaseSize + 1; i < testCaseSize * 2; i++)
             {
-                for (var j = 0; j < testcaseSize; j++)
+                for (var j = 0; j < testCaseSize; j++)
                 {
                     sut.Get(j);
                 }
 
-                sut.Add(i, i.ToString());
+                sut.Add(i, i.ToString(CultureInfo.InvariantCulture));
 
-                Assert.Null(sut.Get(i - testcaseSize - 1));
+                Assert.Null(sut.Get(i - testCaseSize - 1));
             }
         }
     }

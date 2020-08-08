@@ -8,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void CanInsertRootNode()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             Assert.True(sut.IsBalanced);
         }
@@ -16,7 +16,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void SimpleTreeIsBalanced()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             sut.Insert(11);
             sut.Insert(9);
@@ -26,7 +26,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void TreeIsBalancedWhenUnbalanceIsEqualToOne()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             sut.Insert(11);
             sut.Insert(9);
@@ -37,7 +37,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void CanDeleteRootNode()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             sut.Delete(10);
             Assert.True(sut.IsBalanced);
@@ -46,7 +46,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void CanDeleteRightNonRootNode()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             sut.Insert(11);
             sut.Delete(10);
@@ -56,7 +56,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void CanDeleteLeftNonRootNode()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             sut.Insert(10);
             sut.Insert(11);
             sut.Delete(10);
@@ -66,7 +66,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.AvlTree
         [Fact]
         public void TreeIsRebalanacedAfterDelete()
         {
-            var sut = new AlgorithmsAndDataStructures.DataStructures.AVLTree.AvlTree();
+            var sut = new AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree.AvlTree();
             var random = new Random();
             var seed = new int[10000];
 

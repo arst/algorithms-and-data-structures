@@ -5,7 +5,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
 {
     public class AdjacencyListGraph<T>
     {
-        private GraphVertex<T>[] graph;
+        private readonly GraphVertex<T>[] graph;
 
         public AdjacencyListGraph(int initialCapacity = 8)
         {

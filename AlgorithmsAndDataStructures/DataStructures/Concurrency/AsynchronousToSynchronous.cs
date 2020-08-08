@@ -8,21 +8,45 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
     {
         private class AsyncExecutor
         {
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             public void ExecuteAsync(Action callback)
+#pragma warning restore HAA0302 // Display class allocation to capture closure
             {
-                ThreadPool.QueueUserWorkItem((object _) => {
+                if (callback is null)
+                {
+                    return;
+                }
+
+#pragma warning disable HAA0301 // Closure Allocation Source
+                _ = ThreadPool.QueueUserWorkItem(_ =>
+#pragma warning restore HAA0301 // Closure Allocation Source
+                {
                     Thread.Sleep(1);
                     callback();
                 });
             }
         }
 
+#pragma warning disable CA1822 // Mark members as static
+#pragma warning disable HAA0302 // Display class allocation to capture closure
         public void ExecuteSync(Queue<int> queue)
+#pragma warning restore HAA0302 // Display class allocation to capture closure
+#pragma warning restore CA1822 // Mark members as static
         {
-            var asyncExecutor = new AsyncExecutor();
-            using var resetEvent = new AutoResetEvent(false);
+            if (queue is null)
+            {
+                return;
+            }
 
-            asyncExecutor.ExecuteAsync(() => {
+            var asyncExecutor = new AsyncExecutor();
+#pragma warning disable HAA0302 // Display class allocation to capture closure
+            using var resetEvent = new AutoResetEvent(false);
+#pragma warning restore HAA0302 // Display class allocation to capture closure
+
+#pragma warning disable HAA0301 // Closure Allocation Source
+            asyncExecutor.ExecuteAsync(() =>
+#pragma warning restore HAA0301 // Closure Allocation Source
+            {
                 queue.Enqueue(1);
                 resetEvent.Set();
             });

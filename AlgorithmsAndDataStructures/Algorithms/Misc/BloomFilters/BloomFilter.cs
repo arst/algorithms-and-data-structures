@@ -7,13 +7,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BloomFilters
     {
         private readonly BitArray filter;
         private readonly int hashFunctionsSetSize;
-        private readonly FowlerNollVo1aBasedHash hash; 
+        private readonly FowlerNollVo1ABasedHash hash; 
 
         public BloomFilter(byte hashFunctionsSetSize)
         {
             filter = new BitArray(int.MaxValue);
             this.hashFunctionsSetSize = hashFunctionsSetSize + 1;
-            hash = new FowlerNollVo1aBasedHash();
+            hash = new FowlerNollVo1ABasedHash();
         }
 
         public void Insert(string input)

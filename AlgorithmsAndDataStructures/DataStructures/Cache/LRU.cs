@@ -2,14 +2,14 @@
 
 namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
-    public class LRU
+    public class Lru
     {
-        private Dictionary<int, CacheEntry> values;
+        private readonly Dictionary<int, CacheEntry> values;
         private readonly int capacity;
         private int entriesCount;
-        private CacheDoubleLinkedList list;
+        private readonly CacheDoubleLinkedList list;
 
-        public LRU(int capacity)
+        public Lru(int capacity)
         {
             values = new Dictionary<int, CacheEntry>();
             this.capacity = capacity;

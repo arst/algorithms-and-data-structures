@@ -10,6 +10,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
         public (int[] left, int[] right) GetTug(int[] set)
 #pragma warning restore CA1822 // Mark members as static
         {
+            if (set is null)
+            {
+                return (Array.Empty<int>(), Array.Empty<int>());
+            }
+
             var leftTugLength = set.Length % 2 == 1 ? (set.Length - 1) / 2 : set.Length / 2;
             var visited = new bool[set.Length];
             var solution = new bool[set.Length];

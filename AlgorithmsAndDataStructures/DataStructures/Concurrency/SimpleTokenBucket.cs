@@ -15,7 +15,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         public SimpleTokenBucket(int tokenBucketSize, int refillRate, int refillInterval)
         {
             this.tokenBucketSize = tokenBucketSize;
-            this.currentTokens = tokenBucketSize;
+            currentTokens = tokenBucketSize;
             this.refillRate = refillRate;
             this.refillInterval = refillInterval;
             locked = 0;

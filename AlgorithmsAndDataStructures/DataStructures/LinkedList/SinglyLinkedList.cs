@@ -21,13 +21,13 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (IsEmpty())
             {
-                this.head = newNode;
-                this.tail = newNode;
+                head = newNode;
+                tail = newNode;
             }
             else
             {
-                this.tail.Next = newNode;
-                this.tail = newNode;
+                tail.Next = newNode;
+                tail = newNode;
             }
         }
 
@@ -35,9 +35,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
         {
             var newNode = new Node<T> { Value = value };
 
-            newNode.Next = this.head;
+            newNode.Next = head;
 
-            this.head = newNode;
+            head = newNode;
         }
 
         public void RemoveByPosition(int position)
@@ -49,12 +49,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
             if (position == 0)
             {
-                this.head = this.head.Next;
+                head = head.Next;
             }
             else
             {
                 var currentPosition = 0;
-                var node = this.head;
+                var node = head;
                 Node<T> previous = null;
 
                 while (currentPosition < position && node != null)
@@ -70,7 +70,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         private bool IsEmpty()
         {
-            return this.head == null;
+            return head == null;
         }
 
         public void RemoveByValue(T value)
@@ -79,11 +79,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             {
                 if (head.Next == null)
                 {
-                    this.head = null;
+                    head = null;
                 }
                 else
                 {
-                    this.head = head.Next;
+                    head = head.Next;
                 }
 
                 return;
@@ -100,7 +100,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
                     if (current.Next == null)
                     {
-                        this.tail = previous;
+                        tail = previous;
                     }
 
                     break;
@@ -120,7 +120,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return result;
             }
 
-            TraverseRecursiveInternal(this.head, result);
+            TraverseRecursiveInternal(head, result);
 
             return result;
         }
@@ -140,7 +140,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
         public List<T> Traverse()
         {
             var result = new List<T>();
-            var current = this.head;
+            var current = head;
 
             while (current != null)
             {
@@ -153,7 +153,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public Node<T> GetHead()
         {
-            return this.head;
+            return head;
         }
 
         public void ReverseIterative()
@@ -163,8 +163,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
                 return;
             }
 
-            var newTail = this.head;
-            var previous = this.head;
+            var newTail = head;
+            var previous = head;
             var current = previous.Next;
 
             while (current != null)
@@ -176,23 +176,23 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             }
 
             newTail.Next = null;
-            this.head = previous;
-            this.tail = newTail;
+            head = previous;
+            tail = newTail;
         }
 
         public void ReverseRecursive()
         {
-            var start = this.head;
+            var start = head;
 
-            this.tail = ReverseRecursiveInternal(start);
-            this.tail.Next = null;
+            tail = ReverseRecursiveInternal(start);
+            tail.Next = null;
         }
 
         private Node<T> ReverseRecursiveInternal(Node<T> start)
         {
             if (start.Next == null)
             {
-                this.head = start;
+                head = start;
                 return start;
             }
 

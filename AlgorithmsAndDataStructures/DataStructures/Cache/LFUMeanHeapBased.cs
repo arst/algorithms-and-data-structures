@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace AlgorithmsAndDataStructures.DataStructures.Cache
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
-    public class LFUMeanHeapBased
+    public class LfuMeanHeapBased
     {
-        private CacheMeanHeap heap;
+        private readonly CacheMeanHeap heap;
         private int entriesCount;
-        private int capacity;
+        private readonly int capacity;
 
-        public LFUMeanHeapBased(int capacity)
+        public LfuMeanHeapBased(int capacity)
         {
             heap = new CacheMeanHeap(capacity);
             entriesCount = 0;
@@ -30,7 +28,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
 
         public string Get(int key)
         {
-            return heap.GetValue(key); ;
+            return heap.GetValue(key);
         }
     }
 }

@@ -3,9 +3,9 @@
     public class SimpleBarrier
     {
         private int counter;
-        private int total;
+        private readonly int total;
         private bool released;
-        private object counterLock = new object();
+        private readonly object counterLock = new object();
 
         public SimpleBarrier(int size)
         {

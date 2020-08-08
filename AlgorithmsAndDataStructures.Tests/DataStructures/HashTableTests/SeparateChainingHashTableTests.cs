@@ -1,5 +1,6 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.HashTable;
 using System;
+using System.Globalization;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.HashTableTests
@@ -16,10 +17,14 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.HashTableTests
         [Fact]
         public void CanDeleteEntryFromHashTable()
         {
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var sut = new SeparateChainingHashTable<string, int>();
+#pragma warning restore HAA0302 // Display class allocation to capture closure
             sut.Add("One", 1);
             sut.Delete("One");
-            Assert.Throws<ArgumentException>(() => sut.Get("One"));
+#pragma warning disable HAA0301 // Closure Allocation Source
+            _ = Assert.Throws<ArgumentException>(() => sut.Get("One"));
+#pragma warning restore HAA0301 // Closure Allocation Source
         }
 
         [Fact]
@@ -66,33 +71,33 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.HashTableTests
 
         // TODO: Convert to property based testing.
         [Fact]
-        public void SeparateChainingMaintaincHashTable()
+        public void SeparateChainingMaintenanceHashTable()
         {
             var sut = new SeparateChainingHashTable<string, int>(100000);
 
             for (var i = 0; i < 100000; i++)
             {
-                sut.Add(i.ToString(), i);
+                sut.Add(i.ToString(CultureInfo.InvariantCulture), i);
             }
             for (var i = 0; i < 100000; i++)
             {
-                Assert.Equal(i, sut.Get(i.ToString()));
+                Assert.Equal(i, sut.Get(i.ToString(CultureInfo.InvariantCulture)));
             }
             for (var i = 0; i < 100000; i++)
             {
-                sut.Add(i.ToString(), i * 2);
+                sut.Add(i.ToString(CultureInfo.InvariantCulture), i * 2);
             }
             for (var i = 0; i < 100000; i++)
             {
-                Assert.Equal(i * 2, sut.Get(i.ToString()));
+                Assert.Equal(i * 2, sut.Get(i.ToString(CultureInfo.InvariantCulture)));
             }
             for (var i = 0; i < 100000; i++)
             {
-                sut.Delete(i.ToString());
+                sut.Delete(i.ToString(CultureInfo.InvariantCulture));
             }
             for (var i = 0; i < 100000; i++)
             {
-                Assert.False(sut.Find(i.ToString()));
+                Assert.False(sut.Find(i.ToString(CultureInfo.InvariantCulture)));
             }
         }
     }

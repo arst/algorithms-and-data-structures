@@ -13,7 +13,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.RedBlackTree
 
         public RedBlackTreeTests(ITestOutputHelper output)
         {
-            this.helper = output;
+            helper = output;
         }
 
         [Fact]

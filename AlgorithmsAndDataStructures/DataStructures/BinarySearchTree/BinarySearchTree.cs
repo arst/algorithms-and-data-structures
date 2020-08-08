@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
 {
     public class BinarySearchTree<T> where T : IComparable<T> 
     {
-        BinaryTreeNode<T> root;
+        private BinaryTreeNode<T> root;
 
         public void Insert(T value)
         {
@@ -21,7 +21,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
 
             while (true)
             {
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (current.Value.Equals(value))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     return;
                 }
@@ -34,10 +36,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
 
                         return;
                     }
-                    else
-                    {
-                        current = current.Left;
-                    }
+
+                    current = current.Left;
                 }
 
                 if (current.Value.CompareTo(value) < 0)
@@ -48,65 +48,61 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
 
                         return;
                     }
-                    else
-                    {
-                        current = current.Right;
-                    }
+
+                    current = current.Right;
                 }
             }
         }
 
-        public void Delete(T value)
-        {
-            DeleteInternal(root, value);
-        }
+        public void Delete(T value) => DeleteInternal(root, value);
 
-        private BinaryTreeNode<T> DeleteInternal(BinaryTreeNode<T> root, T value)
+        private static BinaryTreeNode<T> DeleteInternal(BinaryTreeNode<T> currentSubtreeRoot, T value)
         {
-            if (root == null)
+            if (currentSubtreeRoot == null)
             {
                 return null;
             }
 
-            if (root.Value.CompareTo(value) < 0)
+            if (currentSubtreeRoot.Value.CompareTo(value) < 0)
             {
-                root.Left = DeleteInternal(root.Left, value);
+                currentSubtreeRoot.Left = DeleteInternal(currentSubtreeRoot.Left, value);
             }
-            else if (root.Value.CompareTo(value) > 0)
+            else if (currentSubtreeRoot.Value.CompareTo(value) > 0)
             {
-                root.Right = DeleteInternal(root.Right, value);
+                currentSubtreeRoot.Right = DeleteInternal(currentSubtreeRoot.Right, value);
             }
             else
             {
                 //Node has no children.
 
-                if (root.Left == null && root.Right == null)
+                if (currentSubtreeRoot.Left == null && currentSubtreeRoot.Right == null)
                 {
                     return null;
                 }
 
                 //Node has only one child.
 
-                if (root.Left == null)
+                if (currentSubtreeRoot.Left == null)
                 {
-                    return root.Right;
-                }
-                else if(root.Right == null)
-                {
-                    return root.Left;
+                    return currentSubtreeRoot.Right;
                 }
 
-                var minNode = FindNodeWithMinValue(root.Right);
+                if(currentSubtreeRoot.Right == null)
+                {
+                    return currentSubtreeRoot.Left;
+                }
 
-                root.Value = minNode.Value;
+                var minNode = FindNodeWithMinValue(currentSubtreeRoot.Right);
 
-                DeleteInternal(root.Right, minNode.Value);
+                currentSubtreeRoot.Value = minNode.Value;
+
+                DeleteInternal(currentSubtreeRoot.Right, minNode.Value);
             }
 
-            return root;
+            return currentSubtreeRoot;
         }
 
-        private BinaryTreeNode<T> FindNodeWithMinValue(BinaryTreeNode<T> right)
+        private static BinaryTreeNode<T> FindNodeWithMinValue(BinaryTreeNode<T> right)
         {
             var current = right;
 
@@ -124,7 +120,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
 
             while (current != null)
             {
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (current.Value.Equals(value))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     return current;
                 }
@@ -143,27 +141,27 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
             return null;
         }
 
-        public List<T> DepthFirstTraversalInorder()
+        public List<T> DepthFirstTraversalInOrder()
         {
             var result = new List<T>();
 
-            DepthFirstTraversalInorder(root, result);
+            DepthFirstTraversalInOrder(root, result);
 
             return result;
         }
 
-        private void DepthFirstTraversalInorder(BinaryTreeNode<T> node, List<T> traversalPath)
+        private static void DepthFirstTraversalInOrder(BinaryTreeNode<T> node, ICollection<T> traversalPath)
         {
             if (node.Left != null)
             {
-                DepthFirstTraversalInorder(node.Left, traversalPath);
+                DepthFirstTraversalInOrder(node.Left, traversalPath);
             }
 
             traversalPath.Add(node.Value);
 
             if (node.Right != null)
             {
-                DepthFirstTraversalInorder(node.Right, traversalPath);
+                DepthFirstTraversalInOrder(node.Right, traversalPath);
             }
         }
 

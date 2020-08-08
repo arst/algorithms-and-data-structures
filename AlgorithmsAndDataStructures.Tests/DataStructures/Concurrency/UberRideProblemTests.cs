@@ -1,9 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.Concurrency;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Xunit;
 
@@ -14,12 +12,16 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
         [Fact]
         public void FourDemocratsCanRide()
         {
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
+#pragma warning restore HAA0302 // Display class allocation to capture closure
+#pragma warning disable HAA0301 // Closure Allocation Source
             var democrat1 = new Thread(() => Ride("D"));
             var democrat2 = new Thread(() => Ride("D"));
             var democrat3 = new Thread(() => Ride("D"));
             var democrat4 = new Thread(() => Ride("D"));
+#pragma warning restore HAA0301 // Closure Allocation Source
 
             democrat1.Start();
             democrat2.Start();
@@ -31,26 +33,38 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
             democrat3.Join();
             democrat4.Join();
 
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             void Ride(string party)
+#pragma warning restore HAA0302 // Display class allocation to capture closure
             {
                 Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(1,5)));
+#pragma warning disable HAA0301 // Closure Allocation Source
                 sut.RideAsDemocrat(isRide => queue.Enqueue((isRide ? "F: " : string.Empty) + party));
+#pragma warning restore HAA0301 // Closure Allocation Source
             }
-
-            Assert.True(queue.Count(arg => arg.Contains('F')) == 1);
-            Assert.True(queue.Count(arg => arg.Contains('D')) == 4);
-            Assert.True(queue.Count() == 4);
+#pragma warning disable HAA0301 // Closure Allocation Source
+            Assert.True(queue.Count(arg => arg.Contains('F', StringComparison.InvariantCulture)) == 1);
+            Assert.True(queue.Count(arg => arg.Contains('D', StringComparison.InvariantCulture)) == 4);
+#pragma warning restore HAA0301 // Closure Allocation Source
+            Assert.True(queue.Count == 4);
         }
 
         [Fact]
         public void PairOfDemocratsAndPairOfRepublicansCanRide()
         {
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var sut = new UberRide();
+#pragma warning restore HAA0302 // Display class allocation to capture closure
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var queue = new ConcurrentQueue<string>();
+#pragma warning restore HAA0302 // Display class allocation to capture closure
+
+#pragma warning disable HAA0301 // Closure Allocation Source
             var democrat1 = new Thread(() => Ride("R"));
             var democrat2 = new Thread(() => Ride("D"));
             var democrat3 = new Thread(() => Ride("R"));
             var democrat4 = new Thread(() => Ride("D"));
+#pragma warning restore HAA0301 // Closure Allocation Source
 
             democrat1.Start();
             democrat2.Start();
@@ -62,21 +76,28 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
             democrat3.Join();
             democrat4.Join();
 
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             void Ride(string party)
+#pragma warning restore HAA0302 // Display class allocation to capture closure
             {
                 Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(1, 5)));
+#pragma warning disable HAA0301 // Closure Allocation Source
                 sut.RideAsDemocrat(isRide => queue.Enqueue((isRide ? "F: " : string.Empty) + party));
+#pragma warning restore HAA0301 // Closure Allocation Source
             }
-
-            Assert.True(queue.Count(arg => arg.Contains('F')) == 1);
-            Assert.True(queue.Count(arg => arg.Contains('R')) == 2);
-            Assert.True(queue.Count(arg => arg.Contains('D')) == 2);
-            Assert.True(queue.Count() == 4);
+#pragma warning disable HAA0301 // Closure Allocation Source
+            Assert.True(queue.Count(arg => arg.Contains('F', StringComparison.InvariantCulture)) == 1);
+            Assert.True(queue.Count(arg => arg.Contains('R', StringComparison.InvariantCulture)) == 2);
+            Assert.True(queue.Count(arg => arg.Contains('D', StringComparison.InvariantCulture)) == 2);
+#pragma warning restore HAA0301 // Closure Allocation Source
+            Assert.True(queue.Count == 4);
         }
 
         [Fact]
         public void OnlyValidCombinationsAllowedToRide()
         {
+#pragma warning disable HAA0301 // Closure Allocation Source
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
             var democrat1 = new Thread(() => Ride("R"));
@@ -130,15 +151,19 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
                 sut.RideAsDemocrat(isRide => queue.Enqueue((isRide ? "F: " : string.Empty) + party));
             }
 
-            Assert.True(queue.Count(arg => arg.Contains('F')) == 3);
-            Assert.True(queue.Count(arg => arg.Contains('R')) == 6);
-            Assert.True(queue.Count(arg => arg.Contains('D')) == 6);
-            Assert.True(queue.Count() == 12);
+            Assert.True(queue.Count(arg => arg.Contains('F', StringComparison.InvariantCulture)) == 3);
+            Assert.True(queue.Count(arg => arg.Contains('R', StringComparison.InvariantCulture)) == 6);
+            Assert.True(queue.Count(arg => arg.Contains('D', StringComparison.InvariantCulture)) == 6);
+            Assert.True(queue.Count == 12);
+#pragma warning restore HAA0301 // Closure Allocation Source
+#pragma warning restore HAA0302 // Display class allocation to capture closure
         }
 
         [Fact]
         public void SlewOfPeople()
         {
+#pragma warning disable HAA0301 // Closure Allocation Source
+#pragma warning disable HAA0302 // Display class allocation to capture closure
             var sut = new UberRide();
             var queue = new ConcurrentQueue<string>();
             var threads = new Thread[100];
@@ -169,10 +194,12 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
                 sut.RideAsDemocrat(isRide => queue.Enqueue((isRide ? "F: " : string.Empty) + party));
             }
 
-            Assert.True(queue.Count(arg => arg.Contains('F')) == 25);
-            Assert.True(queue.Count(arg => arg.Contains('R')) == 50);
-            Assert.True(queue.Count(arg => arg.Contains('D')) == 50);
-            Assert.True(queue.Count() == 100);
+            Assert.True(queue.Count(arg => arg.Contains('F', StringComparison.InvariantCulture)) == 25);
+            Assert.True(queue.Count(arg => arg.Contains('R', StringComparison.InvariantCulture)) == 50);
+            Assert.True(queue.Count(arg => arg.Contains('D', StringComparison.InvariantCulture)) == 50);
+            Assert.True(queue.Count == 100);
+#pragma warning restore HAA0301 // Closure Allocation Source
+#pragma warning restore HAA0302 // Display class allocation to capture closure
         }
     }
 }

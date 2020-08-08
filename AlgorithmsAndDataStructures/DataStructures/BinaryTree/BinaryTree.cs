@@ -1,17 +1,17 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AlgorithmsAndDataStructures.DataStructures.Common;
 
 namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
 {
     public class BinaryTree<T>
     {
-        BinaryTreeNode<T> root;
+        private BinaryTreeNode<T> root;
 
         public void Insert(T value)
         {
-            if (this.root == null)
+            if (root == null)
             {
-                this.root = new BinaryTreeNode<T> { Value = value };
+                root = new BinaryTreeNode<T> { Value = value };
                 return;
             }
 
@@ -27,7 +27,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
                     currentNode.Left = new BinaryTreeNode<T> { Value = value };
                     return;
                 }
-                else if (currentNode.Right == null)
+
+                if (currentNode.Right == null)
                 {
                     currentNode.Right = new BinaryTreeNode<T> { Value = value };
                     return;
@@ -59,7 +60,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryTree
                 var currentPair = queue.Dequeue();
                 var currentNode = currentPair.Child;
 
+#pragma warning disable HAA0601 // Value type to reference type conversion causing boxing allocation
                 if (currentNode.Value.Equals(value))
+#pragma warning restore HAA0601 // Value type to reference type conversion causing boxing allocation
                 {
                     toDelete = currentNode;
                 }

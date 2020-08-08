@@ -3,7 +3,7 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
 {
-    public class MSDTests
+    public class MsdTests
     {
         [Fact]
         public void BaselineSameLength()

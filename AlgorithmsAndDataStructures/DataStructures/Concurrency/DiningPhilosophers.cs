@@ -2,13 +2,15 @@
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
+#pragma warning disable CA1001 // Types that own disposable fields should be disposable
     public class DiningPhilosophers
+#pragma warning restore CA1001 // Types that own disposable fields should be disposable
     {
-        private Semaphore fork0 = new Semaphore(1,1);
-        private Semaphore fork1 = new Semaphore(1, 1);
-        private Semaphore fork2 = new Semaphore(1, 1);
-        private Semaphore fork3 = new Semaphore(1, 1);
-        private Semaphore fork4 = new Semaphore(1, 1);
+        private readonly Semaphore fork0 = new Semaphore(1,1);
+        private readonly Semaphore fork1 = new Semaphore(1, 1);
+        private readonly Semaphore fork2 = new Semaphore(1, 1);
+        private readonly Semaphore fork3 = new Semaphore(1, 1);
+        private readonly Semaphore fork4 = new Semaphore(1, 1);
 
         public void Dine(int philosopher)
         {
@@ -43,8 +45,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                     fork4.WaitOne();
                     fork4.Release();
                     fork3.Release();
-                    break;
-                default:
                     break;
             }
         }

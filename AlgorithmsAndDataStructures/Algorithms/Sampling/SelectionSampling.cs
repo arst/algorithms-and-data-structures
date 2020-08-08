@@ -8,6 +8,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
         public T[] GetRandomSample<T>(T[] population, int sampleSize)
 #pragma warning restore CA1822 // Mark members as static
         {
+            if (population is null)
+            {
+                return Array.Empty<T>();
+            }
+
             if (population.Length < sampleSize)
             {
 #pragma warning disable CA1303 // Do not pass literals as localized parameters

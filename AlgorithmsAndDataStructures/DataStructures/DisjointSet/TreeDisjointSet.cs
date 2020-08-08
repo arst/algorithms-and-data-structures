@@ -2,7 +2,7 @@
 {
     public class TreeDisjointSet : IDisjointSet
     {
-        private int[] set;
+        private readonly int[] set;
 
         public TreeDisjointSet(int size)
         {

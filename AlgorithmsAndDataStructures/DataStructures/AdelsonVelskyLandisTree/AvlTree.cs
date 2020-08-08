@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
+namespace AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree
 {
     public class AvlTree
     {
@@ -15,16 +15,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
                 Value = value,
             };
 
-            root = InsertInternal(this.root, toInsert);
+            root = InsertInternal(root, toInsert);
         }
 
-        private AvlTreeNode InsertInternal(AvlTreeNode rootNode, AvlTreeNode toInsert)
+        private static AvlTreeNode InsertInternal(AvlTreeNode rootNode, AvlTreeNode toInsert)
         {
             if (rootNode == null)
             {
                 return toInsert;
             }
-
 
             if (toInsert.Value < rootNode.Value)
             {
@@ -47,15 +46,18 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             {
                 return RotateRight(rootNode);
             }
+
             if (balanceFactor > 1 && toInsert.Value > rootNode.Left.Value)
             {
                 rootNode.Left = RotateLeft(rootNode.Left);
                 return RotateRight(rootNode);
             }
+
             if (balanceFactor < -1 && toInsert.Value > rootNode.Right.Value)
             {
                 return RotateLeft(rootNode);
             }
+
             if (balanceFactor < -1 && toInsert.Value < rootNode.Right.Value)
             {
                 rootNode.Right = RotateRight(rootNode.Right);
@@ -65,56 +67,55 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             return rootNode;
         }
 
-        public void Delete(int value)
-        {
-            root = DeleteInternal(root, value);
-        }
+        public void Delete(int value) => root = DeleteInternal(root, value);
 
-        private AvlTreeNode DeleteInternal(AvlTreeNode root, int value)
+        private static AvlTreeNode DeleteInternal(AvlTreeNode currentSubtreeRoot, int value)
         {
-            if (root == null)
+            if (currentSubtreeRoot == null)
             {
                 return null; 
             }
 
-            if (root.Value < value)
+            if (currentSubtreeRoot.Value < value)
             {
-                root.Right = DeleteInternal(root.Right, value);
+                currentSubtreeRoot.Right = DeleteInternal(currentSubtreeRoot.Right, value);
             }
-            else if (root.Value > value)
+            else if (currentSubtreeRoot.Value > value)
             {
-                root.Left = DeleteInternal(root.Left, value);
+                currentSubtreeRoot.Left = DeleteInternal(currentSubtreeRoot.Left, value);
             }
             else
             {
-                var isChildlessNode = root.Left == null && root.Right == null;
+                var isChildlessNode = currentSubtreeRoot.Left == null && currentSubtreeRoot.Right == null;
 
                 if (isChildlessNode)
                 {
                     return null;
                 }
 
-                var hasOneChild = root.Left == null || root.Right == null;
+                var hasOneChild = currentSubtreeRoot.Left == null || currentSubtreeRoot.Right == null;
 
                 if (hasOneChild)
                 {
-                    return root.Left ?? root.Right;
+                    return currentSubtreeRoot.Left ?? currentSubtreeRoot.Right;
                 }
 
-                var inOrderSuccessor = GetInOrderSuccessor(root.Right);
+                var inOrderSuccessor = GetInOrderSuccessor(currentSubtreeRoot.Right);
 
-                root.Value = inOrderSuccessor.Value;
+                currentSubtreeRoot.Value = inOrderSuccessor.Value;
 
-                root.Right = DeleteInternal(root.Right, inOrderSuccessor.Value);
+                currentSubtreeRoot.Right = DeleteInternal(currentSubtreeRoot.Right, inOrderSuccessor.Value);
             }
 
-            root.Height = CalculateNodeHeight(root);
+            currentSubtreeRoot.Height = CalculateNodeHeight(currentSubtreeRoot);
 
-            var balanceFactor = GetBalancedFactor(root);
+            var balanceFactor = GetBalancedFactor(currentSubtreeRoot);
 
-            if (Math.Abs(balanceFactor) > 1)
+            var isUnbalanced = Math.Abs(balanceFactor) > 1;
+
+            if (isUnbalanced)
             {
-                var highestChild = balanceFactor > 1 ? root.Left : root.Right;
+                var highestChild = balanceFactor > 1 ? currentSubtreeRoot.Left : currentSubtreeRoot.Right;
                 var leftGrandChildHeight = highestChild.Left?.Height ?? 0;
                 var rightGrandChildHeight = highestChild.Right?.Height ?? 0;
                 var highestGrandChild = leftGrandChildHeight > rightGrandChildHeight ? highestChild.Left : highestChild.Right;
@@ -123,50 +124,41 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
                 {
                     if (highestChild.Left == highestGrandChild)
                     {
-                        return RotateRight(root);
+                        return RotateRight(currentSubtreeRoot);
                     }
-                    else
-                    {
-                        root.Left = RotateLeft(root.Left);
-                        return RotateRight(root);
-                    }
+
+                    currentSubtreeRoot.Left = RotateLeft(currentSubtreeRoot.Left);
+                    return RotateRight(currentSubtreeRoot);
 
                 }
-                else if (balanceFactor < -1)
-                {
 
+                if (balanceFactor < -1)
+                {
                     if (highestChild.Right == highestGrandChild)
                     {
-                        return RotateLeft(root);
+                        return RotateLeft(currentSubtreeRoot);
                     }
-                    else
-                    {
-                        root.Right = RotateRight(root.Right);
-                        return RotateLeft(root);
-                    }
+
+                    currentSubtreeRoot.Right = RotateRight(currentSubtreeRoot.Right);
+                    return RotateLeft(currentSubtreeRoot);
                 }
             }
 
-            return root;
+            return currentSubtreeRoot;
         }
 
-        private AvlTreeNode GetInOrderSuccessor(AvlTreeNode node)
+        private static AvlTreeNode GetInOrderSuccessor(AvlTreeNode node)
         {
-            if (node.Left == null)
-            {
-                return node;
-            }
-
-            return GetInOrderSuccessor(node.Left);
+            return node.Left == null ? node : GetInOrderSuccessor(node.Left);
         }
 
-        private AvlTreeNode RotateRight(AvlTreeNode y)
+        private static AvlTreeNode RotateRight(AvlTreeNode y)
         {
             var x = y.Left;
-            var T2 = x.Right;
+            var t2 = x.Right;
 
             x.Right = y;
-            y.Left = T2;
+            y.Left = t2;
 
             y.Height = CalculateNodeHeight(y);
             x.Height = CalculateNodeHeight(x);
@@ -174,18 +166,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             return x;
         }
 
-        private int CalculateNodeHeight(AvlTreeNode node)
-        {
-            return 1 + Math.Max(Height(node.Left), Height(node.Right));
-        }
+        private static int CalculateNodeHeight(AvlTreeNode node) => 1 + Math.Max(Height(node.Left), Height(node.Right));
 
-        private AvlTreeNode RotateLeft(AvlTreeNode x)
+        private static AvlTreeNode RotateLeft(AvlTreeNode x)
         {
             var y = x.Right;
-            var T2 = y.Left;
+            var t2 = y.Left;
 
             y.Left = x;
-            x.Right = T2;
+            x.Right = t2;
             
             x.Height = CalculateNodeHeight(x);
             y.Height = CalculateNodeHeight(y);
@@ -193,7 +182,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             return y;
         }
 
-        private int GetBalancedFactor(AvlTreeNode node)
+        private static int GetBalancedFactor(AvlTreeNode node)
         {
             if (node == null)
             {
@@ -203,19 +192,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.AVLTree
             return Height(node.Left) - Height(node.Right);
         }
 
-        private int Height(AvlTreeNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
+        private static int Height(AvlTreeNode node) => node?.Height ?? 0;
 
-            return node.Height;
-        }
-
-        private bool IsRootBalanced()
-        {
-            return Math.Abs(GetBalancedFactor(root)) <= 1;
-        }
+        private bool IsRootBalanced() => Math.Abs(GetBalancedFactor(root)) <= 1;
     }
 }

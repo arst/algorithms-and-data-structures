@@ -5,23 +5,23 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 {
     public class UnisexBathroom
     {
-        private Semaphore maleCounterSemaphor;
-        private Semaphore femaleTurnSemaphore;
-        private Semaphore maleTurnSemaphore;
-        private Semaphore startvationPreventionSemaphore;
-        private Semaphore femaleCounterSemaphor;
-        private Semaphore occupiedSemaphor;
+        private readonly Semaphore maleCounterSemaphor;
+        private readonly Semaphore femaleTurnSemaphore;
+        private readonly Semaphore maleTurnSemaphore;
+        private readonly Semaphore startvationPreventionSemaphore;
+        private readonly Semaphore femaleCounterSemaphor;
+        private readonly Semaphore occupiedSemaphor;
         private int maleCount;
         private int femaleCount;
 
         public UnisexBathroom()
         {
-            this.maleCounterSemaphor = new Semaphore(0, 3);
-            this.femaleCounterSemaphor = new Semaphore(0, 3);
-            this.occupiedSemaphor = new Semaphore(0, 1);
-            this.femaleTurnSemaphore = new Semaphore(0, 1);
-            this.maleTurnSemaphore = new Semaphore(0, 1);
-            this.startvationPreventionSemaphore = new Semaphore(0, 1);
+            maleCounterSemaphor = new Semaphore(0, 3);
+            femaleCounterSemaphor = new Semaphore(0, 3);
+            occupiedSemaphor = new Semaphore(0, 1);
+            femaleTurnSemaphore = new Semaphore(0, 1);
+            maleTurnSemaphore = new Semaphore(0, 1);
+            startvationPreventionSemaphore = new Semaphore(0, 1);
         }
 
         public void Enter(int gender)

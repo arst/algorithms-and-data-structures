@@ -6,14 +6,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Misc.BloomFilters
     {
         private readonly int[] filter;
         private readonly int hashFunctionsSetSize;
-        private readonly FowlerNollVo1aBasedHash hash;
+        private readonly FowlerNollVo1ABasedHash hash;
         private readonly int filterSize;
 
         public CountingBloomFilter(int filterSize, byte hashFunctionsSetSize)
         {
             filter = new int[filterSize];
             this.hashFunctionsSetSize = hashFunctionsSetSize + 1;
-            hash = new FowlerNollVo1aBasedHash();
+            hash = new FowlerNollVo1ABasedHash();
             this.filterSize = filterSize;
         }
 

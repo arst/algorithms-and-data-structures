@@ -9,6 +9,11 @@
 
         public void InsertToHead(CacheEntry entry)
         {
+            if (entry is null)
+            {
+                return;
+            }
+
             if (head == null)
             {
                 head = entry;
@@ -42,6 +47,11 @@
 
         public void MoveToHead(CacheEntry entry)
         {
+            if (entry is null)
+            {
+                return;
+            }
+
             if (entry.Previous != null)
             {
                 entry.Previous.Next = entry.Next;
@@ -65,6 +75,11 @@
 
         public void Remove(CacheEntry cacheEntry)
         {
+            if (cacheEntry is null)
+            {
+                return;
+            }
+
             if (cacheEntry.Previous != null)
             {
                 cacheEntry.Previous.Next = cacheEntry.Next;

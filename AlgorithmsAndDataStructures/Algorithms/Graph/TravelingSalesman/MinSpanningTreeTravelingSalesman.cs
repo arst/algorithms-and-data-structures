@@ -10,6 +10,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.TravelingSalesman
         public int Travel(int[][] graph)
 #pragma warning restore CA1822 // Mark members as static
         {
+            if (graph is null)
+            {
+                return default;
+            }
+
             const int startingCity = 0;
             var edges = new List<Tuple<int, int, int>>();
             var minimumSpanningTree = new List<Tuple<int, int, int>>();

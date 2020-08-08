@@ -9,7 +9,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
         [Fact]
         public void Baseline()
         {
-            var sut = new STCutFordFulkersonBased();
+            var sut = new StCutFordFulkersonBased();
             var graph = new int[6][];
             graph[0] = new[] { 0, 16, 13, 0, 0, 0 };
             graph[1] = new[] { 0, 0, 10, 12, 0, 0 };

@@ -46,6 +46,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
             return head.Value;
         }
 
-        public bool IsEmpty => this.head == null;
+        public bool IsEmpty => head == null;
     }
 }

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.SuffixArray
 {
-    public class nLognSuffixArrayTests
+    public class NLognSuffixArrayTests
     {
         [Fact]
         public void CanConstructSuffixTree()

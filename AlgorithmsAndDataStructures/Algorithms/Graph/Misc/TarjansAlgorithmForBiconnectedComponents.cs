@@ -9,7 +9,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
     {
         private const int NullParent = -1;
 
+#pragma warning disable CA1822 // Mark members as static
         public List<List<int>> GetBiconnectedComponents(UndirectedGraph graph)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (graph is null)
             {

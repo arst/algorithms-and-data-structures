@@ -5,8 +5,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
     public class OpenAddressHasingHashTable<TKey, TValue>
     {
         private int counter;
-        private HashEntry<TKey, TValue>[] hashTable;
-        private static HashEntry<TKey, TValue> DeletedEntry = new HashEntry<TKey, TValue>
+        private readonly HashEntry<TKey, TValue>[] hashTable;
+        private static readonly HashEntry<TKey, TValue> DeletedEntry = new HashEntry<TKey, TValue>
         {
             Key = default,
             Value = default

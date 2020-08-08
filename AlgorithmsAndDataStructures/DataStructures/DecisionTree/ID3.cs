@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
 {
-    public class ID3
+    public class Id3
     {
         public DecisionTreeNode CreateDecisionTree(
             Dictionary<string, string>[] examples,

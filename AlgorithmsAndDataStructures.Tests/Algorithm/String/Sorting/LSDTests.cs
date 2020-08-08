@@ -3,7 +3,7 @@ using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.String.Sorting
 {
-    public class LSDTests
+    public class LsdTests
     {
         [Fact]
         public void Baseline()

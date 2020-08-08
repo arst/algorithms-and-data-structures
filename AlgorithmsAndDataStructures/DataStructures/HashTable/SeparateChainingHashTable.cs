@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
 {
     public class SeparateChainingHashTable<TKey, TValue>
     {
-        private LinkedList<HashEntry<TKey, TValue>>[] hashTable;
+        private readonly LinkedList<HashEntry<TKey, TValue>>[] hashTable;
 
         public SeparateChainingHashTable(int hashTableSize = 8)
         {

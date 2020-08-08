@@ -1,21 +1,22 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Cache;
+﻿using System.Globalization;
+using AlgorithmsAndDataStructures.DataStructures.Cache;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
 {
-    public class LRUTests
+    public class LruTests
     {
         [Fact]
         public void CanInsertEntry()
         {
-            var sut = new LRU(1);
+            var sut = new Lru(1);
             sut.Add(1, "Test");
         }
 
         [Fact]
         public void CanGetEntry()
         {
-            var sut = new LRU(1);
+            var sut = new Lru(1);
             sut.Add(1, "Test");
 
             Assert.Equal("Test", sut.Get(1));
@@ -24,7 +25,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void CanUpdateEntry()
         {
-            var sut = new LRU(1);
+            var sut = new Lru(1);
             sut.Add(1, "Test");
             sut.Add(1, "Test1");
 
@@ -34,7 +35,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         [Fact]
         public void LeastRecentlyUsedEntryRemoved()
         {
-            var sut = new LRU(1);
+            var sut = new Lru(1);
             sut.Add(1, "Test");
             sut.Add(2, "Test1");
 
@@ -43,20 +44,20 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         }
 
         [Fact]
-        public void PropertyBased()
+        public void Fuzzy()
         {
-            var testcaseSize = 1000;
-            var sut = new LRU(testcaseSize);
+            const int testCaseSize = 1000;
+            var sut = new Lru(testCaseSize);
 
-            for (var i = 0; i < testcaseSize; i++)
+            for (var i = 0; i < testCaseSize; i++)
             {
-                sut.Add(i, i.ToString());
+                sut.Add(i, i.ToString(CultureInfo.InvariantCulture));
             }
 
-            for (var i = testcaseSize; i < testcaseSize * 2; i++)
+            for (var i = testCaseSize; i < testCaseSize * 2; i++)
             {
-                sut.Add(i, i.ToString());
-                Assert.Null(sut.Get(i - testcaseSize));
+                sut.Add(i, i.ToString(CultureInfo.InvariantCulture));
+                Assert.Null(sut.Get(i - testCaseSize));
             }
         }
     }

@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         public void EmptyArrayIsSorted()
         {
             var sut = GetSystemUnderTest();
-            var input = System.Array.Empty<int>();
+            var input = Array.Empty<int>();
             sut.Sort(input);
             AssertIsSorted(input);
         }

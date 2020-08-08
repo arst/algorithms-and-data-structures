@@ -5,8 +5,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
 {
     public class CacheMeanHeap
     {
-        private CacheMeanHeapEntry[] heap;
-        private Dictionary<int, int> indexes = new Dictionary<int, int>();
+        private readonly CacheMeanHeapEntry[] heap;
+        private readonly Dictionary<int, int> indexes = new Dictionary<int, int>();
         private int nextElement;
 
         public CacheMeanHeap(int capacity)
@@ -24,9 +24,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
 
             if (nextElement > 1)
             {
-                var newtop = heap[nextElement];
-                heap[1] = newtop;
-                indexes[newtop.Key] = 1;
+                var newTop = heap[nextElement];
+                heap[1] = newTop;
+                indexes[newTop.Key] = 1;
                 heap[nextElement] = null;
                 Sink(1);
             }
@@ -78,6 +78,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.Cache
 
         public void Insert(CacheMeanHeapEntry entry)
         {
+            if (entry is null)
+            {
+                return;
+            }
+
             if (indexes.ContainsKey(entry.Key))
             {
                 var index = indexes[entry.Key];

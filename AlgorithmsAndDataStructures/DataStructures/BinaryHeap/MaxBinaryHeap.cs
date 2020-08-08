@@ -13,17 +13,17 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
         protected override bool ShouldSwap(int current, int target)
         {
-            return heap[current].CompareTo(heap[target]) > 0;
+            return Heap[current].CompareTo(Heap[target]) > 0;
         }
 
         protected override bool ShouldNotSwap(int current, int target)
         {
-            return heap[current].CompareTo(heap[target]) < 0;
+            return Heap[current].CompareTo(Heap[target]) < 0;
         }
 
         protected override int GetSwapChildIndex(int rightChildIndex, int leftChildIndex)
         {
-            return heap[leftChildIndex].CompareTo(heap[rightChildIndex]) < 0 ? rightChildIndex : leftChildIndex;
+            return Heap[leftChildIndex].CompareTo(Heap[rightChildIndex]) < 0 ? rightChildIndex : leftChildIndex;
         }
     }
 }

@@ -5,19 +5,21 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 {
     public abstract class BinaryHeap<T> where T: IComparable<T> 
     {
-        protected T[] heap;
+#pragma warning disable CA1051 // Do not declare visible instance fields
+        protected T[] Heap;
+#pragma warning restore CA1051 // Do not declare visible instance fields
         private int nextElementPointer = 1;
 
         public int Size => nextElementPointer - 1;
 
         public T[] GetHeap()
         {
-            return heap.Skip(1).ToArray().Clone() as T[];
+            return Heap.Skip(1).ToArray().Clone() as T[];
         }
 
-        public BinaryHeap(int maxCapacity = 8)
+        protected BinaryHeap(int maxCapacity = 8)
         {
-            heap = new T[maxCapacity + 1];
+            Heap = new T[maxCapacity + 1];
         }
 
         protected abstract bool ShouldSwap(int current, int target);
@@ -28,12 +30,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
         public void Insert(T value)
         {
-            if (nextElementPointer == heap.Length)
+            if (nextElementPointer == Heap.Length)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Heap is full");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
-            heap[nextElementPointer] = value;
+            Heap[nextElementPointer] = value;
             Swim(nextElementPointer);
             nextElementPointer++;
         }
@@ -44,7 +48,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
             while (current > 1)
             {
                 var parentIndex = current / 2;
-                if (heap[current].CompareTo(heap[parentIndex]) == 0)
+                if (Heap[current].CompareTo(Heap[parentIndex]) == 0)
                 {
                     break;
                 }
@@ -56,9 +60,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
                 if (ShouldSwap(current, parentIndex))
                 {
-                    var tmp = heap[parentIndex];
-                    heap[parentIndex] = heap[current];
-                    heap[current] = tmp;
+                    var tmp = Heap[parentIndex];
+                    Heap[parentIndex] = Heap[current];
+                    Heap[current] = tmp;
                     current = parentIndex;
                 }
             }
@@ -68,12 +72,14 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
         {
             if (nextElementPointer - 1 == 0)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Heap is empty");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
-            var result = heap[1];
-            heap[1] = heap[nextElementPointer - 1];
-            heap[nextElementPointer - 1] = default;
+            var result = Heap[1];
+            Heap[1] = Heap[nextElementPointer - 1];
+            Heap[nextElementPointer - 1] = default;
             nextElementPointer--;
 
             Sink(1);
@@ -99,10 +105,10 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeap
 
             if (!ShouldSwap(index, swapChildIndex))
             {
-                var tmp = heap[index];
+                var tmp = Heap[index];
 
-                heap[index] = heap[swapChildIndex];
-                heap[swapChildIndex] = tmp;
+                Heap[index] = Heap[swapChildIndex];
+                Heap[swapChildIndex] = tmp;
 
                 Sink(swapChildIndex);
             }

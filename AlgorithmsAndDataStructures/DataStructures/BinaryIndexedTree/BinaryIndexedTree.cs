@@ -4,6 +4,11 @@
     {
         public static BinaryIndexedTree FromArray(int[] input)
         {
+            if (input is null)
+            {
+                return null;
+            }
+
             var result = new BinaryIndexedTree(input.Length + 1);
             var index = 0;
 
@@ -16,13 +21,13 @@
             return result;
         }
 
-        private int treeSize;
-        private int[] binaryIndexedTree;
+        private readonly int treeSize;
+        private readonly int[] binaryIndexedTree;
 
-        public BinaryIndexedTree(int treeSisze = 100)
+        public BinaryIndexedTree(int treeSize = 100)
         {
-            this.treeSize = treeSisze;
-            this.binaryIndexedTree = new int[treeSize];
+            this.treeSize = treeSize;
+            binaryIndexedTree = new int[this.treeSize];
         }
 
         public int GetSum(int index)
@@ -36,7 +41,7 @@
             {
                 result += binaryIndexedTree[currentIndex];
                 //TRICK: parent of any node can be obtain by removing the last set bit from the binary representation of that node.
-                currentIndex = currentIndex - (currentIndex & -currentIndex);
+                currentIndex -= (currentIndex & -currentIndex);
             }
 
             return result;

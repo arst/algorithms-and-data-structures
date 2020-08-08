@@ -7,9 +7,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
     {
         private int democratsCount;
         private int republicansCount;
-        private Semaphore ridersCountSemaphore = new Semaphore(1, 1);
-        private Semaphore waitForARideAsDemocratSemaphore = new Semaphore(0, 3);
-        private Semaphore waitForARideAsRepublicanSemaphore = new Semaphore(0, 3);
+        private readonly Semaphore ridersCountSemaphore = new Semaphore(1, 1);
+        private readonly Semaphore waitForARideAsDemocratSemaphore = new Semaphore(0, 3);
+        private readonly Semaphore waitForARideAsRepublicanSemaphore = new Semaphore(0, 3);
 
         public UberRide()
         {
