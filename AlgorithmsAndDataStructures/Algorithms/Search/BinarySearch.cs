@@ -2,13 +2,19 @@
 
 namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
-    public class Binary<T> : ISearchAlgorithm<T> where T : IComparable<T>
+    public class BinarySearch<T> : ISearchAlgorithm<T> where T : IComparable<T>
     {
         public int Search(T[] target, T value)
         {
+            if (target is null)
+            {
+                return default;
+            }
+
             var start = 0;
             var end = target.Length;
-            var mid = start + (end - start) / 2;
+
+            var mid = end / 2;
 
             while (end > start)
             {
@@ -16,7 +22,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
                 {
                     return mid;
                 }
-                else if (value.CompareTo(target[mid]) > 0)
+
+                if (value.CompareTo(target[mid]) > 0)
                 {
                     start = mid + 1;
                 }
@@ -24,7 +31,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
                 {
                     end = mid;
                 }
-                
+
                 mid = start + (end - start) / 2;
             }
 

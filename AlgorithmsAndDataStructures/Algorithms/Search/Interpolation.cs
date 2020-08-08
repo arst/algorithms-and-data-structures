@@ -1,9 +1,16 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Search
+﻿using System.Collections.Generic;
+
+namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
     public class Interpolation : ISearchAlgorithm<int>
     {
         public int Search(int[] target, int value)
         {
+            if (target is null)
+            {
+                return default;
+            }
+
             if (target.Length == 0)
             {
                 return -1;
@@ -48,7 +55,7 @@
             return -1;
         }
 
-        private static int GetPosition(int[] target, int targetValue, int start, int end)
+        private static int GetPosition(IReadOnlyList<int> target, int targetValue, int start, int end)
         {
             var xSlope = target[end] - target[start];
             var ySlope = end - start;

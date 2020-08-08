@@ -52,7 +52,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.VertexCover
             return result;
         }
 
-        public static List<int> GetVertexCoverOptimized(int[][] graph)
+#pragma warning disable CA1822 // Mark members as static
+        public List<int> GetVertexCoverOptimized(int[][] graph)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (graph is null)
             {

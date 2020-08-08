@@ -6,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
     {
         public int Search(T[] target, T value)
         {
-            return SearchInternal(target, 0, target.Length, value);
+            return target is null ? default : SearchInternal(target, 0, target.Length, value);
         }
 
         private static int SearchInternal(T[] target, int start, int end, T value)

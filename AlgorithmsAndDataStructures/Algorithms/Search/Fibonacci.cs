@@ -6,6 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
     {
         public int Search(T[] target, T value)
         {
+            if (target is null)
+            {
+                return default;
+            }
+
             var startingFibonacciNumber = 0;
             var offset = -1;
 
@@ -45,7 +50,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
             return -1;
         }
         // It's not the best idea to generate it on the fly,
-        // it's better to either pregenerate them or generate them alongside the main loop
+        // it's better to either pre-generate them or generate them alongside the main loop
         private static int FibonacciNumber(int number)
         {
             if (number < 1)

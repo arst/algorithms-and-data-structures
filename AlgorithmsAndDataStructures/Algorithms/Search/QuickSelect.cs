@@ -4,12 +4,14 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
     public class QuickSelect
     {
+#pragma warning disable CA1822 // Mark members as static
         public int GetLargestElement(int[] input, int target)
+#pragma warning restore CA1822 // Mark members as static
         {
-            return GetLargestElementInternal(input, 0, input.Length - 1, target);
+            return input is null ? default : GetLargestElementInternal(input, 0, input.Length - 1, target);
         }
 
-        private int GetLargestElementInternal(int[] input, int start, int end, int target)
+        private static int GetLargestElementInternal(int[] input, int start, int end, int target)
         {
             if (start == end && start == target)
             {
@@ -27,13 +29,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
             {
                 return GetLargestElementInternal(input, start, pivot, target);
             }
-            else
-            {
-                return GetLargestElementInternal(input, pivot + 1, end, target);
-            }
+
+            return GetLargestElementInternal(input, pivot + 1, end, target);
         }
 
-        private int Partition(int[] input, int start, int end)
+        private static int Partition(int[] input, int start, int end)
         {
             var mid = start + ((end - start) / 2);
 

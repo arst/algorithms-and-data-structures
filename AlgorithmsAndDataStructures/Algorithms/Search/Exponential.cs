@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.Algorithms.Search
 {
@@ -6,6 +7,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
     {
         public int Search(T[] target, T value)
         {
+            if (target is null)
+            {
+                return default;
+            }
+
             if (target.Length == 0)
             {
                 return -1;
@@ -37,7 +43,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
             return InternalBinarySearch(target, position / 2, target.Length, value);
         }
 
-        private int InternalBinarySearch(T[] target, int start, int end, T value)
+        private static int InternalBinarySearch(IReadOnlyList<T> target, int start, int end, T value)
         {
             while (end >= start)
             {

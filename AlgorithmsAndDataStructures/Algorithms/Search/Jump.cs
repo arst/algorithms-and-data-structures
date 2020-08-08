@@ -6,6 +6,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
     {
         public int Search(T[] target, T value)
         {
+            if (target is null)
+            {
+                return default;
+            }
+
             var jumpStep = (int)Math.Sqrt(target.Length);
             var currentJump = jumpStep;
 
@@ -29,10 +34,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Search
 
                     return -1;
                 }
-                else
-                {
-                    currentJump += jumpStep;
-                }
+
+                currentJump += jumpStep;
             }
 
             // Search latest jumped interval with simple linear search.
