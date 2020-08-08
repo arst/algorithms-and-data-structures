@@ -68,7 +68,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             }
 
             var below = current.Next;
-            for (var i = levelsToAdd - 2; i >= 0; i--)
+            for (var i = levelsToAdd - 2; i >= 0 && path[i] != null; i--)
             {
                 nextInLine = path[i]?.Next;
                 path[i].Next = new SkipListNode<T> { Value = value, Down = below };
