@@ -35,11 +35,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
             tuples[input.Length - 1] = new EfficientSuffixArrayNode(input)
             {
                 Index = input.Length - 1,
-                Rank = input[input.Length - 1],
+                Rank = input[^1],
                 NextRank = -1,
             };
 
-            Array.Sort(tuples); // can be raplced with Radix sort to make it more performant
+            Array.Sort(tuples); // can be replaced with Radix sort to make it more performant
 
             for (var prefixLength = 4; input.Length * 2 > prefixLength; prefixLength = prefixLength * 2)
             {

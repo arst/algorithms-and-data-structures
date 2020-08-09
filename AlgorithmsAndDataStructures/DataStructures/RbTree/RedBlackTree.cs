@@ -71,7 +71,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RbTree
 
         private void CheckInsert(RedBlackTreeNode node)
         {
-            if (node == root || node == null || node.Parent == null)
+            if (node == root || node?.Parent == null)
             {
                 return;
             }

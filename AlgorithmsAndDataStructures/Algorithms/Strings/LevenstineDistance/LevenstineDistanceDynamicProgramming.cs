@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.LevenstineDistance
+namespace AlgorithmsAndDataStructures.Algorithms.Strings.LevenstineDistance
 {
     public class LevenstineDistanceDynamicProgramming
     {

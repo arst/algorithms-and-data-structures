@@ -103,7 +103,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
 
             } while (currentIndex != initialIndex);
 
-            throw new ArgumentException($"Hash table has no entry with key {key}."); ;
+            throw new ArgumentException($"Hash table has no entry with key {key}.");
         }
 
         public void Delete(TKey key)

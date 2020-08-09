@@ -51,9 +51,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 if (filteredExamples.Length == 0)
                 {
                     var mostCommonAttributeValue = FindMostCommonAttributeValue(examples, targetAttributeName);
-                    var branch = new DecisionTreeNode();
-                    branch.TargetAttribute = new KeyValuePair<string, string>(targetAttributeName, mostCommonAttributeValue);
-                    branch.BranchForValue = attributeValue;
+                    var branch = new DecisionTreeNode
+                    {
+                        TargetAttribute =
+                            new KeyValuePair<string, string>(targetAttributeName, mostCommonAttributeValue),
+                        BranchForValue = attributeValue
+                    };
                     dt.Children.Add(branch);
                 }
                 else

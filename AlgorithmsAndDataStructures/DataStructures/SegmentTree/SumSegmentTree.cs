@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
+﻿namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
 {
     public class SumSegmentTree : AbstractSegmentTree
     {
@@ -9,7 +7,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
         {
         }
 
-        protected override int DummyValue { get; set; } = 0;
+        protected override int DummyValue { get; set; }
 
         public void Update(int index, int value)
         {

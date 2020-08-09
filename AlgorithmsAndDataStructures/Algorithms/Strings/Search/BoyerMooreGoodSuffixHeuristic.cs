@@ -50,17 +50,18 @@
 
         private static void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
         {
-            int i, j;
+            int i;
             // The whole string longest border
-            j = goodSuffixHeuristic.borders[0];
+            var (borders, shifts) = goodSuffixHeuristic;
+            var j = borders[0];
             for (i = 0; i <= pattern.Length; i++)
             {
                 // If no shift, then shift to the border of the first character in the pattern
-                if (goodSuffixHeuristic.shifts[i] == 0)
-                    goodSuffixHeuristic.shifts[i] = j;
+                if (shifts[i] == 0)
+                    shifts[i] = j;
                 // Current suffix became shorter then longest border, change j to the next longest border
                 if (i == j)
-                    j = goodSuffixHeuristic.borders[j];
+                    j = borders[j];
             }
         }
 

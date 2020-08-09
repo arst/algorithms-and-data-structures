@@ -69,15 +69,16 @@ namespace AlgorithmsAndDataStructures.Algorithms.Strings.Search
 
         private static void PostProcessGodSuffixHeuristic(string pattern, (int[] borders, int[] shifts) goodSuffixHeuristic)
         {
-            int i, j;
-            j = goodSuffixHeuristic.borders[0];
+            int i;
+            var (borders, shifts) = goodSuffixHeuristic;
+            var j = borders[0];
             for (i = 0; i <= pattern.Length; i++)
             {
-                if (goodSuffixHeuristic.shifts[i] == 0)
-                    goodSuffixHeuristic.shifts[i] = j;
+                if (shifts[i] == 0)
+                    shifts[i] = j;
 
                 if (i == j)
-                    j = goodSuffixHeuristic.borders[j];
+                    j = borders[j];
             }
         }
 

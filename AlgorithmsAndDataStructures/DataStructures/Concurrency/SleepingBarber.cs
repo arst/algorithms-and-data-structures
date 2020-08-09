@@ -17,14 +17,15 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             clientsSemaphore = new Semaphore(0, 3);
             barberSemaphore = new Semaphore(0, 1);
             this.waitChairCounter = waitChairCounter;
-            var barber = new Thread(Work);
+            var barber = new Thread(_ => Work(CancellationToken.None));
             barber.Start();
         }
 
-        public void Enter()
+        public void Enter(CancellationToken cancellationToken)
         {
             while (true)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 NumberOfCustomers.WaitOne();
 
                 if (currentClients < waitChairCounter)
@@ -41,16 +42,16 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
         }
 
-        public void Work()
+        public void Work(CancellationToken cancellationToken)
         {
             while (true)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 clientsSemaphore.WaitOne();
                 NumberOfCustomers.WaitOne();
                 currentClients--;
                 barberSemaphore.Release();
                 NumberOfCustomers.ReleaseMutex();
-
             }
         }
 

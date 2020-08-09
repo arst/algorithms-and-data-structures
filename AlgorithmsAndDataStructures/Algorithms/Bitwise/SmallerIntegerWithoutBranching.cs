@@ -1,4 +1,4 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithm.Bitwise
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Bitwise
 {
     public class SmallerIntegerWithoutBranching
     {

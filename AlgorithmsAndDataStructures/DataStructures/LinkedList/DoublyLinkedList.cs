@@ -85,7 +85,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             while (pointer < position && current != null)
             {
                 previous = current;
-                current = current?.Next;
+                current = current.Next;
                 pointer++;
             }
 
@@ -126,8 +126,6 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Reverse()
         {
-            var tmp = head;
-
             var node = ReverseRecursive(head);
             node.Next = null;
             head.Previous = node;

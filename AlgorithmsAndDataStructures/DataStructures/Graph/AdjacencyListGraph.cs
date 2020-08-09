@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Graph
 {
@@ -14,15 +13,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Graph
 
         public void AddEdge(int source, int destination)
         {
-            if (graph[source] == null)
-            {
-                graph[source] = new GraphVertex<T>();
-            }
+            graph[source] ??= new GraphVertex<T>();
 
-            if (graph[destination] == null)
-            {
-                graph[destination] = new GraphVertex<T>();
-            }
+            graph[destination] ??= new GraphVertex<T>();
 
             graph[source].AdjacentVertices.Add(destination);
             graph[destination].AdjacentVertices.Add(source);

@@ -17,10 +17,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
         {
             var hash = Math.Abs(key.GetHashCode() % hashTable.Length);
 
-            if (hashTable[hash] == null)
-            {
-                hashTable[hash] = new LinkedList<HashEntry<TKey, TValue>>();
-            }
+            hashTable[hash] ??= new LinkedList<HashEntry<TKey, TValue>>();
 
             var entry = hashTable[hash]?.FirstOrDefault(arg => arg.Key?.Equals(key) == true);
 

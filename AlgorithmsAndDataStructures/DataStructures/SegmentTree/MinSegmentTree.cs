@@ -5,7 +5,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SegmentTree
     public class MinSegmentTree : AbstractSegmentTree
     {
         public MinSegmentTree(int[] input)
-            :base(input, (x,y) => Math.Min(x, y))
+            :base(input, Math.Min)
         {
 
         }

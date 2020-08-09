@@ -23,9 +23,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
 
             for (var i = 0; i < suffixArray.Length; i++)
             {
-                suffixArray[i] = new NaiveSuffixArrayNode();
-                suffixArray[i].Suffix = input.Substring(i);
-                suffixArray[i].Index = i;
+                suffixArray[i] = new NaiveSuffixArrayNode {Suffix = input.Substring(i), Index = i};
             }
 
             suffixArray = suffixArray.OrderBy(arg => arg.Suffix).ToArray();

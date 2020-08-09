@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Sorting
+namespace AlgorithmsAndDataStructures.Algorithms.Strings.Sorting
 {
     public class Msd
     {

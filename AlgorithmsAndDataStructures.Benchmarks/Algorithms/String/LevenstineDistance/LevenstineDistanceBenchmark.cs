@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.LevenstineDistance;
+﻿using AlgorithmsAndDataStructures.Algorithms.Strings.LevenstineDistance;
 using BenchmarkDotNet.Attributes;
 
 namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.String.LevenstineDistance

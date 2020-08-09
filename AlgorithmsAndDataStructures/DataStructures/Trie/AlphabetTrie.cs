@@ -16,10 +16,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
         public void Insert(string key)
         {
-            if (root == null)
-            {
-                root = new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
-            }
+            root ??= new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
 
             var current = root;
 
@@ -27,10 +24,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
             {
                 var index = GetIndex(key, i);
 
-                if (current.Children[index] == null)
-                {
-                    current.Children[index] = new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
-                }
+                current.Children[index] ??= new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
 
                 current = current.Children[index];
             }

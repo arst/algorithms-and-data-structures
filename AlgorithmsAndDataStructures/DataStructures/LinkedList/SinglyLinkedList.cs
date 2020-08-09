@@ -33,9 +33,8 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
 
         public void Prepend(T value)
         {
-            var newNode = new Node<T> { Value = value };
+            var newNode = new Node<T> {Value = value, Next = head};
 
-            newNode.Next = head;
 
             head = newNode;
         }
@@ -77,14 +76,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
         {
             if (!IsEmpty() && head.Value.Equals(value))
             {
-                if (head.Next == null)
-                {
-                    head = null;
-                }
-                else
-                {
-                    head = head.Next;
-                }
+                head = head.Next ?? null;
 
                 return;
             }

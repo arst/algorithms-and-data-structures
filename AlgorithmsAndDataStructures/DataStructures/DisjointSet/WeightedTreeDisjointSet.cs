@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet
+﻿namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet
 {
     public class WeightedTreeDisjointSet : IDisjointSet
     {

@@ -19,8 +19,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
             }
             else
             {
-                var node = new LinkedListStackNode<T> { Value = value };
-                node.Next = head;
+                var node = new LinkedListStackNode<T> {Value = value, Next = head};
                 head = node;
             }
         }
