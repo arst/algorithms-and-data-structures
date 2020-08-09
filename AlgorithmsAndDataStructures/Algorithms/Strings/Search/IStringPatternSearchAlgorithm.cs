@@ -1,4 +1,4 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Strings.Search
 {
     public interface IStringPatternSearchAlgorithm
     {

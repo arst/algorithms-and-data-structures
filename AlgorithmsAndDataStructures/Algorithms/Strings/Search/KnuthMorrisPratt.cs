@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Strings.Search
 {
     public class KnuthMorrisPratt : IStringPatternSearchAlgorithm
     {
@@ -8,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
         {
             if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
             {
-                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+                return -1;
             }
 
             var aux = ComputeAuxArray(pattern);

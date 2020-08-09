@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
+namespace AlgorithmsAndDataStructures.Algorithms.Strings.Search
 {
     public class BoyerMooreBadCharacterHeuristic : IStringPatternSearchAlgorithm
     {
@@ -9,7 +8,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
         {
             if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
             {
-                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+                return -1;
             }
 
             var badCharacterHeuristicTable = BuildBadCharacterHeuristicTable(pattern);

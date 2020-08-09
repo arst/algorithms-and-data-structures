@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search;
+﻿using AlgorithmsAndDataStructures.Algorithms.Strings.Search;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Search

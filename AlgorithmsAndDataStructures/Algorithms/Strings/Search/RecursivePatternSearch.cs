@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Strings.Search
 {
     public class RecursivePatternSearch : IStringPatternSearchAlgorithm
     {
@@ -8,7 +6,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.Search
         {
             if (string.IsNullOrEmpty(input) || string.IsNullOrEmpty(pattern))
             {
-                throw new ArgumentNullException($"{nameof(input)} and {nameof(pattern)} can't be null.");
+                return -1;
             }
 
             return SearchInternal(input, 0, pattern, 0);
