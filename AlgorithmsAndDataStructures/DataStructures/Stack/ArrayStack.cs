@@ -29,9 +29,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
         {
             if (IsEmpty)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Stack is Empty");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var value = stack[pointer - 1];
@@ -44,9 +42,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
         {
             if (IsEmpty)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Stack is Empty");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
             return stack[pointer - 1];
         }

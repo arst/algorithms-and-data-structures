@@ -53,9 +53,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
             femaleCounterSemaphore.WaitOne();
 
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("In a bathroom F.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
             femaleCounterSemaphore.Release();
@@ -86,9 +84,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             starvationPreventionSemaphore.Release();
             maleCounterSemaphore.WaitOne();
 
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
             Console.WriteLine("In a bath room M.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             Thread.Sleep(TimeSpan.FromSeconds(1));
 
             maleCounterSemaphore.Release();

@@ -22,9 +22,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.HashTable
         {
             if (counter == hashTable.Length && !Find(key))
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Hash table is full.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var initialIndex = Math.Abs(key.GetHashCode() % hashTable.Length);

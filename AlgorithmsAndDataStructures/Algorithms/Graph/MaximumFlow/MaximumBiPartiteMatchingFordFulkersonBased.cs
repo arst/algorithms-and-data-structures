@@ -148,9 +148,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow
                     {
                         if (colors[i] == colors[currentVertex])
                         {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                             throw new Exception("Graph is not bipartite.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
                         }
                     }
                     else

@@ -17,9 +17,7 @@ namespace AlgorithmsAndDataStructures.DataStructures
         {
             if ((rear == queue.Length - 1 && front == 0) || rear == front - 1)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Queue is full");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             if (rear == -1 && front == -1)
@@ -47,9 +45,7 @@ namespace AlgorithmsAndDataStructures.DataStructures
         {
             if (front == -1)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Queue is empty");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             if (front == rear)

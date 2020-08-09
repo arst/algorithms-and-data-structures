@@ -32,9 +32,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeaps
         {
             if (nextElementPointer == Heap.Length)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Heap is full");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             Heap[nextElementPointer] = value;
@@ -72,9 +70,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeaps
         {
             if (nextElementPointer - 1 == 0)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Heap is empty");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var result = Heap[1];

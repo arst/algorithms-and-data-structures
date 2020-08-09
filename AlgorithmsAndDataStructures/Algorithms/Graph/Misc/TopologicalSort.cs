@@ -18,9 +18,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Misc
 
             if (CycleDetector.IsCyclic(graph))
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
-                throw new ArgumentException("This algorythm only operates on acyclic graphs.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
+                throw new ArgumentException("This algorithm only operates on acyclic graphs.");
             }
 
             var order = new Stack<int>();

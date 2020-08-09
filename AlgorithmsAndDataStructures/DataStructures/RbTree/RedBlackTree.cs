@@ -574,9 +574,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.RbTree
 
             if (leftHeight != rightHeight)
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new Exception("Tree is unbalanced.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             return node.IsRed ? leftHeight : leftHeight + 1;
