@@ -2,7 +2,7 @@
 
 :warning: The source code in this repository doesn't contain ready-to-use code. Though, I've wrote some tests and benchmarks, and even though some of them are quite extensive, I haven't spent too much time on optimizations and general scenarios(exceptioins handling, assertions etc.).
 
-# Data Structures:
+# Data Structures
 
 - Queues:
     - Array based Queue ([code](../master/AlgorithmsAndDataStructures/DataStructures/Queue/ArrayQueue.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Queue/ArrayQueueTests.cs))
@@ -69,57 +69,36 @@
     - Simple leaky bucket ([code](../master/AlgorithmsAndDataStructures/DataStructures/Concurrency/SimpleLeakyBucket.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Concurrency/SimpleLeakyBucketTests.cs))
     
 # Algorithms
-
-- Tower of Hanoi
-- Sorting
-    - Bubble Sort
-    - Cuomb Sort
-    - Count Sort
-    - Heap Sort
-    - Insertion Sort
-    - Merge Sort
-    - Quick Sort
-    - Radix Sort
-    - Selection Sort
-    - Shell Sort
-- Searchng
-    - Linear search
-    - Binary Search
-    - Exponential Search
-    - Interpolation Search
-    - Jump Search
-    - Fibonacci Search
-- Graphs
-    - Backtracking
-        - Path of more than K length
-        - Hamilton's path
-        - m-coloring Problem
-    - Search
-        - BFS
-        - DFS
-    - Shortest path
-        - Bellman - Ford
-        - Dijkstra (naive)
-        - Dijkstra (with min. heap)
-        - Floyd - Warshall
-    - Longest path
-        - Longest path in directed acyclic graph (with Topological Sort)
-    - Minimum Spanning Tree
-        - Kruskal's algorithm
-        - Prim's algorithm
-    - Misc
-        - Cycle detection
-        - Biconnected graph
-        - Bridges in graphs
-        - Eulerian path
-        - Fleury's algorithms for Eulerian path
-        - Kosaraju's algorithm for strongly connected components
-        - Negative cycle detection(Bellman - Ford based)
-        - Tarjan's algorithm for articulation points
-        - Tarjan's algorithm for biconnected components
-        - Topological sort
-        - Transitive closure(Floyd - Warshall based)
-       
+- Compression:
+    - Huffman Code ([code](../master/AlgorithmsAndDataStructures/Algorithms/Compression/HuffmanCodeCompression.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/HuffmanCodeCompressionTests.cs))
+    - LZW - Huffman Code ([code](../master/AlgorithmsAndDataStructures/Algorithms/Compression/LzwCompression.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/LZWCompressionTests.cs))
+- Cryptography:
+    - Cesar Cipher ([code](../master/AlgorithmsAndDataStructures/Algorithms/Cryptography/CesarCipher.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/CesarCipherTests.cs))
+    - One Time Pad ([code](../master/AlgorithmsAndDataStructures/Algorithms/Cryptography/OneTimePad.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/OneTimePadTests.cs))
+- Dynamic Programming:
+    - Digit DP ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/DigitDynamicProgramming.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/DigitDynamicProgrammingTests.cs))
+    - 0/1 Knapsack ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/ZeroOneKnapsack.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/ZeroOneKnapsackTests.cs))
+    - Undounded Knapsack ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/UnboundedKnapsack.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/UnboundedKnapsackTests.cs))
+    - Fibonacci numbers Knapsack ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/FibonacciNumber.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/FibonacciNumberTests.cs))
+    - Change making ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/ChangeMakingProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/ChangeMakingProblemTests.cs))
+    - Unique Change making ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/UniqueChangeMakingProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/UniqueChangeMakingProblemTests.cs))  
+    - Longest Common Subsequence ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/LongestCommonSubsequence.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/LongestCommonSubsequenceTests.cs))
+    - Wine cellar ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/WineCellarProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/WineCellarProblemTests.cs))
+    - Caps assignment ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/CapsAssignment.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/CapsAssignmentTests.cs))
+    - Represent N as sum of 1,3,4 ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/RepresentNasSumOf134.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/RepresentNasSumOf134Tests.cs))
+- Graphs:
+    - Backtracking:
+        - Path of more than K length ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Backtracking/PathOfMoreThanKLength.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/Backtracking/PathOfMoreThanKLengthTests.cs))
+        - Hamilton's path ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Backtracking/HamiltonPath.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/Backtracking/HamiltonianCycle.cs))
+        - m-coloring Problem ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Backtracking/MColoringProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/Backtracking/MColoringProblemTests.cs))
+    - Coloring:
+        - Greedy ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Coloring/GreedyColoring.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/Coloring/GreedyColoringTests.cs))
+    - K-Centers:
+        - Greedy ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/KCenters/KCentersGreedyApproximation.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KCenters/KCentersGreedyApproximationTests.cs))
+    - Longest Path:
+        - Critical Path ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/LongestPath/CriticalPath.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/LongestPath/CriticalPathTests.cs))
+        - Longest Path In a DAG ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/LongestPath/LongestPathInADirectedAcyclicGraph.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/LongestPath/LongestPathInADirectedAcyclicGraphTests.cs))
+        
 # Misc concurrent problems
 
 - Asynchronous to Synchronous ([code](../master/AlgorithmsAndDataStructures/DataStructures/Concurrency/AsynchronousToSynchronous.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Concurrency/AsynchronousToSynchronousTests.cs))
