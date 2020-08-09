@@ -18,6 +18,11 @@ namespace AlgorithmsAndDataStructures.DataStructures.DecisionTree
                 return dt;
             }
 
+            if (attributes is null)
+            {
+                throw new ArgumentNullException(nameof(attributes));
+            }
+
             dt.Examples.AddRange(examples);
             
             if (CheckAllExamplesHaveTheSameAttributeValue(examples, targetAttributeName))

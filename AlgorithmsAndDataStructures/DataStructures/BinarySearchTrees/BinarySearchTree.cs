@@ -1,8 +1,8 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AlgorithmsAndDataStructures.DataStructures.Common;
 
-namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTree
+namespace AlgorithmsAndDataStructures.DataStructures.BinarySearchTrees
 {
     public class BinarySearchTree<T> where T : IComparable<T> 
     {

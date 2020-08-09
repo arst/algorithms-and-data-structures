@@ -1,9 +1,9 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.BinarySearchTree;
+﻿using System;
+using AlgorithmsAndDataStructures.DataStructures.BinarySearchTrees;
 using AlgorithmsAndDataStructures.DataStructures.Common;
-using System;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinarySearchTree
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.BinarySearchTrees
 {
     public class BinarySearchTreeTests
     {

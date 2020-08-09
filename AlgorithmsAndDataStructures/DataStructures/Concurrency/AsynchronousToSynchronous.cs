@@ -9,7 +9,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
         private class AsyncExecutor
         {
 #pragma warning disable HAA0302 // Display class allocation to capture closure
+#pragma warning disable CA1822 // Mark members as static
             public void ExecuteAsync(Action callback)
+#pragma warning restore CA1822 // Mark members as static
 #pragma warning restore HAA0302 // Display class allocation to capture closure
             {
                 if (callback is null)

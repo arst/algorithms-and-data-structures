@@ -60,7 +60,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Concurrency
 #pragma warning restore HAA0101 // Array allocation for params parameter
             cancellationTokenSource.Cancel();
 
-            Assert.True(!queue1.Intersect(queue2).Any());
+            Assert.True(!queue1.Intersect(queue2).ToList().Any());
 
             Assert.True(queue1.Distinct().Count() == queue1.Count);
 

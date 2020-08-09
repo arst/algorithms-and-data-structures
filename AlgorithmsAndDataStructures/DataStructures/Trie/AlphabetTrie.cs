@@ -18,20 +18,18 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
         {
             if (root == null)
             {
-                root = new AlphabetTrieNode();
-                root.Children = new AlphabetTrieNode[alphabetSize];
+                root = new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
             }
 
             var current = root;
 
-            for (var i = 0; i < key.Length; i++)
+            for (var i = 0; i < key?.Length; i++)
             {
                 var index = GetIndex(key, i);
 
                 if (current.Children[index] == null)
                 {
-                    current.Children[index] = new AlphabetTrieNode();
-                    current.Children[index].Children = new AlphabetTrieNode[alphabetSize];
+                    current.Children[index] = new AlphabetTrieNode {Children = new AlphabetTrieNode[alphabetSize]};
                 }
 
                 current = current.Children[index];
@@ -49,7 +47,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
 
             var current = root;
 
-            for (var i = 0; i < key.Length; i++)
+            for (var i = 0; i < key?.Length; i++)
             {
                 var index = GetIndex(key, i);
 
@@ -92,11 +90,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Trie
                         node.IsCompleteWord = false;
                         return node;
                     }
-                    else
-                    {
-                        node.Children[index] = null;
-                        return IsNonEmptyNode(node) ? node : null;
-                    }
+
+                    node.Children[index] = null;
+                    return IsNonEmptyNode(node) ? node : null;
                 }
 
                 return node;

@@ -4,7 +4,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
 {
     public class LinkedListStack<T>
     {
-        LinkedListStackNode<T> head;
+        private LinkedListStackNode<T> head;
 
         public LinkedListStack()
         {
@@ -29,7 +29,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
         {
             if (IsEmpty)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Stack is Empty");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             var value = head.Value;
@@ -41,7 +43,9 @@ namespace AlgorithmsAndDataStructures.DataStructures.Stack
         {
             if (IsEmpty)
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ArgumentException("Stack is Empty");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
             return head.Value;
         }
