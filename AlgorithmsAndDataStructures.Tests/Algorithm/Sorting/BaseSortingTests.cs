@@ -41,7 +41,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
         {
             var sut = GetSystemUnderTest();
             var r = new Random();
-            var target = new int[10000];
+            var target = new int[1000];
             var test = new int[target.Length];
 
             for (var i = 0; i < 1000; i++)
