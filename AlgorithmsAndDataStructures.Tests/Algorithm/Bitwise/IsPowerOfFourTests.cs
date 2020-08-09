@@ -24,7 +24,8 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
 
             for (var i = 0; i < 1048576; i++)
             {
-                Assert.Equal(Math.Abs(Math.Log(i, 4) % 1) < 0.001, sut.IsPower(i));
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
+                Assert.Equal(Math.Log(i, 4) % 1 == 0, sut.IsPower(i));
             }
         }
     }
