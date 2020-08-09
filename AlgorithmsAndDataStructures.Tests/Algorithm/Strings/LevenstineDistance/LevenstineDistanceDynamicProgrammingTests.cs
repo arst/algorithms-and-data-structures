@@ -1,4 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.StringAlgorithms.LevenstineDistance;
+﻿using AlgorithmsAndDataStructures.Algorithms.Strings.LevenstineDistance;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.LevenstineDistance

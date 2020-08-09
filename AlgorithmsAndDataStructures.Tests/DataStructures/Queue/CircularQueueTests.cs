@@ -1,8 +1,8 @@
-﻿using AlgorithmsAndDataStructures.DataStructures;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.DataStructures.Queue;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.Queue
 {
     public class CircularQueueTests
     {

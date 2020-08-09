@@ -1,7 +1,7 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingListTests
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.SelfOrginizingList
 {
     public class TransposeSelfOrginizingListTests
     {

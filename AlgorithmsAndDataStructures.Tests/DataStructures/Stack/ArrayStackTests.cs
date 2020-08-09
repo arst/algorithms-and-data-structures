@@ -1,8 +1,8 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.Stack;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.DataStructures.Stack;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.Stack
 {
     public class ArrayStackTests
     {

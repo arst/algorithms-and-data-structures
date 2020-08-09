@@ -2,7 +2,7 @@
 using AlgorithmsAndDataStructures.Algorithms.Graph.LongestPath;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.LongestPath
 {
     public class LongestPathInADirectedAcyclicGraphTests
     {

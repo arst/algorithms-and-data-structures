@@ -1,7 +1,7 @@
 using AlgorithmsAndDataStructures.Algorithms.Graph.MaximumFlow;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.MaxFlow
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph.MaxFlow
 {
     public class FordFulkersonTests
     {

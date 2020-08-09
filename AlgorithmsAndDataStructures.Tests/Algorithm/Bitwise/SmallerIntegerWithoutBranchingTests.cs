@@ -1,5 +1,5 @@
-﻿using AlgorithmsAndDataStructures.Algorithm.Bitwise;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Bitwise;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
