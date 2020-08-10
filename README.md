@@ -98,6 +98,19 @@
     - Longest Path:
         - Critical Path ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/LongestPath/CriticalPath.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/LongestPath/CriticalPathTests.cs))
         - Longest Path In a DAG ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/LongestPath/LongestPathInADirectedAcyclicGraph.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/LongestPath/LongestPathInADirectedAcyclicGraphTests.cs))
+    - Maximum Flow and Bipartite matching:
+        - Dinic's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/DinicsMaximumFlow.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/DinicsMaximumFlowTests.cs))
+        - Edge-Disjoint Path ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/EdgeDisjointPath.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/EdgeDisjointPathTests.cs))
+        - Ford-Fulkerson ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/FordFulkerson.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/FordFulkersonTests.cs))
+        - Ford-Fulkerson With Capacity Heuristic ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/FordFulkersonWithCapacityHeuristic.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/FordFulkersonWithCapacityHeuristicTests.cs))
+        - Hopcroft-Karp ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/HopcroftKarp.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/HopcroftKarpTests.cs))
+        - Maximum Bipartite Matching DFS-Based ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/MaximumBiPartiteMatchingDfsBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/MaximumBiPartiteMatchingDfsBasedTests.cs))
+        - Maximum Bipartite Matching Ford-Fulkerson-Based ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/MaximumBiPartiteMatchingFordFulkersonBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/MaximumBiPartiteMatchingFordFulkersonBasedTests.cs))
+        - Push-relabel ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/PushRelabel.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/PushRelabelTests.cs))
+    - Min Cut:
+        - ST-Cut Ford-Fulkerson based ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/STCutFordFulkersonBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/STCutFordFulkersonBasedTests.cs))
+        - ST-Cut naive ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/MinSTCutNaive.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/MinSTCutNaiveTests.cs))
+        - Karger's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/KargersAlgorithmForMinimumCut.css), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KargersAlgorithmForMinimumCutTests.cs))
         
 # Misc concurrent problems
 
