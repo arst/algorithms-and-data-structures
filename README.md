@@ -110,8 +110,45 @@
     - Min Cut:
         - ST-Cut Ford-Fulkerson based ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MaximumFlow/STCutFordFulkersonBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/STCutFordFulkersonBasedTests.cs))
         - ST-Cut naive ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/MinSTCutNaive.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/MaxFlow/MinSTCutNaiveTests.cs))
-        - Karger's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/KargersAlgorithmForMinimumCut.css), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KargersAlgorithmForMinimumCutTests.cs))
-        
+        - Karger's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/KargersAlgorithmForMinimumCut.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KargersAlgorithmForMinimumCutTests.cs))
+    - Minimum Spanning Tree:
+        - Kruskal's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/KruskalMinimumSpanningTree.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KruskalMinimumSpanningTreeTests.cs))  
+        - Kruskal's algorithm with disjoint set ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/KruskalMinimumSpanningTreeWithDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KruskalMinimumSpanningTreeWithDisjointSetTests.cs))
+        - Prim's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/PrimsAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/PrimsAlgorithmTests.cs))
+    - Search:
+        - Breadth-First-Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Search/BreadthFirstSearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BreadthFirstSearchTests.cs))
+        - Depth-First-Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Search/DepthFirstSearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/DepthFirstSearchTests.cs))
+    - Shortest path:
+        - Bellman-Ford Algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/ShortestPath/BellmanFord.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BellmanFordTests.cs))
+        - Dijkstra's Algorithm with heap ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/ShortestPath/DijkstraHeapified.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/DijkstraHeapifiedTests.cs))
+        - Dijkstra's Algorithm naive ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/ShortestPath/DijkstraNaive.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/DijkstraNaiveTests.cs))
+        - Floyd-Warshall ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/ShortestPath/FloydWarshall.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/FloydWarshallTests.cs))
+    - Traveling Salesman
+        - Naive ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/TravelingSalesman/NaiveTravelingSalesman.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TravelingSalesman/NaiveTravelingSalesmanTests.cs))
+        - Greedy ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/TravelingSalesman/GreedyTravelingSalesman.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TravelingSalesman/GreedyTravelingSalesmanTests.cs))
+        - Min Spanning Tree ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/TravelingSalesman/MinSpanningTreeTravelingSalesman.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TravelingSalesman/MinSpanningTreeTravelingSalesmanTests.cs))
+        - Dynamic Programming ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/TravelingSalesman/DynamicProgrammingTravelingSalesman.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TravelingSalesman/DynamicProgrammingTravelingSalesmanTests.cs))
+    - Vertex Cover:
+        - Simple Approximation ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/VertexCover/VertexCoverSimpleApproximation.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/VertexCover/VertexCoverSimpleApproximationTests.cs))
+    - Voting:
+        - Schulze Method ([code](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/Voting/SchulzeMethodTests.cs), [tests](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Voting/SchulzeMethod.cs))
+    - Misc:
+        - Biconnected Graph check using Tarjan's Algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/BiconnectedGraph.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BiconnectedGraphTests.cs))
+        - Bipartite Graph check using DFS ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/BipartiteGraphDfsBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BipartiteGraphDfsBasedTests.cs))
+        - Bipartite Graph check using BFS ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/BipartiteGraphBfsBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BipartiteGraphBfsBasedTests.cs))
+        - Bridges in Graph check using Tarjan's Algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/BridgesInGraph.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BridgesInGraphTests.cs))
+        - Cycles in Graph check using DFS ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/CycleDetector.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/CycleDetectionTests.cs))
+        - Eulerian Path ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/EulerianPath.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/EulerianPathTests.cs))
+        - Fleury's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/FleurysAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/FleurysAlgorithmеtTests.cs))
+        - Kosaraju's Algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/KosarajusAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KosarajusAlgorithmTests.cs))
+        - Negative Cycle Detection using Bellman-Ford ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/NegativeCycleDetectionBellmanFordBased.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/NegativeCycleDetectionBellmanFordBasedTests.cs))
+        - Tarjan's Algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/TarjansAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TarjansAlgorithmTests.cs))
+        - Biconnected Components using Tarjan's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/TarjansAlgorithmForBiconnectedComponents.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TarjansAlgorithmForBiconnectedComponentsTests.cs))
+        - Topological Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/TopologicalSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TopologicalSortTests.cs))
+        - Transitive Closure using Floyd-Warshall algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/Misc/TransitiveClosureFloydWarshall.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/TransitiveClosureFloydWarshallTests.cs))
+- Hashing:
+    - Alder32 ([code](../master/AlgorithmsAndDataStructures/Algorithms/Hashing/Alder32.cs))
+    - FowlerNollVo1aBasedHash ([code](../master/AlgorithmsAndDataStructures/Algorithms/Hashing/FowlerNollVo1aBasedHash.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Hashing/FowlerNollVo1aBasedHashTests.cs))
 # Misc concurrent problems
 
 - Asynchronous to Synchronous ([code](../master/AlgorithmsAndDataStructures/DataStructures/Concurrency/AsynchronousToSynchronous.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Concurrency/AsynchronousToSynchronousTests.cs))
