@@ -44,7 +44,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.DisjointSet
         }
 
         [Fact]
-        public void PropertyBased()
+        public void Fuzzy()
         {
             var size = 1000;
             var sut = GetSut(size);
