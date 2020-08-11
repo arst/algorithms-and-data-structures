@@ -192,6 +192,7 @@
     - Rabin-Karp ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/RabinKarp.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/RabinKarpTests.cs))
     - Least Significant Digit sorting ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Sorting/LSD.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Sorting/LSDTests.cs))
     - Most Significant Digit sorting ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Sorting/MSD.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Sorting/MSDTests.cs))
+- Bitwise stuff: ([code](../master/AlgorithmsAndDataStructures/Algorithms/Bitwise/), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Bitwise)
 
 # Misc concurrent problems
 
