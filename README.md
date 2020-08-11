@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.com/arst/AandDS.svg?token=QTqu8xkSrAFMgyb3eyEW&branch=master)](https://travis-ci.com/arst/AandDS)
 
-:warning: The source code in this repository doesn't contain ready-to-use code. Though, I've wrote some tests and benchmarks, and even though some of them are quite extensive, I haven't spent too much time on optimizations and general scenarios(exceptioins handling, assertions etc.).
-
+:warning: The source code in this repository doesn't contain ready-to-use code. Though, I've wrote some tests and benchmarks, and even though some of them are quite extensive, I haven't spent too much time on optimizations and general usages(exception handling, generic interfaces etc.), not to mention code styles.
 # Data Structures
 
 - Queues:
@@ -19,10 +18,10 @@
     - Doubly Linked List ([code](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/DoublyLinkedList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/DoublyLinkedListTests.cs))
     - Singly Circular Linked List ([code](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/SinglyCircularLinkedList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/SingleCircularLinkedListTests.cs))
     - Skip List ([code](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/SkipList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/LinkedList/SkipListTests.cs))
-- Self-orginizing Lists:
-    - Count based self-orginizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/CountBasedSelfOrganizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/CountBasedSelfOrganizingListTests.cs))
-    - Move to forward self-orginizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/MoveToForwardSelfOrganizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/MoveToForwardSelfOrganizingListTests.cs))
-    - Transpose self-orginizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/TransposeSelfOrginizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/TransposeSelfOrginizingListTests.cs))
+- Self-organizing Lists:
+    - Count based Self-organizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/CountBasedSelfOrganizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/CountBasedSelfOrganizingListTests.cs))
+    - Move to forward Self-organizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/MoveToForwardSelfOrganizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/MoveToForwardSelfOrganizingListTests.cs))
+    - Transpose Self-organizing List ([code](../master/AlgorithmsAndDataStructures/DataStructures/SelfOrganizingList/TransposeSelfOrginizingList.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/TransposeSelfOrginizingListTests.cs))
 - Hash Tables: 
     - Separate chaining ([code](../master/AlgorithmsAndDataStructures/DataStructures/HashTable/SeparateChainingHashTable.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/SeparateChainingHashTableTests.cs))
     - Open address hasing ([code](../master/AlgorithmsAndDataStructures/DataStructures/HashTable/OpenAddressHasingHashTable.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SelfOrginizingList/OpenAddressHashingHashTableTests.cs))
