@@ -149,6 +149,50 @@
 - Hashing:
     - Alder32 ([code](../master/AlgorithmsAndDataStructures/Algorithms/Hashing/Alder32.cs))
     - FowlerNollVo1aBasedHash ([code](../master/AlgorithmsAndDataStructures/Algorithms/Hashing/FowlerNollVo1aBasedHash.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Hashing/FowlerNollVo1aBasedHashTests.cs))
+- Numbers:
+    - Euclidian Common Denominator ([code](../master/AlgorithmsAndDataStructures/Algorithms/Numbers/EuclidianAlgorithmForCommonDenominator.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Numbers/EuclidianAlgorithmForCommonDenominatorTests.cs))
+    - Sieve of Eratosthenes ([code](..//master/AlgorithmsAndDataStructures/Algorithms/Numbers/SieveOfEratosthenes.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Numbers/SieveOfEratosthenesTests.cs))
+- Pseudorandom Number Generators:
+    - Linear Congruential Random Number Generator ([code](../master/AlgorithmsAndDataStructures/Algorithms/PseudorandomNumberGenerators/LinearCongruentialRandomNumberGenerator.cs))
+    - XOR Shift 1024 Star ([code](../master/AlgorithmsAndDataStructures/Algorithms/PseudorandomNumberGenerators/XORShift1024Star.cs))
+    - XOR Shift 64 Star ([code](../master/AlgorithmsAndDataStructures/Algorithms/PseudorandomNumberGenerators/XORShift64Star.cs))
+- Sampling:
+    - Reservoir Sampling ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sampling/ReservoirSampling.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sampling/ReservoirSamplingTests.cs))
+    - Selection Sampling ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sampling/SelectionSampling.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sampling/SelectionSamplingTests.cs))
+- Search:
+    - Binary Search Recursive ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/BinaryRecursive.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/BinaryRecursiveTests.cs))
+    - Binary Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/BinarySearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/BinarySearchTests.cs))
+    - Exponential Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/Exponential.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/ExponentialSearchTests.cs))
+    - Fibonacci Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/Fibonacci.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/Fibonacci.cs))
+    - Interpolation Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/Interpolation.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/InterpolationSortTests.cs))
+    - Jump Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/Jump.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/JumpSearchTests.cs))
+    - Linear Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/Linear.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/LinearSearchTests.cs))
+    - Quick Select ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/QuickSelect.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/QuickSelectTests.cs))
+    - Sublist ([code](../master/AlgorithmsAndDataStructures/Algorithms/Search/SublistSearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Search/SublistSearchTests.cs))
+- Sorting:
+    - Bubble Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/BubbleSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/BubbleSortTests.cs))
+    - Comb Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/CombSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/CombSortTests.cs))
+    - Count Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/CountSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/CountSortTests.cs))
+    - Heap Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/HeapSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/HeapSortTests.cs))
+    - Insertion Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/InsertionSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/InsertionSortTests.cs))
+    - Merge Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/MergeSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/MergeSortTests.cs))
+    - Partitioned Merge Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/PartitionedMergeSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/PartitionedMergeSortTests.cs))
+    - Quick Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/QuickSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/QuickSortTests.cs))
+    - Radix Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/RadixSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/RadixSortTests.cs))
+    - Selection Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/SelectionSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/SelectionSortTests.cs))
+    - Shell Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/ShellSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/ShellSortTests.cs))
+- Strings:
+    - Levenstine Distance ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/LevenstineDistance/LevenstineDistanceDynamicProgramming.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/LevenstineDistance/LevenstineDistanceDynamicProgrammingTests.cs))
+    - Booyer-Moore Combined Heuristic ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/BooyerMooreCombinedHeuristic.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/BooyerMooreCombinedHeuristicTests.cs))
+    - Booyer-Moore Bad Character Heuristic ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/BoyerMooreBadCharacterHeuristic.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/BoyerMooreBadCharacterHeuristicTests.cs))
+    - Booyer-Moore Good Suffix Heuristic ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/BoyerMooreGoodSuffixHeuristic.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/BoyerMooreGoodSuffixHeuristicTests.cs))
+    - Knuth-Morris-Pratt ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/KnuthMorrisPratt.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/KnuthMorrisPrattTests.cs))
+    - Naive pattern Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/NaivePatternSearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/NaivePatternSearchTests.cs))
+    - Recursive pattern Search ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/RecursivePatternSearch.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/RecursivePatternSearchTests.cs))
+    - Rabin-Karp ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Search/RabinKarp.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Search/RabinKarpTests.cs))
+    - Least Significant Digit sorting ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Sorting/LSD.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Sorting/LSDTests.cs))
+    - Most Significant Digit sorting ([code](../master/AlgorithmsAndDataStructures/Algorithms/Strings/Sorting/MSD.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Strings/Sorting/MSDTests.cs))
+
 # Misc concurrent problems
 
 - Asynchronous to Synchronous ([code](../master/AlgorithmsAndDataStructures/DataStructures/Concurrency/AsynchronousToSynchronous.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Concurrency/AsynchronousToSynchronousTests.cs))
