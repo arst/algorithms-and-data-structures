@@ -66,7 +66,7 @@
             return null;
         }
 
-        private void Swap(SelfOrganizingListNode<T> prePrevious, SelfOrganizingListNode<T> previous, SelfOrganizingListNode<T> current)
+        private static void Swap(SelfOrganizingListNode<T> prePrevious, SelfOrganizingListNode<T> previous, SelfOrganizingListNode<T> current)
         {
             prePrevious.Next = current;
             previous.Next = current.Next;

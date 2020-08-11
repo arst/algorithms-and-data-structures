@@ -19,7 +19,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.LinkedList
             }
         }
 
-        private DoublyNode<T> GetTail(DoublyNode<T> head)
+        private static DoublyNode<T> GetTail(DoublyNode<T> head)
         {
             var current = head;
 
