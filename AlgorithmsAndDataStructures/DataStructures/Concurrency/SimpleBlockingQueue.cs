@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
@@ -17,7 +18,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             this.size = size;
         }
 
-        public void Enqueue(int value)
+        public void Enqueue(int value, TimeSpan timeout, CancellationToken cancellationToken)
         {
             try
             {
@@ -25,7 +26,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
 
                 while (currentSize >= size)
                 {
-                    Monitor.Wait(lockObject);
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        throw new OperationCanceledException(cancellationToken);
+                    }
+
+                    Monitor.Wait(lockObject, timeout);
                 }
 
                 queue.Enqueue(value);
@@ -44,7 +50,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
             }
         }
 
-        public int Dequeue()
+        public int Dequeue(TimeSpan timeout, CancellationToken cancellationToken)
         {
             int dequeued;
 
@@ -53,7 +59,12 @@ namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
                 Monitor.Enter(lockObject);
                 while (currentSize <= 0)
                 {
-                    Monitor.Wait(lockObject);
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        throw new OperationCanceledException(cancellationToken);
+                    }
+
+                    Monitor.Wait(lockObject, timeout);
                 }
 
                 dequeued = queue.Dequeue();

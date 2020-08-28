@@ -17,7 +17,7 @@ namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
             this.input = input;
         }
 
-        private List<int> BuildSuffixArray(string input)
+        private static List<int> BuildSuffixArray(string input)
         {
             var suffixArray = new NaiveSuffixArrayNode[input.Length];
 

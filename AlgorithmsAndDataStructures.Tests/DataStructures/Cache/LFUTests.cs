@@ -47,7 +47,7 @@ namespace AlgorithmsAndDataStructures.Tests.DataStructures.Cache
         }
 
         [Fact]
-        public void PropertyBased()
+        public void Fuzzy()
         {
             var testCaseSize = 10;
             var sut = new Lfu(testCaseSize);
