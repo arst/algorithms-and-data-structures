@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/arst/AandDS.svg?token=QTqu8xkSrAFMgyb3eyEW&branch=master)](https://travis-ci.com/arst/AandDS)
-[![Known Vulnerabilities](https://snyk.io/test/github/arst/AandDS/badge.svg?targetFile=AlgorithmsAndDataStructures/AlgorithmsAndDataStructures.csproj)](https://snyk.io/test/github/arst/AandDS?targetFile=AlgorithmsAndDataStructures/AlgorithmsAndDataStructures.csproj)
+[![Known Vulnerabilities](https://snyk.io/test/github/arst/AandDS/badge.svg)](https://snyk.io/test/github/arst/AandDS)
 
 :warning: The source code in this repository doesn't contain ready-to-use code. Though, I've wrote some tests and benchmarks, and even though some of them are quite extensive, I haven't spent too much time on optimizations and general usages(exception handling, generic interfaces etc.), not to mention code styles.
 # Data Structures
