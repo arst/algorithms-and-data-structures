@@ -25,6 +25,7 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.Sorting
         private readonly RadixSort radixSort;
         private readonly SelectionSort selectionSort;
         private readonly ShellSort shellSort;
+        private readonly QuickSort_Lomuto quickSortLomuto;
 
         public SortingBenchmark()
         {
@@ -36,6 +37,7 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.Sorting
             mergeSort = new MergeSort();
             partitionedMergeSort = new PartitionedMergeSort();
             quickSort = new QuickSort();
+            quickSortLomuto = new QuickSort_Lomuto();
             radixSort = new RadixSort();
             selectionSort = new SelectionSort();
             shellSort = new ShellSort();
@@ -64,6 +66,9 @@ namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.Sorting
 
         [Benchmark(Baseline = true)]
         public void QuickSort() => quickSort.Sort(Copy(data));
+
+        [Benchmark]
+        public void QuickSortLomuto() => quickSortLomuto.Sort(Copy(data));
 
         [Benchmark]
         public void RadixSort() => radixSort.Sort(Copy(data));
