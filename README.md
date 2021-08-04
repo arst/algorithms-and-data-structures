@@ -177,6 +177,7 @@
     - Merge Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/MergeSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/MergeSortTests.cs))
     - Partitioned Merge Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/PartitionedMergeSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/PartitionedMergeSortTests.cs))
     - Quick Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/QuickSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/QuickSortTests.cs))
+    - Quick Sort(Lomuto's partition) ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/QuickSort-Lomuto.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/QuickSort_LomutoTests.cs))
     - Radix Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/RadixSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/RadixSortTests.cs))
     - Selection Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/SelectionSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/SelectionSortTests.cs))
     - Shell Sort ([code](../master/AlgorithmsAndDataStructures/Algorithms/Sorting/ShellSort.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Sorting/ShellSortTests.cs))
