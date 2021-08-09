@@ -8,19 +8,22 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinCut
     public class KargersAlgorithmForMinimumCut
     {
 #pragma warning disable CA1822 // Mark members as static
-        public int MinCut(UndirectedGraph originalGraph, int samplingCount)
+        public int MinCut(UndirectedGraph graph)
 #pragma warning restore CA1822 // Mark members as static
         {
-            if (originalGraph is null)
+            if (graph is null)
             {
                 return default;
             }
 
-            var originalVertices = originalGraph.Vertices();
-            var minCuts = new List<int>(samplingCount);
+            var numberOfVertices = graph.Vertices().Length;
+            var repeatCount = (int)((2 ^ numberOfVertices) * Math.Log(numberOfVertices));
+
+            var originalVertices = graph.Vertices();
+            var minCuts = new List<int>(repeatCount);
 
             // It's a randomized algorithm so we should run a few iterations to achieve the results as close as possible to the optimum.
-            while (samplingCount > 0)
+            while (repeatCount > 0)
             {
                 var vertices = new Dictionary<int, List<int>>();
                 // Copy all vertices to a new dictionary with indexes as a key and adjacent vertices as values.
@@ -59,7 +62,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinCut
 
                 // Count of vertices from the first node is the min cut. 
                 minCuts.Add(vertices.First().Value.Count);
-                samplingCount--;
+                repeatCount--;
             }
 
             return minCuts.Min();
