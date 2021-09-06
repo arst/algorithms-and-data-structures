@@ -5,7 +5,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
     public class ReservoirSampling
     {
 #pragma warning disable CA1822 // Mark members as static
-        public int[] GetRandomSample(SampleSource population, int sampleSize)
+        public int[] GetReservoirSample(SampleSource population, int sampleSize)
 #pragma warning restore CA1822 // Mark members as static
         {
             if (population is null)
@@ -13,13 +13,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
                 return Array.Empty<int>();
             }
 
-            var result = new int[sampleSize];
+            var reservoir = new int[sampleSize];
             var random = new Random();
 
             // We populate all samples from population to result right-away because we don't know whether we get sampleSize + 1 at any time at all.
             for (var i = 0; i < sampleSize; i++)
             {
-                result[i] = population.GetNext();
+                reservoir[i] = population.GetNext();
             }
 
             var currentPopulationSize = sampleSize;
@@ -32,13 +32,13 @@ namespace AlgorithmsAndDataStructures.Algorithms.Sampling
 
                 if (probabilityToPickNextSample <= sampleSize)
                 {
-                    result[probabilityToPickNextSample - 1] = nextSample;
+                    reservoir[probabilityToPickNextSample - 1] = nextSample;
                 }
 
                 nextSample = population.GetNext();
             }
 
-            return result;
+            return reservoir;
         }
     }
 }
