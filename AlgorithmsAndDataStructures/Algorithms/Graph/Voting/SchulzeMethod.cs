@@ -7,24 +7,25 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
     public class SchulzeMethod
     {
 #pragma warning disable CA1822 // Mark members as static
-        public List<VotingScore> GetWinner(int[][] ballots, int numberOfCandidates)
+        public List<VotingScore> GetWinners(int[][] ballots)
 #pragma warning restore CA1822 // Mark members as static
         {
-            return GetBallotResults(ballots, numberOfCandidates)
+            return GetBallotResults(ballots)
                 .Select((arg, index) => new VotingScore { Candidate = index, Score = arg.Count })
+                .OrderByDescending(arg => arg.Score)
                 .ToList();
         }
 
-        private static IEnumerable<List<int>> GetBallotResults(IReadOnlyList<int[]> ballots, int numberOfCandidates)
+        private static IEnumerable<List<int>> GetBallotResults(IReadOnlyList<int[]> ballots)
         {
-            var pairwisePreferences = CalculatePairwisePreferences(ballots, numberOfCandidates);
+            var pairwisePreferences = CalculatePairwisePreferences(ballots);
             var adjacencyMatrix = CreateAdjacencyMatrix(pairwisePreferences);
-            var (strongestPath, _) = CalculateStrongestPath(adjacencyMatrix);
+            var strongestPath = CalculateStrongestPath(adjacencyMatrix);
 
-            return BallotResult(strongestPath);
+            return BuildBallotResults(strongestPath);
         }
 
-        private static IEnumerable<List<int>> BallotResult(IReadOnlyList<int[]> strongestPath)
+        private static IEnumerable<List<int>> BuildBallotResults(IReadOnlyList<int[]> strongestPath)
         {
             var result = new List<int>[strongestPath.Count];
 
@@ -50,8 +51,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
             return result;
         }
 
-        // ReSharper disable once UnusedTupleComponentInReturnValue
-        private static (int[][] strongestPath, int[][] path) CalculateStrongestPath(IReadOnlyList<int[]> adjacencyMatrix)
+        private static int[][] CalculateStrongestPath(IReadOnlyList<int[]> adjacencyMatrix)
         {
             var numberOfCandidates = adjacencyMatrix.Count;
             var strongestPath = CreateEmptySquareMatrix(numberOfCandidates);
@@ -98,7 +98,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
                 }
             }
 
-            return (strongestPath, path);
+            return strongestPath;
         }
 
         private static int[][] CreateAdjacencyMatrix(IReadOnlyList<int[]> pairwisePreferences)
@@ -121,9 +121,9 @@ namespace AlgorithmsAndDataStructures.Algorithms.Graph.Voting
             return adjacencyMatrix;
         }
 
-        private static int[][] CalculatePairwisePreferences(IReadOnlyList<int[]> ballots, int numberOfCandidates)
+        private static int[][] CalculatePairwisePreferences(IReadOnlyList<int[]> ballots)
         {
-            var preferencesMatrix = CreateEmptySquareMatrix(numberOfCandidates);
+            var preferencesMatrix = CreateEmptySquareMatrix(ballots.Count);
 
             for (var i = 0; i < ballots.Count; i++)
             {

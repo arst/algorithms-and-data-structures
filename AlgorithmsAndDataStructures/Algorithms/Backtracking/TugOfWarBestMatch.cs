@@ -11,16 +11,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 #pragma warning restore CA1822 // Mark members as static
         {
             if (set is null)
-            {
                 return (Array.Empty<int>(), Array.Empty<int>());
-            }
 
             var leftTugLength = set.Length % 2 == 1 ? (set.Length - 1) / 2 : set.Length / 2;
             var visited = new bool[set.Length];
             var solution = new bool[set.Length];
-
             GetLeftTug(set, visited, 0, int.MaxValue, solution, leftTugLength);
-
             return (GetLeftTug(set, solution, leftTugLength) , GetRightTug(set, solution, leftTugLength));
         }
 
@@ -34,10 +30,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
                 if (Math.Abs(rightTug.Sum() - leftTug.Sum()) <= difference)
                 {
                     for (var i = 0; i < included.Length; i++)
-                    {
                         solution[i] = included[i];
-                    }
-
                     return Math.Abs(rightTug.Sum() - leftTug.Sum());
                 }
 
@@ -99,9 +92,7 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             for (var i = startingPosition; i < set.Count; i++)
             {
                 if (!included[i])
-                {
                     return i;
-                }
             }
 
             return -1;

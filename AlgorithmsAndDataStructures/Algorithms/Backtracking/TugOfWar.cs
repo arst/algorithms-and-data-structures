@@ -11,16 +11,11 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
 #pragma warning restore CA1822 // Mark members as static
         {
             if (set is null)
-            {
                 return (Array.Empty<int>(), Array.Empty<int>());
-            }
-
             var leftTugLength = set.Length % 2 == 1 ? (set.Length - 1) / 2 : set.Length / 2;
             var visited = new bool[set.Length];
             var result = new int[leftTugLength];
-
             var hasTug = GetLeftTug(set, visited, result, 0);
-
             return (hasTug ? result : Array.Empty<int>(), hasTug ? GetRightTug(set, visited, leftTugLength) : Array.Empty<int>());
         }
 
@@ -29,7 +24,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             if (leftTugParticipants >= result.Count)
             {
                 var rightTug = GetRightTug(set, included, result.Count);
-
                 return rightTug.Sum() == result.Sum();
             }
 
@@ -41,17 +35,12 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
                 leftTugParticipants++;
                 included[firstNonIncludedIndex] = true;
                 var hasTug = GetLeftTug(set, included, result, leftTugParticipants);
-
                 if (hasTug)
-                {
                     return true;
-                }
-
                 included[firstNonIncludedIndex] = false;
                 leftTugParticipants--;
                 firstNonIncludedIndex = GetNotIncludedIndex(set, included, firstNonIncludedIndex + 1);
             }
-
             return false;
         }
 
@@ -59,7 +48,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
         {
             var result = new int[set.Count - leftTugLength];
             var resultPointer = 0;
-
             for (var i = 0; i < set.Count; i++)
             {
                 if (!included[i])
@@ -68,7 +56,6 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
                     resultPointer++;
                 }
             }
-
             return result;
         }
 
@@ -77,11 +64,8 @@ namespace AlgorithmsAndDataStructures.Algorithms.Backtracking
             for (var i = startingPosition; i < set.Count; i++)
             {
                 if (!included[i])
-                {
                     return i;
-                }
             }
-
             return -1;
         }
     }
