@@ -12,7 +12,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sampling
             var sut = new ReservoirSampling();
             var sampleSource = new SampleSource(2);
 
-            var sample = sut.GetRandomSample(sampleSource, 2);
+            var sample = sut.GetReservoirSample(sampleSource, 2);
 
             Assert.True(sample.All(arg => arg > 0));
         }
@@ -23,7 +23,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sampling
             var sut = new ReservoirSampling();
             var sampleSource = new SampleSource(1000);
 
-            var sample = sut.GetRandomSample(sampleSource, 10);
+            var sample = sut.GetReservoirSample(sampleSource, 10);
 
             Assert.True(sample.All(arg => arg > 0));
         }

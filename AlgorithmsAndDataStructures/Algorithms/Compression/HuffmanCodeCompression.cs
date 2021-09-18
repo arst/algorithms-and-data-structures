@@ -22,10 +22,10 @@ namespace AlgorithmsAndDataStructures.Algorithms.Compression
 
             while (frequencyHeap.Size > 1)
             {
-                var highestFrequency = frequencyHeap.GetTop();
-                var secondHighestFrequency = frequencyHeap.GetTop();
-                var combinedFrequency = highestFrequency.Frequency + secondHighestFrequency.Frequency;
-                var combinedSubtree = CreateSubTree(combinedFrequency, highestFrequency, secondHighestFrequency);
+                var lowestFrequency = frequencyHeap.GetTop();
+                var secondLowestFrequency = frequencyHeap.GetTop();
+                var combinedFrequency = lowestFrequency.Frequency + secondLowestFrequency.Frequency;
+                var combinedSubtree = CreateSubTree(combinedFrequency, lowestFrequency, secondLowestFrequency);
                 frequencyHeap.Insert(combinedSubtree);
             }
 

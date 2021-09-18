@@ -21,7 +21,7 @@ namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
 
             while (minCut > 2)
             {
-                minCut = sut.MinCut(graph, 10000);
+                minCut = sut.MinCut(graph);
 
                 Assert.NotInRange(minCut, 0, 1);
             }
