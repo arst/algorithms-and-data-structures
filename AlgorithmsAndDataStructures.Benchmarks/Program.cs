@@ -1,5 +1,4 @@
-﻿using AlgorithmsAndDataStructures.Benchmarks.Algorithms.Compression;
-using AlgorithmsAndDataStructures.Benchmarks.Algorithms.Sorting;
+﻿using AlgorithmsAndDataStructures.Benchmarks.Algorithms.Graph.MinimumSpanningTree;
 using BenchmarkDotNet.Running;
 
 namespace AlgorithmsAndDataStructures.Benchmarks
@@ -8,7 +7,7 @@ namespace AlgorithmsAndDataStructures.Benchmarks
     {
         static void Main(string[] args)
         {
-            var _ = BenchmarkRunner.Run<SortingBenchmark>();
+            var _ = BenchmarkRunner.Run<BoruvkasAlgorithmBenchmark>();
         }
     }
 }
