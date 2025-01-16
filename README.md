@@ -4,6 +4,12 @@
 
 # Data Structures
 
+- Bloom Filter:
+
+  - Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/BloomFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/BloomFilterTests.cs))
+  - Counting Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/CountingBloomFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/CountingBloomFilterTests.cs))
+  - Cuckoo Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/CuckooFilter/CuckooFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/CuckooFilters/CuckooFilterTests.cs))
+
 - Queues:
   - Array based Queue ([code](../master/AlgorithmsAndDataStructures/DataStructures/Queue/ArrayQueue.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Queue/ArrayQueueTests.cs))
   - Circular Queue ([code](../master/AlgorithmsAndDataStructures/DataStructures/Queue/CircularQueue.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Queue/CircularQueueTests.cs))
@@ -45,18 +51,18 @@
   - Min Segment Tree ([code](../master/AlgorithmsAndDataStructures/DataStructures/SegmentTree/MinSegmentTree.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SegmentTree/MinSegmentTreeTests.cs))
   - Sum Segment Tree ([code](../master/AlgorithmsAndDataStructures/DataStructures/SegmentTree/SumSegmentTree.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SegmentTree/SumSegmentTreeTests.cs))
 - Tries:
-  - Trie(Alphabet Trie)  ([code](../master/AlgorithmsAndDataStructures/DataStructures/Trie/AlphabetTrie.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Trie/AlphabetTrieTests.cs))
+  - Trie(Alphabet Trie) ([code](../master/AlgorithmsAndDataStructures/DataStructures/Trie/AlphabetTrie.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Trie/AlphabetTrieTests.cs))
   - Ternary Trie ([code](../master/AlgorithmsAndDataStructures/DataStructures/Trie/TernaryTrie.cs), [tests](../master/AlgorithmsAndDataStructures/DataStructures/Trie/TernaryTrieTests.cs))
 - Suffix Arrays:
   - Naive ([code](../master/AlgorithmsAndDataStructures/DataStructures/SuffixArray/NaiveSuffixArray.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SuffixArray/NaiveSuffixArrayTests.cs))
-  - n*logN ([code](../master/AlgorithmsAndDataStructures/DataStructures/SuffixArray/EfficientSuffixArray.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SuffixArray/nLognSuffixArrayTests.cs))
+  - n\*logN ([code](../master/AlgorithmsAndDataStructures/DataStructures/SuffixArray/EfficientSuffixArray.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/SuffixArray/nLognSuffixArrayTests.cs))
 - Decision Trees:
   - ID3 ([code](../master/AlgorithmsAndDataStructures/DataStructures/DecisionTree/ID3.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DecisionTree/ID3Tests.cs))
 - Disjoin Sets:
-  - Greedy Disjoin Set  ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/GreedyDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/GreedyDisjointSetTests.cs))
-  - Tree Disjoin Set  ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/TreeDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/TreeDisjointSetTests.cs))
-  - Weighted Tree Disjoin Set  ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/WeightedTreeDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/WeightedTreeDisjointSetTests.cs))
-  - Weighted Tree Disjoin Set with Compressed Path  ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/WeightedTreeCoompressedPathDisjoinSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/WeightedTreeCoompressedPathDisjoinSetTests.cs))
+  - Greedy Disjoin Set ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/GreedyDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/GreedyDisjointSetTests.cs))
+  - Tree Disjoin Set ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/TreeDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/TreeDisjointSetTests.cs))
+  - Weighted Tree Disjoin Set ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/WeightedTreeDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/WeightedTreeDisjointSetTests.cs))
+  - Weighted Tree Disjoin Set with Compressed Path ([code](../master/AlgorithmsAndDataStructures/DataStructures/DisjointSet/WeightedTreeCoompressedPathDisjoinSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/DisjointSet/WeightedTreeCoompressedPathDisjoinSetTests.cs))
 - State Machines:
   - Simplest Finite State Machine ([code](../master/AlgorithmsAndDataStructures/DataStructures/StateMachine/FiniteStateMachine.cs))
   - Stack State Machine ([code](../master/AlgorithmsAndDataStructures/DataStructures/StateMachine/StackFiniteStateMachine.cs))
@@ -82,7 +88,7 @@
   - Undounded Knapsack ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/UnboundedKnapsack.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/UnboundedKnapsackTests.cs))
   - Fibonacci numbers Knapsack ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/FibonacciNumber.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/FibonacciNumberTests.cs))
   - Change making ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/ChangeMakingProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/ChangeMakingProblemTests.cs))
-  - Unique Change making ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/UniqueChangeMakingProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/UniqueChangeMakingProblemTests.cs))  
+  - Unique Change making ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/UniqueChangeMakingProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/UniqueChangeMakingProblemTests.cs))
   - Longest Common Subsequence ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/LongestCommonSubsequence.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/LongestCommonSubsequenceTests.cs))
   - Wine cellar ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/WineCellarProblem.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/WineCellarProblemTests.cs))
   - Caps assignment ([code](../master/AlgorithmsAndDataStructures/Algorithms/DynamicProgramming/CapsAssignment.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Compression/CapsAssignmentTests.cs))
@@ -114,7 +120,7 @@
     - Karger's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinCut/KargersAlgorithmForMinimumCut.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KargersAlgorithmForMinimumCutTests.cs))
   - Minimum Spanning Tree:
     - Boruvka's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/BoruvkasAlgorithm/BoruvkasAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/BoruvkasAlgorithmTests.cs))
-    - Kruskal's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/KruskalMinimumSpanningTree.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KruskalMinimumSpanningTreeTests.cs))  
+    - Kruskal's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/KruskalMinimumSpanningTree.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KruskalMinimumSpanningTreeTests.cs))
     - Kruskal's algorithm with disjoint set ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/KruskalMinimumSpanningTreeWithDisjointSet.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/KruskalMinimumSpanningTreeWithDisjointSetTests.cs))
     - Prim's algorithm ([code](../master/AlgorithmsAndDataStructures/Algorithms/Graph/MinimumSpanningTree/PrimsAlgorithm.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/Algorithm/Graph/PrimsAlgorithmTests.cs))
   - Search:
