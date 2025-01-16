@@ -6,9 +6,9 @@
 
 - Bloom Filter:
 
-  - Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/BloomFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/BloomFilterTests.cs))
-  - Counting Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/CountingBloomFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/CountingBloomFilterTests.cs))
-  - Cuckoo Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/CuckooFilter/CuckooFilter.cs), [tests] (../master/AlgorithmsAndDataStructures.Tests/DataStructures/CuckooFilters/CuckooFilterTests.cs))
+  - Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/BloomFilter.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/BloomFilterTests.cs))
+  - Counting Bloom Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/BloomFilter/CountingBloomFilter.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/BloomFilters/CountingBloomFilterTests.cs))
+  - Cuckoo Filter ([code](../master/AlgorithmsAndDataStructures/DataStructures/CuckooFilter/CuckooFilter.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/CuckooFilters/CuckooFilterTests.cs))
 
 - Queues:
   - Array based Queue ([code](../master/AlgorithmsAndDataStructures/DataStructures/Queue/ArrayQueue.cs), [tests](../master/AlgorithmsAndDataStructures.Tests/DataStructures/Queue/ArrayQueueTests.cs))
