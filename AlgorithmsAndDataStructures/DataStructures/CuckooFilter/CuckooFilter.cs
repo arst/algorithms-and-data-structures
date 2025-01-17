@@ -11,7 +11,7 @@ public class CuckooFilter
     private readonly int fingerprintSize;
     private readonly int bucketSize;
     private readonly int maxInsertionAttempts;
-    private readonly List<HashSet<int>> buckets;
+    private readonly List<List<int>> buckets;
     private readonly FowlerNollVo1ABasedHash hashGenerator;
     
     private static readonly Random Random = new Random(500);
@@ -22,10 +22,10 @@ public class CuckooFilter
         this.maxInsertionAttempts = maxInsertionAttempts;
         this.seed = seed;
         this.fingerprintSize = fingerprintSize;
-        buckets = new List<HashSet<int>>(size);
+        buckets = new List<List<int>>(size);
         for (var i = 0; i < size; i++)
         {
-            buckets.Add(new HashSet<int>(bucketSize));
+            buckets.Add(new List<int>(bucketSize));
         }
 
         hashGenerator = new FowlerNollVo1ABasedHash();
