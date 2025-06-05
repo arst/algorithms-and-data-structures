@@ -1,71 +1,90 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Backtracking;
+﻿using System;
+using System.Linq;
+using AlgorithmsAndDataStructures.Algorithms.Backtracking;
 using Xunit;
 
 namespace AlgorithmsAndDataStructures.Tests.Algorithm.Backtracking;
 
 public class TugOfWarBestMatchTests
 {
-    [Fact]
-    public void TwoElementsSetHasTug()
-    {
-        var sut = new TugOfWarBestMatch();
-        var set = new[] { 2, 2 };
-        var (left, right) = sut.GetTug(set);
+    private readonly TugOfWarBestMatch sut;
 
-        Assert.Collection(left, arg => Assert.Equal(2, arg));
-        Assert.Collection(right, arg => Assert.Equal(2, arg));
+    public TugOfWarBestMatchTests()
+    {
+        sut = new TugOfWarBestMatch();
     }
 
-    [Fact]
-    public void FourElementsSetHasTug()
+    [Theory]
+    [InlineData(null)]
+    [InlineData(new int[0])]
+    public void GetTug_EmptyOrNullInput_ReturnsEmptyArrays(int[] input)
     {
-        var sut = new TugOfWarBestMatch();
-        var set = new[] { 1, 2, 3, 4 };
-        var (left, right) = sut.GetTug(set);
-#pragma warning disable HAA0101 // Array allocation for params parameter
-        Assert.Collection(left, arg => Assert.Equal(1, arg), arg => Assert.Equal(4, arg));
-        Assert.Collection(right, arg => Assert.Equal(2, arg), arg => Assert.Equal(3, arg));
-#pragma warning restore HAA0101 // Array allocation for params parameter
+        var (left, right) = sut.GetTug(input);
+
+        Assert.Empty(left);
+        Assert.Empty(right);
     }
 
-    [Fact]
-    public void OddElementsSetHasTug()
+    [Theory]
+    [InlineData(new[] { 2, 2 })]
+    [InlineData(new[] { -1, -1 })]
+    [InlineData(new[] { 0, 0 })]
+    public void GetTug_TwoIdenticalElements_SplitsEvenly(int[] input)
     {
-        var sut = new TugOfWarBestMatch();
-        var set = new[] { 2, 2, 3, 1, 4 };
-        var (left, right) = sut.GetTug(set);
-#pragma warning disable HAA0101 // Array allocation for params parameter
-        Assert.Collection(left, arg => Assert.Equal(2, arg), arg => Assert.Equal(4, arg));
-        Assert.Collection(right, arg => Assert.Equal(2, arg), arg => Assert.Equal(3, arg), arg => Assert.Equal(1, arg));
-#pragma warning restore HAA0101 // Array allocation for params parameter
+        var (left, right) = sut.GetTug(input);
+
+        Assert.Single(left);
+        Assert.Single(right);
+        Assert.Equal(left[0], right[0]);
+        Assert.Equal(0, Math.Abs(left.Sum() - right.Sum()));
     }
 
-    [Fact]
-    public void BaseLineEven()
+    [Theory]
+    [InlineData(new[] { 1, 2, 3, 4 }, 5, 5)]
+    [InlineData(new[] { -2, -1, 1, 2 }, 0, 0)]
+    [InlineData(new[] { 10, 20, 15, 25 }, 35, 35)]
+    public void GetTug_EvenElementCount_FindsOptimalSplit(int[] input, int expectedLeftSum, int expectedRightSum)
     {
-        var sut = new TugOfWarBestMatch();
-        var set = new[] { 3, 4, 5, -3, 100, 1, 89, 54, 23, 20 };
-        var (left, right) = sut.GetTug(set);
-#pragma warning disable HAA0101 // Array allocation for params parameter
-        Assert.Collection(left, arg => Assert.Equal(4, arg), arg => Assert.Equal(100, arg), arg => Assert.Equal(1, arg),
-            arg => Assert.Equal(23, arg), arg => Assert.Equal(20, arg));
-        Assert.Collection(right, arg => Assert.Equal(3, arg), arg => Assert.Equal(5, arg), arg => Assert.Equal(-3, arg),
-            arg => Assert.Equal(89, arg), arg => Assert.Equal(54, arg));
-#pragma warning restore HAA0101 // Array allocation for params parameter
+        var (left, right) = sut.GetTug(input);
+
+        Assert.Equal(input.Length / 2, left.Length);
+        Assert.Equal(input.Length / 2, right.Length);
+        Assert.Equal(expectedLeftSum, left.Sum());
+        Assert.Equal(expectedRightSum, right.Sum());
     }
 
-    [Fact]
-    public void BaseLineOdd()
+    [Theory]
+    [InlineData(new[] { 2, 2, 3, 1, 4 })]
+    [InlineData(new[] { 1, 2, 3, 4, 5 })]
+    [InlineData(new[] { -1, -2, 0, 1, 2 })]
+    public void GetTug_OddElementCount_SplitsWithMinimalDifference(int[] input)
     {
-        var sut = new TugOfWarBestMatch();
-        var set = new[] { 23, 45, -34, 12, 0, 98, -99, 4, 189, -1, 4 };
-        var (left, right) = sut.GetTug(set);
-#pragma warning disable HAA0101 // Array allocation for params parameter
-        Assert.Collection(left, arg => Assert.Equal(23, arg), arg => Assert.Equal(-99, arg),
-            arg => Assert.Equal(4, arg), arg => Assert.Equal(189, arg), arg => Assert.Equal(4, arg));
-        Assert.Collection(right, arg => Assert.Equal(45, arg), arg => Assert.Equal(-34, arg),
-            arg => Assert.Equal(12, arg), arg => Assert.Equal(0, arg), arg => Assert.Equal(98, arg),
-            arg => Assert.Equal(-1, arg));
-#pragma warning restore HAA0101 // Array allocation for params parameter
+        var (left, right) = sut.GetTug(input);
+
+        Assert.Equal((input.Length - 1) / 2, left.Length);
+        Assert.Equal((input.Length + 1) / 2, right.Length);
+        
+        // Verify this is the best possible split by checking all elements are used
+        var allElements = left.Concat(right).OrderBy(x => x);
+        var inputOrdered = input.OrderBy(x => x);
+        Assert.Equal(inputOrdered, allElements);
+    }
+
+    [Theory]
+    [InlineData(new[] { 3, 4, 5, -3, 100, 1, 89, 54, 23, 20 })]
+    [InlineData(new[] { 23, 45, -34, 12, 0, 98, -99, 4, 189, -1, 4 })]
+    public void GetTug_LargeInputs_ProducesValidSplit(int[] input)
+    {
+        var (left, right) = sut.GetTug(input);
+
+        // Verify all elements are used exactly once
+        var allElements = left.Concat(right).OrderBy(x => x);
+        var inputOrdered = input.OrderBy(x => x);
+        Assert.Equal(inputOrdered, allElements);
+
+        // Verify the split sizes are correct
+        var expectedLeftSize = input.Length % 2 == 1 ? (input.Length - 1) / 2 : input.Length / 2;
+        Assert.Equal(expectedLeftSize, left.Length);
+        Assert.Equal(input.Length - expectedLeftSize, right.Length);
     }
 }
