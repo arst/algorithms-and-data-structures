@@ -1,42 +1,43 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.RbTree
+﻿namespace AlgorithmsAndDataStructures.DataStructures.RbTree;
+
+public class RedBlackTreeNode
 {
-    public class RedBlackTreeNode
+    private RedBlackTreeNode left;
+    private RedBlackTreeNode right;
+
+    public bool IsRed { get; set; }
+
+    public bool IsBlack => !IsRed;
+
+    public bool IsLeft => Parent != null && Parent.Left == this;
+
+    public bool IsRight => Parent != null && Parent.Right == this;
+
+    public RedBlackTreeNode Parent { get; set; }
+
+    public RedBlackTreeNode Left
     {
-        private RedBlackTreeNode right;
-        private RedBlackTreeNode left;
+        get => left ?? GetLeafNode(this);
+        set => left = value;
+    }
 
-        private static RedBlackTreeNode GetLeafNode(RedBlackTreeNode parent) =>
-            new RedBlackTreeNode
-            {
-                Parent = parent,
-                IsRed = false,
-                IsLeafNode = true,
-            };
+    public RedBlackTreeNode Right
+    {
+        get => right ?? GetLeafNode(this);
+        set => right = value;
+    }
 
-        public bool IsRed { get; set; }
+    public int Value { get; set; }
 
-        public bool IsBlack => !IsRed;
+    public bool IsLeafNode { get; set; }
 
-        public bool IsLeft => Parent != null && Parent.Left == this;
-
-        public bool IsRight => Parent != null && Parent.Right == this;
-
-        public RedBlackTreeNode Parent { get; set; }
-
-        public RedBlackTreeNode Left
+    private static RedBlackTreeNode GetLeafNode(RedBlackTreeNode parent)
+    {
+        return new RedBlackTreeNode
         {
-            get => left ?? GetLeafNode(this);
-            set => left = value;
-        }
-
-        public RedBlackTreeNode Right
-        {
-            get => right ?? GetLeafNode(this);
-            set => right = value;
-        }
-
-        public int Value { get; set; }
-
-        public bool IsLeafNode { get; set; }
+            Parent = parent,
+            IsRed = false,
+            IsLeafNode = true
+        };
     }
 }

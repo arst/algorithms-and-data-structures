@@ -8,7 +8,8 @@ Intel Core i7-8750H CPU 2.20GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical 
 
 
 ```
-|                 Method |     Mean |     Error |    StdDev |   Median | Ratio | RatioSD |
-|----------------------- |---------:|----------:|----------:|---------:|------:|--------:|
+
+| Method                 |     Mean |     Error |    StdDev |   Median | Ratio | RatioSD |
+|------------------------|---------:|----------:|----------:|---------:|------:|--------:|
 | HuffmanCodeCompression | 4.162 ms | 0.4474 ms | 1.3193 ms | 3.509 ms |  1.00 |    0.00 |
-|         LZWCompression | 3.576 ms | 0.0699 ms | 0.1002 ms | 3.561 ms |  0.81 |    0.30 |
+| LZWCompression         | 3.576 ms | 0.0699 ms | 0.1002 ms | 3.561 ms |  0.81 |    0.30 |

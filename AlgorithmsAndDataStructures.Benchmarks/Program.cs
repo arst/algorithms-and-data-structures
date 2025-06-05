@@ -1,13 +1,12 @@
 ﻿using AlgorithmsAndDataStructures.Benchmarks.Algorithms.Graph.MinimumSpanningTree;
 using BenchmarkDotNet.Running;
 
-namespace AlgorithmsAndDataStructures.Benchmarks
+namespace AlgorithmsAndDataStructures.Benchmarks;
+
+internal class Program
 {
-    class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            var _ = BenchmarkRunner.Run<BoruvkasAlgorithmBenchmark>();
-        }
+        var _ = BenchmarkRunner.Run<BoruvkasAlgorithmBenchmark>();
     }
 }

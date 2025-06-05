@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search;
+
+public class InterpolationSortTests : BaseSearchAlgorithmTests
 {
-    public class InterpolationSortTests : BaseSearchAlgorithmTests
+    public override ISearchAlgorithm<int> GetSystemUnderTest()
     {
-        public override ISearchAlgorithm<int> GetSystemUnderTest()
-        {
-            return new Interpolation();
-        }
+        return new Interpolation();
     }
 }

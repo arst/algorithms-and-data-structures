@@ -1,13 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays;
-using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Misc.MedianOfTwoArrays;
+
+public class NaiveApproachTests : MedianOfTwoArraysTests
 {
-    public class NaiveApproachTests : MedianOfTwoArraysTests
+    protected override IMediaOfTwoArraysAlgorithm GetSut()
     {
-        protected override IMediaOfTwoArraysAlgorithm GetSut()
-        {
-            return new NaiveApproach();
-        }
+        return new NaiveApproach();
     }
 }

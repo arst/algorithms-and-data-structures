@@ -1,8 +1,7 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree.BoruvkasAlgorithm
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree.BoruvkasAlgorithm;
+
+internal class Subset
 {
-    internal class Subset
-    {
-        public int Root { get; set; }
-        public int Weight { get; set; }
-    }
+    public int Root { get; set; }
+    public int Weight { get; set; }
 }

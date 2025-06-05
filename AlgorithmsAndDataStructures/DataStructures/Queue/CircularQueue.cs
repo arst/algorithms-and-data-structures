@@ -1,76 +1,70 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Queue
+namespace AlgorithmsAndDataStructures.DataStructures.Queue;
+
+public class CircularQueue<T>
 {
-    public class CircularQueue<T>
+    private readonly T[] queue;
+    private int front = -1;
+    private int rear = -1;
+
+    public CircularQueue(int initialCapacity = 8)
     {
-        private readonly T[] queue;
-        int rear = -1;
-        int front = -1;
+        queue = new T[initialCapacity];
+    }
 
-        public CircularQueue(int initialCapacity = 8)
+    public bool IsEmpty => front == -1;
+
+    public void Enqueue(T value)
+    {
+        if ((rear == queue.Length - 1 && front == 0) || rear == front - 1) throw new ArgumentException("Queue is full");
+
+        if (rear == -1 && front == -1)
         {
-            queue = new T[initialCapacity];
+            front = 0;
+            rear++;
+            queue[rear] = value;
         }
-
-        public void Enqueue(T value)
+        else
         {
-            if ((rear == queue.Length - 1 && front == 0) || rear == front - 1)
+            if (rear == queue.Length - 1 && front != 0)
             {
-                throw new ArgumentException("Queue is full");
-            }
-
-            if (rear == -1 && front == -1)
-            {
-                front = 0;
-                rear++;
+                rear = 0;
                 queue[rear] = value;
             }
             else
             {
-                if (rear == queue.Length - 1 && front != 0)
-                {
-                    rear = 0;
-                    queue[rear] = value;
-                }
-                else
-                {
-                    rear++;
-                    queue[rear] = value;
-                }
+                rear++;
+                queue[rear] = value;
             }
         }
+    }
 
-        public T Dequeue()
+    public T Dequeue()
+    {
+        if (front == -1) throw new ArgumentException("Queue is empty");
+
+        if (front == rear)
         {
-            if (front == -1)
-            {
-                throw new ArgumentException("Queue is empty");
-            }
-
-            if (front == rear)
-            {
-                var tmp = queue[front];
-                front = -1;
-                rear = -1;
-                return tmp;
-            }
-            else if (front == queue.Length - 1)
-            {
-                var tmp = queue[front];
-                front = 0;
-
-                return tmp;
-            }
-            else
-            {
-                var tmp = queue[front];
-                front++;
-
-                return tmp;
-            }
+            var tmp = queue[front];
+            front = -1;
+            rear = -1;
+            return tmp;
         }
 
-        public bool IsEmpty => front == -1;
+        if (front == queue.Length - 1)
+        {
+            var tmp = queue[front];
+            front = 0;
+
+            return tmp;
+        }
+        else
+        {
+            var tmp = queue[front];
+            front++;
+
+            return tmp;
+        }
     }
 }

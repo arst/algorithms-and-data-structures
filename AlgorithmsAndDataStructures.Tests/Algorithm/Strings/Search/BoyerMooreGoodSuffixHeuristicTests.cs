@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Strings.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Strings.Search;
+
+public class BoyerMooreGoodSuffixHeuristicTests : StringSearchAlgorithmBaseTests
 {
-    public class BoyerMooreGoodSuffixHeuristicTests : StringSearchAlgorithmBaseTests
+    protected override IStringPatternSearchAlgorithm GetSystemUnderTest()
     {
-        protected override IStringPatternSearchAlgorithm GetSystemUnderTest()
-        {
-            return new BoyerMooreGoodSuffixHeuristic();
-        }
+        return new BoyerMooreGoodSuffixHeuristic();
     }
 }

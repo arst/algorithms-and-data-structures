@@ -1,9 +1,8 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.HashTable
-{
-    public class HashEntry<TKey, TValue>
-    {
-        public TKey Key { get; set; }
+﻿namespace AlgorithmsAndDataStructures.DataStructures.HashTable;
 
-        public TValue Value { get; set; }
-    }
+public class HashEntry<TKey, TValue>
+{
+    public TKey Key { get; set; }
+
+    public TValue Value { get; set; }
 }

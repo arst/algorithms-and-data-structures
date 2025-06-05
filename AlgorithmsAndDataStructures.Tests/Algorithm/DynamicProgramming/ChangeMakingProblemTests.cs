@@ -1,16 +1,15 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.DynamicProgramming;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamicProgramming
-{
-    public class ChangeMakingProblemTests
-    {
-        [Fact]
-        public void SmallChange()
-        {
-            var sut = new ChangeMakingProblem();
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.DynamicProgramming;
 
-            Assert.Equal(3, sut.GetMinChange(new[] { 1, 2, 5 }, 11));
-        }
+public class ChangeMakingProblemTests
+{
+    [Fact]
+    public void SmallChange()
+    {
+        var sut = new ChangeMakingProblem();
+
+        Assert.Equal(3, sut.GetMinChange(new[] { 1, 2, 5 }, 11));
     }
 }

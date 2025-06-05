@@ -1,47 +1,37 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Queue
+namespace AlgorithmsAndDataStructures.DataStructures.Queue;
+
+public class ArrayQueue<T>
 {
-    public class ArrayQueue<T>
+    private readonly T[] queue;
+    private int pointer = -1;
+
+    public ArrayQueue(int initialCapacity = 8)
     {
-        private int pointer = -1;
-        private readonly T[] queue;
+        queue = new T[initialCapacity];
+    }
 
-        public ArrayQueue(int initialCapacity = 8)
-        {
-            queue = new T[initialCapacity];
-        }
+    public bool IsEmpty => pointer == -1;
 
-        public void Enqueue(T value)
-        {
-            if (pointer == queue.Length - 1)
-            {
-                throw new ArgumentException("Queue is full.");
-            }
+    public void Enqueue(T value)
+    {
+        if (pointer == queue.Length - 1) throw new ArgumentException("Queue is full.");
 
-            pointer++;
-            queue[pointer] = value;
-        }
+        pointer++;
+        queue[pointer] = value;
+    }
 
-        public T Dequeue()
-        {
-            if (IsEmpty)
-            {
-                throw new ArgumentException("Queue is empty");
-            }
+    public T Dequeue()
+    {
+        if (IsEmpty) throw new ArgumentException("Queue is empty");
 
-            var value = queue[0];
+        var value = queue[0];
 
-            for (var i = 0; i < pointer; i++)
-            {
-                queue[i] = queue[i + 1];
-            }
+        for (var i = 0; i < pointer; i++) queue[i] = queue[i + 1];
 
-            pointer--;
+        pointer--;
 
-            return value;
-        }
-
-        public bool IsEmpty => pointer == -1;
+        return value;
     }
 }

@@ -1,13 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Sorting;
-using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting;
+
+public class BubbleSortTests : BaseSortingTests
 {
-    public class BubbleSortTests : BaseSortingTests
+    protected override ISortingAlgorithm GetSystemUnderTest()
     {
-        protected override ISortingAlgorithm GetSystemUnderTest()
-        {
-            return new BubbleSort();
-        }
+        return new BubbleSort();
     }
 }

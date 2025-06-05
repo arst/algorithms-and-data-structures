@@ -1,26 +1,24 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Bitwise;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Bitwise;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise;
+
+public class ExclusiveOrWithoutXorOperatorTests
 {
-    public class ExclusiveOrWithoutXorOperatorTests
+    [Fact]
+    public void Baseline()
     {
-        [Fact]
-        public void Baseline()
+        var sut = new ExclusiveOrWithoutXorOperator();
+
+        var r = new Random();
+
+        for (var i = 0; i < 1000000; i++)
         {
-            var sut = new ExclusiveOrWithoutXorOperator();
+            var x = r.Next();
+            var y = r.Next();
 
-            var r = new Random();
-
-            for (var i = 0; i < 1000000; i++)
-            {
-                var x = r.Next();
-                var y = r.Next();
-
-                Assert.Equal(x ^ y, sut.Xor(x,y));
-            }
-            
+            Assert.Equal(x ^ y, sut.Xor(x, y));
         }
     }
 }

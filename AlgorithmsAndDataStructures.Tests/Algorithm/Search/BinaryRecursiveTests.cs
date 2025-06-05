@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search;
+
+public class BinaryRecursiveTests : BaseSearchAlgorithmTests
 {
-    public class BinaryRecursiveTests : BaseSearchAlgorithmTests
+    public override ISearchAlgorithm<int> GetSystemUnderTest()
     {
-        public override ISearchAlgorithm<int> GetSystemUnderTest()
-        {
-            return new BinaryRecursive<int>();
-        }
+        return new BinaryRecursive<int>();
     }
 }

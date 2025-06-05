@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search;
+
+public class Fibonacci : BaseSearchAlgorithmTests
 {
-    public class Fibonacci : BaseSearchAlgorithmTests
+    public override ISearchAlgorithm<int> GetSystemUnderTest()
     {
-        public override ISearchAlgorithm<int> GetSystemUnderTest()
-        {
-            return new Fibonacci<int>();
-        }
+        return new Fibonacci<int>();
     }
 }

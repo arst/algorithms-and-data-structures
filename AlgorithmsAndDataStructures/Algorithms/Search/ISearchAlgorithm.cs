@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.Algorithms.Search
+namespace AlgorithmsAndDataStructures.Algorithms.Search;
+
+public interface ISearchAlgorithm<in T> where T : IComparable<T>
 {
-    public interface ISearchAlgorithm<in T> where T: IComparable<T> 
-    {
-        int Search(T[] target, T value);
-    }
+    int Search(T[] target, T value);
 }

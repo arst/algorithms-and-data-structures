@@ -1,68 +1,61 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays;
+
+public class NaiveNonMergeApproach : IMediaOfTwoArraysAlgorithm
 {
-    public class NaiveNonMergeApproach : IMediaOfTwoArraysAlgorithm
+    public float GetMedian(int[] left, int[] right)
     {
-        public float GetMedian(int[] left, int[] right)
+        if (left is null || right is null) return default;
+
+        var leftPointer = 0;
+        var rightPointer = 0;
+        var resultPointer = 0;
+        var smallerMedianNumber = 0;
+        var biggerMedianNumber = 0;
+
+        var result = new int[left.Length + right.Length];
+
+        while (leftPointer < left.Length || rightPointer < right.Length)
         {
-            if (left is null || right is null)
+            var isInsideBorders = leftPointer < left.Length && rightPointer < right.Length;
+
+
+            if (isInsideBorders)
             {
-                return default;
-            }
-
-            var leftPointer = 0;
-            var rightPointer = 0;
-            var resultPointer = 0;
-            var smallerMedianNumber = 0;
-            var biggerMedianNumber = 0;
-
-            var result = new int[left.Length + right.Length];
-
-            while (leftPointer < left.Length || rightPointer < right.Length)
-            {
-                var isInsideBorders = leftPointer < left.Length && rightPointer < right.Length;
-
-
-                if (isInsideBorders)
+                if (left[leftPointer] < right[rightPointer])
                 {
-                    if (left[leftPointer] < right[rightPointer])
-                    {
-                        result[resultPointer] = left[leftPointer];
-                        leftPointer++;
-                    }
-                    else
-                    {
-                        result[resultPointer] = right[rightPointer];
-                        rightPointer++;
-                    }
+                    result[resultPointer] = left[leftPointer];
+                    leftPointer++;
                 }
                 else
                 {
-                    if (leftPointer < left.Length)
-                    {
-                        result[resultPointer] = left[leftPointer];
-                        leftPointer++;
-                    }
-                    else
-                    {
-                        result[resultPointer] = right[rightPointer];
-                        rightPointer++;
-                    }
+                    result[resultPointer] = right[rightPointer];
+                    rightPointer++;
                 }
-
-                if (leftPointer + rightPointer == (result.Length / 2))
+            }
+            else
+            {
+                if (leftPointer < left.Length)
                 {
-                    smallerMedianNumber = result[resultPointer];
+                    result[resultPointer] = left[leftPointer];
+                    leftPointer++;
                 }
-                if (leftPointer + rightPointer == (result.Length / 2) + 1)
+                else
                 {
-                    biggerMedianNumber = result[resultPointer];
-                    break;
+                    result[resultPointer] = right[rightPointer];
+                    rightPointer++;
                 }
-
-                resultPointer++;
             }
 
-            return (float)(smallerMedianNumber + biggerMedianNumber) / 2;
+            if (leftPointer + rightPointer == result.Length / 2) smallerMedianNumber = result[resultPointer];
+            if (leftPointer + rightPointer == result.Length / 2 + 1)
+            {
+                biggerMedianNumber = result[resultPointer];
+                break;
+            }
+
+            resultPointer++;
         }
+
+        return (float)(smallerMedianNumber + biggerMedianNumber) / 2;
     }
 }

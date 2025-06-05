@@ -1,111 +1,111 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Graph.Search;
+﻿using System.Collections.Generic;
+using AlgorithmsAndDataStructures.Algorithms.Graph.Search;
 using AlgorithmsAndDataStructures.DataStructures.Graph;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Graph;
+
+public class BreadthFirstSearchTests
 {
-    public class BreadthFirstSearchTests
+    [Fact]
+    public void OneNodeGraph()
     {
-        [Fact]
-        public void OneNodeGraph()
+        var sut = new BreadthFirstSearch();
+        var graph = new[]
         {
-            var sut = new BreadthFirstSearch();
-            var graph = new[]
-                {
-                    new GraphVertex<int>
-                    {
-                        Value = 1
-                    },
-                };
-            Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg));
-        }
+            new GraphVertex<int>
+            {
+                Value = 1
+            }
+        };
+        Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg));
+    }
 
-        [Fact]
-        public void TwoNodesGraph()
+    [Fact]
+    public void TwoNodesGraph()
+    {
+        var sut = new BreadthFirstSearch();
+        var graph = new[]
         {
-            var sut = new BreadthFirstSearch();
-            var graph = new[]
+            new GraphVertex<int>
+            {
+                Value = 1,
+                AdjacentVertices = new List<int>
                 {
-                    new GraphVertex<int>
-                    {
-                        Value = 1,
-                        AdjacentVertices = new System.Collections.Generic.List<int>
-                        {
-                            1
-                        }
-                    },
-                    new GraphVertex<int>
-                    {
-                        Value = 2
-                    },
-                };
-            Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg), arg => Assert.Equal(2, arg));
-        }
+                    1
+                }
+            },
+            new GraphVertex<int>
+            {
+                Value = 2
+            }
+        };
+        Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg), arg => Assert.Equal(2, arg));
+    }
 
-        [Fact]
-        public void TwoNodesGraphWithCircularDependency()
+    [Fact]
+    public void TwoNodesGraphWithCircularDependency()
+    {
+        var sut = new BreadthFirstSearch();
+        var graph = new[]
         {
-            var sut = new BreadthFirstSearch();
-            var graph = new[]
+            new GraphVertex<int>
+            {
+                Value = 1,
+                AdjacentVertices = new List<int>
                 {
-                    new GraphVertex<int>
-                    {
-                        Value = 1,
-                        AdjacentVertices = new System.Collections.Generic.List<int>
-                        {
-                            1
-                        }
-                    },
-                    new GraphVertex<int>
-                    {
-                        Value = 2,
-                        AdjacentVertices = new System.Collections.Generic.List<int>
-                        {
-                            0
-                        }
-                    },
-                };
-            Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg), arg => Assert.Equal(2, arg));
-        }
+                    1
+                }
+            },
+            new GraphVertex<int>
+            {
+                Value = 2,
+                AdjacentVertices = new List<int>
+                {
+                    0
+                }
+            }
+        };
+        Assert.Collection(sut.Traverse(graph), arg => Assert.Equal(1, arg), arg => Assert.Equal(2, arg));
+    }
 
-        [Fact]
-        public void BreadthFirstSearchTraversal()
+    [Fact]
+    public void BreadthFirstSearchTraversal()
+    {
+        var sut = new BreadthFirstSearch();
+        var graph = new[]
         {
-            var sut = new BreadthFirstSearch();
-            var graph = new[]
+            new GraphVertex<int>
+            {
+                Value = 1,
+                AdjacentVertices = new List<int>
                 {
-                    new GraphVertex<int>
-                    {
-                        Value = 1,
-                        AdjacentVertices = new System.Collections.Generic.List<int>
-                        {
-                            1,2
-                        }
-                    },
-                    new GraphVertex<int>
-                    {
-                        Value = 2,
-                        AdjacentVertices = new System.Collections.Generic.List<int>
-                        {
-                            3
-                        }
-                    },
-                    new GraphVertex<int>
-                    {
-                        Value = 3,
-                        AdjacentVertices = new System.Collections.Generic.List<int>()
-                    },
-                    new GraphVertex<int>
-                    {
-                        Value = 4,
-                        AdjacentVertices = new System.Collections.Generic.List<int>()
-                    },
-                };
-            Assert.Collection(sut.Traverse(graph), 
-                arg => Assert.Equal(1, arg), 
-                arg => Assert.Equal(2, arg),
-                arg => Assert.Equal(3, arg),
-                arg => Assert.Equal(4, arg));
-        }
+                    1, 2
+                }
+            },
+            new GraphVertex<int>
+            {
+                Value = 2,
+                AdjacentVertices = new List<int>
+                {
+                    3
+                }
+            },
+            new GraphVertex<int>
+            {
+                Value = 3,
+                AdjacentVertices = new List<int>()
+            },
+            new GraphVertex<int>
+            {
+                Value = 4,
+                AdjacentVertices = new List<int>()
+            }
+        };
+        Assert.Collection(sut.Traverse(graph),
+            arg => Assert.Equal(1, arg),
+            arg => Assert.Equal(2, arg),
+            arg => Assert.Equal(3, arg),
+            arg => Assert.Equal(4, arg));
     }
 }

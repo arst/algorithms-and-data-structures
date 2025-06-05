@@ -1,17 +1,16 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Hashing;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Hashing
-{
-    public class FowlerNollVo1ABasedHashTests
-    {
-        [Fact]
-        public void DifferentHashForDifferentSeedValue()
-        {
-            var sut = new FowlerNollVo1ABasedHash();
-            const string input = "test";
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Hashing;
 
-            Assert.NotEqual(sut.GetHash(input, 1), sut.GetHash(input, 2));
-        }
+public class FowlerNollVo1ABasedHashTests
+{
+    [Fact]
+    public void DifferentHashForDifferentSeedValue()
+    {
+        var sut = new FowlerNollVo1ABasedHash();
+        const string input = "test";
+
+        Assert.NotEqual(sut.GetHash(input, 1), sut.GetHash(input, 2));
     }
 }

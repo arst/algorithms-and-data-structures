@@ -1,7 +1,6 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Misc.MedianOfTwoArrays;
+
+public interface IMediaOfTwoArraysAlgorithm
 {
-    public interface IMediaOfTwoArraysAlgorithm
-    {
-        float GetMedian(int[] left, int[] right);
-    }
+    float GetMedian(int[] left, int[] right);
 }

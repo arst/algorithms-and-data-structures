@@ -1,95 +1,79 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Cache
+namespace AlgorithmsAndDataStructures.DataStructures.Cache;
+
+public class Lfu
 {
-    public class Lfu
+    private const int DefaultFrequency = 1;
+    private readonly int capacity;
+    private readonly Dictionary<int, CacheDoubleLinkedList> frequencies;
+    private readonly Dictionary<CacheEntry, int> nodeFrequencies;
+    private readonly Dictionary<int, CacheEntry> values;
+    private int entriesCount;
+    private int minFrequency;
+
+    public Lfu(int capacity)
     {
-        private readonly Dictionary<int, CacheEntry> values;
-        private readonly Dictionary<int, CacheDoubleLinkedList> frequencies;
-        private readonly Dictionary<CacheEntry, int> nodeFrequencies;
-        private int minFrequency;
-        private readonly int capacity;
-        private int entriesCount;
-        private const int DefaultFrequency = 1;
+        values = new Dictionary<int, CacheEntry>();
+        frequencies = new Dictionary<int, CacheDoubleLinkedList>();
+        nodeFrequencies = new Dictionary<CacheEntry, int>();
+        minFrequency = int.MaxValue;
+        this.capacity = capacity;
+        entriesCount = 0;
+    }
 
-        public Lfu(int capacity)
+    public void Add(int key, string value)
+    {
+        if (values.ContainsKey(key))
         {
-            values = new Dictionary<int, CacheEntry>();
-            frequencies = new Dictionary<int, CacheDoubleLinkedList>();
-            nodeFrequencies = new Dictionary<CacheEntry, int>();
-            minFrequency = int.MaxValue;
-            this.capacity = capacity;
-            entriesCount = 0;
+            values[key].UpdateValue(value);
+            PromoteEntry(values[key]);
+            return;
         }
 
-        public void Add(int key, string value)
+        if (entriesCount == capacity)
         {
-            if (values.ContainsKey(key))
-            {
-                values[key].UpdateValue(value);
-                PromoteEntry(values[key]);
-                return;
-            }
+            var evictedEntry = frequencies[minFrequency].RemoveTail();
+            values.Remove(evictedEntry.Key);
 
-            if (entriesCount == capacity)
-            {
-                var evictedEntry = frequencies[minFrequency].RemoveTail();
-                values.Remove(evictedEntry.Key);
+            if (frequencies[minFrequency].IsEmpty) frequencies.Remove(minFrequency);
 
-                if (frequencies[minFrequency].IsEmpty)
-                {
-                    frequencies.Remove(minFrequency);
-                }
-
-                entriesCount--;
-            }
-
-            if (!frequencies.ContainsKey(DefaultFrequency))
-            {
-                frequencies[DefaultFrequency] = new CacheDoubleLinkedList();
-            }
-
-            var newEntry = new CacheEntry(key, value);
-            frequencies[DefaultFrequency].InsertToHead(newEntry);
-            values[key] = newEntry;
-            nodeFrequencies[newEntry] = DefaultFrequency;
-            minFrequency = DefaultFrequency;
-            entriesCount++;
+            entriesCount--;
         }
 
-        public string Get(int key)
-        {
-            if (!values.ContainsKey(key))
-            {
-                return null;
-            }
+        if (!frequencies.ContainsKey(DefaultFrequency)) frequencies[DefaultFrequency] = new CacheDoubleLinkedList();
 
-            var entry = values[key];
+        var newEntry = new CacheEntry(key, value);
+        frequencies[DefaultFrequency].InsertToHead(newEntry);
+        values[key] = newEntry;
+        nodeFrequencies[newEntry] = DefaultFrequency;
+        minFrequency = DefaultFrequency;
+        entriesCount++;
+    }
 
-            PromoteEntry(entry);
+    public string Get(int key)
+    {
+        if (!values.ContainsKey(key)) return null;
 
-            return entry.Value;
-        }
+        var entry = values[key];
 
-        private void PromoteEntry(CacheEntry cacheEntry)
-        {
-            var currentFrequency = nodeFrequencies[cacheEntry];
-            frequencies[currentFrequency].Remove(cacheEntry);
+        PromoteEntry(entry);
 
-            if (frequencies[currentFrequency].IsEmpty)
-            {
-                frequencies.Remove(currentFrequency);
-            }
+        return entry.Value;
+    }
 
-            var newFrequency = ++currentFrequency;
+    private void PromoteEntry(CacheEntry cacheEntry)
+    {
+        var currentFrequency = nodeFrequencies[cacheEntry];
+        frequencies[currentFrequency].Remove(cacheEntry);
 
-            if (!frequencies.ContainsKey(newFrequency))
-            {
-                frequencies[newFrequency] = new CacheDoubleLinkedList();
-            }
+        if (frequencies[currentFrequency].IsEmpty) frequencies.Remove(currentFrequency);
 
-            frequencies[newFrequency].InsertToHead(cacheEntry);
-            nodeFrequencies[cacheEntry] = newFrequency;
-        }
+        var newFrequency = ++currentFrequency;
+
+        if (!frequencies.ContainsKey(newFrequency)) frequencies[newFrequency] = new CacheDoubleLinkedList();
+
+        frequencies[newFrequency].InsertToHead(cacheEntry);
+        nodeFrequencies[cacheEntry] = newFrequency;
     }
 }

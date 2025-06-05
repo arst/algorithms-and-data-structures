@@ -7,26 +7,23 @@ namespace AlgorithmsAndDataStructures.DataStructures.CuckooFilter;
 
 public class CuckooFilter
 {
-    private readonly int seed;
-    private readonly int fingerprintSize;
-    private readonly int bucketSize;
-    private readonly int maxInsertionAttempts;
+    private static readonly Random Random = new(500);
     private readonly List<List<int>> buckets;
+    private readonly int bucketSize;
+    private readonly int fingerprintSize;
     private readonly FowlerNollVo1ABasedHash hashGenerator;
-    
-    private static readonly Random Random = new Random(500);
-    
-    public CuckooFilter(int size, int bucketSize = 100, int seed = 255, int fingerprintSize = 16, int maxInsertionAttempts = 500)
+    private readonly int maxInsertionAttempts;
+    private readonly int seed;
+
+    public CuckooFilter(int size, int bucketSize = 100, int seed = 255, int fingerprintSize = 16,
+        int maxInsertionAttempts = 500)
     {
         this.bucketSize = bucketSize;
         this.maxInsertionAttempts = maxInsertionAttempts;
         this.seed = seed;
         this.fingerprintSize = fingerprintSize;
         buckets = new List<List<int>>(size);
-        for (var i = 0; i < size; i++)
-        {
-            buckets.Add(new List<int>(bucketSize));
-        }
+        for (var i = 0; i < size; i++) buckets.Add(new List<int>(bucketSize));
 
         hashGenerator = new FowlerNollVo1ABasedHash();
     }
@@ -63,9 +60,8 @@ public class CuckooFilter
         while (true)
         {
             if (insertAttemptsLeft == 0)
-            {
-                throw new InvalidOperationException("Failed to insert element. Filter is Full. No dynamic expansion is implemented yet.");
-            }
+                throw new InvalidOperationException(
+                    "Failed to insert element. Filter is Full. No dynamic expansion is implemented yet.");
 
             if (buckets[firstBucket].Count < bucketSize)
             {
@@ -96,7 +92,7 @@ public class CuckooFilter
     {
         var fingerPrint = CalculateFingerPrint(element);
         var (firstBucket, secondBucket) = CalculateBuckets(fingerPrint);
-        
+
         return buckets[firstBucket].Contains(fingerPrint) || buckets[secondBucket].Contains(fingerPrint);
     }
 
@@ -105,14 +101,8 @@ public class CuckooFilter
         var fingerPrint = CalculateFingerPrint(element);
         var (firstBucket, secondBucket) = CalculateBuckets(fingerPrint);
 
-        if (buckets[firstBucket].Contains(fingerPrint))
-        {
-            buckets[firstBucket].Remove(fingerPrint);
-        }
+        if (buckets[firstBucket].Contains(fingerPrint)) buckets[firstBucket].Remove(fingerPrint);
 
-        if (buckets[secondBucket].Contains(fingerPrint))
-        {
-            buckets[secondBucket].Remove(fingerPrint);
-        }
+        if (buckets[secondBucket].Contains(fingerPrint)) buckets[secondBucket].Remove(fingerPrint);
     }
 }

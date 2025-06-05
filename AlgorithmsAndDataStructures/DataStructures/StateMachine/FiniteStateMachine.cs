@@ -1,24 +1,23 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.DataStructures.StateMachine
+namespace AlgorithmsAndDataStructures.DataStructures.StateMachine;
+
+public class FiniteStateMachine
 {
-    public class FiniteStateMachine
+    private Action currentState;
+
+    public FiniteStateMachine(Action initialState)
     {
-        private Action currentState;
+        SetState(initialState);
+    }
 
-        public FiniteStateMachine(Action initialState)
-        {
-            SetState(initialState);
-        }
+    public void SetState(Action state)
+    {
+        currentState = state;
+    }
 
-        public void SetState(Action state)
-        {
-            currentState = state;
-        }
-
-        public void Turn()
-        {
-            currentState?.Invoke();
-        }
+    public void Turn()
+    {
+        currentState?.Invoke();
     }
 }

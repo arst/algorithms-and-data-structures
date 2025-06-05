@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Search;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Search;
+
+public class ExponentialSearchTests : BaseSearchAlgorithmTests
 {
-    public class ExponentialSearchTests : BaseSearchAlgorithmTests
+    public override ISearchAlgorithm<int> GetSystemUnderTest()
     {
-        public override ISearchAlgorithm<int> GetSystemUnderTest()
-        {
-            return new Exponential<int>();
-        }
+        return new Exponential<int>();
     }
 }

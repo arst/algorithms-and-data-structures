@@ -1,29 +1,22 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Bitwise
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Bitwise;
+
+public class CountSetBitsInAllNumbersUpToN
 {
-    public class CountSetBitsInAllNumbersUpToN
-    {
 #pragma warning disable CA1822 // Mark members as static
-        public int Count(int n)
+    public int Count(int n)
 #pragma warning restore CA1822 // Mark members as static
-        {
-            var result = 0;
+    {
+        var result = 0;
 
-            for (var i = 1; i < n; i++)
-            {
-                result += CountBits(i);
-            }
+        for (var i = 1; i < n; i++) result += CountBits(i);
 
-            return result;
-        }
+        return result;
+    }
 
-        private static int CountBits(int number)
-        {
-            if (number <= 0)
-            {
-                return 0;
-            }
+    private static int CountBits(int number)
+    {
+        if (number <= 0) return 0;
 
-            return (number % 2 == 0 ? 0 : 1) + CountBits(number / 2);
-        }
+        return (number % 2 == 0 ? 0 : 1) + CountBits(number / 2);
     }
 }

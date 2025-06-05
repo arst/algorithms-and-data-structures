@@ -1,58 +1,48 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Cache
+namespace AlgorithmsAndDataStructures.DataStructures.Cache;
+
+public class Lru
 {
-    public class Lru
+    private readonly int capacity;
+    private readonly CacheDoubleLinkedList list;
+    private readonly Dictionary<int, CacheEntry> values;
+    private int entriesCount;
+
+    public Lru(int capacity)
     {
-        private readonly Dictionary<int, CacheEntry> values;
-        private readonly int capacity;
-        private int entriesCount;
-        private readonly CacheDoubleLinkedList list;
+        values = new Dictionary<int, CacheEntry>();
+        this.capacity = capacity;
+        entriesCount = 0;
+        list = new CacheDoubleLinkedList();
+    }
 
-        public Lru(int capacity)
+    public void Add(int key, string value)
+    {
+        if (values.ContainsKey(key)) values[key].UpdateValue(value);
+
+        if (entriesCount == capacity)
         {
-            values = new Dictionary<int, CacheEntry>();
-            this.capacity = capacity;
-            entriesCount = 0;
-            list = new CacheDoubleLinkedList();
+            var removedEntry = list.RemoveTail();
+            values.Remove(removedEntry.Key);
+            entriesCount--;
         }
 
-        public void Add(int key, string value)
-        {
-            if (values.ContainsKey(key))
-            {
-                values[key].UpdateValue(value);
-            }
+        var newEntry = new CacheEntry(key, value);
+        list.InsertToHead(newEntry);
+        values.Add(key, newEntry);
 
-            if (entriesCount == capacity)
-            {
-                var removedEntry = list.RemoveTail();
-                values.Remove(removedEntry.Key);
-                entriesCount--;
-            }
+        entriesCount++;
+    }
 
-            var newEntry = new CacheEntry(key, value);
-            list.InsertToHead(newEntry);
-            values.Add(key, newEntry);
+    public string Get(int key)
+    {
+        if (!values.ContainsKey(key)) return null;
 
-            entriesCount++;
-        }
+        var entry = values[key];
 
-        public string Get(int key)
-        {
-            if (!values.ContainsKey(key))
-            {
-                return null;
-            }
+        if (entriesCount > 1) list.MoveToHead(entry);
 
-            var entry = values[key];
-
-            if (entriesCount > 1)
-            {
-                list.MoveToHead(entry);
-            }
-
-            return entry.Value;
-        }
+        return entry.Value;
     }
 }

@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Sorting;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting;
+
+public class CombSortTests : BaseSortingTests
 {
-    public class CombSortTests : BaseSortingTests
+    protected override ISortingAlgorithm GetSystemUnderTest()
     {
-        protected override ISortingAlgorithm GetSystemUnderTest()
-        {
-            return new CombSort();
-        }
+        return new CombSort();
     }
 }

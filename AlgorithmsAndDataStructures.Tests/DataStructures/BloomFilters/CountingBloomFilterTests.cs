@@ -43,15 +43,9 @@ public class CountingBloomFilterTests
         var sut = new CountingBloomFilter(100, 3);
         var elements = new[] { "test1", "test2", "test3" };
 
-        foreach (var element in elements)
-        {
-            sut.Add(element);
-        }
+        foreach (var element in elements) sut.Add(element);
 
-        foreach (var element in elements)
-        {
-            Assert.True(sut.Contains(element));
-        }
+        foreach (var element in elements) Assert.True(sut.Contains(element));
 
         foreach (var element in elements)
         {

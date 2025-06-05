@@ -1,15 +1,14 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.TowersOfHanoi;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.TowerOfHanoi
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.TowerOfHanoi;
+
+public class TowerOfHanoiTests
 {
-    public class TowerOfHanoiTests
+    [Fact]
+    public void Test()
     {
-        [Fact]
-        public void Test()
-        {
-            var sut = new HanoiTowers(2);
-            sut.Solve();
-        }
+        var sut = new HanoiTowers(2);
+        sut.Solve();
     }
 }

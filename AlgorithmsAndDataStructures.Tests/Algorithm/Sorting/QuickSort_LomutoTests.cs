@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.Sorting;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Sorting;
+
+public class QuickSort_LomutoTests : BaseSortingTests
 {
-    public class QuickSort_LomutoTests : BaseSortingTests
+    protected override ISortingAlgorithm GetSystemUnderTest()
     {
-        protected override ISortingAlgorithm GetSystemUnderTest()
-        {
-            return new QuickSort_Lomuto();
-        }
+        return new QuickSort_Lomuto();
     }
 }

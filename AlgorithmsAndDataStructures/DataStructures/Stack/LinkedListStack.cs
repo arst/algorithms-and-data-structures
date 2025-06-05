@@ -1,50 +1,43 @@
 ﻿using System;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Stack
+namespace AlgorithmsAndDataStructures.DataStructures.Stack;
+
+public class LinkedListStack<T>
 {
-    public class LinkedListStack<T>
+    private LinkedListStackNode<T> head;
+
+    public LinkedListStack()
     {
-        private LinkedListStackNode<T> head;
+        head = null;
+    }
 
-        public LinkedListStack()
+    public bool IsEmpty => head == null;
+
+    public void Push(T value)
+    {
+        if (head == null)
         {
-            head = null;
+            head = new LinkedListStackNode<T> { Value = value };
         }
-
-        public void Push(T value)
+        else
         {
-            if (head == null)
-            {
-                head = new LinkedListStackNode<T> { Value = value };
-            }
-            else
-            {
-                var node = new LinkedListStackNode<T> {Value = value, Next = head};
-                head = node;
-            }
+            var node = new LinkedListStackNode<T> { Value = value, Next = head };
+            head = node;
         }
+    }
 
-        public T Pop()
-        {
-            if (IsEmpty)
-            {
-                throw new ArgumentException("Stack is Empty");
-            }
+    public T Pop()
+    {
+        if (IsEmpty) throw new ArgumentException("Stack is Empty");
 
-            var value = head.Value;
-            head = head.Next;
-            return value;
-        }
+        var value = head.Value;
+        head = head.Next;
+        return value;
+    }
 
-        public T Peak()
-        {
-            if (IsEmpty)
-            {
-                throw new ArgumentException("Stack is Empty");
-            }
-            return head.Value;
-        }
-
-        public bool IsEmpty => head == null;
+    public T Peak()
+    {
+        if (IsEmpty) throw new ArgumentException("Stack is Empty");
+        return head.Value;
     }
 }

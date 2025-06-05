@@ -1,74 +1,69 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
+namespace AlgorithmsAndDataStructures.DataStructures.Concurrency;
+
+public class SimpleNonBlockingQueue
 {
-    public class SimpleNonBlockingQueue
+    private readonly Queue<int> queue;
+    private readonly int size;
+    private int currentSize;
+    private int locked;
+
+    public SimpleNonBlockingQueue(int size = 8)
     {
-        private readonly int size;
-        private readonly Queue<int> queue;
-        private int currentSize;
-        private int locked;
+        queue = new Queue<int>();
+        currentSize = 0;
+        this.size = size;
+        locked = 0;
+    }
 
-        public SimpleNonBlockingQueue(int size = 8)
-        {
-            queue = new Queue<int>();
-            currentSize = 0;
-            this.size = size;
-            locked = 0;
-        }
-
-        public void Enqueue(int value)
-        {
-            while (true)
+    public void Enqueue(int value)
+    {
+        while (true)
+            if (Interlocked.Exchange(ref locked, 1) == 0)
             {
-                if (Interlocked.Exchange(ref locked, 1) == 0)
+                if (currentSize >= size)
                 {
-                    if (currentSize >= size)
-                    {
-                        Volatile.Write(ref locked, 0);
-                        continue;
-                    }
+                    Volatile.Write(ref locked, 0);
+                    continue;
+                }
 
-                    try
-                    {
-                        queue.Enqueue(value);
-                        currentSize++;
-                        return;
-                    }
-                    finally
-                    {
-                        Volatile.Write(ref locked, 0);
-                    }   
+                try
+                {
+                    queue.Enqueue(value);
+                    currentSize++;
+                    return;
+                }
+                finally
+                {
+                    Volatile.Write(ref locked, 0);
                 }
             }
-        }
+    }
 
-        public bool TryDequeue(out int value)
-        {
-            value = -1;
+    public bool TryDequeue(out int value)
+    {
+        value = -1;
 
-            while (true)
+        while (true)
+            if (Interlocked.Exchange(ref locked, 1) == 0)
             {
-                if (Interlocked.Exchange(ref locked, 1) == 0)
+                if (currentSize <= 0)
                 {
-                    if (currentSize <= 0)
-                    {
-                        Volatile.Write(ref locked, 0);
-                        return false;
-                    }
+                    Volatile.Write(ref locked, 0);
+                    return false;
+                }
 
-                    try
-                    {
-                        value = queue.Dequeue();
-                        currentSize--;
-                    }
-                    finally
-                    {
-                        Volatile.Write(ref locked, 0);
-                    }
+                try
+                {
+                    value = queue.Dequeue();
+                    currentSize--;
+                }
+                finally
+                {
+                    Volatile.Write(ref locked, 0);
                 }
             }
-        }
     }
 }

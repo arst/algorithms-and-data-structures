@@ -8,8 +8,9 @@ AMD Ryzen 5 2600X, 1 CPU, 12 logical and 6 physical cores
 
 
 ```
-|                                  Method |     Mean |     Error |    StdDev | Ratio | RatioSD |
-|---------------------------------------- |---------:|----------:|----------:|------:|--------:|
+
+| Method                                  |     Mean |     Error |    StdDev | Ratio | RatioSD |
+|-----------------------------------------|---------:|----------:|----------:|------:|--------:|
 | LinearCongruentialRandomNumberGenerator | 2.452 ns | 0.0091 ns | 0.0076 ns |  1.00 |    0.00 |
-|                          XORShift64Star | 2.570 ns | 0.0317 ns | 0.0281 ns |  1.05 |    0.01 |
-|                        XORShift1024Star | 5.612 ns | 0.1440 ns | 0.2669 ns |  2.24 |    0.12 |
+| XORShift64Star                          | 2.570 ns | 0.0317 ns | 0.0281 ns |  1.05 |    0.01 |
+| XORShift1024Star                        | 5.612 ns | 0.1440 ns | 0.2669 ns |  2.24 |    0.12 |

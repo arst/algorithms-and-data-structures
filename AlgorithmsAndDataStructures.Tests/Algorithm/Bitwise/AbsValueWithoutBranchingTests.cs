@@ -1,24 +1,23 @@
-﻿using AlgorithmsAndDataStructures.Algorithms.Bitwise;
-using System;
+﻿using System;
+using AlgorithmsAndDataStructures.Algorithms.Bitwise;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise
+namespace AlgorithmsAndDataStructures.Tests.Algorithm.Bitwise;
+
+public class AbsValueWithoutBranchingTests
 {
-    public class AbsValueWithoutBranchingTests
+    [Fact]
+    public void Baseline()
     {
-        [Fact]
-        public void Baseline()
+        var sut = new AbsValueWithoutBranching();
+
+        var r = new Random();
+
+        for (var i = 0; i < 1000000; i++)
         {
-            var sut = new AbsValueWithoutBranching();
+            var x = r.Next(-100000, 1000000);
 
-            var r = new Random();
-
-            for (var i = 0; i < 1000000; i++)
-            {
-                var x = r.Next(-100000, 1000000);
-
-                Assert.Equal(Math.Abs(x), sut.Abs(x));
-            }
+            Assert.Equal(Math.Abs(x), sut.Abs(x));
         }
     }
 }

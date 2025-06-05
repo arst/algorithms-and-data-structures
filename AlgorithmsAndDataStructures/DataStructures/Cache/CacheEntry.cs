@@ -1,24 +1,23 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.Cache
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Cache;
+
+public class CacheEntry
 {
-    public class CacheEntry
+    public CacheEntry(int key, string value)
     {
-        public CacheEntry Previous { get; set; }
+        Key = key;
+        Value = value;
+    }
 
-        public CacheEntry Next { get; set; }
+    public CacheEntry Previous { get; set; }
 
-        public string Value { get; private set; }
+    public CacheEntry Next { get; set; }
 
-        public int Key { get; }
+    public string Value { get; private set; }
 
-        public CacheEntry(int key, string value)
-        {
-            Key = key;
-            Value = value;
-        }
+    public int Key { get; }
 
-        internal void UpdateValue(string value)
-        {
-            Value = value;
-        }
+    internal void UpdateValue(string value)
+    {
+        Value = value;
     }
 }

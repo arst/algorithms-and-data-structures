@@ -1,32 +1,40 @@
 ﻿using AlgorithmsAndDataStructures.Algorithms.PseudorandomNumberGenerators;
 using BenchmarkDotNet.Attributes;
 
-namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.PseudorandomNumberGenerators
+namespace AlgorithmsAndDataStructures.Benchmarks.Algorithms.PseudorandomNumberGenerators;
+
+[HtmlExporter]
+[RPlotExporter]
+[CsvMeasurementsExporter]
+[MarkdownExporterAttribute.GitHub]
+public class PseudorandomNumberGeneratorsBenchmark
 {
-    [HtmlExporter]
-    [RPlotExporter]
-    [CsvMeasurementsExporter]
-    [MarkdownExporterAttribute.GitHub]
-    public class PseudorandomNumberGeneratorsBenchmark
+    private readonly LinearCongruentialRandomNumberGenerator linearCongruentialRandomNumberGenerator;
+    private readonly XorShift1024Star xOrShift1024Star;
+    private readonly XorShift64Star xOrShift64Star;
+
+    public PseudorandomNumberGeneratorsBenchmark()
     {
-        private readonly LinearCongruentialRandomNumberGenerator linearCongruentialRandomNumberGenerator;
-        private readonly XorShift64Star xOrShift64Star;
-        private readonly XorShift1024Star xOrShift1024Star;
+        linearCongruentialRandomNumberGenerator = new LinearCongruentialRandomNumberGenerator();
+        xOrShift64Star = new XorShift64Star();
+        xOrShift1024Star = new XorShift1024Star();
+    }
 
-        public PseudorandomNumberGeneratorsBenchmark()
-        {
-            linearCongruentialRandomNumberGenerator = new LinearCongruentialRandomNumberGenerator();
-            xOrShift64Star = new XorShift64Star();
-            xOrShift1024Star = new XorShift1024Star();
-        }
+    [Benchmark(Baseline = true)]
+    public long LinearCongruentialRandomNumberGenerator()
+    {
+        return linearCongruentialRandomNumberGenerator.Generate();
+    }
 
-        [Benchmark(Baseline = true)]
-        public long LinearCongruentialRandomNumberGenerator() => linearCongruentialRandomNumberGenerator.Generate();
+    [Benchmark]
+    public long XorShift64Star()
+    {
+        return xOrShift64Star.Generate();
+    }
 
-        [Benchmark]
-        public long XorShift64Star() => xOrShift64Star.Generate();
-
-        [Benchmark]
-        public long XorShift1024Star() => xOrShift1024Star.Generate();
+    [Benchmark]
+    public long XorShift1024Star()
+    {
+        return xOrShift1024Star.Generate();
     }
 }

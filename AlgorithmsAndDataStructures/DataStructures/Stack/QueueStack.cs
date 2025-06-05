@@ -1,79 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AlgorithmsAndDataStructures.DataStructures.Stack
+namespace AlgorithmsAndDataStructures.DataStructures.Stack;
+
+public class QueueStack<T>
 {
-    public class QueueStack<T>
+    private readonly Queue<T> leftQueue;
+    private readonly Queue<T> rightQueue;
+
+    public QueueStack()
     {
-        private readonly Queue<T> leftQueue;
-        private readonly Queue<T> rightQueue;
+        leftQueue = new Queue<T>();
+        rightQueue = new Queue<T>();
+    }
 
-        public QueueStack()
+    public bool IsEmpty => rightQueue.Count == 0 && leftQueue.Count == 0;
+
+    public void Push(T value)
+    {
+        if (leftQueue.Count > 0)
+            leftQueue.Enqueue(value);
+        else if (rightQueue.Count > 0)
+            rightQueue.Enqueue(value);
+        else
+            leftQueue.Enqueue(value);
+    }
+
+    public T Pop()
+    {
+        if (IsEmpty) throw new ArgumentException("Stack is Empty");
+
+        return GetPopQueue().Dequeue();
+    }
+
+    public T Peak()
+    {
+        if (IsEmpty) throw new ArgumentException("Stack is Empty");
+
+        return GetPopQueue().Peek();
+    }
+
+    private Queue<T> GetPopQueue()
+    {
+        if (leftQueue.Count > 0)
         {
-            leftQueue = new Queue<T>();
-            rightQueue = new Queue<T>();
+            while (leftQueue.Count > 1) rightQueue.Enqueue(leftQueue.Dequeue());
+
+            return leftQueue;
         }
 
-        public void Push(T value)
+        if (rightQueue.Count > 0)
         {
-            if (leftQueue.Count > 0)
-            {
-                leftQueue.Enqueue(value);
-            }
-            else if (rightQueue.Count > 0)
-            {
-                rightQueue.Enqueue(value);
-            }
-            else
-            {
-                leftQueue.Enqueue(value);
-            }
+            while (rightQueue.Count > 1) leftQueue.Enqueue(rightQueue.Dequeue());
+
+            return rightQueue;
         }
 
-        public T Pop()
-        {
-            if (IsEmpty)
-            {
-                throw new ArgumentException("Stack is Empty");
-            }
-
-            return GetPopQueue().Dequeue();
-        }
-
-        public T Peak()
-        {
-            if (IsEmpty)
-            {
-                throw new ArgumentException("Stack is Empty");
-            }
-
-            return GetPopQueue().Peek();
-        }
-
-        private Queue<T> GetPopQueue()
-        {
-            if (leftQueue.Count > 0)
-            {
-                while (leftQueue.Count > 1)
-                {
-                    rightQueue.Enqueue(leftQueue.Dequeue());
-                }
-
-                return leftQueue;
-            }
-            else if (rightQueue.Count > 0)
-            {
-                while (rightQueue.Count > 1)
-                {
-                    leftQueue.Enqueue(rightQueue.Dequeue());
-                }
-
-                return rightQueue;
-            }
-
-            throw new ArgumentException("Stack is Empty");
-        }
-
-        public bool IsEmpty => rightQueue.Count == 0 && leftQueue.Count == 0;
+        throw new ArgumentException("Stack is Empty");
     }
 }

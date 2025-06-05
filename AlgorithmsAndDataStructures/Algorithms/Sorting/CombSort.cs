@@ -1,35 +1,30 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Sorting
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Sorting;
+
+public class CombSort : ISortingAlgorithm
 {
-    public class CombSort : ISortingAlgorithm
+    public void Sort(int[] target)
     {
-        public void Sort(int[] target)
+        if (target is null) return;
+        var swapped = true;
+        var gap = target.Length;
+
+        while (gap > 1 || swapped)
         {
-            if (target is null)
-            {
-                return;
-            }
-            var swapped = true;
-            var gap = target.Length;
+            if (gap > 1)
+                // 1.3  is kinda recommended value for the gap reduction.
+                gap = (int)(gap / 1.3);
 
-            while (gap > 1 || swapped)
+            var j = 0;
+            swapped = false;
+            while (j + gap < target.Length)
             {
-                if (gap > 1)
+                if (target[j] > target[j + gap])
                 {
-                    // 1.3  is kinda recommended value for the gap reduction.
-                    gap = (int)(gap / 1.3);
+                    SortUtilities.Swap(target, j, j + gap);
+                    swapped = true;
                 }
 
-                var j = 0;
-                swapped = false;
-                while (j + gap < target.Length)
-                {
-                    if (target[j] > target[j + gap])
-                    {
-                        SortUtilities.Swap(target, j, j + gap);
-                        swapped = true;
-                    }
-                    j++;
-                }
+                j++;
             }
         }
     }

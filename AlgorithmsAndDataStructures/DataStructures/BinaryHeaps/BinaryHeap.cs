@@ -1,113 +1,94 @@
 ﻿using System;
 using System.Linq;
 
-namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeaps
+namespace AlgorithmsAndDataStructures.DataStructures.BinaryHeaps;
+
+public abstract class BinaryHeap<T> where T : IComparable<T>
 {
-    public abstract class BinaryHeap<T> where T: IComparable<T> 
-    {
 #pragma warning disable CA1051 // Do not declare visible instance fields
-        protected T[] Heap;
+    protected T[] Heap;
 #pragma warning restore CA1051 // Do not declare visible instance fields
-        private int nextElementPointer = 1;
+    private int nextElementPointer = 1;
 
-        public int Size => nextElementPointer - 1;
+    protected BinaryHeap(int maxCapacity = 8)
+    {
+        Heap = new T[maxCapacity + 1];
+    }
 
-        public T[] GetHeap()
+    public int Size => nextElementPointer - 1;
+
+    public T[] GetHeap()
+    {
+        return Heap.Skip(1).ToArray().Clone() as T[];
+    }
+
+    protected abstract bool ShouldSwap(int current, int target);
+
+    protected abstract bool ShouldNotSwap(int current, int target);
+
+    protected abstract int GetSwapChildIndex(int rightChildIndex, int leftChildIndex);
+
+    public void Insert(T value)
+    {
+        if (nextElementPointer == Heap.Length) throw new ArgumentException("Heap is full");
+
+        Heap[nextElementPointer] = value;
+        Swim(nextElementPointer);
+        nextElementPointer++;
+    }
+
+    private void Swim(int nextElementPointer)
+    {
+        var current = nextElementPointer;
+        while (current > 1)
         {
-            return Heap.Skip(1).ToArray().Clone() as T[];
-        }
+            var parentIndex = current / 2;
+            if (Heap[current].CompareTo(Heap[parentIndex]) == 0) break;
 
-        protected BinaryHeap(int maxCapacity = 8)
-        {
-            Heap = new T[maxCapacity + 1];
-        }
+            if (ShouldNotSwap(current, parentIndex)) break;
 
-        protected abstract bool ShouldSwap(int current, int target);
-
-        protected abstract bool ShouldNotSwap(int current, int target);
-
-        protected abstract int GetSwapChildIndex(int rightChildIndex, int leftChildIndex);
-
-        public void Insert(T value)
-        {
-            if (nextElementPointer == Heap.Length)
+            if (ShouldSwap(current, parentIndex))
             {
-                throw new ArgumentException("Heap is full");
-            }
-
-            Heap[nextElementPointer] = value;
-            Swim(nextElementPointer);
-            nextElementPointer++;
-        }
-
-        private void Swim(int nextElementPointer)
-        {
-            var current = nextElementPointer;
-            while (current > 1)
-            {
-                var parentIndex = current / 2;
-                if (Heap[current].CompareTo(Heap[parentIndex]) == 0)
-                {
-                    break;
-                }
-
-                if (ShouldNotSwap(current, parentIndex))
-                {
-                    break;
-                }
-
-                if (ShouldSwap(current, parentIndex))
-                {
-                    var tmp = Heap[parentIndex];
-                    Heap[parentIndex] = Heap[current];
-                    Heap[current] = tmp;
-                    current = parentIndex;
-                }
+                var tmp = Heap[parentIndex];
+                Heap[parentIndex] = Heap[current];
+                Heap[current] = tmp;
+                current = parentIndex;
             }
         }
+    }
 
-        public T GetTop()
+    public T GetTop()
+    {
+        if (nextElementPointer - 1 == 0) throw new ArgumentException("Heap is empty");
+
+        var result = Heap[1];
+        Heap[1] = Heap[nextElementPointer - 1];
+        Heap[nextElementPointer - 1] = default;
+        nextElementPointer--;
+
+        Sink(1);
+
+        return result;
+    }
+
+    private void Sink(int index)
+    {
+        var rightChildIndex = index * 2 + 1;
+        var leftChildIndex = index * 2;
+        var swapChildIndex = leftChildIndex;
+
+        if (leftChildIndex >= nextElementPointer) return;
+
+        if (rightChildIndex < nextElementPointer) swapChildIndex = GetSwapChildIndex(rightChildIndex, leftChildIndex);
+
+        if (!ShouldSwap(index, swapChildIndex))
         {
-            if (nextElementPointer - 1 == 0)
-            {
-                throw new ArgumentException("Heap is empty");
-            }
+            var tmp = Heap[index];
 
-            var result = Heap[1];
-            Heap[1] = Heap[nextElementPointer - 1];
-            Heap[nextElementPointer - 1] = default;
-            nextElementPointer--;
+            Heap[index] = Heap[swapChildIndex];
+            Heap[swapChildIndex] = tmp;
 
-            Sink(1);
-
-            return result;
-        }
-
-        private void Sink(int index)
-        {
-            var rightChildIndex = index * 2 + 1;
-            var leftChildIndex = index * 2;
-            var swapChildIndex = leftChildIndex;
-
-            if (leftChildIndex >= nextElementPointer)
-            {
-                return;
-            }
-
-            if (rightChildIndex < nextElementPointer)
-            {
-                swapChildIndex = GetSwapChildIndex(rightChildIndex, leftChildIndex);
-            }
-
-            if (!ShouldSwap(index, swapChildIndex))
-            {
-                var tmp = Heap[index];
-
-                Heap[index] = Heap[swapChildIndex];
-                Heap[swapChildIndex] = tmp;
-
-                Sink(swapChildIndex);
-            }
+            Sink(swapChildIndex);
         }
     }
 }

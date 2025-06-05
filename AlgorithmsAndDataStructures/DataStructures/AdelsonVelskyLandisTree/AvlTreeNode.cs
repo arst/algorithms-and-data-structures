@@ -1,13 +1,12 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree
+﻿namespace AlgorithmsAndDataStructures.DataStructures.AdelsonVelskyLandisTree;
+
+public class AvlTreeNode
 {
-    public class AvlTreeNode
-    {
-        public AvlTreeNode Left { get; set; }
+    public AvlTreeNode Left { get; set; }
 
-        public AvlTreeNode Right { get; set; }
+    public AvlTreeNode Right { get; set; }
 
-        public int Value { get; set; }
+    public int Value { get; set; }
 
-        public int Height { get; set; }
-    }
+    public int Height { get; set; }
 }

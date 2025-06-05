@@ -1,36 +1,28 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet
+﻿namespace AlgorithmsAndDataStructures.DataStructures.DisjointSet;
+
+public class GreedyDisjointSet : IDisjointSet
 {
-    public class GreedyDisjointSet : IDisjointSet
+    private readonly int[] set;
+
+    public GreedyDisjointSet(int size)
     {
-        private readonly int[] set;
+        set = new int[size];
 
-        public GreedyDisjointSet(int size)
-        {
-            set = new int[size];
+        for (var i = 0; i < size; i++) set[i] = i;
+    }
 
-            for (var i = 0; i < size; i++)
-            {
-                set[i] = i;
-            }
-        }
+    public void Union(int a, int b)
+    {
+        var aSet = set[a];
+        var bSet = set[b];
 
-        public void Union(int a, int b)
-        {
-            var aSet = set[a];
-            var bSet = set[b];
+        for (var i = 0; i < set.Length; i++)
+            if (set[i] == bSet)
+                set[i] = aSet;
+    }
 
-            for (var i = 0; i < set.Length; i++)
-            {
-                if (set[i] == bSet)
-                {
-                    set[i] = aSet;
-                }
-            }
-        }
-
-        public bool Connected(int a, int b)
-        {
-            return set[a] == set[b];
-        }
+    public bool Connected(int a, int b)
+    {
+        return set[a] == set[b];
     }
 }

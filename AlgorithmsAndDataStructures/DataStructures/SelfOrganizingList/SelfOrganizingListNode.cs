@@ -1,9 +1,8 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList
-{
-    public class SelfOrganizingListNode<T>
-    {
-        public T Value { get; set; }
+﻿namespace AlgorithmsAndDataStructures.DataStructures.SelfOrganizingList;
 
-        public SelfOrganizingListNode<T> Next { get; set; }
-    }
+public class SelfOrganizingListNode<T>
+{
+    public T Value { get; set; }
+
+    public SelfOrganizingListNode<T> Next { get; set; }
 }

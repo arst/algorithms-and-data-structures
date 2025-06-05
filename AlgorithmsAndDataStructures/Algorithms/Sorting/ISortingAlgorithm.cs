@@ -1,7 +1,6 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Sorting
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Sorting;
+
+public interface ISortingAlgorithm
 {
-    public interface ISortingAlgorithm
-    {
-        void Sort(int[] target);
-    }
+    void Sort(int[] target);
 }

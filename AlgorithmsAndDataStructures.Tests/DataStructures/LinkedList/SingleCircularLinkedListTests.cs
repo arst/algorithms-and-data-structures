@@ -1,102 +1,101 @@
-﻿using AlgorithmsAndDataStructures.DataStructures.LinkedList;
-using System.Linq;
+﻿using System.Linq;
+using AlgorithmsAndDataStructures.DataStructures.LinkedList;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.LinkedList;
+
+public class SingleCircularLinkedListTests
 {
-    public class SingleCircularLinkedListTests
+    [Fact]
+    public void OneNodeListHasTheSameRearAndFront()
     {
-        [Fact]
-        public void OneNodeListHasTheSameRearAndFront()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
+        var sut = new SinglyCircularLinkedList<int>();
 
-            sut.Enqueue(1);
+        sut.Enqueue(1);
 
-            Assert.Same(sut.GetFront(), sut.GetRear());
-        }
+        Assert.Same(sut.GetFront(), sut.GetRear());
+    }
 
-        [Fact]
-        public void EmptyListHasNoRearAndFront()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
+    [Fact]
+    public void EmptyListHasNoRearAndFront()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
 
-            Assert.Null(sut.GetFront());
-            Assert.Null(sut.GetRear());
-        }
+        Assert.Null(sut.GetFront());
+        Assert.Null(sut.GetRear());
+    }
 
-        [Fact]
-        public void DequeFromEmptyListDoesntThrowAnError()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
+    [Fact]
+    public void DequeFromEmptyListDoesntThrowAnError()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
 
-            Assert.Null(sut.Dequeue());
-        }
+        Assert.Null(sut.Dequeue());
+    }
 
-        [Fact]
-        public void Dequeue()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
-            sut.Enqueue(1);
-            sut.Enqueue(2);
-            sut.Enqueue(3);
+    [Fact]
+    public void Dequeue()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
+        sut.Enqueue(1);
+        sut.Enqueue(2);
+        sut.Enqueue(3);
 
-            Assert.Equal(1, sut.Dequeue().Value);
-        }
+        Assert.Equal(1, sut.Dequeue().Value);
+    }
 
-        [Fact]
-        public void Traverse()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
-            sut.Enqueue(1);
-            sut.Enqueue(2);
-            sut.Enqueue(3);
+    [Fact]
+    public void Traverse()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
+        sut.Enqueue(1);
+        sut.Enqueue(2);
+        sut.Enqueue(3);
 
-            Assert.Equal(3, sut.Traverse().Count);
-            Assert.Equal(1, sut.Traverse().First());
-            Assert.Equal(2, sut.Traverse().Skip(1).First());
-            Assert.Equal(3, sut.Traverse().Skip(2).First());
-        }
+        Assert.Equal(3, sut.Traverse().Count);
+        Assert.Equal(1, sut.Traverse().First());
+        Assert.Equal(2, sut.Traverse().Skip(1).First());
+        Assert.Equal(3, sut.Traverse().Skip(2).First());
+    }
 
-        [Fact]
-        public void DequeueEmptiesSingleNodeList()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
-            sut.Enqueue(1);
-            sut.Dequeue();
+    [Fact]
+    public void DequeueEmptiesSingleNodeList()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
+        sut.Enqueue(1);
+        sut.Dequeue();
 
-            Assert.Empty(sut.Traverse());
-        }
+        Assert.Empty(sut.Traverse());
+    }
 
-        [Fact]
-        public void DequeueEmptiesList()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
-            sut.Enqueue(1);
-            sut.Enqueue(2);
-            sut.Enqueue(3);
-            sut.Dequeue();
-            sut.Dequeue();
-            sut.Dequeue();
+    [Fact]
+    public void DequeueEmptiesList()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
+        sut.Enqueue(1);
+        sut.Enqueue(2);
+        sut.Enqueue(3);
+        sut.Dequeue();
+        sut.Dequeue();
+        sut.Dequeue();
 
-            Assert.Empty(sut.Traverse());
-        }
+        Assert.Empty(sut.Traverse());
+    }
 
-        [Fact]
-        public void DequeueReturnsElementsInOrderReversedToEnqueue()
-        {
-            var sut = new SinglyCircularLinkedList<int>(null);
-            sut.Enqueue(1);
-            sut.Enqueue(2);
-            sut.Enqueue(3);
-            var first = sut.Dequeue();
-            var second = sut.Dequeue();
-            var third = sut.Dequeue();
+    [Fact]
+    public void DequeueReturnsElementsInOrderReversedToEnqueue()
+    {
+        var sut = new SinglyCircularLinkedList<int>();
+        sut.Enqueue(1);
+        sut.Enqueue(2);
+        sut.Enqueue(3);
+        var first = sut.Dequeue();
+        var second = sut.Dequeue();
+        var third = sut.Dequeue();
 
-            Assert.Empty(sut.Traverse());
-            Assert.Equal(1, first.Value);
-            Assert.Equal(2, second.Value);
-            Assert.Equal(3, third.Value);
-        }
+        Assert.Empty(sut.Traverse());
+        Assert.Equal(1, first.Value);
+        Assert.Equal(2, second.Value);
+        Assert.Equal(3, third.Value);
     }
 }

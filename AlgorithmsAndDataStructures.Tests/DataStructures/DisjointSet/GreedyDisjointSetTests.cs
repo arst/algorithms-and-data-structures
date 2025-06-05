@@ -1,12 +1,11 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.DisjointSet;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.DisjointSet
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.DisjointSet;
+
+public class GreedyDisjointSetTests : DisjoinSetBaseTests
 {
-    public class GreedyDisjointSetTests : DisjoinSetBaseTests
+    protected override IDisjointSet GetSut(int size)
     {
-        protected override IDisjointSet GetSut(int size)
-        {
-            return new GreedyDisjointSet(size);
-        }
+        return new GreedyDisjointSet(size);
     }
 }

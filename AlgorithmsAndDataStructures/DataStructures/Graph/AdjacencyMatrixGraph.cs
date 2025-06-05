@@ -1,18 +1,17 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.Graph
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Graph;
+
+public class AdjacencyMatrixGraph
 {
-    public class AdjacencyMatrixGraph
+    private readonly int[][] graph;
+
+    public AdjacencyMatrixGraph(int capacity)
     {
-        private readonly int[][] graph;
+        graph = new int[capacity][];
+    }
 
-        public AdjacencyMatrixGraph(int capacity)
-        {
-            graph = new int[capacity][];
-        }
-
-        public void AddNode(int source, int destination)
-        {
-            graph[source][destination] = 1;
-            graph[destination][source] = 1;
-        }
+    public void AddNode(int source, int destination)
+    {
+        graph[source][destination] = 1;
+        graph[destination][source] = 1;
     }
 }

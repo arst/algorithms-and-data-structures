@@ -1,17 +1,13 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Utils
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Utils;
+
+internal static class ArrayUtils
 {
-    internal static class ArrayUtils
+    internal static T[][] InitializeMultiDimensionalArray<T>(int height, int width)
     {
-        internal static T[][] InitializeMultiDimensionalArray<T>(int height, int width)
-        {
-            var result = new T[height][];
+        var result = new T[height][];
 
-            for (var i = 0; i < result.Length; i++)
-            {
-                result[i] = new T[width];
-            }
+        for (var i = 0; i < result.Length; i++) result[i] = new T[width];
 
-            return result;
-        }
+        return result;
     }
 }

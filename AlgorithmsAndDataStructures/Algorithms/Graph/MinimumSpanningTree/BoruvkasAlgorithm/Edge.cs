@@ -1,9 +1,8 @@
-﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree.BoruvkasAlgorithm
+﻿namespace AlgorithmsAndDataStructures.Algorithms.Graph.MinimumSpanningTree.BoruvkasAlgorithm;
+
+public class Edge
 {
-    public class Edge
-    {
-        public int Source { get; set; }
-        public int Destination { get; set; }
-        public int Weight { get; set; }
-    }
+    public int Source { get; set; }
+    public int Destination { get; set; }
+    public int Weight { get; set; }
 }

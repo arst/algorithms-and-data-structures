@@ -1,28 +1,27 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.SegmentTree;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.SegmentTree
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.SegmentTree;
+
+public class MinSegmentTreeTests
 {
-    public class MinSegmentTreeTests
+    [Fact]
+    public void GetMin()
     {
-        [Fact]
-        public void GetMin()
-        {
-            var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
+        var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
 
-            Assert.Equal(3, sut.GetSegmentValue(1, 3));
-        }
+        Assert.Equal(3, sut.GetSegmentValue(1, 3));
+    }
 
-        [Fact]
-        public void CanUpdateValue()
-        {
-            var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
+    [Fact]
+    public void CanUpdateValue()
+    {
+        var sut = new MinSegmentTree(new[] { 1, 3, 5, 7, 9, 11 });
 
-            Assert.Equal(3, sut.GetSegmentValue(1, 3));
+        Assert.Equal(3, sut.GetSegmentValue(1, 3));
 
-            sut.Update(1, 8);
+        sut.Update(1, 8);
 
-            Assert.Equal(5, sut.GetSegmentValue(1, 3));
-        }
+        Assert.Equal(5, sut.GetSegmentValue(1, 3));
     }
 }

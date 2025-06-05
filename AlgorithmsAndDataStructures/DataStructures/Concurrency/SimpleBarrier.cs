@@ -1,35 +1,35 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.Concurrency
-{
-    public class SimpleBarrier
-    {
-        private int counter;
-        private readonly int total;
-        private bool released;
-        private readonly object counterLock = new object();
+﻿namespace AlgorithmsAndDataStructures.DataStructures.Concurrency;
 
-        public SimpleBarrier(int size)
+public class SimpleBarrier
+{
+    private readonly object counterLock = new();
+    private readonly int total;
+    private int counter;
+    private bool released;
+
+    public SimpleBarrier(int size)
+    {
+        counter = 0;
+        total = size;
+    }
+
+    public void Wait()
+    {
+        var localWait = !released;
+
+        lock (counterLock)
         {
-            counter = 0;
-            total = size;
+            counter++;
+
+            if (counter == total)
+            {
+                counter = 0;
+                released = localWait;
+            }
         }
 
-        public void Wait()
+        while (released != localWait)
         {
-            var localWait = !released;
-
-            lock (counterLock)
-            {
-                counter++;
-
-                if (counter == total)
-                {
-                    counter = 0;
-                    released = localWait;
-                }
-            }
-            while (released != localWait)
-            {
-            }
         }
     }
 }

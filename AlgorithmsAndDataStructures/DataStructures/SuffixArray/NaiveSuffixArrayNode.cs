@@ -1,9 +1,8 @@
-﻿namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray
-{
-    public class NaiveSuffixArrayNode
-    {
-        public int Index { get; set; }
+﻿namespace AlgorithmsAndDataStructures.DataStructures.SuffixArray;
 
-        public string Suffix { get; set; }
-    }
+public class NaiveSuffixArrayNode
+{
+    public int Index { get; set; }
+
+    public string Suffix { get; set; }
 }

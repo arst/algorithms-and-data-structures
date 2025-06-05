@@ -1,42 +1,32 @@
 ﻿using AlgorithmsAndDataStructures.DataStructures.UnrolledLinkedLists;
 using Xunit;
 
-namespace AlgorithmsAndDataStructures.Tests.DataStructures.UnrolledLinkedList
+namespace AlgorithmsAndDataStructures.Tests.DataStructures.UnrolledLinkedList;
+
+public class UnrolledLinkedListTests
 {
-    public class UnrolledLinkedListTests
+    [Fact]
+    public void UnrolledLinkedListUnrollsIntoArray()
     {
-        [Fact]
-        public void UnrolledLinkedListUnrollsIntoArray()
-        {
-            var sut = new UnrolledLinkedList<int>();
+        var sut = new UnrolledLinkedList<int>();
 
-            for (var i = 0; i < 10000; i++)
-            {
-                sut.Add(i);
-            }
+        for (var i = 0; i < 10000; i++) sut.Add(i);
 
-            var unrolled = sut.Unroll();
+        var unrolled = sut.Unroll();
 
-            for (var i = 0; i < 10000; i++)
-            {
-                Assert.Equal(i, unrolled[i]);
-            }
-        }
+        for (var i = 0; i < 10000; i++) Assert.Equal(i, unrolled[i]);
+    }
 
-        [Fact]
-        public void CanFindElements()
-        {
-            var sut = new UnrolledLinkedList<int>();
+    [Fact]
+    public void CanFindElements()
+    {
+        var sut = new UnrolledLinkedList<int>();
 
-            for (var i = 0; i < 6; i++)
-            {
-                sut.Add(i);
-            }
+        for (var i = 0; i < 6; i++) sut.Add(i);
 
-            var node = sut.Find(5);
+        var node = sut.Find(5);
 
-            Assert.Equal(1, node.CurrentIndex);
-            Assert.Equal(5, node.Values[0]);
-        }
+        Assert.Equal(1, node.CurrentIndex);
+        Assert.Equal(5, node.Values[0]);
     }
 }
